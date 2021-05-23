@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaGestorEventos.BE\SistemaGestorEventos.BE.csproj" />
+    <ProjectReference Include="..\SistemaGestorEventos.DAL\SistemaGestorEventos.DAL.csproj" />
+    <ProjectReference Include="..\SistemaGestorEventos.SharedServices\SistemaGestorEventos.SharedServices.csproj" />
+  </ItemGroup>
+
+</Project>

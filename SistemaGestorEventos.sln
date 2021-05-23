@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestorEventos.GUI", "SistemaGestorEventos.GUI\SistemaGestorEventos.GUI.csproj", "{408075B0-02AA-4381-ABB0-EE92E0882F28}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestorEventos.BLL", "SistemaGestorEventos.BLL\SistemaGestorEventos.BLL.csproj", "{18AA0383-F013-494D-8352-808059E01B98}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestorEventos.DAL", "SistemaGestorEventos.DAL\SistemaGestorEventos.DAL.csproj", "{B593C0E3-717E-4B38-BA9B-FD601D43522C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestorEventos.SharedServices", "SistemaGestorEventos.SharedServices\SistemaGestorEventos.SharedServices.csproj", "{ED93CA44-5D05-4515-965C-85C313CDA3A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{DEC21FDD-FFC5-4867-963E-5FE731BCB70A}"
+	ProjectSection(SolutionItems) = preProject
+		..\sge\SistemaGestorEventos\docs\SGE.eap = ..\sge\SistemaGestorEventos\docs\SGE.eap
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6914D71-E1E9-4976-BAF3-8DA56B4CEAF3}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestorEventos.BE", "SistemaGestorEventos.BE\SistemaGestorEventos.BE.csproj", "{A0FE71A1-572E-423A-9355-B03F85AFA7F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{408075B0-02AA-4381-ABB0-EE92E0882F28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{408075B0-02AA-4381-ABB0-EE92E0882F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{408075B0-02AA-4381-ABB0-EE92E0882F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{408075B0-02AA-4381-ABB0-EE92E0882F28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18AA0383-F013-494D-8352-808059E01B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18AA0383-F013-494D-8352-808059E01B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18AA0383-F013-494D-8352-808059E01B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18AA0383-F013-494D-8352-808059E01B98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B593C0E3-717E-4B38-BA9B-FD601D43522C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B593C0E3-717E-4B38-BA9B-FD601D43522C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B593C0E3-717E-4B38-BA9B-FD601D43522C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B593C0E3-717E-4B38-BA9B-FD601D43522C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED93CA44-5D05-4515-965C-85C313CDA3A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED93CA44-5D05-4515-965C-85C313CDA3A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED93CA44-5D05-4515-965C-85C313CDA3A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED93CA44-5D05-4515-965C-85C313CDA3A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0FE71A1-572E-423A-9355-B03F85AFA7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0FE71A1-572E-423A-9355-B03F85AFA7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0FE71A1-572E-423A-9355-B03F85AFA7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0FE71A1-572E-423A-9355-B03F85AFA7F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A78F7C8-BC75-4F69-B717-87CB60A6061A}
+	EndGlobalSection
+EndGlobal
