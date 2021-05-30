@@ -19,7 +19,7 @@ namespace SistemaGestorEventos.BLL
 
         }
 
-        private static readonly SessionHandler<Usuario> SESSION = SessionHandler<Usuario>.GetInstance;
+        private static readonly SessionHandler SESSION = SessionHandler.GetInstance;
 
         private readonly UsuarioDAL usuarioDAL = UsuarioDAL.GetInstance();
 
@@ -64,6 +64,11 @@ namespace SistemaGestorEventos.BLL
             usuario.Password = Encriptador.Hash(usuario.Password);
             usuarioDAL.Create(usuario);
             SessionLogin(usuario);
+        }
+
+        public void Logout()
+        {
+            SESSION.Logout();
         }
     }
 }

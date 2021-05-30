@@ -18,6 +18,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestorEventos.BE", "SistemaGestorEventos.BE\SistemaGestorEventos.BE.csproj", "{A0FE71A1-572E-423A-9355-B03F85AFA7F0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{E7D0B695-7FEE-47F0-A5BA-AB69A4605124}"
+	ProjectSection(SolutionItems) = preProject
+		createTables.sql = createTables.sql
+		storedprocedures.sql = storedprocedures.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +53,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E7D0B695-7FEE-47F0-A5BA-AB69A4605124} = {B6914D71-E1E9-4976-BAF3-8DA56B4CEAF3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A78F7C8-BC75-4F69-B717-87CB60A6061A}

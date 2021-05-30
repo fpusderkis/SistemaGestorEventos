@@ -1,4 +1,5 @@
 ﻿using SistemaGestorEventos.BE;
+using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Windows.Forms;
@@ -7,7 +8,7 @@ namespace SistemaGestorEventos.GUI
 {
     public partial class FrmPrincipal : Form
     {
-        private readonly SessionHandler<Usuario> SESSION = SessionHandler<Usuario>.GetInstance;
+        private readonly SessionHandler SESSION = SessionHandler.GetInstance;
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace SistemaGestorEventos.GUI
 
         private void mnuLogout_Click(object sender, EventArgs e)
         {
-            SESSION.Logout();
+            SessionBLL.GetInstance().Logout();
         }
 
         private void mnuRegistrar_Click(object sender, EventArgs e)

@@ -16,7 +16,9 @@ namespace SistemaGestorEventos.DAL
         {
             using (var connection = this.GetSqlConnection())
             {
-                SqlCommand sql = new SqlCommand("SELECT username,password,idioma FROM Usuarios WHERE username like @username ;");
+                /// TODO evaluar pasar a stored procedure
+                /// 
+                SqlCommand sql = new SqlCommand("SELECT username,password,idioma,id FROM Usuarios WHERE username like @username ;");
                 sql.Connection = connection;
 
                 sql.Parameters.Add(new SqlParameter("@username", username));
@@ -25,7 +27,9 @@ namespace SistemaGestorEventos.DAL
 
                 if (reader.Read())
                 {
-                    return new Usuario(reader.GetString(0), reader.GetString(1), reader.GetString(1));
+                    var usuario = new Usuario(reader.GetString(0), reader.GetString(1), reader.GetString(2));
+                    usuario.Id = reader.GetGuid(3);
+                    return usuario;
                 }
                 else
                 {
@@ -38,10 +42,9 @@ namespace SistemaGestorEventos.DAL
         {
             using (var con = this.GetSqlConnection())
             {
+                SqlCommand command = new SqlCommand("sp_Usuario_Crear");
 
-                var sql = "INSERT INTO Usuarios (id,username,password,idioma) VALUES (@id,@username, @password,@idioma)";
-                SqlCommand command = new SqlCommand();
-
+                command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@username", user.Username);
                 command.Parameters.AddWithValue("@password", user.Password);
                 command.Parameters.AddWithValue("@idioma", user.Idioma);
@@ -49,7 +52,6 @@ namespace SistemaGestorEventos.DAL
 
 
                 command.Connection = con;
-                command.CommandText = sql;
                 con.Open();
                 command.ExecuteNonQuery();
 

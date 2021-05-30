@@ -29,8 +29,6 @@ namespace SistemaGestorEventos.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.ShowInTaskbar = false;
-
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
@@ -69,6 +67,7 @@ namespace SistemaGestorEventos.GUI
             // 
             this.txtPassword.Location = new System.Drawing.Point(123, 54);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '☺';
             this.txtPassword.Size = new System.Drawing.Size(250, 23);
             this.txtPassword.TabIndex = 3;
             // 
@@ -117,6 +116,7 @@ namespace SistemaGestorEventos.GUI
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblLogin);
             this.Name = "FrmLogin";
+            this.ShowInTaskbar = false;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
