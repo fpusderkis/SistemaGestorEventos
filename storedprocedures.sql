@@ -46,3 +46,31 @@ BEGIN
            @Idioma);
 
 END
+
+/**
+TRADUCCIONES
+*/
+CREATE PROCEDURE sp_Traducciones_Upsert
+	@idioma varchar(5), 
+	@clave varchar(255),
+	@valor varchar(500)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF EXISTS ( SELECT * FROM dbo.Traducciones WITH (UPDLOCK) WHERE idioma = @idioma AND clave = @clave)
+ 
+		  UPDATE dbo.Traducciones
+			 SET valor = @valor
+		   WHERE idioma = @idioma AND clave = @clave;
+ 
+		ELSE 
+ 
+		  INSERT dbo.Traducciones ( idioma, clave, valor )
+		  VALUES ( @idioma, @clave,@valor );
+ 
+	  COMMIT
+END
+GO

@@ -1,8 +1,6 @@
 ﻿using SistemaGestorEventos.DAL;
 using SistemaGestorEventos.SharedServices.bitacora;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SistemaGestorEventos.BLL
 {

@@ -1,5 +1,8 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
+using SistemaGestorEventos.GUI.Permisos;
+using SistemaGestorEventos.GUI.Utils;
+using SistemaGestorEventos.SharedServices.Multiidioma;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Windows.Forms;
@@ -17,6 +20,17 @@ namespace SistemaGestorEventos.GUI
                 this.mnuLogout.Visible = SESSION.IsLogged();
                 this.mnuRegistrar.Visible = SESSION.IsNotLogged();
             });
+
+            MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);
+        }
+
+        
+
+        private void TraducirTextos()
+        {
+            //this.mnuUsuario.Text = MultiIdioma.Traduccion("FrmPrincipal.mnuUsuario");
+            //this.mnuLogin.Text = MultiIdioma.Traduccion("FrmPrincipal.mnuLogin");
+            WinformUtils.TraducirControl(this);
         }
 
         private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -49,6 +63,31 @@ namespace SistemaGestorEventos.GUI
             var registrar = new usuario.FrmRegistrar();
             registrar.MdiParent = this;
             registrar.Show();
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            TraducirTextos();
+        }
+
+        private void mnuEditorIdioma_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void admnistrarPermisosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var permisosForm = new FrmAdminPermisos();
+            permisosForm.MdiParent = this;
+            permisosForm.Show();
+        }
+
+        private void admnistrarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FrmAdmUsuarios();
+            form.MdiParent = this;
+            
+            form.Show();
         }
     }
 }

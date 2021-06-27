@@ -1,4 +1,5 @@
-﻿using SistemaGestorEventos.SharedServices.Session;
+﻿using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,7 @@ namespace SistemaGestorEventos.BE
             Username = username ?? throw new ArgumentNullException(nameof(username));
             Password = password ?? throw new ArgumentNullException(nameof(password));
             Idioma = idioma ?? throw new ArgumentNullException(nameof(idioma));
+            Permisos = new List<Componente>();
         }
 
         public string Username { get; set; }
@@ -19,5 +21,7 @@ namespace SistemaGestorEventos.BE
         public string Password { get; set; }
 
         public string Idioma { get; set; }
+
+        public List<Componente> Permisos { get; set; }
     }
 }
