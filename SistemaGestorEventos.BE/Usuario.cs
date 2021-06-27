@@ -1,4 +1,5 @@
-﻿using SistemaGestorEventos.SharedServices.Session;
+﻿using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,5 +20,7 @@ namespace SistemaGestorEventos.BE
         public string Password { get; set; }
 
         public string Idioma { get; set; }
+
+        public List<Componente> Permisos { get; set; }
     }
 }

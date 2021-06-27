@@ -1,6 +1,7 @@
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.bitacora.writers;
+using SistemaGestorEventos.SharedServices.Multiidioma;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,9 @@ namespace SistemaGestorEventos.GUI
                 }
                 
             });
+
+            MultiIdioma.Initialize(MultiIdiomaBLL.Instance, "es-AR");
+
             Application.Run(new FrmPrincipal());
         }
     }
