@@ -266,7 +266,7 @@ namespace SistemaGestorEventos.DAL.Permisos
             return component;
         }
 
-        public void FillUserComponents(Usuario u)
+        public List<Componente> GetAllUserComponents(Usuario usuario)
         {
 
             using (var cnn = this.GetSqlConnection())
@@ -276,10 +276,10 @@ namespace SistemaGestorEventos.DAL.Permisos
                 var cmd2 = new SqlCommand();
                 cmd2.Connection = cnn;
                 cmd2.CommandText = $@"select p.* from usuarios_permisos up inner join permiso p on up.id_permiso=p.id where id_usuario=@id;";
-                cmd2.Parameters.AddWithValue("id", u.Id);
+                cmd2.Parameters.AddWithValue("id", usuario.Id);
 
                 var reader = cmd2.ExecuteReader();
-                u.Permisos.Clear();
+                var componentes = new List<Componente>();
                 while (reader.Read())
                 {
 
@@ -297,13 +297,13 @@ namespace SistemaGestorEventos.DAL.Permisos
                         c1.Id = idp;
                         c1.Nombre = nombrep;
 
-                        var f = GetAll("=" + idp);
+                        var f = GetAll($"='{idp}'");
 
                         foreach (var familia in f)
                         {
                             c1.AgregarHijo(familia);
                         }
-                        u.Permisos.Add(c1);
+                        componentes.Add(c1);
                     }
                     else
                     {
@@ -311,13 +311,14 @@ namespace SistemaGestorEventos.DAL.Permisos
                         c1.Id = idp;
                         c1.Nombre = nombrep;
                         c1.Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), permisop);
-                        u.Permisos.Add(c1);
+                        componentes.Add(c1);
                     }
 
 
 
                 }
                 reader.Close();
+                return componentes;
             }
 
         }

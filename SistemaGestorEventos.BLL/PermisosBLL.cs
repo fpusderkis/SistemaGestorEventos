@@ -78,8 +78,7 @@ namespace SistemaGestorEventos.BLL
 
         public void FillUserComponents(Usuario u)
         {
-            permisosDAL.FillUserComponents(u);
-
+            u.Permisos = permisosDAL.GetAllUserComponents(u);
         }
 
         public void FillFamilyComponents(Familia familia)

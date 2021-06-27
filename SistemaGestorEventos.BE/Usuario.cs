@@ -13,6 +13,7 @@ namespace SistemaGestorEventos.BE
             Username = username ?? throw new ArgumentNullException(nameof(username));
             Password = password ?? throw new ArgumentNullException(nameof(password));
             Idioma = idioma ?? throw new ArgumentNullException(nameof(idioma));
+            Permisos = new List<Componente>();
         }
 
         public string Username { get; set; }

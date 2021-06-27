@@ -1,5 +1,6 @@
 ﻿using SistemaGestorEventos.BE;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace SistemaGestorEventos.DAL
@@ -35,6 +36,56 @@ namespace SistemaGestorEventos.DAL
                 {
                     return null;
                 }
+            }
+        }
+
+        public void GuardarPermisos(Usuario usuario)
+        {
+            using (var connection = this.GetSqlConnection())
+            {
+                var cmd = new SqlCommand();
+                cmd.Connection = connection;
+                connection.Open();
+                
+                cmd.CommandText = $@"delete from usuarios_permisos where id_usuario=@id;";
+                cmd.Parameters.Add(new SqlParameter("id", usuario.Id));
+                cmd.ExecuteNonQuery();
+
+                foreach (var item in usuario.Permisos)
+                {
+                    cmd = new SqlCommand();
+                    cmd.Connection = connection;
+
+                    cmd.CommandText = $@"insert into usuarios_permisos (id_usuario,id_permiso) values (@id_usuario,@id_permiso) "; ;
+                    cmd.Parameters.Add(new SqlParameter("id_usuario", usuario.Id));
+                    cmd.Parameters.Add(new SqlParameter("id_permiso", item.Id));
+
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+        }
+
+        public IList<Usuario> GetAll()
+        {
+            using (var connection = this.GetSqlConnection())
+            {
+                /// TODO evaluar pasar a stored procedure
+                /// 
+                SqlCommand sql = new SqlCommand("SELECT username,password,idioma,id FROM Usuarios;");
+                sql.Connection = connection;
+                connection.Open();
+                var reader = sql.ExecuteReader();
+                var lista = new List<Usuario>();
+                while (reader.Read())
+                {
+                    var usuario = new Usuario(reader.GetString(0), reader.GetString(1), reader.GetString(2));
+                    usuario.Id = reader.GetGuid(3);
+                    lista.Add(usuario);
+                }
+                reader.Close();
+
+                return lista;
             }
         }
 

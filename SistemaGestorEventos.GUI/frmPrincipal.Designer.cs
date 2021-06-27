@@ -38,6 +38,7 @@ namespace SistemaGestorEventos.GUI
             this.mnuIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCambiarIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEditorIdioma = new System.Windows.Forms.ToolStripMenuItem();
+            this.admnistrarUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +58,8 @@ namespace SistemaGestorEventos.GUI
             this.mnuLogin,
             this.mnuLogout,
             this.mnuRegistrar,
-            this.admnistrarPermisosToolStripMenuItem});
+            this.admnistrarPermisosToolStripMenuItem,
+            this.admnistrarUsuariosToolStripMenuItem});
             this.mnuUsuario.Name = "mnuUsuario";
             this.mnuUsuario.Size = new System.Drawing.Size(59, 20);
             this.mnuUsuario.Text = "Usuario";
@@ -113,6 +115,13 @@ namespace SistemaGestorEventos.GUI
             this.mnuEditorIdioma.Text = "Editor";
             this.mnuEditorIdioma.Click += new System.EventHandler(this.mnuEditorIdioma_Click);
             // 
+            // admnistrarUsuariosToolStripMenuItem
+            // 
+            this.admnistrarUsuariosToolStripMenuItem.Name = "admnistrarUsuariosToolStripMenuItem";
+            this.admnistrarUsuariosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.admnistrarUsuariosToolStripMenuItem.Text = "Admnistrar Usuarios";
+            this.admnistrarUsuariosToolStripMenuItem.Click += new System.EventHandler(this.admnistrarUsuariosToolStripMenuItem_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -141,5 +150,6 @@ namespace SistemaGestorEventos.GUI
         private System.Windows.Forms.ToolStripMenuItem mnuCambiarIdioma;
         private System.Windows.Forms.ToolStripMenuItem mnuEditorIdioma;
         private System.Windows.Forms.ToolStripMenuItem admnistrarPermisosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem admnistrarUsuariosToolStripMenuItem;
     }
 }

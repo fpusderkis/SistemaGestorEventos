@@ -81,5 +81,13 @@ namespace SistemaGestorEventos.GUI
             permisosForm.MdiParent = this;
             permisosForm.Show();
         }
+
+        private void admnistrarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FrmAdmUsuarios();
+            form.MdiParent = this;
+            
+            form.Show();
+        }
     }
 }
