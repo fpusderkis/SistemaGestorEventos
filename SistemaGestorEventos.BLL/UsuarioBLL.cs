@@ -25,5 +25,12 @@ namespace SistemaGestorEventos.BLL
         {
             usuarioDAL.GuardarPermisos(usuario);
         }
+
+        public Usuario CargarUsuario(string username)
+        {
+            Usuario usuario = usuarioDAL.FindByUsername(username);
+            PermisosBLL.Instance.FillUserComponents(usuario);
+            return usuario;
+        }
     }
 }

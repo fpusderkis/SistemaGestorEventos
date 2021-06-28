@@ -1,4 +1,5 @@
-﻿using SistemaGestorEventos.BLL;
+﻿using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.GUI.Utils;
 using SistemaGestorEventos.SharedServices.Multiidioma;
 using SistemaGestorEventos.SharedServices.Session;
@@ -35,6 +36,8 @@ namespace SistemaGestorEventos.GUI.Idioma
             cbxIdiomas.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbxIdiomas.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbxIdiomas.SelectedItem = null;
+
+            btnGestionar.Visible = SessionHandler<TipoPermiso>.GetInstance.TienePermiso(TipoPermiso.AdministradorSistema);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

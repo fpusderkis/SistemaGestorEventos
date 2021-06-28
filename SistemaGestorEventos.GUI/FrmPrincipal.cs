@@ -1,4 +1,5 @@
 ﻿using SistemaGestorEventos.BE;
+using SistemaGestorEventos.BE.Permisos;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.GUI.Idioma;
 using SistemaGestorEventos.GUI.Permisos;
@@ -12,7 +13,7 @@ namespace SistemaGestorEventos.GUI
 {
     public partial class FrmPrincipal : Form
     {
-        private readonly SessionHandler SESSION = SessionHandler.GetInstance;
+        private readonly SessionHandler<TipoPermiso> SESSION = SessionHandler<TipoPermiso>.GetInstance;
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -20,6 +21,10 @@ namespace SistemaGestorEventos.GUI
                 this.mnuLogin.Visible = SESSION.IsNotLogged();
                 this.mnuLogout.Visible = SESSION.IsLogged();
                 this.mnuRegistrar.Visible = SESSION.IsNotLogged();
+                bool esAdmin = SESSION.TienePermiso(TipoPermiso.AdministradorSistema);
+                this.admnistrarPermisosToolStripMenuItem.Visible = esAdmin;
+                this.admnistrarUsuariosToolStripMenuItem.Visible = esAdmin;
+
             });
 
             MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);

@@ -4,23 +4,23 @@ using System.Text;
 
 namespace SistemaGestorEventos.SharedServices.Session
 {
-    public class SessionHandler
+    public class SessionHandler<T>
     {
-        private static SessionHandler _session = new SessionHandler();
+        private static SessionHandler<T> _session = new SessionHandler<T>();
 
-        private IUser _user;
+        private IUser<T> _user;
 
         List<Action> suscribers = new List<Action>();
 
         private SessionHandler() { }
 
-        public static SessionHandler GetInstance { get 
+        public static SessionHandler<T> GetInstance { get 
             {
                 return _session;
             }
         }
 
-        public IUser Usuario
+        public IUser<T> Usuario
         {
             get
             {
@@ -29,7 +29,7 @@ namespace SistemaGestorEventos.SharedServices.Session
         }
 
 
-        public void Login(IUser usuario)
+        public void Login(IUser<T> usuario)
         {
             _user = usuario;
             this.FireOnSessionStatusChangeEvent();
@@ -63,5 +63,14 @@ namespace SistemaGestorEventos.SharedServices.Session
             suscribers.ForEach(s => s());
         }
 
+
+        public bool TienePermiso(T permiso)
+        {
+            if (IsLogged())
+            {
+                return _user.TienePermiso(permiso);
+            }
+            return false;
+        }
     }
 }

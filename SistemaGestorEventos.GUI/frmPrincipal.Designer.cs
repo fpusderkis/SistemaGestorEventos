@@ -90,6 +90,7 @@ namespace SistemaGestorEventos.GUI
             this.admnistrarPermisosToolStripMenuItem.Name = "admnistrarPermisosToolStripMenuItem";
             this.admnistrarPermisosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.admnistrarPermisosToolStripMenuItem.Text = "Admnistrar Permisos";
+            this.admnistrarPermisosToolStripMenuItem.Visible = false;
             this.admnistrarPermisosToolStripMenuItem.Click += new System.EventHandler(this.admnistrarPermisosToolStripMenuItem_Click);
             // 
             // admnistrarUsuariosToolStripMenuItem
@@ -97,6 +98,7 @@ namespace SistemaGestorEventos.GUI
             this.admnistrarUsuariosToolStripMenuItem.Name = "admnistrarUsuariosToolStripMenuItem";
             this.admnistrarUsuariosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.admnistrarUsuariosToolStripMenuItem.Text = "Admnistrar Usuarios";
+            this.admnistrarUsuariosToolStripMenuItem.Visible = false;
             this.admnistrarUsuariosToolStripMenuItem.Click += new System.EventHandler(this.admnistrarUsuariosToolStripMenuItem_Click);
             // 
             // mnuIdioma

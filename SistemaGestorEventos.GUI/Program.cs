@@ -1,3 +1,4 @@
+using SistemaGestorEventos.BE.Permisos;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.bitacora.writers;
@@ -26,10 +27,10 @@ namespace SistemaGestorEventos.GUI
             BitacoraSingleton.GetInstance.AddWriter(new BitacoraConsoleWriter());
             BitacoraSingleton.GetInstance.AddWriter(BitacoraBLL.GetInstance);
 
-            SessionHandler.GetInstance.SuscribeSessionStatusChangeEvent(() => {
-                if (SessionHandler.GetInstance.IsLogged())
+            SessionHandler<TipoPermiso>.GetInstance.SuscribeSessionStatusChangeEvent(() => {
+                if (SessionHandler<TipoPermiso>.GetInstance.IsLogged())
                 {
-                    BitacoraSingleton.GetInstance.UserReferenceId = SessionHandler.GetInstance.Usuario.Id;
+                    BitacoraSingleton.GetInstance.UserReferenceId = SessionHandler<TipoPermiso>.GetInstance.Usuario.Id;
                     BitacoraSingleton.GetInstance.Log("Inicio sesión");
                 }
                 else
