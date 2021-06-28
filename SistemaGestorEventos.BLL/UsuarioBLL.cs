@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.BLL
 {
-    public class UsuarioBLL
+    public class UsuarioBLL : AbstractBLL
     {
         private static UsuarioBLL instance = new UsuarioBLL();
         private static UsuarioDAL usuarioDAL = UsuarioDAL.GetInstance();

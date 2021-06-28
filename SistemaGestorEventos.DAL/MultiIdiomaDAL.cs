@@ -1,4 +1,5 @@
-﻿using SistemaGestorEventos.SharedServices.Multiidioma;
+﻿using SistemaGestorEventos.BE;
+using SistemaGestorEventos.SharedServices.Multiidioma;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -14,7 +15,15 @@ namespace SistemaGestorEventos.DAL
 
         public static MultiIdiomaDAL Instance => multiIdiomaDAL;
 
-        public void AgregarTraduccion(string idioma,string key, string value)
+        public void UpsertIdioma(Idioma idioma)
+        {
+            this.InvokeProcedure("sp_Idioma_Upsert", new Dictionary<string, object>() {
+                { "@idioma", idioma.Id},
+                { "@descripcion", idioma.Descripcion}
+            });
+        }
+
+        public void UpsertTraduccion(string idioma, string key, string value)
         {
             this.InvokeProcedure("sp_Traducciones_Upsert", new Dictionary<string, object>() {
                 { "@idioma", idioma},
@@ -42,6 +51,32 @@ namespace SistemaGestorEventos.DAL
                 }
 
                 return traducciones;
+            }
+        }
+
+        public List<Idioma> GetAllIdiomas()
+        {
+            using (var connection = this.GetSqlConnection())
+            {
+                SqlCommand sql = new SqlCommand("SELECT Id,Descripcion FROM Idiomas ");
+                sql.Connection = connection;
+
+                connection.Open();
+                var reader = sql.ExecuteReader();
+
+                var idiomas = new List<Idioma>();
+                while (reader.Read())
+                {
+                    idiomas.Add(
+                        new Idioma
+                        {
+                            Id = reader["Id"].ToString(),
+                            Descripcion = reader["Descripcion"].ToString()
+                        }
+                    );
+                }
+
+                return idiomas;
             }
         }
     }

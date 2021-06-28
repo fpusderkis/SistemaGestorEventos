@@ -20,7 +20,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private PermisosBLL permisosBLL = PermisosBLL.Instance;
 
-        private Familia edicion;
+        private Componente edicion;
 
         public FrmAdminPermisos()
         {
@@ -86,7 +86,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             tvPermisos.BeginUpdate();
             tvPermisos.Nodes.Clear();
             this.edicion = (Familia)lbxFamilias.SelectedItem;
-            this.permisosBLL.FillFamilyComponents(this.edicion);
+            this.permisosBLL.FillFamilyComponents((Familia)this.edicion);
             
             tvPermisos.Nodes.Add(GenerateTreeNode(this.edicion));
             tvPermisos.ExpandAll();
@@ -222,7 +222,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnGuardarFamilia_Click(object sender, EventArgs e)
         {
-            this.permisosBLL.GuardarFamilia(this.edicion);
+            this.permisosBLL.GuardarFamilia((Familia)this.edicion);
             MessageBox.Show(MultiIdioma.TraduccionODefault("FrmAdminPermisos.btnGuardarFamilia_Click.errorIndicarNombre", "Se guardo correctamente la configuracion."));
         }
     }

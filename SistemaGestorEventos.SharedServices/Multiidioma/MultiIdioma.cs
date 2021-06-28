@@ -39,7 +39,7 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
         }
         private void LoadIdioma(string idioma)
         {
-            Dictionary<string, string> idiomaDictionary = this.datasource.CargarIdioma(idiomaDefecto);
+            Dictionary<string, string> idiomaDictionary = this.datasource.CargarIdioma(idioma);
 
             this.idiomasCache[idioma] = idiomaDictionary;
         }
@@ -59,6 +59,7 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
 
 
         }
+
         public static string Traduccion(string key)
         {
             return Traduccion(key, instance.idiomaActual);
@@ -71,7 +72,7 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
                 instance.LoadIdioma(idioma);
             }
 
-            if (instance.idiomasCache.ContainsKey(idioma) && instance.idiomasCache[idioma].ContainsKey(key))
+            if (instance.idiomasCache.ContainsKey(idioma) && instance.idiomasCache[idioma].ContainsKey(key) && !string.IsNullOrWhiteSpace(instance.idiomasCache[idioma][key]))
             {
                 return instance.idiomasCache[idioma][key];
             } 
@@ -108,7 +109,7 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
 
         public static void AgregarTraduccion(string idioma, string key, string value)
         {
-            instance.datasource.AgregarTraduccion(idioma, key, value);
+            instance.datasource.UpsertTraduccion(idioma, key, value);
             instance.LoadIdioma(idioma);
             instance.FireOnLanguageChangeEvent();
         }

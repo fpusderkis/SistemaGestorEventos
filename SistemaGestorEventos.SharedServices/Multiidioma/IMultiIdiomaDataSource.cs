@@ -7,6 +7,6 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
     public interface IMultiIdiomaDataSource
     {
         Dictionary<string,string> CargarIdioma(string idioma);
-        void AgregarTraduccion(string idioma, string key, string value);
+        void UpsertTraduccion(string idioma, string key, string value);
     }
 }

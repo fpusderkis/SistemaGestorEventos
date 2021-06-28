@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.BLL
 {
-    public class PermisosBLL
+    public class PermisosBLL : AbstractBLL
     {
 
         private static readonly PermisosBLL instance = new PermisosBLL();

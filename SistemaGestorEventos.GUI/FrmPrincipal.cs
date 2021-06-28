@@ -1,5 +1,6 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
+using SistemaGestorEventos.GUI.Idioma;
 using SistemaGestorEventos.GUI.Permisos;
 using SistemaGestorEventos.GUI.Utils;
 using SistemaGestorEventos.SharedServices.Multiidioma;
@@ -88,6 +89,11 @@ namespace SistemaGestorEventos.GUI
             form.MdiParent = this;
             
             form.Show();
+        }
+
+        private void mnuCambiarIdioma_Click(object sender, EventArgs e)
+        {
+            new FrmCambiarIdioma().Show();
         }
     }
 }
