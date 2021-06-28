@@ -12,7 +12,6 @@ namespace SistemaGestorEventos.GUI.Utils
         public static void TraducirControl(Control control)
         {
             TraducirControl(control, "");
-            
         }
 
         public static void TraducirControl(Control control, string rootkey)
@@ -28,6 +27,10 @@ namespace SistemaGestorEventos.GUI.Utils
             } else
             {
                 text = control.Text;
+            }
+            if (control is ListBox)
+            {
+                return;
             }
 
             if (traduccion == null && !string.IsNullOrEmpty(text))

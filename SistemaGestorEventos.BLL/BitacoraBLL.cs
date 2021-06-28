@@ -4,7 +4,7 @@ using System;
 
 namespace SistemaGestorEventos.BLL
 {
-    public class BitacoraBLL : IBitacoraWriter
+    public class BitacoraBLL : AbstractBLL, IBitacoraWriter
     {
         private BitacoraBLL() { }
 

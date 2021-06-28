@@ -4,6 +4,7 @@ using SistemaGestorEventos.SharedServices.hash;
 using SistemaGestorEventos.SharedServices.Session;
 using SistemaGestorEventos.SharedServices.exceptions;
 using System;
+using SistemaGestorEventos.BE.Permisos;
 
 namespace SistemaGestorEventos.BLL
 {
@@ -19,7 +20,7 @@ namespace SistemaGestorEventos.BLL
 
         }
 
-        private static readonly SessionHandler SESSION = SessionHandler.GetInstance;
+        private static readonly SessionHandler<TipoPermiso> SESSION = SessionHandler<TipoPermiso>.GetInstance;
 
         private readonly UsuarioDAL usuarioDAL = UsuarioDAL.GetInstance();
 
@@ -27,13 +28,14 @@ namespace SistemaGestorEventos.BLL
 
         public Usuario Login(string username, string password) 
         {
-            var usuario = usuarioDAL.FindByUsername(username);
+            var usuario = UsuarioBLL.Instance.CargarUsuario(username);
             
             if (usuario != null)
             {
                 var pass = Encriptador.Hash(password);
                 if (usuario.Password == pass)
                 {
+                    
                     SessionLogin(usuario);
                     return usuario;
                 }

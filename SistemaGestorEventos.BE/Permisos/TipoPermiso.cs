@@ -8,6 +8,7 @@ namespace SistemaGestorEventos.BE.Permisos
     {
         GestionarLugar,
         GestionarServicio,
+        AdministradorSistema
      
 }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.BLL
 {
-    public class UsuarioBLL
+    public class UsuarioBLL : AbstractBLL
     {
         private static UsuarioBLL instance = new UsuarioBLL();
         private static UsuarioDAL usuarioDAL = UsuarioDAL.GetInstance();
@@ -24,6 +24,13 @@ namespace SistemaGestorEventos.BLL
         public void GuardarPermisos(Usuario usuario)
         {
             usuarioDAL.GuardarPermisos(usuario);
+        }
+
+        public Usuario CargarUsuario(string username)
+        {
+            Usuario usuario = usuarioDAL.FindByUsername(username);
+            PermisosBLL.Instance.FillUserComponents(usuario);
+            return usuario;
         }
     }
 }

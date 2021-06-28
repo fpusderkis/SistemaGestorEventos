@@ -74,3 +74,30 @@ BEGIN
 	  COMMIT
 END
 GO
+
+CREATE PROCEDURE [dbo].[sp_Idioma_Upsert]
+	-- Add the parameters for the stored procedure here
+	@idioma varchar(5), 
+	@descripcion varchar(255)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF EXISTS ( SELECT * FROM dbo.Idiomas WITH (UPDLOCK) WHERE id = @idioma)
+ 
+		  UPDATE dbo.Idiomas
+			 SET Id = @idioma, Descripcion = @descripcion
+		   WHERE id = @idioma;
+ 
+		ELSE 
+ 
+		  INSERT dbo.Idiomas( Id, Descripcion)
+		  VALUES ( @idioma,@descripcion);
+ 
+	  COMMIT
+END
+GO

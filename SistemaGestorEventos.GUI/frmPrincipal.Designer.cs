@@ -35,10 +35,9 @@ namespace SistemaGestorEventos.GUI
             this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRegistrar = new System.Windows.Forms.ToolStripMenuItem();
             this.admnistrarPermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.admnistrarUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCambiarIdioma = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEditorIdioma = new System.Windows.Forms.ToolStripMenuItem();
-            this.admnistrarUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,13 +90,21 @@ namespace SistemaGestorEventos.GUI
             this.admnistrarPermisosToolStripMenuItem.Name = "admnistrarPermisosToolStripMenuItem";
             this.admnistrarPermisosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.admnistrarPermisosToolStripMenuItem.Text = "Admnistrar Permisos";
+            this.admnistrarPermisosToolStripMenuItem.Visible = false;
             this.admnistrarPermisosToolStripMenuItem.Click += new System.EventHandler(this.admnistrarPermisosToolStripMenuItem_Click);
+            // 
+            // admnistrarUsuariosToolStripMenuItem
+            // 
+            this.admnistrarUsuariosToolStripMenuItem.Name = "admnistrarUsuariosToolStripMenuItem";
+            this.admnistrarUsuariosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.admnistrarUsuariosToolStripMenuItem.Text = "Admnistrar Usuarios";
+            this.admnistrarUsuariosToolStripMenuItem.Visible = false;
+            this.admnistrarUsuariosToolStripMenuItem.Click += new System.EventHandler(this.admnistrarUsuariosToolStripMenuItem_Click);
             // 
             // mnuIdioma
             // 
             this.mnuIdioma.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuCambiarIdioma,
-            this.mnuEditorIdioma});
+            this.mnuCambiarIdioma});
             this.mnuIdioma.Name = "mnuIdioma";
             this.mnuIdioma.Size = new System.Drawing.Size(56, 20);
             this.mnuIdioma.Text = "Idioma";
@@ -105,22 +112,9 @@ namespace SistemaGestorEventos.GUI
             // mnuCambiarIdioma
             // 
             this.mnuCambiarIdioma.Name = "mnuCambiarIdioma";
-            this.mnuCambiarIdioma.Size = new System.Drawing.Size(159, 22);
+            this.mnuCambiarIdioma.Size = new System.Drawing.Size(180, 22);
             this.mnuCambiarIdioma.Text = "Cambiar Idioma";
-            // 
-            // mnuEditorIdioma
-            // 
-            this.mnuEditorIdioma.Name = "mnuEditorIdioma";
-            this.mnuEditorIdioma.Size = new System.Drawing.Size(159, 22);
-            this.mnuEditorIdioma.Text = "Editor";
-            this.mnuEditorIdioma.Click += new System.EventHandler(this.mnuEditorIdioma_Click);
-            // 
-            // admnistrarUsuariosToolStripMenuItem
-            // 
-            this.admnistrarUsuariosToolStripMenuItem.Name = "admnistrarUsuariosToolStripMenuItem";
-            this.admnistrarUsuariosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.admnistrarUsuariosToolStripMenuItem.Text = "Admnistrar Usuarios";
-            this.admnistrarUsuariosToolStripMenuItem.Click += new System.EventHandler(this.admnistrarUsuariosToolStripMenuItem_Click);
+            this.mnuCambiarIdioma.Click += new System.EventHandler(this.mnuCambiarIdioma_Click);
             // 
             // FrmPrincipal
             // 
@@ -147,9 +141,8 @@ namespace SistemaGestorEventos.GUI
         private System.Windows.Forms.ToolStripMenuItem mnuLogout;
         private System.Windows.Forms.ToolStripMenuItem mnuRegistrar;
         private System.Windows.Forms.ToolStripMenuItem mnuIdioma;
-        private System.Windows.Forms.ToolStripMenuItem mnuCambiarIdioma;
-        private System.Windows.Forms.ToolStripMenuItem mnuEditorIdioma;
         private System.Windows.Forms.ToolStripMenuItem admnistrarPermisosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem admnistrarUsuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuCambiarIdioma;
     }
 }

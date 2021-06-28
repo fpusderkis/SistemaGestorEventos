@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE
 {
-    public class Usuario : AbstractEntity, IUser
+    public class Usuario : AbstractEntity, IUser<TipoPermiso>
     {
         public Usuario(string username, string password, string idioma)
         {
@@ -23,5 +23,40 @@ namespace SistemaGestorEventos.BE
         public string Idioma { get; set; }
 
         public List<Componente> Permisos { get; set; }
+
+        public bool TienePermiso(TipoPermiso permiso)
+        {
+            if(Permisos != null)
+            foreach (var c in Permisos)
+            {
+                if (TienePermiso(permiso, c)) return true;
+            }
+
+            return false;
+        }
+
+        private bool TienePermiso(TipoPermiso permiso, Componente componente)
+        {    
+            if (permiso == null)
+            {
+                return false;
+            }
+
+            if (permiso.Equals(componente.Permiso))
+            {
+                return true;
+            }
+                    
+            if (componente.Hijos != null)
+            foreach (Componente hijo in componente.Hijos)
+            {
+                if (TienePermiso(permiso, hijo))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
