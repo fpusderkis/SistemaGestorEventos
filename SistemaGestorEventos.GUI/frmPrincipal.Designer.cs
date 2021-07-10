@@ -61,12 +61,14 @@ namespace SistemaGestorEventos.GUI
             this.admnistrarUsuariosToolStripMenuItem});
             this.mnuUsuario.Name = "mnuUsuario";
             this.mnuUsuario.Size = new System.Drawing.Size(59, 20);
+            this.mnuUsuario.Tag = "mnu.usuario";
             this.mnuUsuario.Text = "Usuario";
             // 
             // mnuLogin
             // 
             this.mnuLogin.Name = "mnuLogin";
             this.mnuLogin.Size = new System.Drawing.Size(184, 22);
+            this.mnuLogin.Tag = "mnu.login";
             this.mnuLogin.Text = "Iniciar Sesión";
             this.mnuLogin.Click += new System.EventHandler(this.mnuLogin_Click);
             // 
@@ -74,6 +76,7 @@ namespace SistemaGestorEventos.GUI
             // 
             this.mnuLogout.Name = "mnuLogout";
             this.mnuLogout.Size = new System.Drawing.Size(184, 22);
+            this.mnuLogout.Tag = "mnu.logout";
             this.mnuLogout.Text = "Cerrar sesión";
             this.mnuLogout.Visible = false;
             this.mnuLogout.Click += new System.EventHandler(this.mnuLogout_Click);
@@ -82,6 +85,7 @@ namespace SistemaGestorEventos.GUI
             // 
             this.mnuRegistrar.Name = "mnuRegistrar";
             this.mnuRegistrar.Size = new System.Drawing.Size(184, 22);
+            this.mnuRegistrar.Tag = "mnu.singin";
             this.mnuRegistrar.Text = "Registrar";
             this.mnuRegistrar.Click += new System.EventHandler(this.mnuRegistrar_Click);
             // 
@@ -89,6 +93,7 @@ namespace SistemaGestorEventos.GUI
             // 
             this.admnistrarPermisosToolStripMenuItem.Name = "admnistrarPermisosToolStripMenuItem";
             this.admnistrarPermisosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.admnistrarPermisosToolStripMenuItem.Tag = "mnu.admin.grants";
             this.admnistrarPermisosToolStripMenuItem.Text = "Admnistrar Permisos";
             this.admnistrarPermisosToolStripMenuItem.Visible = false;
             this.admnistrarPermisosToolStripMenuItem.Click += new System.EventHandler(this.admnistrarPermisosToolStripMenuItem_Click);
@@ -97,6 +102,7 @@ namespace SistemaGestorEventos.GUI
             // 
             this.admnistrarUsuariosToolStripMenuItem.Name = "admnistrarUsuariosToolStripMenuItem";
             this.admnistrarUsuariosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.admnistrarUsuariosToolStripMenuItem.Tag = "mnu.admin.users";
             this.admnistrarUsuariosToolStripMenuItem.Text = "Admnistrar Usuarios";
             this.admnistrarUsuariosToolStripMenuItem.Visible = false;
             this.admnistrarUsuariosToolStripMenuItem.Click += new System.EventHandler(this.admnistrarUsuariosToolStripMenuItem_Click);
@@ -107,12 +113,14 @@ namespace SistemaGestorEventos.GUI
             this.mnuCambiarIdioma});
             this.mnuIdioma.Name = "mnuIdioma";
             this.mnuIdioma.Size = new System.Drawing.Size(56, 20);
+            this.mnuIdioma.Tag = "mnu.lang";
             this.mnuIdioma.Text = "Idioma";
             // 
             // mnuCambiarIdioma
             // 
             this.mnuCambiarIdioma.Name = "mnuCambiarIdioma";
             this.mnuCambiarIdioma.Size = new System.Drawing.Size(180, 22);
+            this.mnuCambiarIdioma.Tag = "mnu.lang.change";
             this.mnuCambiarIdioma.Text = "Cambiar Idioma";
             this.mnuCambiarIdioma.Click += new System.EventHandler(this.mnuCambiarIdioma_Click);
             // 
@@ -125,6 +133,7 @@ namespace SistemaGestorEventos.GUI
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnuPrincipal;
             this.Name = "FrmPrincipal";
+            this.Tag = "title.main";
             this.Text = "Se Hace!";
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.mnuPrincipal.ResumeLayout(false);

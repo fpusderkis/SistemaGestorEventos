@@ -1,6 +1,5 @@
 ﻿using SistemaGestorEventos.BE.Permisos;
 using SistemaGestorEventos.BLL;
-using SistemaGestorEventos.GUI.Utils;
 using SistemaGestorEventos.SharedServices.Multiidioma;
 using SistemaGestorEventos.SharedServices.Session;
 using System;

@@ -73,6 +73,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.gbxFamilias.Size = new System.Drawing.Size(342, 190);
             this.gbxFamilias.TabIndex = 1;
             this.gbxFamilias.TabStop = false;
+            this.gbxFamilias.Tag = "families";
             this.gbxFamilias.Text = "Familias";
             // 
             // btnEditar
@@ -81,6 +82,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(153, 23);
             this.btnEditar.TabIndex = 6;
+            this.btnEditar.Tag = "btn.config.selected";
             this.btnEditar.Text = "Configurar seleccionado";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
@@ -111,6 +113,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(80, 23);
             this.btnAdd.TabIndex = 1;
+            this.btnAdd.Tag = "btn.add";
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -146,6 +149,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.gbxPatentes.Size = new System.Drawing.Size(342, 230);
             this.gbxPatentes.TabIndex = 2;
             this.gbxPatentes.TabStop = false;
+            this.gbxPatentes.Tag = "grants";
             this.gbxPatentes.Text = "Patentes";
             // 
             // cbxTipoPermiso
@@ -191,6 +195,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnCrearPatente.Name = "btnCrearPatente";
             this.btnCrearPatente.Size = new System.Drawing.Size(80, 23);
             this.btnCrearPatente.TabIndex = 7;
+            this.btnCrearPatente.Tag = "btn.create";
             this.btnCrearPatente.Text = "Crear";
             this.btnCrearPatente.UseVisualStyleBackColor = true;
             this.btnCrearPatente.Click += new System.EventHandler(this.btnCrearPatente_Click);
@@ -212,6 +217,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.gbxTreeEditar.Size = new System.Drawing.Size(292, 378);
             this.gbxTreeEditar.TabIndex = 3;
             this.gbxTreeEditar.TabStop = false;
+            this.gbxTreeEditar.Tag = "edit.family";
             this.gbxTreeEditar.Text = "Editar familia";
             // 
             // btnGuardarFamilia
@@ -221,6 +227,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnGuardarFamilia.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnGuardarFamilia.Size = new System.Drawing.Size(75, 23);
             this.btnGuardarFamilia.TabIndex = 4;
+            this.btnGuardarFamilia.Tag = "btn.save";
             this.btnGuardarFamilia.Text = "Guardar";
             this.btnGuardarFamilia.UseVisualStyleBackColor = true;
             this.btnGuardarFamilia.Click += new System.EventHandler(this.btnGuardarFamilia_Click);
@@ -231,6 +238,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnCancelarFamilia.Name = "btnCancelarFamilia";
             this.btnCancelarFamilia.Size = new System.Drawing.Size(75, 23);
             this.btnCancelarFamilia.TabIndex = 5;
+            this.btnCancelarFamilia.Tag = "btn.dismiss";
             this.btnCancelarFamilia.Text = "Descartar";
             this.btnCancelarFamilia.UseVisualStyleBackColor = true;
             this.btnCancelarFamilia.Click += new System.EventHandler(this.btnCancelarFamilia_Click);
@@ -241,6 +249,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 6;
+            this.btnSalir.Tag = "btn.exit";
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -258,6 +267,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.Controls.Add(this.gbxPatentes);
             this.Controls.Add(this.gbxFamilias);
             this.Name = "FrmAdminPermisos";
+            this.Tag = "title.admin.grants";
             this.Text = "Administrar permisos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmAdminPermisos_Load);

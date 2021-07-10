@@ -58,6 +58,7 @@ namespace SistemaGestorEventos.GUI.usuario
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(110, 15);
             this.lblUsername.TabIndex = 0;
+            this.lblUsername.Tag = "username";
             this.lblUsername.Text = "Nombre de Usuario";
             // 
             // txtUsername
@@ -83,6 +84,7 @@ namespace SistemaGestorEventos.GUI.usuario
             this.lblClave.Name = "lblClave";
             this.lblClave.Size = new System.Drawing.Size(36, 15);
             this.lblClave.TabIndex = 2;
+            this.lblClave.Tag = "password";
             this.lblClave.Text = "Clave";
             // 
             // lblIdioma
@@ -92,6 +94,7 @@ namespace SistemaGestorEventos.GUI.usuario
             this.lblIdioma.Name = "lblIdioma";
             this.lblIdioma.Size = new System.Drawing.Size(44, 15);
             this.lblIdioma.TabIndex = 4;
+            this.lblIdioma.Tag = "language";
             this.lblIdioma.Text = "Idioma";
             // 
             // textBox2
@@ -128,6 +131,7 @@ namespace SistemaGestorEventos.GUI.usuario
             this.gbxUsuario.Size = new System.Drawing.Size(364, 151);
             this.gbxUsuario.TabIndex = 8;
             this.gbxUsuario.TabStop = false;
+            this.gbxUsuario.Tag = "user";
             this.gbxUsuario.Text = "Usuario";
             // 
             // gbxContacto
@@ -143,6 +147,7 @@ namespace SistemaGestorEventos.GUI.usuario
             this.gbxContacto.Size = new System.Drawing.Size(363, 151);
             this.gbxContacto.TabIndex = 9;
             this.gbxContacto.TabStop = false;
+            this.gbxContacto.Tag = "contactinfo";
             this.gbxContacto.Text = "Información de contacto";
             // 
             // textBox1
@@ -159,6 +164,7 @@ namespace SistemaGestorEventos.GUI.usuario
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 15);
             this.label1.TabIndex = 14;
+            this.label1.Tag = "webpage";
             this.label1.Text = "Web";
             // 
             // txtTelefono
@@ -175,6 +181,7 @@ namespace SistemaGestorEventos.GUI.usuario
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(52, 15);
             this.lblTelefono.TabIndex = 12;
+            this.lblTelefono.Tag = "phone";
             this.lblTelefono.Text = "Teléfono";
             // 
             // txtEmail
@@ -191,6 +198,7 @@ namespace SistemaGestorEventos.GUI.usuario
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(41, 15);
             this.lblEmail.TabIndex = 10;
+            this.lblEmail.Tag = "email";
             this.lblEmail.Text = "E-Mail";
             // 
             // btnCancel
@@ -199,6 +207,7 @@ namespace SistemaGestorEventos.GUI.usuario
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(358, 52);
             this.btnCancel.TabIndex = 10;
+            this.btnCancel.Tag = "btn.cancel";
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -209,6 +218,7 @@ namespace SistemaGestorEventos.GUI.usuario
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(358, 52);
             this.btnRegistrar.TabIndex = 11;
+            this.btnRegistrar.Tag = "btn.singin";
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
@@ -239,8 +249,10 @@ namespace SistemaGestorEventos.GUI.usuario
             this.Name = "FrmRegistrar";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.Tag = "title.signin";
             this.Text = "Registrar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmRegistrar_Load);
             this.gbxUsuario.ResumeLayout(false);
             this.gbxUsuario.PerformLayout();
             this.gbxContacto.ResumeLayout(false);

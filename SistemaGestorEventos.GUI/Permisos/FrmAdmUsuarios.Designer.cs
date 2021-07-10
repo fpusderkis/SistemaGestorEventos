@@ -67,6 +67,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.gbxConfigurarUsuario.Size = new System.Drawing.Size(255, 425);
             this.gbxConfigurarUsuario.TabIndex = 1;
             this.gbxConfigurarUsuario.TabStop = false;
+            this.gbxConfigurarUsuario.Tag = "admin.users.usersetup";
             this.gbxConfigurarUsuario.Text = "Configurar Usuario";
             // 
             // treeView1
@@ -82,6 +83,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnConfigurar.Name = "btnConfigurar";
             this.btnConfigurar.Size = new System.Drawing.Size(75, 23);
             this.btnConfigurar.TabIndex = 1;
+            this.btnConfigurar.Tag = "btn.config";
             this.btnConfigurar.Text = "Configurar";
             this.btnConfigurar.UseVisualStyleBackColor = true;
             this.btnConfigurar.Click += new System.EventHandler(this.btnConfigurar_Click);
@@ -96,6 +98,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.gbxFamilia.Size = new System.Drawing.Size(514, 97);
             this.gbxFamilia.TabIndex = 2;
             this.gbxFamilia.TabStop = false;
+            this.gbxFamilia.Tag = "family";
             this.gbxFamilia.Text = "Familia";
             // 
             // btnQuitarFamilia
@@ -104,6 +107,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnQuitarFamilia.Name = "btnQuitarFamilia";
             this.btnQuitarFamilia.Size = new System.Drawing.Size(75, 23);
             this.btnQuitarFamilia.TabIndex = 4;
+            this.btnQuitarFamilia.Tag = "btn.remove";
             this.btnQuitarFamilia.Text = "Quitar";
             this.btnQuitarFamilia.UseVisualStyleBackColor = true;
             this.btnQuitarFamilia.Click += new System.EventHandler(this.btnQuitarFamilia_Click);
@@ -114,6 +118,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnAgregarFamilia.Name = "btnAgregarFamilia";
             this.btnAgregarFamilia.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarFamilia.TabIndex = 3;
+            this.btnAgregarFamilia.Tag = "btn.add";
             this.btnAgregarFamilia.Text = "Agregar";
             this.btnAgregarFamilia.UseVisualStyleBackColor = true;
             this.btnAgregarFamilia.Click += new System.EventHandler(this.btnAgregarFamilia_Click);
@@ -136,6 +141,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.groupBox1.Size = new System.Drawing.Size(514, 97);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Tag = "grants";
             this.groupBox1.Text = "Patente";
             // 
             // btnQuitarPatente
@@ -144,6 +150,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnQuitarPatente.Name = "btnQuitarPatente";
             this.btnQuitarPatente.Size = new System.Drawing.Size(75, 23);
             this.btnQuitarPatente.TabIndex = 4;
+            this.btnQuitarPatente.Tag = "btn.remove";
             this.btnQuitarPatente.Text = "Quitar";
             this.btnQuitarPatente.UseVisualStyleBackColor = true;
             this.btnQuitarPatente.Click += new System.EventHandler(this.btnQuitarPatente_Click);
@@ -154,6 +161,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnAgregarPatente.Name = "btnAgregarPatente";
             this.btnAgregarPatente.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarPatente.TabIndex = 3;
+            this.btnAgregarPatente.Tag = "btn.add";
             this.btnAgregarPatente.Text = "Agregar";
             this.btnAgregarPatente.UseVisualStyleBackColor = true;
             this.btnAgregarPatente.Click += new System.EventHandler(this.btnAgregarPatente_Click);
@@ -172,6 +180,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(145, 23);
             this.btnGuardar.TabIndex = 6;
+            this.btnGuardar.Tag = "btn.config.save";
             this.btnGuardar.Text = "Guardar configuracion";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -182,6 +191,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(145, 23);
             this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Tag = "btn.cancel";
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -192,6 +202,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(145, 23);
             this.btnSalir.TabIndex = 8;
+            this.btnSalir.Tag = "btn.exit";
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -211,6 +222,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.Name = "FrmAdmUsuarios";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "admin.users.title";
             this.Text = "Administrar Permisos de Usuarios";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmAdmUsuarios_Load);

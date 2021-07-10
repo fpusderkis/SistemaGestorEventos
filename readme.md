@@ -35,3 +35,16 @@ Ejemplos:
 * Multiidioma
 
 
+### sugerencias ultima correccion
+relacion de uso
+
+Diagrama de clases de DAL
+
+Familia - componente : agregar cardinalidad
+
+TipoPermiso -> relacion de use
+
+Tag = usar la key de traduccion ahi
+
+include
+

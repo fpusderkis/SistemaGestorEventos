@@ -3,7 +3,6 @@ using SistemaGestorEventos.BE.Permisos;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.GUI.Idioma;
 using SistemaGestorEventos.GUI.Permisos;
-using SistemaGestorEventos.GUI.Utils;
 using SistemaGestorEventos.SharedServices.Multiidioma;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
@@ -26,6 +25,7 @@ namespace SistemaGestorEventos.GUI
                 this.admnistrarUsuariosToolStripMenuItem.Visible = esAdmin;
 
             });
+            TraducirTextos();
 
             MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);
         }
@@ -34,8 +34,6 @@ namespace SistemaGestorEventos.GUI
 
         private void TraducirTextos()
         {
-            //this.mnuUsuario.Text = MultiIdioma.Traduccion("FrmPrincipal.mnuUsuario");
-            //this.mnuLogin.Text = MultiIdioma.Traduccion("FrmPrincipal.mnuLogin");
             WinformUtils.TraducirControl(this);
         }
 

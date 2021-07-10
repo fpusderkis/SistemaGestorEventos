@@ -45,6 +45,7 @@ namespace SistemaGestorEventos.GUI
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(105, 15);
             this.lblLogin.TabIndex = 0;
+            this.lblLogin.Tag = "username";
             this.lblLogin.Text = "Nombre de usuaio";
             // 
             // lblPassword
@@ -54,6 +55,7 @@ namespace SistemaGestorEventos.GUI
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(36, 15);
             this.lblPassword.TabIndex = 1;
+            this.lblPassword.Tag = "password";
             this.lblPassword.Text = "Clave";
             // 
             // txtUsername
@@ -77,6 +79,7 @@ namespace SistemaGestorEventos.GUI
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 4;
+            this.btnLogin.Tag = "btn.login";
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -87,6 +90,7 @@ namespace SistemaGestorEventos.GUI
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
+            this.btnCancel.Tag = "btn.cancel";
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -100,6 +104,7 @@ namespace SistemaGestorEventos.GUI
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(134, 15);
             this.lblError.TabIndex = 7;
+            this.lblError.Tag = "errors.invaliduserorpassword";
             this.lblError.Text = "Usuario/clave invalidos";
             this.lblError.Visible = false;
             // 
@@ -117,6 +122,7 @@ namespace SistemaGestorEventos.GUI
             this.Controls.Add(this.lblLogin);
             this.Name = "FrmLogin";
             this.ShowInTaskbar = false;
+            this.Tag = "title.login";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.ResumeLayout(false);

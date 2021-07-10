@@ -56,6 +56,7 @@ namespace SistemaGestorEventos.GUI.Idioma
             this.btnGestionar.Name = "btnGestionar";
             this.btnGestionar.Size = new System.Drawing.Size(75, 23);
             this.btnGestionar.TabIndex = 4;
+            this.btnGestionar.Tag = "btn.manage";
             this.btnGestionar.Text = "Gestionar";
             this.btnGestionar.UseVisualStyleBackColor = true;
             this.btnGestionar.Click += new System.EventHandler(this.btnGestionar_Click);

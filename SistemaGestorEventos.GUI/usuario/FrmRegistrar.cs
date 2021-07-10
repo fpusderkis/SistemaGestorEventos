@@ -1,6 +1,7 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.exceptions;
+using SistemaGestorEventos.SharedServices.Multiidioma;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,12 @@ namespace SistemaGestorEventos.GUI.usuario
         public FrmRegistrar()
         {
             InitializeComponent();
+            MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);
+        }
+
+        private void TraducirTextos()
+        {
+            WinformUtils.TraducirControl(this);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -39,6 +46,11 @@ namespace SistemaGestorEventos.GUI.usuario
             }
 
 
+        }
+
+        private void FrmRegistrar_Load(object sender, EventArgs e)
+        {
+            TraducirTextos();
         }
     }
 }

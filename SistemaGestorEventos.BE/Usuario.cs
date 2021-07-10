@@ -2,7 +2,6 @@
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SistemaGestorEventos.BE
 {
@@ -36,12 +35,7 @@ namespace SistemaGestorEventos.BE
         }
 
         private bool TienePermiso(TipoPermiso permiso, Componente componente)
-        {    
-            if (permiso == null)
-            {
-                return false;
-            }
-
+        {
             if (permiso.Equals(componente.Permiso))
             {
                 return true;

@@ -12,11 +12,19 @@ namespace SistemaGestorEventos.BE
 
         public Usuario Organizador { get; set; }
 
+        public DateTime FechaYHora { get; set; }
+
         public Espacio Espacio { get; set; }
 
         List<Servicio> Servicios { get; set; }
 
-        List<Usuario> Participantes { get; set; }
+        List<Participante> Participantes { get; set; }
+
+        public string ComprobantePago { get; set; }
+
+        public EstadoEvento Estado { get; set; }
+
+
 
     }
 }

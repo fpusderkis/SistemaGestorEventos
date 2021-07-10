@@ -1,12 +1,6 @@
 ﻿using SistemaGestorEventos.BLL;
-using SistemaGestorEventos.GUI.Utils;
 using SistemaGestorEventos.SharedServices.Multiidioma;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SistemaGestorEventos.GUI
@@ -53,7 +47,7 @@ namespace SistemaGestorEventos.GUI
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-
+            TraducirTextos();
         }
     }
 }

@@ -48,6 +48,7 @@ namespace SistemaGestorEventos.GUI.Idioma
             this.groupBox1.Size = new System.Drawing.Size(775, 376);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Tag = "lang.manage";
             this.groupBox1.Text = "Gestionar idioma";
             // 
             // txtTraducciones
@@ -81,6 +82,7 @@ namespace SistemaGestorEventos.GUI.Idioma
             this.btnGuardarIdioma.Name = "btnGuardarIdioma";
             this.btnGuardarIdioma.Size = new System.Drawing.Size(75, 23);
             this.btnGuardarIdioma.TabIndex = 1;
+            this.btnGuardarIdioma.Tag = "btn.save";
             this.btnGuardarIdioma.Text = "Guardar";
             this.btnGuardarIdioma.UseVisualStyleBackColor = true;
             this.btnGuardarIdioma.Click += new System.EventHandler(this.btnGuardarIdioma_Click);
@@ -91,6 +93,7 @@ namespace SistemaGestorEventos.GUI.Idioma
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
+            this.button1.Tag = "btn.exit";
             this.button1.Text = "Salir";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -104,6 +107,7 @@ namespace SistemaGestorEventos.GUI.Idioma
             this.Controls.Add(this.btnGuardarIdioma);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmCrearEditarIdioma";
+            this.Tag = "title.lang.manage";
             this.Text = "Gestion de idiomas";
             this.Load += new System.EventHandler(this.FrmCrearEditarIdioma_Load);
             this.groupBox1.ResumeLayout(false);
