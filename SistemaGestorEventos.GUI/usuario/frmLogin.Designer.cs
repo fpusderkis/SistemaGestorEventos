@@ -61,6 +61,7 @@ namespace SistemaGestorEventos.GUI
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(123, 19);
+            this.txtUsername.MaxLength = 255;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(250, 23);
             this.txtUsername.TabIndex = 2;
@@ -68,6 +69,7 @@ namespace SistemaGestorEventos.GUI
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(123, 54);
+            this.txtPassword.MaxLength = 255;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '☺';
             this.txtPassword.Size = new System.Drawing.Size(250, 23);

@@ -46,6 +46,7 @@ namespace SistemaGestorEventos.BLL
 
         private void SessionLogin(Usuario usuario)
         {
+            
             SESSION.Login(usuario);
         }
 

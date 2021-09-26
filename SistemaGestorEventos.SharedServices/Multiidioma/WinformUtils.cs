@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
@@ -87,6 +88,17 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
             }
 
 
+        }
+
+
+
+        public static void HacerVisibles(Control control)
+        {
+            control.Visible = true;
+            foreach (Control c in control.Controls)
+            {
+                HacerVisibles(c);
+            }
         }
     }
 }

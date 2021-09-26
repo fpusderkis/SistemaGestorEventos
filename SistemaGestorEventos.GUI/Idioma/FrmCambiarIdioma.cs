@@ -37,6 +37,7 @@ namespace SistemaGestorEventos.GUI.Idioma
             cbxIdiomas.SelectedItem = null;
 
             btnGestionar.Visible = SessionHandler<TipoPermiso>.GetInstance.TienePermiso(TipoPermiso.AdministradorSistema);
+            TraducirForm();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

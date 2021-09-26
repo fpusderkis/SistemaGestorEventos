@@ -43,6 +43,7 @@ namespace SistemaGestorEventos.GUI.Idioma
             this.gbxCambiarIdioma.Controls.Add(this.btnCancelar);
             this.gbxCambiarIdioma.Controls.Add(this.btnCambiarIdioma);
             this.gbxCambiarIdioma.Controls.Add(this.cbxIdiomas);
+            this.gbxCambiarIdioma.ForeColor = System.Drawing.SystemColors.ControlText;
             this.gbxCambiarIdioma.Location = new System.Drawing.Point(12, 12);
             this.gbxCambiarIdioma.Name = "gbxCambiarIdioma";
             this.gbxCambiarIdioma.Size = new System.Drawing.Size(356, 100);

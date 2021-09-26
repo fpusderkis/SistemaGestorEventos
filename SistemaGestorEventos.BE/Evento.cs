@@ -6,6 +6,10 @@ namespace SistemaGestorEventos.BE
 {
     public class Evento : AbstractEntity
     {
+        public Evento()
+        {
+            Participantes = new List<Participante>();
+        }
         public String Titulo { get; set; }
 
         public String Descripcion { get; set; }
@@ -14,11 +18,13 @@ namespace SistemaGestorEventos.BE
 
         public DateTime FechaYHora { get; set; }
 
-        public Espacio Espacio { get; set; }
+        public Lugar Lugar { get; set; }
 
-        List<Servicio> Servicios { get; set; }
+        public List<Servicio> Servicios { get; set; }
 
-        List<Participante> Participantes { get; set; }
+        public List<Participante> Participantes { get; set; }
+
+        public int CantidadParticipantes { get; set; }
 
         public string ComprobantePago { get; set; }
 
