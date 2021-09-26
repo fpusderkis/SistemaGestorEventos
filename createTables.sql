@@ -15,7 +15,37 @@ CREATE TABLE [dbo].[Bitacora](
 ) ON [PRIMARY]
 GO
 
+CREATE TABLE [dbo].[Traducciones](
+	[Idioma] [varchar](5) NOT NULL,
+	[Clave] [varchar](255) NOT NULL,
+	[Valor] [varchar](500) NULL,
+ CONSTRAINT [PK_Traducciones] PRIMARY KEY CLUSTERED 
+(
+	[Idioma] ASC,
+	[Clave] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
 /** PERMISOS **/
+
+CREATE TABLE [dbo].[usuarios](
+	[Id] [uniqueidentifier] NOT NULL,
+	[username] [varchar](200) NOT NULL,
+	[password] [varchar](255) NOT NULL,
+	[idioma] [varchar](5) NULL,
+	CONSTRAINT [PK_usuarios] PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	) WITH (
+		PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON,
+		OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF
+	) ON [PRIMARY]
+)
+GO
+
 
 CREATE TABLE [dbo].[permiso](
 	[nombre] [varchar](100) NULL,
