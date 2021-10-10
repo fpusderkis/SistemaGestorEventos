@@ -20,6 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestorEventos.BE", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{E7D0B695-7FEE-47F0-A5BA-AB69A4605124}"
 	ProjectSection(SolutionItems) = preProject
+		createSchema.sql = createSchema.sql
 		createTables.sql = createTables.sql
 		data.sql = data.sql
 		storedprocedures.sql = storedprocedures.sql

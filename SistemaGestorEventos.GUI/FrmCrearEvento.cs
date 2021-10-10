@@ -35,5 +35,10 @@ namespace SistemaGestorEventos.GUI
             this.gvParticipantes.DataSource = binding;
 
         }
+
+        private void btnBuscarLugar_Click(object sender, EventArgs e)
+        {
+            new Lugares.BuscarLugares().Show();
+        }
     }
 }
