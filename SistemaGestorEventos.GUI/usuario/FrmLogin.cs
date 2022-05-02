@@ -12,12 +12,6 @@ namespace SistemaGestorEventos.GUI
         public FrmLogin()
         {
             InitializeComponent();
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(this.TraducirTextos);
-        }
-
-        private void TraducirTextos()
-        {
-            WinformUtils.TraducirControl(this);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -47,7 +41,6 @@ namespace SistemaGestorEventos.GUI
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            TraducirTextos();
         }
     }
 }

@@ -1,3 +1,11 @@
+USE sgedb;
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
 CREATE PROCEDURE sp_GuardarBitacora 
 	-- Add the parameters for the stored procedure here
 	@userId uniqueidentifier, 
@@ -10,7 +18,7 @@ BEGIN
 
     -- Insert statements for procedure here
 
-	INSERT INTO [dbo].[Bitacoras]
+	INSERT INTO [dbo].[Bitacora]
            ([userId]
            ,[message],
 		   [creationDate])
@@ -20,7 +28,7 @@ BEGIN
 		   GETDATE())
 
 END
-
+GO
 
 /**
 USUARIO
@@ -34,7 +42,7 @@ AS
 BEGIN
 	SET NOCOUNT ON;	
 
-   INSERT INTO [dbo].[Usuarios]
+   INSERT INTO [dbo].[usuarios]
            ([Id]
            ,[username]
            ,[password]
@@ -46,7 +54,7 @@ BEGIN
            @Idioma);
 
 END
-
+GO
 /**
 TRADUCCIONES
 */

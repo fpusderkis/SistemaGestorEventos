@@ -11,7 +11,13 @@ namespace SistemaGestorEventos.BE
         public string Direccion { get; set; }
         public List<string> Politicas { get; set; }
 
-        public List<Espacio> Espcacios { get; set; }
+        public int CapacidadMaxima { get; set; }
+
+        public double Precio { get; set; }
+
+        public TipoLugar Tipo { get; set; }
+
+        public Categoria Categoria { get; set; }
 
 
     }

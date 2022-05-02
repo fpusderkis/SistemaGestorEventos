@@ -48,3 +48,9 @@ Tag = usar la key de traduccion ahi
 
 include
 
+
+### Dataset utiles
+listado de todas las localidades argentinas.
+
+https://datos.gob.ar/dataset/jgm-servicio-normalizacion-datos-geograficos/archivo/jgm_8.1
+https://infra.datos.gob.ar/catalog/modernizacion/dataset/7/distribution/7.5/download/localidades.json

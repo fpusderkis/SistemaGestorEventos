@@ -64,7 +64,7 @@ namespace SistemaGestorEventos.GUI
                 MessageBox.Show(MultiIdioma.TraduccionODefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
             };
 
-            Application.Run(new FrmPrincipal());
+            Application.Run(new MainUI());
         }
     }
 }
