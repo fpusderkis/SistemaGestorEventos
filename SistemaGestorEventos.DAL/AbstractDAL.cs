@@ -11,7 +11,7 @@ namespace SistemaGestorEventos.DAL
         {
             var cs = new SqlConnectionStringBuilder();
             cs.IntegratedSecurity = true;
-            cs.DataSource = ".";
+            cs.DataSource = "DESKTOP-VRDL6E3\\SQLEXPRESS";
             cs.InitialCatalog = "sgedb";
             return cs.ConnectionString;
         }

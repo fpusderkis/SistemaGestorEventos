@@ -23,6 +23,7 @@ namespace SistemaGestorEventos.BE
 
         public List<Componente> Permisos { get; set; }
 
+        //TODO esta bien que esta logica este aca? debería estar en una bll?
         public bool TienePermiso(TipoPermiso permiso)
         {
             if(Permisos != null)

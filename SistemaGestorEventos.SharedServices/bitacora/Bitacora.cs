@@ -13,7 +13,12 @@ namespace SistemaGestorEventos.SharedServices.bitacora
         public void AddWriter(IBitacoraWriter writer) => writers.Add(writer);
         public void Log(string msg)
         {
-            writers.ForEach(w => w.Write(this.UserReferenceId?.ToString(), msg));
+            this.Log(this.UserReferenceId,msg);
+        }
+
+        public void Log(object userReferenceId, string msg)
+        {
+            writers.ForEach(w => w.Write(userReferenceId?.ToString(), msg));
         }
     }
 }

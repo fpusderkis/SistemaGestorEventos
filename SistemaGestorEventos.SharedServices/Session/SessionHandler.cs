@@ -57,7 +57,9 @@ namespace SistemaGestorEventos.SharedServices.Session
             suscribers.Add(action);
         }
 
-
+        /// <summary>
+        /// TODO que pasa si un suscriptor tira una runtime exception?
+        /// </summary>
         private void FireOnSessionStatusChangeEvent() 
         {
             suscribers.ForEach(s => s());

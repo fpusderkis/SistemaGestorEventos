@@ -69,9 +69,10 @@ namespace SistemaGestorEventos.GUI
             this.panelMenu.Controls.Add(this.panelLogo);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Padding = new System.Windows.Forms.Padding(0, 0, 1, 0);
-            this.panelMenu.Size = new System.Drawing.Size(217, 611);
+            this.panelMenu.Size = new System.Drawing.Size(248, 804);
             this.panelMenu.TabIndex = 0;
             this.panelMenu.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.panelMenu_ControlRemoved);
             this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
@@ -83,9 +84,10 @@ namespace SistemaGestorEventos.GUI
             this.panelSubmenuAdministrador.Controls.Add(this.mnuAdministrarUsuarios);
             this.panelSubmenuAdministrador.Controls.Add(this.mnuAdministrarPermisos);
             this.panelSubmenuAdministrador.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubmenuAdministrador.Location = new System.Drawing.Point(0, 440);
+            this.panelSubmenuAdministrador.Location = new System.Drawing.Point(0, 587);
+            this.panelSubmenuAdministrador.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelSubmenuAdministrador.Name = "panelSubmenuAdministrador";
-            this.panelSubmenuAdministrador.Size = new System.Drawing.Size(216, 145);
+            this.panelSubmenuAdministrador.Size = new System.Drawing.Size(247, 193);
             this.panelSubmenuAdministrador.TabIndex = 2;
             // 
             // mnuAdministrarIdiomas
@@ -97,11 +99,11 @@ namespace SistemaGestorEventos.GUI
             this.mnuAdministrarIdiomas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mnuAdministrarIdiomas.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mnuAdministrarIdiomas.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mnuAdministrarIdiomas.Location = new System.Drawing.Point(0, 90);
+            this.mnuAdministrarIdiomas.Location = new System.Drawing.Point(0, 120);
             this.mnuAdministrarIdiomas.Margin = new System.Windows.Forms.Padding(0);
             this.mnuAdministrarIdiomas.Name = "mnuAdministrarIdiomas";
-            this.mnuAdministrarIdiomas.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.mnuAdministrarIdiomas.Size = new System.Drawing.Size(216, 45);
+            this.mnuAdministrarIdiomas.Padding = new System.Windows.Forms.Padding(29, 0, 0, 0);
+            this.mnuAdministrarIdiomas.Size = new System.Drawing.Size(247, 60);
             this.mnuAdministrarIdiomas.TabIndex = 8;
             this.mnuAdministrarIdiomas.Tag = "mnu.admin.lang";
             this.mnuAdministrarIdiomas.Text = "Gestor idiomas";
@@ -118,11 +120,11 @@ namespace SistemaGestorEventos.GUI
             this.mnuAdministrarUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mnuAdministrarUsuarios.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mnuAdministrarUsuarios.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mnuAdministrarUsuarios.Location = new System.Drawing.Point(0, 45);
+            this.mnuAdministrarUsuarios.Location = new System.Drawing.Point(0, 60);
             this.mnuAdministrarUsuarios.Margin = new System.Windows.Forms.Padding(0);
             this.mnuAdministrarUsuarios.Name = "mnuAdministrarUsuarios";
-            this.mnuAdministrarUsuarios.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.mnuAdministrarUsuarios.Size = new System.Drawing.Size(216, 45);
+            this.mnuAdministrarUsuarios.Padding = new System.Windows.Forms.Padding(29, 0, 0, 0);
+            this.mnuAdministrarUsuarios.Size = new System.Drawing.Size(247, 60);
             this.mnuAdministrarUsuarios.TabIndex = 7;
             this.mnuAdministrarUsuarios.Tag = "mnu.admin.users";
             this.mnuAdministrarUsuarios.Text = "Usuarios";
@@ -142,8 +144,8 @@ namespace SistemaGestorEventos.GUI
             this.mnuAdministrarPermisos.Location = new System.Drawing.Point(0, 0);
             this.mnuAdministrarPermisos.Margin = new System.Windows.Forms.Padding(0);
             this.mnuAdministrarPermisos.Name = "mnuAdministrarPermisos";
-            this.mnuAdministrarPermisos.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.mnuAdministrarPermisos.Size = new System.Drawing.Size(216, 45);
+            this.mnuAdministrarPermisos.Padding = new System.Windows.Forms.Padding(29, 0, 0, 0);
+            this.mnuAdministrarPermisos.Size = new System.Drawing.Size(247, 60);
             this.mnuAdministrarPermisos.TabIndex = 6;
             this.mnuAdministrarPermisos.Tag = "mnu.admin.grants";
             this.mnuAdministrarPermisos.Text = "Permisos";
@@ -161,10 +163,11 @@ namespace SistemaGestorEventos.GUI
             this.mnuAdministrador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mnuAdministrador.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.mnuAdministrador.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mnuAdministrador.Location = new System.Drawing.Point(0, 395);
+            this.mnuAdministrador.Location = new System.Drawing.Point(0, 527);
+            this.mnuAdministrador.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mnuAdministrador.Name = "mnuAdministrador";
-            this.mnuAdministrador.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.mnuAdministrador.Size = new System.Drawing.Size(216, 45);
+            this.mnuAdministrador.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.mnuAdministrador.Size = new System.Drawing.Size(247, 60);
             this.mnuAdministrador.TabIndex = 5;
             this.mnuAdministrador.Tag = "mnu.admin";
             this.mnuAdministrador.Text = "Administrador";
@@ -180,9 +183,10 @@ namespace SistemaGestorEventos.GUI
             this.panelSubUsuario.Controls.Add(this.mnuCerrarSesion);
             this.panelSubUsuario.Controls.Add(this.mnuLogin);
             this.panelSubUsuario.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSubUsuario.Location = new System.Drawing.Point(0, 216);
+            this.panelSubUsuario.Location = new System.Drawing.Point(0, 288);
+            this.panelSubUsuario.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelSubUsuario.Name = "panelSubUsuario";
-            this.panelSubUsuario.Size = new System.Drawing.Size(216, 179);
+            this.panelSubUsuario.Size = new System.Drawing.Size(247, 239);
             this.panelSubUsuario.TabIndex = 2;
             // 
             // mnuCambiarIdioma
@@ -194,11 +198,11 @@ namespace SistemaGestorEventos.GUI
             this.mnuCambiarIdioma.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mnuCambiarIdioma.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mnuCambiarIdioma.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mnuCambiarIdioma.Location = new System.Drawing.Point(0, 135);
+            this.mnuCambiarIdioma.Location = new System.Drawing.Point(0, 180);
             this.mnuCambiarIdioma.Margin = new System.Windows.Forms.Padding(0);
             this.mnuCambiarIdioma.Name = "mnuCambiarIdioma";
-            this.mnuCambiarIdioma.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.mnuCambiarIdioma.Size = new System.Drawing.Size(216, 45);
+            this.mnuCambiarIdioma.Padding = new System.Windows.Forms.Padding(29, 0, 0, 0);
+            this.mnuCambiarIdioma.Size = new System.Drawing.Size(247, 60);
             this.mnuCambiarIdioma.TabIndex = 4;
             this.mnuCambiarIdioma.Tag = "mnu.lang.change";
             this.mnuCambiarIdioma.Text = "Cambiar idioma";
@@ -215,11 +219,11 @@ namespace SistemaGestorEventos.GUI
             this.mnuRegistrarUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mnuRegistrarUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mnuRegistrarUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mnuRegistrarUsuario.Location = new System.Drawing.Point(0, 90);
+            this.mnuRegistrarUsuario.Location = new System.Drawing.Point(0, 120);
             this.mnuRegistrarUsuario.Margin = new System.Windows.Forms.Padding(0);
             this.mnuRegistrarUsuario.Name = "mnuRegistrarUsuario";
-            this.mnuRegistrarUsuario.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.mnuRegistrarUsuario.Size = new System.Drawing.Size(216, 45);
+            this.mnuRegistrarUsuario.Padding = new System.Windows.Forms.Padding(29, 0, 0, 0);
+            this.mnuRegistrarUsuario.Size = new System.Drawing.Size(247, 60);
             this.mnuRegistrarUsuario.TabIndex = 3;
             this.mnuRegistrarUsuario.Tag = "mnu.register";
             this.mnuRegistrarUsuario.Text = "Registrarse";
@@ -236,11 +240,11 @@ namespace SistemaGestorEventos.GUI
             this.mnuCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mnuCerrarSesion.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mnuCerrarSesion.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mnuCerrarSesion.Location = new System.Drawing.Point(0, 45);
+            this.mnuCerrarSesion.Location = new System.Drawing.Point(0, 60);
             this.mnuCerrarSesion.Margin = new System.Windows.Forms.Padding(0);
             this.mnuCerrarSesion.Name = "mnuCerrarSesion";
-            this.mnuCerrarSesion.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.mnuCerrarSesion.Size = new System.Drawing.Size(216, 45);
+            this.mnuCerrarSesion.Padding = new System.Windows.Forms.Padding(29, 0, 0, 0);
+            this.mnuCerrarSesion.Size = new System.Drawing.Size(247, 60);
             this.mnuCerrarSesion.TabIndex = 2;
             this.mnuCerrarSesion.Tag = "mnu.logout";
             this.mnuCerrarSesion.Text = "Cerrar sesión";
@@ -260,8 +264,8 @@ namespace SistemaGestorEventos.GUI
             this.mnuLogin.Location = new System.Drawing.Point(0, 0);
             this.mnuLogin.Margin = new System.Windows.Forms.Padding(0);
             this.mnuLogin.Name = "mnuLogin";
-            this.mnuLogin.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.mnuLogin.Size = new System.Drawing.Size(216, 45);
+            this.mnuLogin.Padding = new System.Windows.Forms.Padding(29, 0, 0, 0);
+            this.mnuLogin.Size = new System.Drawing.Size(247, 60);
             this.mnuLogin.TabIndex = 2;
             this.mnuLogin.Tag = "mnu.login";
             this.mnuLogin.Text = "Iniciar Sesión";
@@ -279,10 +283,11 @@ namespace SistemaGestorEventos.GUI
             this.btnMainUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMainUsuario.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnMainUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnMainUsuario.Location = new System.Drawing.Point(0, 171);
+            this.btnMainUsuario.Location = new System.Drawing.Point(0, 228);
+            this.btnMainUsuario.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMainUsuario.Name = "btnMainUsuario";
-            this.btnMainUsuario.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnMainUsuario.Size = new System.Drawing.Size(216, 45);
+            this.btnMainUsuario.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.btnMainUsuario.Size = new System.Drawing.Size(247, 60);
             this.btnMainUsuario.TabIndex = 1;
             this.btnMainUsuario.Tag = "mnu.usuario";
             this.btnMainUsuario.Text = "Usuario";
@@ -300,10 +305,11 @@ namespace SistemaGestorEventos.GUI
             this.mnuHomeCrearEvento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mnuHomeCrearEvento.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.mnuHomeCrearEvento.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mnuHomeCrearEvento.Location = new System.Drawing.Point(0, 126);
+            this.mnuHomeCrearEvento.Location = new System.Drawing.Point(0, 168);
+            this.mnuHomeCrearEvento.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mnuHomeCrearEvento.Name = "mnuHomeCrearEvento";
-            this.mnuHomeCrearEvento.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.mnuHomeCrearEvento.Size = new System.Drawing.Size(216, 45);
+            this.mnuHomeCrearEvento.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.mnuHomeCrearEvento.Size = new System.Drawing.Size(247, 60);
             this.mnuHomeCrearEvento.TabIndex = 1;
             this.mnuHomeCrearEvento.Tag = "mnu.newevent";
             this.mnuHomeCrearEvento.Text = "Crear evento";
@@ -321,10 +327,11 @@ namespace SistemaGestorEventos.GUI
             this.mnuHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mnuHome.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.mnuHome.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mnuHome.Location = new System.Drawing.Point(0, 81);
+            this.mnuHome.Location = new System.Drawing.Point(0, 108);
+            this.mnuHome.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mnuHome.Name = "mnuHome";
-            this.mnuHome.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.mnuHome.Size = new System.Drawing.Size(216, 45);
+            this.mnuHome.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.mnuHome.Size = new System.Drawing.Size(247, 60);
             this.mnuHome.TabIndex = 1;
             this.mnuHome.Tag = "mnu.home";
             this.mnuHome.Text = "Home";
@@ -337,8 +344,9 @@ namespace SistemaGestorEventos.GUI
             this.panelLogo.Controls.Add(this.lblSeHace);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(216, 81);
+            this.panelLogo.Size = new System.Drawing.Size(247, 108);
             this.panelLogo.TabIndex = 0;
             // 
             // lblTitelUsername
@@ -346,9 +354,9 @@ namespace SistemaGestorEventos.GUI
             this.lblTitelUsername.AutoSize = true;
             this.lblTitelUsername.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTitelUsername.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblTitelUsername.Location = new System.Drawing.Point(12, 45);
+            this.lblTitelUsername.Location = new System.Drawing.Point(14, 60);
             this.lblTitelUsername.Name = "lblTitelUsername";
-            this.lblTitelUsername.Size = new System.Drawing.Size(0, 21);
+            this.lblTitelUsername.Size = new System.Drawing.Size(0, 28);
             this.lblTitelUsername.TabIndex = 1;
             // 
             // lblSeHace
@@ -358,9 +366,9 @@ namespace SistemaGestorEventos.GUI
             this.lblSeHace.AutoSize = true;
             this.lblSeHace.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSeHace.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblSeHace.Location = new System.Drawing.Point(36, 0);
+            this.lblSeHace.Location = new System.Drawing.Point(41, 0);
             this.lblSeHace.Name = "lblSeHace";
-            this.lblSeHace.Size = new System.Drawing.Size(142, 45);
+            this.lblSeHace.Size = new System.Drawing.Size(178, 54);
             this.lblSeHace.TabIndex = 0;
             this.lblSeHace.Tag = "title.doit";
             this.lblSeHace.Text = "Se hace!";
@@ -370,21 +378,24 @@ namespace SistemaGestorEventos.GUI
             this.panelContenedor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelContenedor.BackColor = System.Drawing.SystemColors.Desktop;
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedor.Location = new System.Drawing.Point(217, 0);
+            this.panelContenedor.Location = new System.Drawing.Point(248, 0);
+            this.panelContenedor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(717, 611);
+            this.panelContenedor.Size = new System.Drawing.Size(817, 804);
             this.panelContenedor.TabIndex = 1;
+            this.panelContenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenedor_Paint);
             this.panelContenedor.Resize += new System.EventHandler(this.panelContenedor_Resize);
             // 
             // MainUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 611);
+            this.ClientSize = new System.Drawing.Size(1065, 804);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);
-            this.MaximumSize = new System.Drawing.Size(950, 650);
-            this.MinimumSize = new System.Drawing.Size(950, 650);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximumSize = new System.Drawing.Size(1083, 851);
+            this.MinimumSize = new System.Drawing.Size(1083, 851);
             this.Name = "MainUI";
             this.Tag = "main.title";
             this.Text = "Se Hace!";

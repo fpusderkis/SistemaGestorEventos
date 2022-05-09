@@ -211,5 +211,10 @@ namespace SistemaGestorEventos.GUI
                 this.activeForm.Dock = DockStyle.Fill;
             }
         }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -35,19 +35,12 @@ namespace SistemaGestorEventos.BLL
                 var pass = Encriptador.Hash(password);
                 if (usuario.Password == pass)
                 {
-                    
-                    SessionLogin(usuario);
+                    SESSION.Login(usuario);
                     return usuario;
                 }
             }
 
             return null;
-        }
-
-        private void SessionLogin(Usuario usuario)
-        {
-            
-            SESSION.Login(usuario);
         }
 
         public void Register(Usuario usuario)
@@ -66,7 +59,7 @@ namespace SistemaGestorEventos.BLL
             usuario.Id = Guid.NewGuid();
             usuario.Password = Encriptador.Hash(usuario.Password);
             usuarioDAL.Create(usuario);
-            SessionLogin(usuario);
+            SESSION.Login(usuario);
         }
 
         public void Logout()
