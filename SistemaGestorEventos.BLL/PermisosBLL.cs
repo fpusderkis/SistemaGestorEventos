@@ -76,9 +76,34 @@ namespace SistemaGestorEventos.BLL
 
         }
 
-        public void FillUserComponents(Usuario u)
+        public List<Componente> GetAllUserComponents(User user) => permisosDAL.GetAllUserComponents(user);
+
+        public ISet<T> FindAllPermissions<T>(User u) where T : class
         {
-            u.Permisos = permisosDAL.GetAllUserComponents(u);
+            List<Componente> componentes = GetAllUserComponents(u);
+
+            ISet<T> permissions = new HashSet<T>();
+            
+            foreach(var component in componentes)
+            {
+                FillAllPermissions(component, permissions);
+            }
+
+            return permissions;
+        }
+
+        private void FillAllPermissions<T>(Componente component, ISet<T> permissions) where T : class
+        {
+
+            if (component.Permiso != null)
+            {    
+                permissions.Add(component.Permiso as T);
+            } else {
+                foreach (var c in component.Hijos)
+                {
+                    FillAllPermissions(c,permissions);
+                }
+            }
         }
 
         public void FillFamilyComponents(Familia familia)

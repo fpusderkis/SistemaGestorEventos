@@ -36,7 +36,7 @@ namespace SistemaGestorEventos.GUI.Idioma
             cbxIdiomas.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbxIdiomas.SelectedItem = null;
 
-            btnGestionar.Visible = SessionHandler<TipoPermiso>.GetInstance.TienePermiso(TipoPermiso.AdministradorSistema);
+            btnGestionar.Visible = SessionHandler.GetInstance.HasGrant(TipoPermiso.AdministradorSistema);
             TraducirForm();
         }
 

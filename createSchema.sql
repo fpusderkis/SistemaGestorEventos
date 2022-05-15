@@ -114,22 +114,40 @@ CREATE TABLE [dbo].[Traducciones](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Usuarios]    Script Date: 26/9/2021 17:48:36 ******/
+
+USE [sgedb]
+GO
+
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 13/5/2022 01:01:33 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Usuarios]') AND type in (N'U'))
+DROP TABLE [dbo].[Usuarios]
+GO
+
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 13/5/2022 01:01:33 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE TABLE [dbo].[Usuarios](
 	[Id] [uniqueidentifier] NOT NULL,
 	[username] [varchar](50) NOT NULL,
 	[password] [varchar](50) NOT NULL,
 	[idioma] [varchar](5) NOT NULL,
+	[FailCount] [int] NULL,
+	[LastLogin] [datetime] NULL,
+	[expired] [tinyint] NULL,
  CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+
+
+
 /****** Object:  Table [dbo].[usuarios_permisos]    Script Date: 26/9/2021 17:48:36 ******/
 SET ANSI_NULLS ON
 GO
@@ -293,5 +311,63 @@ BEGIN
            @Password,
            @Idioma);
 
+END
+GO
+
+
+CREATE PROCEDURE [dbo].[sp_Usuario_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id uniqueidentifier, 
+	@Username varchar(50),
+	@Password varchar(250),
+	@Idioma varchar(5),
+	@FailCount int,
+	@LastLogin datetime,
+	@expired tinyint,
+	@checkdigit int
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF EXISTS ( SELECT * FROM dbo.[Usuarios] WITH (UPDLOCK) WHERE id = @Id)
+		UPDATE [dbo].[Usuarios]
+		   SET
+			  [username] = @username
+			  ,[password] = @password
+			  ,[idioma] = @idioma
+			  ,[FailCount] = @failcount
+			  ,[LastLogin] = @lastlogin
+			  ,[expired] = @expired
+			  ,[checkdigit] = @checkdigit
+		 WHERE Id = @Id;
+	
+		ELSE 
+ 
+		  	INSERT INTO [dbo].[Usuarios]
+				   ([Id]
+				   ,[username]
+				   ,[password]
+				   ,[idioma]
+				   ,[FailCount]
+				   ,[LastLogin]
+				   ,[expired]
+				   ,[checkdigit])
+			 VALUES
+				   (@id
+				   ,@username
+				   ,@password
+				   ,@idioma
+				   ,@FailCount
+				   ,@LastLogin
+				   ,@expired
+				   ,@checkdigit)
+ 
+ 
+	  COMMIT
 END
 GO

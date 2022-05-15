@@ -186,7 +186,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
             if (string.IsNullOrWhiteSpace(nombre))
             {
-                MessageBox.Show(MultiIdioma.TraduccionODefault("errors.missing.grantname", "Debe indicar el nombre del permiso para crearlo"));
+                MessageBox.Show(MultiIdioma.TranslateOrDefault("errors.missing.grantname", "Debe indicar el nombre del permiso para crearlo"));
             }
 
             var p = new Patente()
@@ -221,7 +221,7 @@ namespace SistemaGestorEventos.GUI.Permisos
         private void btnGuardarFamilia_Click(object sender, EventArgs e)
         {
             this.permisosBLL.GuardarFamilia((Familia)this.edicion);
-            MessageBox.Show(MultiIdioma.TraduccionODefault("configurations.saved", "Se guardo correctamente la configuracion."));
+            MessageBox.Show(MultiIdioma.TranslateOrDefault("configurations.saved", "Se guardo correctamente la configuracion."));
         }
     }
 }

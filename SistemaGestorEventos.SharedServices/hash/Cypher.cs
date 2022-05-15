@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.SharedServices.hash
 {
-    public class Encriptador
+    public class Cypher
     {
         public static string Hash(string value)
         {

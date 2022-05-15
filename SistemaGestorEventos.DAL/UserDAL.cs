@@ -1,45 +1,35 @@
 ﻿using SistemaGestorEventos.BE;
+using SistemaGestorEventos.SharedServices.Persistance;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace SistemaGestorEventos.DAL
 {
-    public class UsuarioDAL : AbstractDAL
+    public class UserDAL : AbstractDAL
     {
-        private static UsuarioDAL instancia = new UsuarioDAL();
+        private static UserDAL instancia = new UserDAL();
 
-        private UsuarioDAL() { }
+        private UserDAL() { }
 
-        public static UsuarioDAL GetInstance() => instancia;
+        public static UserDAL GetInstance() => instancia;
 
-        public Usuario FindByUsername(string username)
+        public User FindByUsername(string username)
         {
             using (var connection = this.GetSqlConnection())
             {
-                /// TODO evaluar pasar a stored procedure
-                /// 
-                SqlCommand sql = new SqlCommand("SELECT username,password,idioma,id FROM Usuarios WHERE username like @username ;");
-                sql.Connection = connection;
-
-                sql.Parameters.Add(new SqlParameter("@username", username));
                 connection.Open();
-                var reader = sql.ExecuteReader();
 
-                if (reader.Read())
-                {
-                    var usuario = new Usuario(reader.GetString(0), reader.GetString(1), reader.GetString(2));
-                    usuario.Id = reader.GetGuid(3);
-                    return usuario;
-                }
-                else
-                {
-                    return null;
-                }
+                var db = new Database(connection);
+                var users = db.AddParameter("@username", username)
+                    .ExecuteQuery<User>("SELECT * FROM Usuarios WHERE username like @username ;");
+
+                return users.Count > 0 ? users[0] : null;
+                
             }
         }
 
-        public void GuardarPermisos(Usuario usuario)
+        public void GuardarPermisos(User usuario)
         {
             using (var connection = this.GetSqlConnection())
             {
@@ -66,7 +56,7 @@ namespace SistemaGestorEventos.DAL
             }
         }
 
-        public IList<Usuario> GetAll()
+        public IList<User> GetAll()
         {
             using (var connection = this.GetSqlConnection())
             {
@@ -76,10 +66,10 @@ namespace SistemaGestorEventos.DAL
                 sql.Connection = connection;
                 connection.Open();
                 var reader = sql.ExecuteReader();
-                var lista = new List<Usuario>();
+                var lista = new List<User>();
                 while (reader.Read())
                 {
-                    var usuario = new Usuario(reader.GetString(0), reader.GetString(1), reader.GetString(2));
+                    var usuario = new User(reader.GetString(0), reader.GetString(1), reader.GetString(2));
                     usuario.Id = reader.GetGuid(3);
                     lista.Add(usuario);
                 }
@@ -89,7 +79,7 @@ namespace SistemaGestorEventos.DAL
             }
         }
 
-        public void Create(Usuario user)
+        public void Create(User user)
         {
             using (var con = this.GetSqlConnection())
             {
@@ -108,5 +98,30 @@ namespace SistemaGestorEventos.DAL
 
             }
         }
+
+
+        public void SaveUser(User user)
+        {
+            using (var con = this.GetSqlConnection())
+            {
+                con.Open();
+                new Database(con)
+                    
+                    .AddParameter("@Username", user.Username)
+                    .AddParameter("@Password", user.Password)
+                    .AddParameter("@Id", user.Id)
+                    .AddParameter("@LastLogin", user.LastLogin)
+                    .AddParameter("@FailCount", user.FailCount)
+                    .AddParameter("@Idioma", user.Idioma)
+                    .AddParameter("@expired", user.Expired)
+                    .AddParameter("@checkdigit", user.CheckDigit)
+
+
+                    .ExecuteNonQuery("sp_Usuario_Upsert", true);
+                    
+            }
+        }
+
+        
     }
 }

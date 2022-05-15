@@ -44,13 +44,13 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
             this.idiomasCache[idioma] = idiomaDictionary;
         }
 
-        public static string TraduccionODefault(string key, string value)
+        public static string TranslateOrDefault(string key, string value)
         {
-            var traduccion = Traduccion(key);
+            var traduccion = Translate(key);
 
             if (traduccion == null && !string.IsNullOrEmpty(value))
             { 
-                MultiIdioma.AgregarTraduccion(key, value);
+                MultiIdioma.AddTranslate(key, value);
                 return value;
             } else
             {
@@ -60,7 +60,7 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
 
         }
 
-        public static string Traduccion(string key)
+        public static string Translate(string key)
         {
             return Traduccion(key, instance.idiomaActual);
         }
@@ -102,12 +102,12 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
             subscribers.ForEach(s => s());
         }
 
-        public static void AgregarTraduccion(string key, string value)
+        public static void AddTranslate(string key, string value)
         {
-            AgregarTraduccion(instance.idiomaDefecto,key, value);
+            AddTranslate(instance.idiomaDefecto,key, value);
         }
 
-        public static void AgregarTraduccion(string idioma, string key, string value)
+        public static void AddTranslate(string idioma, string key, string value)
         {
             instance.datasource.UpsertTraduccion(idioma, key, value);
             instance.LoadIdioma(idioma);

@@ -4,23 +4,24 @@ using System.Text;
 
 namespace SistemaGestorEventos.SharedServices.Session
 {
-    public class SessionHandler<T>
+    public class SessionHandler
     {
-        private static SessionHandler<T> _session = new SessionHandler<T>();
+        private static SessionHandler _session = new SessionHandler();
 
-        private IUser<T> _user;
+        private IUser _user;
+        private ISet<object> _grants;
 
         List<Action> suscribers = new List<Action>();
 
         private SessionHandler() { }
 
-        public static SessionHandler<T> GetInstance { get 
+        public static SessionHandler GetInstance { get 
             {
                 return _session;
             }
         }
 
-        public IUser<T> Usuario
+        public IUser Usuario
         {
             get
             {
@@ -29,9 +30,11 @@ namespace SistemaGestorEventos.SharedServices.Session
         }
 
 
-        public void Login(IUser<T> usuario)
+        public void Login(IUser usuario, ISet<Object> grants)
         {
             _user = usuario;
+            _grants = grants;
+
             this.FireOnSessionStatusChangeEvent();
         }
 
@@ -66,11 +69,17 @@ namespace SistemaGestorEventos.SharedServices.Session
         }
 
 
-        public bool TienePermiso(T permiso)
+        public bool HasGrant(object grantToCheck)
         {
             if (IsLogged())
             {
-                return _user.TienePermiso(permiso);
+                foreach (var grant in _grants)
+                {
+                    if (grant.Equals(grantToCheck))
+                    {
+                        return true;
+                    }
+                }   
             }
             return false;
         }

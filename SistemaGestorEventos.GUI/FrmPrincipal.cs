@@ -12,20 +12,39 @@ namespace SistemaGestorEventos.GUI
 {
     public partial class FrmPrincipal : Form
     {
-        private readonly SessionHandler<TipoPermiso> SESSION = SessionHandler<TipoPermiso>.GetInstance;
+        private readonly SessionHandler SESSION = SessionHandler.GetInstance;
+
+        private FrmLogin loginForm;
+
         public FrmPrincipal()
         {
             InitializeComponent();
+            loginForm = new FrmLogin();
+            loginForm.Dock = DockStyle.Fill;
+            loginForm.MdiParent = this;
+            loginForm.MaximizeBox = false;
+            loginForm.MinimizeBox = false;
+            loginForm.ControlBox = false;
+            loginForm.ShowIcon = false;
+            loginForm.Text = "";
+
+            loginForm.WindowState = FormWindowState.Maximized;
+
             SESSION.SuscribeSessionStatusChangeEvent(() => {
                 this.mnuLogin.Visible = SESSION.IsNotLogged();
                 this.mnuLogout.Visible = SESSION.IsLogged();
                 this.mnuRegistrar.Visible = SESSION.IsNotLogged();
-                bool esAdmin = SESSION.TienePermiso(TipoPermiso.AdministradorSistema);
+                bool esAdmin = SESSION.HasGrant(TipoPermiso.AdministradorSistema);
                 this.admnistrarPermisosToolStripMenuItem.Visible = esAdmin;
                 this.admnistrarUsuariosToolStripMenuItem.Visible = esAdmin;
 
             });
             TraducirTextos();
+
+            if (SESSION.IsNotLogged())
+            {
+                loginForm.Show();
+            }
 
             MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);
         }

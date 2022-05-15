@@ -14,7 +14,7 @@ namespace SistemaGestorEventos.BE
 
         public String Descripcion { get; set; }
 
-        public Usuario Organizador { get; set; }
+        public User Organizador { get; set; }
 
         public DateTime FechaYHora { get; set; }
 

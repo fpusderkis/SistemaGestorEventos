@@ -15,10 +15,10 @@ namespace SistemaGestorEventos.GUI.Permisos
 
     public partial class FrmAdmUsuarios : Form
     {
-        private UsuarioBLL usuarioBLL = UsuarioBLL.Instance;
-        private PermisosBLL permisosBLL = PermisosBLL.Instance;
+        private UserBLL usuarioBLL = UserBLL.Instance;
+        private PermisosBLL grantsBLL = PermisosBLL.Instance;
 
-        private Usuario editable;
+        private User editable;
 
         public FrmAdmUsuarios()
         {
@@ -38,12 +38,12 @@ namespace SistemaGestorEventos.GUI.Permisos
             cbxUsuario.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             cbxFamilias.DisplayMember = "Nombre";
-            cbxFamilias.DataSource = permisosBLL.GetAllFamilias();
+            cbxFamilias.DataSource = grantsBLL.GetAllFamilias();
             cbxFamilias.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbxFamilias.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             cbxPatentes.DisplayMember = "Nombre";
-            cbxPatentes.DataSource = permisosBLL.GetAllPatentes();
+            cbxPatentes.DataSource = grantsBLL.GetAllPatentes();
             cbxPatentes.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbxPatentes.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
@@ -52,9 +52,9 @@ namespace SistemaGestorEventos.GUI.Permisos
         {
             if (cbxUsuario.SelectedItem != null)
             {
-                this.editable = (Usuario)cbxUsuario.SelectedItem;
+                this.editable = (User)cbxUsuario.SelectedItem;
 
-                this.permisosBLL.FillUserComponents(this.editable);
+                this.editable.Permisos = this.grantsBLL.GetAllUserComponents(this.editable);
                 CargarConfiguracionUsuario();
 
             }
@@ -62,13 +62,13 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnAgregarFamilia_Click(object sender, EventArgs e)
         {
-            var componente = (Componente)cbxFamilias.SelectedItem;
+            var componente = (BE.Permisos.Componente)cbxFamilias.SelectedItem;
             AgregarComponente(componente);
         }
 
         #region funciones
 
-        void AgregarComponente(Componente componente)
+        void AgregarComponente(BE.Permisos.Componente componente)
         {
             if (this.editable != null)
             {
@@ -78,7 +78,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
                     foreach (var item in this.editable.Permisos)
                     {
-                        if (permisosBLL.Existe(item, componente.Id))
+                        if (grantsBLL.Existe(item, componente.Id))
                         {
                             esta = true;
                             break;
@@ -89,7 +89,7 @@ namespace SistemaGestorEventos.GUI.Permisos
                     {
                         // no esta!
                         if (componente is Familia)
-                            permisosBLL.FillFamilyComponents((Familia)componente);
+                            grantsBLL.FillFamilyComponents((Familia)componente);
 
                         this.editable.Permisos.Add(componente);
                         this.CargarConfiguracionUsuario();
@@ -100,7 +100,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             }
         }
 
-        void QuitarComponente(Componente componente)
+        void QuitarComponente(BE.Permisos.Componente componente)
         {
             if (this.editable != null && componente != null)
             {
@@ -125,7 +125,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.treeView1.ExpandAll();
         }
 
-        void LlenarTreeView(TreeNode padre, Componente c)
+        void LlenarTreeView(TreeNode padre, BE.Permisos.Componente c)
         {
             TreeNode hijo = new TreeNode(c.Nombre);
             hijo.Tag = c;
@@ -158,13 +158,13 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnAgregarPatente_Click(object sender, EventArgs e)
         {
-            var componente = (Componente)cbxPatentes.SelectedItem;
+            var componente = (BE.Permisos.Componente)cbxPatentes.SelectedItem;
             AgregarComponente(componente);
         }
 
         private void btnQuitarPatente_Click(object sender, EventArgs e)
         {
-            QuitarComponente((Componente)cbxPatentes.SelectedItem);
+            QuitarComponente((BE.Permisos.Componente)cbxPatentes.SelectedItem);
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

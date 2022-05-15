@@ -43,12 +43,14 @@ namespace SistemaGestorEventos.GUI
             // 
             // mnuPrincipal
             // 
+            this.mnuPrincipal.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuUsuario,
             this.mnuIdioma});
             this.mnuPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mnuPrincipal.Name = "mnuPrincipal";
-            this.mnuPrincipal.Size = new System.Drawing.Size(800, 24);
+            this.mnuPrincipal.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.mnuPrincipal.Size = new System.Drawing.Size(819, 28);
             this.mnuPrincipal.TabIndex = 1;
             // 
             // mnuUsuario
@@ -60,14 +62,14 @@ namespace SistemaGestorEventos.GUI
             this.admnistrarPermisosToolStripMenuItem,
             this.admnistrarUsuariosToolStripMenuItem});
             this.mnuUsuario.Name = "mnuUsuario";
-            this.mnuUsuario.Size = new System.Drawing.Size(59, 20);
+            this.mnuUsuario.Size = new System.Drawing.Size(73, 24);
             this.mnuUsuario.Tag = "mnu.usuario";
             this.mnuUsuario.Text = "Usuario";
             // 
             // mnuLogin
             // 
             this.mnuLogin.Name = "mnuLogin";
-            this.mnuLogin.Size = new System.Drawing.Size(184, 22);
+            this.mnuLogin.Size = new System.Drawing.Size(227, 26);
             this.mnuLogin.Tag = "mnu.login";
             this.mnuLogin.Text = "Iniciar Sesión";
             this.mnuLogin.Click += new System.EventHandler(this.mnuLogin_Click);
@@ -75,7 +77,7 @@ namespace SistemaGestorEventos.GUI
             // mnuLogout
             // 
             this.mnuLogout.Name = "mnuLogout";
-            this.mnuLogout.Size = new System.Drawing.Size(184, 22);
+            this.mnuLogout.Size = new System.Drawing.Size(227, 26);
             this.mnuLogout.Tag = "mnu.logout";
             this.mnuLogout.Text = "Cerrar sesión";
             this.mnuLogout.Visible = false;
@@ -84,7 +86,7 @@ namespace SistemaGestorEventos.GUI
             // mnuRegistrar
             // 
             this.mnuRegistrar.Name = "mnuRegistrar";
-            this.mnuRegistrar.Size = new System.Drawing.Size(184, 22);
+            this.mnuRegistrar.Size = new System.Drawing.Size(227, 26);
             this.mnuRegistrar.Tag = "mnu.singin";
             this.mnuRegistrar.Text = "Registrar";
             this.mnuRegistrar.Click += new System.EventHandler(this.mnuRegistrar_Click);
@@ -92,7 +94,7 @@ namespace SistemaGestorEventos.GUI
             // admnistrarPermisosToolStripMenuItem
             // 
             this.admnistrarPermisosToolStripMenuItem.Name = "admnistrarPermisosToolStripMenuItem";
-            this.admnistrarPermisosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.admnistrarPermisosToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
             this.admnistrarPermisosToolStripMenuItem.Tag = "mnu.admin.grants";
             this.admnistrarPermisosToolStripMenuItem.Text = "Admnistrar Permisos";
             this.admnistrarPermisosToolStripMenuItem.Visible = false;
@@ -101,7 +103,7 @@ namespace SistemaGestorEventos.GUI
             // admnistrarUsuariosToolStripMenuItem
             // 
             this.admnistrarUsuariosToolStripMenuItem.Name = "admnistrarUsuariosToolStripMenuItem";
-            this.admnistrarUsuariosToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.admnistrarUsuariosToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
             this.admnistrarUsuariosToolStripMenuItem.Tag = "mnu.admin.users";
             this.admnistrarUsuariosToolStripMenuItem.Text = "Admnistrar Usuarios";
             this.admnistrarUsuariosToolStripMenuItem.Visible = false;
@@ -112,26 +114,27 @@ namespace SistemaGestorEventos.GUI
             this.mnuIdioma.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuCambiarIdioma});
             this.mnuIdioma.Name = "mnuIdioma";
-            this.mnuIdioma.Size = new System.Drawing.Size(56, 20);
+            this.mnuIdioma.Size = new System.Drawing.Size(70, 24);
             this.mnuIdioma.Tag = "mnu.lang";
             this.mnuIdioma.Text = "Idioma";
             // 
             // mnuCambiarIdioma
             // 
             this.mnuCambiarIdioma.Name = "mnuCambiarIdioma";
-            this.mnuCambiarIdioma.Size = new System.Drawing.Size(180, 22);
+            this.mnuCambiarIdioma.Size = new System.Drawing.Size(224, 26);
             this.mnuCambiarIdioma.Tag = "mnu.lang.change";
             this.mnuCambiarIdioma.Text = "Cambiar Idioma";
             this.mnuCambiarIdioma.Click += new System.EventHandler(this.mnuCambiarIdioma_Click);
             // 
             // FrmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(819, 918);
             this.Controls.Add(this.mnuPrincipal);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnuPrincipal;
+            this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "FrmPrincipal";
             this.Tag = "title.main";
             this.Text = "Se Hace!";

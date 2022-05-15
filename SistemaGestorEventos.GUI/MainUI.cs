@@ -14,7 +14,7 @@ namespace SistemaGestorEventos.GUI
 {
     public partial class MainUI : Form
     {
-        private readonly SessionHandler<TipoPermiso> SESSION = SessionHandler<TipoPermiso>.GetInstance;
+        private readonly SessionHandler SESSION = SessionHandler.GetInstance;
         private Form activeForm = null;
 
         public MainUI()
@@ -37,7 +37,7 @@ namespace SistemaGestorEventos.GUI
 
 
             WinformUtils.HacerVisibles(this.panelMenu);
-            bool esAdmin = SESSION.TienePermiso(TipoPermiso.AdministradorSistema);
+            bool esAdmin = SESSION.HasGrant(TipoPermiso.AdministradorSistema);
 
 
             this.mnuAdministrador.Visible = esAdmin;
@@ -213,6 +213,11 @@ namespace SistemaGestorEventos.GUI
         }
 
         private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void MainUI_Load(object sender, EventArgs e)
         {
 
         }

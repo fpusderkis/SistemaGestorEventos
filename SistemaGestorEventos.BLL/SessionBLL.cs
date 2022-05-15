@@ -5,6 +5,8 @@ using SistemaGestorEventos.SharedServices.Session;
 using SistemaGestorEventos.SharedServices.exceptions;
 using System;
 using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.SharedServices.bitacora;
+using System.Collections.Generic;
 
 namespace SistemaGestorEventos.BLL
 {
@@ -13,6 +15,10 @@ namespace SistemaGestorEventos.BLL
 
         private static readonly SessionBLL instance = new SessionBLL();
 
+        private UserBLL userBLL = UserBLL.Instance;
+
+        private readonly Bitacora LOG = BitacoraSingleton.GetInstance;
+
         public static SessionBLL GetInstance() => instance;
 
         private SessionBLL()
@@ -20,30 +26,68 @@ namespace SistemaGestorEventos.BLL
 
         }
 
-        private static readonly SessionHandler<TipoPermiso> SESSION = SessionHandler<TipoPermiso>.GetInstance;
+        private static readonly SessionHandler SESSION = SessionHandler.GetInstance;
 
-        private readonly UsuarioDAL usuarioDAL = UsuarioDAL.GetInstance();
+        private readonly UserDAL usuarioDAL = UserDAL.GetInstance();
 
         
 
-        public Usuario Login(string username, string password) 
+        public User Login(string username, string password) 
         {
-            var usuario = UsuarioBLL.Instance.CargarUsuario(username);
-            
-            if (usuario != null)
+            var user = userBLL.FindUser(username);
+
+            if (user == null)
             {
-                var pass = Encriptador.Hash(password);
-                if (usuario.Password == pass)
-                {
-                    SESSION.Login(usuario);
-                    return usuario;
-                }
+                throw new SistemaGestorEventos.BLL.Exceptions.BusinessException("login.invaliduserpass", "Usuario y/o clave invalida");
+            }
+            
+            if (user.FailCount > 2)
+            {
+                LOG.Log(user.Id, "Usuario bloqueado");
+                throw new SistemaGestorEventos.BLL.Exceptions.BusinessException("login.lockeduser", "Usuario bloqueado");
             }
 
-            return null;
+            var pass = Cypher.Hash(password);
+
+            if (user.Password != pass)
+            {
+                user.FailCount ++;
+                LOG.Log(user.Id, $"Password invalida. Intento: ${user.FailCount}");
+                userBLL.SaveUser(user);
+                throw new SistemaGestorEventos.BLL.Exceptions.BusinessException("login.invaliduserpass", "Usuario y/o clave invalida");
+            }
+
+            var digit = DigitoVerificador.GenerarDigitoVerificador(user.Id, pass);
+
+            if (digit != user.CheckDigit)
+            {
+                LOG.Log(user.Id, "Digito verificador invalido");
+                throw new SistemaGestorEventos.BLL.Exceptions.BusinessException("login.invaliddigit", "Registro de inicio de sesión corrupto,\n contacte al administrador");
+            }
+
+            /**
+             * TODO Agregar a la especificación del word este camino alternativo.
+             */
+
+            if (user.Expired == true)
+            {
+                LOG.Log(user.Id, "Password expirado");
+                throw new SistemaGestorEventos.BLL.Exceptions.PasswordExpiredException();
+            }
+
+            user.LastLogin = DateTime.Now;
+            user.FailCount = 0;
+
+            userBLL.SaveUser(user);
+
+            var grants = PermisosBLL.Instance.FindAllPermissions<object>(user);
+
+            SESSION.Login(user, grants);
+
+            return user;
         }
 
-        public void Register(Usuario usuario)
+        public void Register(User usuario)
         {
             if (string.IsNullOrWhiteSpace(usuario.Username)) throw new ValidationException("Nombre de usuario invalido");
             if (string.IsNullOrWhiteSpace(usuario.Password)) throw new ValidationException("Password invalido");
@@ -57,9 +101,9 @@ namespace SistemaGestorEventos.BLL
             }
 
             usuario.Id = Guid.NewGuid();
-            usuario.Password = Encriptador.Hash(usuario.Password);
+            usuario.Password = Cypher.Hash(usuario.Password);
             usuarioDAL.Create(usuario);
-            SESSION.Login(usuario);
+            SESSION.Login(usuario, null);
         }
 
         public void Logout()

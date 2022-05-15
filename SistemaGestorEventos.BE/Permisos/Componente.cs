@@ -14,7 +14,7 @@ namespace SistemaGestorEventos.BE.Permisos
         public abstract void BorrarHijo(Componente c);
 
         public abstract void VaciarHijos();
-        public TipoPermiso Permiso { get; set; }
+        public TipoPermiso? Permiso { get; set; }
 
         public override string ToString()
         {

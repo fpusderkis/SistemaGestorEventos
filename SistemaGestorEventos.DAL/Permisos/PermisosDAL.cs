@@ -266,7 +266,7 @@ namespace SistemaGestorEventos.DAL.Permisos
             return component;
         }
 
-        public List<Componente> GetAllUserComponents(Usuario usuario)
+        public List<Componente> GetAllUserComponents(User usuario)
         {
 
             using (var cnn = this.GetSqlConnection())

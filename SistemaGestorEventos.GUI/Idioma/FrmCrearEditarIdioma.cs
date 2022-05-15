@@ -79,11 +79,11 @@ namespace SistemaGestorEventos.GUI.Idioma
         {
             if (string.IsNullOrWhiteSpace((string)cbxId.SelectedItem))
             {
-                MessageBox.Show(MultiIdioma.TraduccionODefault("FrmCrearEditarIdioma.Error.SeleccionaIdioma", "Escriba un identificador de idioma, se recomienda el formato de la RFC3066 (es-AR)"));
+                MessageBox.Show(MultiIdioma.TranslateOrDefault("FrmCrearEditarIdioma.Error.SeleccionaIdioma", "Escriba un identificador de idioma, se recomienda el formato de la RFC3066 (es-AR)"));
                 return;
             } else if(string.IsNullOrWhiteSpace(txtDescipcion.Text))
             {
-                MessageBox.Show(MultiIdioma.TraduccionODefault("FrmCrearEditarIdioma.Error.IngresarDescipcion", "Escriba una descipcion para el idioma"));
+                MessageBox.Show(MultiIdioma.TranslateOrDefault("FrmCrearEditarIdioma.Error.IngresarDescipcion", "Escriba una descipcion para el idioma"));
                 return;
             } else if(string.IsNullOrWhiteSpace(txtTraducciones.Text))
             {
