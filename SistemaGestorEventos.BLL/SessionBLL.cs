@@ -4,7 +4,7 @@ using SistemaGestorEventos.SharedServices.hash;
 using SistemaGestorEventos.SharedServices.Session;
 using SistemaGestorEventos.SharedServices.exceptions;
 using System;
-using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.SharedServices.bitacora;
 using System.Collections.Generic;
 
@@ -80,7 +80,7 @@ namespace SistemaGestorEventos.BLL
 
             userBLL.SaveUser(user);
 
-            var grants = PermisosBLL.Instance.FindAllPermissions<object>(user);
+            var grants = GrantsBLL.Instance.FindAllPermissions<object>(user);
 
             SESSION.Login(user, grants);
 

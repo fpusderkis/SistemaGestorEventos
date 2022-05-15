@@ -1,5 +1,5 @@
 ﻿using SistemaGestorEventos.BE;
-using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.DAL.Permisos;
 using System;
 using System.Collections.Generic;
@@ -7,23 +7,23 @@ using System.Text;
 
 namespace SistemaGestorEventos.BLL
 {
-    public class PermisosBLL : AbstractBLL
+    public class GrantsBLL : AbstractBLL
     {
 
-        private static readonly PermisosBLL instance = new PermisosBLL();
+        private static readonly GrantsBLL instance = new GrantsBLL();
 
-        private PermisosBLL()
+        private GrantsBLL()
         {
 
         }
 
-        public static PermisosBLL Instance => instance;
+        public static GrantsBLL Instance => instance;
 
-        private PermisosDAL permisosDAL = PermisosDAL.Instance;
+        private GrantsDAL permisosDAL = GrantsDAL.Instance;
 
 
 
-        public bool Existe(Componente c, Guid id)
+        public bool Existe(AbstractComponent c, Guid id)
         {
             bool existe = false;
 
@@ -31,7 +31,7 @@ namespace SistemaGestorEventos.BLL
                 existe = true;
             else
 
-                foreach (var item in c.Hijos)
+                foreach (var item in c.Childs)
                 {
 
                     existe = Existe(item, id);
@@ -45,42 +45,42 @@ namespace SistemaGestorEventos.BLL
 
         public Array GetAllPermission()
         {
-            return Enum.GetValues(typeof(TipoPermiso));
+            return Enum.GetValues(typeof(GrantType));
         }
 
 
-        public Componente GuardarComponente(Componente p, bool esfamilia)
+        public AbstractComponent GuardarComponente(AbstractComponent p, bool esfamilia)
         {
             return permisosDAL.GuardarComponente(p, esfamilia);
         }
 
 
-        public void GuardarFamilia(Familia c)
+        public void GuardarFamilia(Family c)
         {
             permisosDAL.GuardarFamilia(c);
         }
 
-        public IList<Patente> GetAllPatentes()
+        public IList<Grant> GetAllPatentes()
         {
             return permisosDAL.GetAllPatentes();
         }
 
-        public IList<Familia> GetAllFamilias()
+        public IList<Family> GetAllFamilias()
         {
             return permisosDAL.GetAllFamilias();
         }
 
-        public IList<Componente> GetAll(string familia)
+        public IList<AbstractComponent> GetAll(string familia)
         {
             return permisosDAL.GetAll(familia);
 
         }
 
-        public List<Componente> GetAllUserComponents(User user) => permisosDAL.GetAllUserComponents(user);
+        public List<AbstractComponent> GetAllUserComponents(User user) => permisosDAL.GetAllUserComponents(user);
 
         public ISet<T> FindAllPermissions<T>(User u) where T : class
         {
-            List<Componente> componentes = GetAllUserComponents(u);
+            List<AbstractComponent> componentes = GetAllUserComponents(u);
 
             ISet<T> permissions = new HashSet<T>();
             
@@ -92,21 +92,21 @@ namespace SistemaGestorEventos.BLL
             return permissions;
         }
 
-        private void FillAllPermissions<T>(Componente component, ISet<T> permissions) where T : class
+        private void FillAllPermissions<T>(AbstractComponent component, ISet<T> permissions) where T : class
         {
 
-            if (component.Permiso != null)
+            if (component.GrantType != null)
             {    
-                permissions.Add(component.Permiso as T);
+                permissions.Add(component.GrantType as T);
             } else {
-                foreach (var c in component.Hijos)
+                foreach (var c in component.Childs)
                 {
                     FillAllPermissions(c,permissions);
                 }
             }
         }
 
-        public void FillFamilyComponents(Familia familia)
+        public void FillFamilyComponents(Family familia)
         {
             permisosDAL.FillFamilyComponents(familia);
         }

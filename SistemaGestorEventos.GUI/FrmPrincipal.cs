@@ -1,5 +1,5 @@
 ﻿using SistemaGestorEventos.BE;
-using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.GUI.Idioma;
 using SistemaGestorEventos.GUI.Permisos;
@@ -34,7 +34,7 @@ namespace SistemaGestorEventos.GUI
                 this.mnuLogin.Visible = SESSION.IsNotLogged();
                 this.mnuLogout.Visible = SESSION.IsLogged();
                 this.mnuRegistrar.Visible = SESSION.IsNotLogged();
-                bool esAdmin = SESSION.HasGrant(TipoPermiso.AdministradorSistema);
+                bool esAdmin = SESSION.HasGrant(GrantType.AdministradorSistema);
                 this.admnistrarPermisosToolStripMenuItem.Visible = esAdmin;
                 this.admnistrarUsuariosToolStripMenuItem.Visible = esAdmin;
 

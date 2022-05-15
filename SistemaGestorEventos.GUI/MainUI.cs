@@ -1,4 +1,4 @@
-﻿using SistemaGestorEventos.BE.Permisos;
+﻿using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.GUI.Idioma;
 using SistemaGestorEventos.SharedServices.Multiidioma;
 using SistemaGestorEventos.SharedServices.Session;
@@ -37,7 +37,7 @@ namespace SistemaGestorEventos.GUI
 
 
             WinformUtils.HacerVisibles(this.panelMenu);
-            bool esAdmin = SESSION.HasGrant(TipoPermiso.AdministradorSistema);
+            bool esAdmin = SESSION.HasGrant(GrantType.AdministradorSistema);
 
 
             this.mnuAdministrador.Visible = esAdmin;

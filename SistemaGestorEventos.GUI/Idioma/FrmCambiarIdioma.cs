@@ -1,4 +1,4 @@
-﻿using SistemaGestorEventos.BE.Permisos;
+﻿using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.Multiidioma;
 using SistemaGestorEventos.SharedServices.Session;
@@ -36,7 +36,7 @@ namespace SistemaGestorEventos.GUI.Idioma
             cbxIdiomas.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbxIdiomas.SelectedItem = null;
 
-            btnGestionar.Visible = SessionHandler.GetInstance.HasGrant(TipoPermiso.AdministradorSistema);
+            btnGestionar.Visible = SessionHandler.GetInstance.HasGrant(GrantType.AdministradorSistema);
             TraducirForm();
         }
 

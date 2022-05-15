@@ -1,4 +1,4 @@
-﻿using SistemaGestorEventos.BE.Permisos;
+﻿using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace SistemaGestorEventos.BE
 
         public string Idioma { get; set; }
 
-        public List<Componente> Permisos { get; set; }
+        public List<AbstractComponent> Permisos { get; set; }
 
         public int FailCount { get; set; } = 0;
 

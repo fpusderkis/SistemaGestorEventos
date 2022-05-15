@@ -1,4 +1,4 @@
-using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.bitacora.writers;
