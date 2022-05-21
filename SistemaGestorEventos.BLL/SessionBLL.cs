@@ -4,7 +4,6 @@ using SistemaGestorEventos.SharedServices.hash;
 using SistemaGestorEventos.SharedServices.Session;
 using SistemaGestorEventos.SharedServices.exceptions;
 using System;
-using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.SharedServices.bitacora;
 using System.Collections.Generic;
 
@@ -80,7 +79,7 @@ namespace SistemaGestorEventos.BLL
 
             userBLL.SaveUser(user);
 
-            var grants = GrantsBLL.Instance.FindAllPermissions<object>(user);
+            ISet<object> grants = GrantsBLL.Instance.FindAllPermissions(user);
 
             SESSION.Login(user, grants);
 
@@ -91,7 +90,7 @@ namespace SistemaGestorEventos.BLL
         {
             if (string.IsNullOrWhiteSpace(usuario.Username)) throw new ValidationException("Nombre de usuario invalido");
             if (string.IsNullOrWhiteSpace(usuario.Password)) throw new ValidationException("Password invalido");
-            if (string.IsNullOrWhiteSpace(usuario.Idioma)) throw new ValidationException("Idioma invalido");
+            if (string.IsNullOrWhiteSpace(usuario.Language)) throw new ValidationException("Idioma invalido");
 
             var usuarioBD = usuarioDAL.FindByUsername(usuario.Username);
 
@@ -102,7 +101,13 @@ namespace SistemaGestorEventos.BLL
 
             usuario.Id = Guid.NewGuid();
             usuario.Password = Cypher.Hash(usuario.Password);
-            usuarioDAL.Create(usuario);
+            usuario.CheckDigit = DigitoVerificador.GenerarDigitoVerificador(usuario.Id, usuario.Password);
+            usuario.Language = "es_AR";
+            usuario.LastLogin = DateTime.Now;
+            usuario.Expired = false;
+
+            usuarioDAL.SaveUser(usuario);
+
             SESSION.Login(usuario, null);
         }
 

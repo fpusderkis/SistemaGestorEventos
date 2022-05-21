@@ -46,40 +46,6 @@ namespace SistemaGestorEventos.DAL.Permisos
         }
 
 
-        public void GuardarFamilia(Family c)
-        {
-
-            using (var connection = this.GetSqlConnection())
-            {
-                var cmd = new SqlCommand();
-                cmd.Connection = connection;
-                connection.Open();
-
-                var sql = $@"delete from permiso_permiso where id_permiso_padre=@id;";
-
-                cmd.CommandText = sql;
-                cmd.Parameters.Add(new SqlParameter("id", c.Id));
-                cmd.ExecuteNonQuery();
-
-                foreach (var item in c.Childs)
-                {
-                    cmd = new SqlCommand();
-                    cmd.Connection = connection;
-
-
-                    sql = $@"insert into permiso_permiso (id_permiso_padre,id_permiso_hijo) values (@id_permiso_padre,@id_permiso_hijo) ";
-
-                    cmd.CommandText = sql;
-                    cmd.Parameters.Add(new SqlParameter("id_permiso_padre", c.Id));
-                    cmd.Parameters.Add(new SqlParameter("id_permiso_hijo", item.Id));
-
-                    cmd.ExecuteNonQuery();
-                }
-
-            }
-            
-        }
-
         public IList<Grant> GetAllPatentes()
         {
             using (var connection = this.GetSqlConnection())

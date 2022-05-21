@@ -57,7 +57,7 @@ namespace SistemaGestorEventos.BLL
 
         public void GuardarFamilia(Family c)
         {
-            permisosDAL.GuardarFamilia(c);
+            permisosDAL.GuardarComponente(c,true);
         }
 
         public IList<Grant> GetAllPatentes()
@@ -78,11 +78,11 @@ namespace SistemaGestorEventos.BLL
 
         public List<AbstractComponent> GetAllUserComponents(User user) => permisosDAL.GetAllUserComponents(user);
 
-        public ISet<T> FindAllPermissions<T>(User u) where T : class
+        public ISet<object> FindAllPermissions(User u)
         {
             List<AbstractComponent> componentes = GetAllUserComponents(u);
 
-            ISet<T> permissions = new HashSet<T>();
+            ISet<object> permissions = new HashSet<object>();
             
             foreach(var component in componentes)
             {
@@ -92,12 +92,12 @@ namespace SistemaGestorEventos.BLL
             return permissions;
         }
 
-        private void FillAllPermissions<T>(AbstractComponent component, ISet<T> permissions) where T : class
+        private void FillAllPermissions(AbstractComponent component, ISet<object> permissions) 
         {
 
             if (component.GrantType != null)
             {    
-                permissions.Add(component.GrantType as T);
+                permissions.Add((GrantType)component.GrantType);
             } else {
                 foreach (var c in component.Childs)
                 {

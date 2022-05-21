@@ -52,7 +52,7 @@ namespace SistemaGestorEventos.GUI
 
             if (SESSION.IsLogged())
             {
-                lblTitelUsername.Text = SESSION.Usuario.Username;
+                lblTitelUsername.Text = SESSION.User.Username;
                 lblTitelUsername.Visible = true;
             } else
             {

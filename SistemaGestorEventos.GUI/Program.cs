@@ -30,7 +30,7 @@ namespace SistemaGestorEventos.GUI
             SessionHandler.GetInstance.SuscribeSessionStatusChangeEvent(() => {
                 if (SessionHandler.GetInstance.IsLogged())
                 {
-                    BitacoraSingleton.GetInstance.UserReferenceId = SessionHandler.GetInstance.Usuario.Id;
+                    BitacoraSingleton.GetInstance.UserReferenceId = SessionHandler.GetInstance.User.Id;
                     BitacoraSingleton.GetInstance.Log("Inicio sesión");
                 }
                 else

@@ -314,8 +314,14 @@ BEGIN
 END
 GO
 
-
-CREATE PROCEDURE [dbo].[sp_Usuario_Upsert]
+USE [sgedb]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Usuario_Upsert]    Script Date: 16/5/2022 15:58:52 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[sp_Usuario_Upsert]
 	-- Add the parameters for the stored procedure here
 	@Id uniqueidentifier, 
 	@Username varchar(50),
@@ -339,7 +345,7 @@ BEGIN
 		   SET
 			  [username] = @username
 			  ,[password] = @password
-			  ,[idioma] = @idioma
+			  ,[Language] = @idioma
 			  ,[FailCount] = @failcount
 			  ,[LastLogin] = @lastlogin
 			  ,[expired] = @expired
@@ -352,7 +358,7 @@ BEGIN
 				   ([Id]
 				   ,[username]
 				   ,[password]
-				   ,[idioma]
+				   ,[Language]
 				   ,[FailCount]
 				   ,[LastLogin]
 				   ,[expired]
@@ -370,4 +376,3 @@ BEGIN
  
 	  COMMIT
 END
-GO

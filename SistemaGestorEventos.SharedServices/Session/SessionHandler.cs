@@ -21,7 +21,7 @@ namespace SistemaGestorEventos.SharedServices.Session
             }
         }
 
-        public IUser Usuario
+        public IUser User
         {
             get
             {
@@ -30,7 +30,7 @@ namespace SistemaGestorEventos.SharedServices.Session
         }
 
 
-        public void Login(IUser usuario, ISet<Object> grants)
+        public void Login(IUser usuario, ISet<object> grants)
         {
             _user = usuario;
             _grants = grants;
@@ -69,7 +69,7 @@ namespace SistemaGestorEventos.SharedServices.Session
         }
 
 
-        public bool HasGrant(object grantToCheck)
+        public bool HasGrant(IComparable grantToCheck)
         {
             if (IsLogged())
             {

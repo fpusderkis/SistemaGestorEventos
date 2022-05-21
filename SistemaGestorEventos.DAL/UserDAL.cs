@@ -60,45 +60,14 @@ namespace SistemaGestorEventos.DAL
         {
             using (var connection = this.GetSqlConnection())
             {
-                /// TODO evaluar pasar a stored procedure
-                /// 
-                SqlCommand sql = new SqlCommand("SELECT username,password,idioma,id FROM Usuarios;");
-                sql.Connection = connection;
                 connection.Open();
-                var reader = sql.ExecuteReader();
-                var lista = new List<User>();
-                while (reader.Read())
-                {
-                    var usuario = new User(reader.GetString(0), reader.GetString(1), reader.GetString(2));
-                    usuario.Id = reader.GetGuid(3);
-                    lista.Add(usuario);
-                }
-                reader.Close();
+
+                IList<User> lista = new Database(connection)
+                    .ExecuteQuery<User>("SELECT username,password,language,id FROM Usuarios;");
 
                 return lista;
             }
         }
-
-        public void Create(User user)
-        {
-            using (var con = this.GetSqlConnection())
-            {
-                SqlCommand command = new SqlCommand("sp_Usuario_Crear");
-
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@username", user.Username);
-                command.Parameters.AddWithValue("@password", user.Password);
-                command.Parameters.AddWithValue("@idioma", user.Idioma);
-                command.Parameters.AddWithValue("@id", user.Id);
-
-
-                command.Connection = con;
-                con.Open();
-                command.ExecuteNonQuery();
-
-            }
-        }
-
 
         public void SaveUser(User user)
         {
@@ -112,11 +81,9 @@ namespace SistemaGestorEventos.DAL
                     .AddParameter("@Id", user.Id)
                     .AddParameter("@LastLogin", user.LastLogin)
                     .AddParameter("@FailCount", user.FailCount)
-                    .AddParameter("@Idioma", user.Idioma)
+                    .AddParameter("@Idioma", user.Language)
                     .AddParameter("@expired", user.Expired)
                     .AddParameter("@checkdigit", user.CheckDigit)
-
-
                     .ExecuteNonQuery("sp_Usuario_Upsert", true);
                     
             }

@@ -7,10 +7,10 @@ namespace SistemaGestorEventos.SharedServices.hash
 {
     public class Cypher
     {
+        private static readonly MD5CryptoServiceProvider md5Provider = new MD5CryptoServiceProvider();
         public static string Hash(string value)
         {
-            var md5 = new MD5CryptoServiceProvider();
-            var md5data = md5.ComputeHash(Encoding.ASCII.GetBytes(value));
+            var md5data = md5Provider.ComputeHash(Encoding.ASCII.GetBytes(value));
             return (new ASCIIEncoding()).GetString(md5data);
         }
     }

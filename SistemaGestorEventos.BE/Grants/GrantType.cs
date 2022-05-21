@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE.Grants
 {
-    public enum GrantType
+    public enum GrantType 
     {
         GestionarLugar,
         GestionarServicio,

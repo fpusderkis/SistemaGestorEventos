@@ -17,16 +17,19 @@ namespace SistemaGestorEventos.BE
         {
             Username = username ?? throw new ArgumentNullException(nameof(username));
             Password = password ?? throw new ArgumentNullException(nameof(password));
-            Idioma = idioma ?? throw new ArgumentNullException(nameof(idioma));
+            Language = idioma ?? throw new ArgumentNullException(nameof(idioma));
         }
 
         public string Username { get; set; }
 
         public string Password { get; set; }
 
-        public string Idioma { get; set; }
+        public string Language { get; set; }
 
+        // TODO: ¿¿BORRAR PERMISOS?? pasaron a la sesion.
+        // Tener en cuenta que se usan en el componente que hace abmc de permisos de usuario. entrega 2.
         public List<AbstractComponent> Permisos { get; set; }
+        // FIN TODO
 
         public int FailCount { get; set; } = 0;
 

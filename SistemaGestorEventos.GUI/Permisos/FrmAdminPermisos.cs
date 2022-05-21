@@ -220,7 +220,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnGuardarFamilia_Click(object sender, EventArgs e)
         {
-            this.permisosBLL.GuardarFamilia((Family)this.edicion);
+            this.permisosBLL.GuardarComponente(this.edicion,true);
             MessageBox.Show(MultiIdioma.TranslateOrDefault("configurations.saved", "Se guardo correctamente la configuracion."));
         }
     }
