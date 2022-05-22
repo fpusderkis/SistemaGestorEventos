@@ -117,5 +117,10 @@ namespace SistemaGestorEventos.GUI
         {
             new FrmCambiarIdioma().Show();
         }
+
+        private void mnuLogo1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
