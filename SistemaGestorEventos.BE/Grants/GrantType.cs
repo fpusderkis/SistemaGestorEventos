@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SistemaGestorEventos.BE.Permisos
+namespace SistemaGestorEventos.BE.Grants
 {
-    public enum TipoPermiso
+    public enum GrantType 
     {
         GestionarLugar,
         GestionarServicio,
         AdministradorSistema
-     
-}
+           
+    }
 }

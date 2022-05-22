@@ -1,4 +1,4 @@
-using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.bitacora.writers;
@@ -27,10 +27,10 @@ namespace SistemaGestorEventos.GUI
             BitacoraSingleton.GetInstance.AddWriter(new BitacoraConsoleWriter());
             BitacoraSingleton.GetInstance.AddWriter(BitacoraBLL.GetInstance);
 
-            SessionHandler<TipoPermiso>.GetInstance.SuscribeSessionStatusChangeEvent(() => {
-                if (SessionHandler<TipoPermiso>.GetInstance.IsLogged())
+            SessionHandler.GetInstance.SuscribeSessionStatusChangeEvent(() => {
+                if (SessionHandler.GetInstance.IsLogged())
                 {
-                    BitacoraSingleton.GetInstance.UserReferenceId = SessionHandler<TipoPermiso>.GetInstance.Usuario.Id;
+                    BitacoraSingleton.GetInstance.UserReferenceId = SessionHandler.GetInstance.User.Id;
                     BitacoraSingleton.GetInstance.Log("Inicio sesión");
                 }
                 else
@@ -49,7 +49,7 @@ namespace SistemaGestorEventos.GUI
               Console.WriteLine("ERROR NO CONTROLADO: " + e.Exception.Message);
               Console.WriteLine(e.Exception.StackTrace);
               BitacoraSingleton.GetInstance.Log($"ERROR NO CONTROLADO: {e.Exception.Message}");
-              MessageBox.Show(MultiIdioma.TraduccionODefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
+              MessageBox.Show(MultiIdioma.TranslateOrDefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
           });
 
             // Set the unhandled exception mode to force all Windows Forms errors
@@ -61,10 +61,10 @@ namespace SistemaGestorEventos.GUI
                 Console.WriteLine("ERROR NO CONTROLADO: " + ((Exception)e.ExceptionObject).Message);
                 Console.WriteLine(((Exception)e.ExceptionObject).StackTrace);
                 BitacoraSingleton.GetInstance.Log($"ERROR NO CONTROLADO: {((Exception)e.ExceptionObject).Message}");
-                MessageBox.Show(MultiIdioma.TraduccionODefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
+                MessageBox.Show(MultiIdioma.TranslateOrDefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
             };
 
-            Application.Run(new MainUI());
+            Application.Run(new FrmPrincipal());
         }
     }
 }

@@ -12,21 +12,28 @@ namespace SistemaGestorEventos.GUI
         public FrmLogin()
         {
             InitializeComponent();
+
+            this.lblError.AutoSize = true;
+            this.lblError.MaximumSize = new System.Drawing.Size(300, 0);
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (this.Validate())
+            try
             {
                 var usuario = sessionBLL.Login(this.txtUsername.Text, this.txtPassword.Text);
-                if (usuario != null)
-                {
-                    this.Close();
-                } else
-                {
-                    this.lblError.Visible = true;
-                }
+
+                this.Close();
+
             }
+            catch (BLL.Exceptions.BusinessException ex)
+            {
+                this.lblError.Text = MultiIdioma.TranslateOrDefault(ex.MessageKey,ex.MessageText);
+                this.lblError.Visible = true;
+            }
+           
+            
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -41,6 +48,17 @@ namespace SistemaGestorEventos.GUI
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmLogin_Resize(object sender, EventArgs e)
+        {
+            gbxLogin.Left = (gbxLogin.Parent.Width - gbxLogin.Width) / 2;
+            gbxLogin.Top = (gbxLogin.Parent.Height - gbxLogin.Height) / 2;
         }
     }
 }

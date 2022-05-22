@@ -1,5 +1,5 @@
 ﻿using SistemaGestorEventos.BE;
-using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.BE.Grants;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,16 +7,16 @@ using System.Linq;
 
 namespace SistemaGestorEventos.DAL.Permisos
 {
-    public class PermisosDAL : AbstractDAL
+    public class GrantsDAL : AbstractDAL
     {
 
-        private PermisosDAL() { }
+        private GrantsDAL() { }
 
-        private static readonly PermisosDAL instance = new PermisosDAL();
+        private static readonly GrantsDAL instance = new GrantsDAL();
 
-        public static PermisosDAL Instance => instance;
+        public static GrantsDAL Instance => instance;
 
-        public Componente GuardarComponente(Componente p, bool esfamilia)
+        public AbstractComponent GuardarComponente(AbstractComponent p, bool esfamilia)
         {
             using (var connection = this.GetSqlConnection())
             {
@@ -27,7 +27,7 @@ namespace SistemaGestorEventos.DAL.Permisos
                 var sql = $@"insert into permiso (id,nombre,permiso) values (@id,@nombre,@permiso); ";
 
                 cmd.CommandText = sql;
-                cmd.Parameters.Add(new SqlParameter("nombre", p.Nombre));
+                cmd.Parameters.Add(new SqlParameter("nombre", p.Name));
                 cmd.Parameters.Add(new SqlParameter("id", p.Id));
 
 
@@ -35,7 +35,7 @@ namespace SistemaGestorEventos.DAL.Permisos
                 if (esfamilia)
                     cmd.Parameters.Add(new SqlParameter("permiso", DBNull.Value));
                 else
-                    cmd.Parameters.Add(new SqlParameter("permiso", p.Permiso.ToString()));
+                    cmd.Parameters.Add(new SqlParameter("permiso", p.GrantType.ToString()));
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -46,41 +46,7 @@ namespace SistemaGestorEventos.DAL.Permisos
         }
 
 
-        public void GuardarFamilia(Familia c)
-        {
-
-            using (var connection = this.GetSqlConnection())
-            {
-                var cmd = new SqlCommand();
-                cmd.Connection = connection;
-                connection.Open();
-
-                var sql = $@"delete from permiso_permiso where id_permiso_padre=@id;";
-
-                cmd.CommandText = sql;
-                cmd.Parameters.Add(new SqlParameter("id", c.Id));
-                cmd.ExecuteNonQuery();
-
-                foreach (var item in c.Hijos)
-                {
-                    cmd = new SqlCommand();
-                    cmd.Connection = connection;
-
-
-                    sql = $@"insert into permiso_permiso (id_permiso_padre,id_permiso_hijo) values (@id_permiso_padre,@id_permiso_hijo) ";
-
-                    cmd.CommandText = sql;
-                    cmd.Parameters.Add(new SqlParameter("id_permiso_padre", c.Id));
-                    cmd.Parameters.Add(new SqlParameter("id_permiso_hijo", item.Id));
-
-                    cmd.ExecuteNonQuery();
-                }
-
-            }
-            
-        }
-
-        public IList<Patente> GetAllPatentes()
+        public IList<Grant> GetAllPatentes()
         {
             using (var connection = this.GetSqlConnection())
             {
@@ -94,7 +60,7 @@ namespace SistemaGestorEventos.DAL.Permisos
 
                 var reader = cmd.ExecuteReader();
 
-                var lista = new List<Patente>();
+                var lista = new List<Grant>();
 
                 while (reader.Read())
                 {
@@ -103,11 +69,11 @@ namespace SistemaGestorEventos.DAL.Permisos
                     var permiso = reader.GetString(reader.GetOrdinal("permiso"));
 
 
-                    Patente c = new Patente();
+                    Grant c = new Grant();
 
                     c.Id = id;
-                    c.Nombre = nombre;
-                    c.Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), permiso);
+                    c.Name = nombre;
+                    c.GrantType = (GrantType)Enum.Parse(typeof(GrantType), permiso);
                     lista.Add(c);
 
                 }
@@ -118,7 +84,7 @@ namespace SistemaGestorEventos.DAL.Permisos
             }
         }
 
-        public List<Familia> GetAllFamilias()
+        public List<Family> GetAllFamilias()
         {
 
             using (var connection = this.GetSqlConnection())
@@ -133,7 +99,7 @@ namespace SistemaGestorEventos.DAL.Permisos
 
                 var reader = cmd.ExecuteReader();
 
-                var lista = new List<Familia>();
+                var lista = new List<Family>();
 
                 while (reader.Read())
                 {
@@ -143,10 +109,10 @@ namespace SistemaGestorEventos.DAL.Permisos
                     var nombre = reader.GetString(reader.GetOrdinal("nombre"));
 
 
-                    Familia c = new Familia();
+                    Family c = new Family();
 
                     c.Id = id;
-                    c.Nombre = nombre;
+                    c.Name = nombre;
                     lista.Add(c);
 
                 }
@@ -156,7 +122,7 @@ namespace SistemaGestorEventos.DAL.Permisos
                 return lista;
             }
         }
-        public IList<Componente> GetAll(string familia)
+        public IList<AbstractComponent> GetAll(string familia)
         {
             var where = "is NULL";
 
@@ -188,7 +154,7 @@ namespace SistemaGestorEventos.DAL.Permisos
 
                 var reader = cmd.ExecuteReader();
 
-                var lista = new List<Componente>();
+                var lista = new List<AbstractComponent>();
 
                 while (reader.Read())
                 {
@@ -206,19 +172,19 @@ namespace SistemaGestorEventos.DAL.Permisos
                         permiso = reader.GetString(reader.GetOrdinal("permiso"));
 
 
-                    Componente c;
+                    AbstractComponent c;
 
                     //usamos este campo para identificar. Solo las patentes van a tener un permiso del sistema relacionado
                     if (string.IsNullOrEmpty(permiso))
-                        c = new Familia();
+                        c = new Family();
 
                     else
-                        c = new Patente();
+                        c = new Grant();
 
                     c.Id = id;
-                    c.Nombre = nombre;
+                    c.Name = nombre;
                     if (!string.IsNullOrEmpty(permiso))
-                        c.Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), permiso);
+                        c.GrantType = (GrantType)Enum.Parse(typeof(GrantType), permiso);
 
                     var padre = GetComponent(id_padre, lista);
 
@@ -228,7 +194,7 @@ namespace SistemaGestorEventos.DAL.Permisos
                     }
                     else
                     {
-                        padre.AgregarHijo(c);
+                        padre.AddChild(c);
                     }
 
 
@@ -244,21 +210,21 @@ namespace SistemaGestorEventos.DAL.Permisos
 
 
 
-        private Componente GetComponent(Guid id, IList<Componente> lista)
+        private AbstractComponent GetComponent(Guid id, IList<AbstractComponent> lista)
         {
 
-            Componente component = lista != null ? lista.Where(i => i.Id.Equals(id)).FirstOrDefault() : null;
+            AbstractComponent component = lista != null ? lista.Where(i => i.Id.Equals(id)).FirstOrDefault() : null;
 
             if (component == null && lista != null)
             {
                 foreach (var c in lista)
                 {
 
-                    var l = GetComponent(id, c.Hijos);
+                    var l = GetComponent(id, c.Childs);
                     if (l != null && l.Id == id) return l;
                     else
                     if (l != null)
-                        return GetComponent(id, l.Hijos);
+                        return GetComponent(id, l.Childs);
 
                 }
             }
@@ -266,7 +232,7 @@ namespace SistemaGestorEventos.DAL.Permisos
             return component;
         }
 
-        public List<Componente> GetAllUserComponents(Usuario usuario)
+        public List<AbstractComponent> GetAllUserComponents(User usuario)
         {
 
             using (var cnn = this.GetSqlConnection())
@@ -279,7 +245,7 @@ namespace SistemaGestorEventos.DAL.Permisos
                 cmd2.Parameters.AddWithValue("id", usuario.Id);
 
                 var reader = cmd2.ExecuteReader();
-                var componentes = new List<Componente>();
+                var componentes = new List<AbstractComponent>();
                 while (reader.Read())
                 {
 
@@ -290,27 +256,27 @@ namespace SistemaGestorEventos.DAL.Permisos
                     if (reader["permiso"] != DBNull.Value)
                         permisop = reader.GetString(reader.GetOrdinal("permiso"));
 
-                    Componente c1;
+                    AbstractComponent c1;
                     if (String.IsNullOrEmpty(permisop))
                     {
-                        c1 = new Familia();
+                        c1 = new Family();
                         c1.Id = idp;
-                        c1.Nombre = nombrep;
+                        c1.Name = nombrep;
 
                         var f = GetAll($"='{idp}'");
 
                         foreach (var familia in f)
                         {
-                            c1.AgregarHijo(familia);
+                            c1.AddChild(familia);
                         }
                         componentes.Add(c1);
                     }
                     else
                     {
-                        c1 = new Patente();
+                        c1 = new Grant();
                         c1.Id = idp;
-                        c1.Nombre = nombrep;
-                        c1.Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), permisop);
+                        c1.Name = nombrep;
+                        c1.GrantType = (GrantType)Enum.Parse(typeof(GrantType), permisop);
                         componentes.Add(c1);
                     }
 
@@ -322,12 +288,12 @@ namespace SistemaGestorEventos.DAL.Permisos
             }
 
         }
-        public void FillFamilyComponents(Familia familia)
+        public void FillFamilyComponents(Family familia)
         {
-            familia.VaciarHijos();
+            familia.Clear();
             foreach (var item in GetAll($"='{familia.Id}'"))
             {
-                familia.AgregarHijo(item);
+                familia.AddChild(item);
             }
         }
     }

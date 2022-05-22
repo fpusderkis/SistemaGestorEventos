@@ -34,7 +34,7 @@ namespace SistemaGestorEventos.GUI.usuario
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            var usuario = new Usuario(this.txtUsername.Text,this.txtClave.Text,this.cmbIdioma.Text.ToString());
+            var usuario = new User(this.txtUsername.Text,this.txtClave.Text,this.cmbIdioma.Text.ToString());
 
             try
             {

@@ -18,7 +18,7 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
             if (control.Tag != null && !string.IsNullOrWhiteSpace(control.Tag.ToString()))
             {
                 key = control.Tag.ToString();
-                traduccion = MultiIdioma.Traduccion(key);
+                traduccion = MultiIdioma.Translate(key);
                 if (control is TextBox)
                 {
                     text = ((TextBox)control).PlaceholderText;
@@ -34,8 +34,8 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
 
                 if (traduccion == null && !string.IsNullOrEmpty(text))
                 {
-                    MultiIdioma.AgregarTraduccion(key, text);
-                    traduccion = MultiIdioma.Traduccion(key);
+                    MultiIdioma.AddTranslate(key, text);
+                    traduccion = MultiIdioma.Translate(key);
                 }
 
                 if (control is TextBox)
@@ -68,13 +68,13 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
         {
             if (menu.Tag != null && !string.IsNullOrWhiteSpace(menu.Tag.ToString())) {
                 var key = menu.Tag.ToString();
-                var traduccion = MultiIdioma.Traduccion(key);
+                var traduccion = MultiIdioma.Translate(key);
                 var text = menu.Text;
 
                 if (traduccion == null && !string.IsNullOrEmpty(text))
                 {
-                    MultiIdioma.AgregarTraduccion(key, text);
-                    traduccion = MultiIdioma.Traduccion(key);
+                    MultiIdioma.AddTranslate(key, text);
+                    traduccion = MultiIdioma.Translate(key);
                 }
                 
 

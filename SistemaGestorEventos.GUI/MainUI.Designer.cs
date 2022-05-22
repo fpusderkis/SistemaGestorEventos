@@ -72,7 +72,7 @@ namespace SistemaGestorEventos.GUI
             this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Padding = new System.Windows.Forms.Padding(0, 0, 1, 0);
-            this.panelMenu.Size = new System.Drawing.Size(248, 804);
+            this.panelMenu.Size = new System.Drawing.Size(248, 844);
             this.panelMenu.TabIndex = 0;
             this.panelMenu.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.panelMenu_ControlRemoved);
             this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
@@ -381,7 +381,7 @@ namespace SistemaGestorEventos.GUI
             this.panelContenedor.Location = new System.Drawing.Point(248, 0);
             this.panelContenedor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(817, 804);
+            this.panelContenedor.Size = new System.Drawing.Size(1041, 844);
             this.panelContenedor.TabIndex = 1;
             this.panelContenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenedor_Paint);
             this.panelContenedor.Resize += new System.EventHandler(this.panelContenedor_Resize);
@@ -390,15 +390,15 @@ namespace SistemaGestorEventos.GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1065, 804);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1289, 844);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximumSize = new System.Drawing.Size(1083, 851);
-            this.MinimumSize = new System.Drawing.Size(1083, 851);
             this.Name = "MainUI";
             this.Tag = "main.title";
             this.Text = "Se Hace!";
+            this.Load += new System.EventHandler(this.MainUI_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelSubmenuAdministrador.ResumeLayout(false);
             this.panelSubUsuario.ResumeLayout(false);

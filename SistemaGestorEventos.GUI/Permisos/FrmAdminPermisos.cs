@@ -1,4 +1,4 @@
-﻿using SistemaGestorEventos.BE.Permisos;
+﻿using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.Multiidioma;
 using System;
@@ -13,13 +13,13 @@ namespace SistemaGestorEventos.GUI.Permisos
 {
     public partial class FrmAdminPermisos : Form
     {
-        private IEnumerable<Familia> familias = null;
-        private IEnumerable<Patente> patentes = null;
+        private IEnumerable<Family> familias = null;
+        private IEnumerable<Grant> patentes = null;
 
 
-        private PermisosBLL permisosBLL = PermisosBLL.Instance;
+        private GrantsBLL permisosBLL = GrantsBLL.Instance;
 
-        private Componente edicion;
+        private AbstractComponent edicion;
 
         public FrmAdminPermisos()
         {
@@ -68,10 +68,10 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var familia = new Familia
+            var familia = new Family
             {
                 Id = Guid.NewGuid(),
-                Nombre = txtFamilia.Text
+                Name = txtFamilia.Text
             };
 
             permisosBLL.GuardarComponente(familia,true);
@@ -83,8 +83,8 @@ namespace SistemaGestorEventos.GUI.Permisos
         {
             tvPermisos.BeginUpdate();
             tvPermisos.Nodes.Clear();
-            this.edicion = (Familia)lbxFamilias.SelectedItem;
-            this.permisosBLL.FillFamilyComponents((Familia)this.edicion);
+            this.edicion = (Family)lbxFamilias.SelectedItem;
+            this.permisosBLL.FillFamilyComponents((Family)this.edicion);
             
             tvPermisos.Nodes.Add(GenerateTreeNode(this.edicion));
             tvPermisos.ExpandAll();
@@ -93,14 +93,14 @@ namespace SistemaGestorEventos.GUI.Permisos
             tvPermisos.EndUpdate();
         }
 
-        private TreeNode GenerateTreeNode(Componente componente)
+        private TreeNode GenerateTreeNode(AbstractComponent componente)
         {
             var nodo = new TreeNode();
-            nodo.Text = componente.Nombre;
+            nodo.Text = componente.Name;
 
-            if (componente is Familia)
+            if (componente is Family)
             {
-                foreach (var hijo in componente.Hijos)
+                foreach (var hijo in componente.Childs)
                 {
                     nodo.Nodes.Add(GenerateTreeNode(hijo));
                 }
@@ -111,19 +111,19 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-            var familia = (Componente) lbxFamilias.SelectedItem;
+            var familia = (AbstractComponent) lbxFamilias.SelectedItem;
             BorrarComponente(familia);
 
         }
 
-        private void BorrarComponente(Componente componente)
+        private void BorrarComponente(AbstractComponent componente)
         {
-            if (this.edicion != null && componente != null && componente.Nombre != this.edicion.Nombre)
+            if (this.edicion != null && componente != null && componente.Name != this.edicion.Name)
             {
-                this.edicion.BorrarHijo(componente);
+                this.edicion.RemoveChild(componente);
                 foreach (TreeNode nodo in ((TreeNode)tvPermisos.Nodes[0]).Nodes)
                 {
-                    if (nodo.Text == componente.Nombre)
+                    if (nodo.Text == componente.Name)
                     {
                         ((TreeNode)tvPermisos.Nodes[0]).Nodes.Remove(nodo);
                         break;
@@ -134,26 +134,26 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarComponente((Componente)lbxFamilias.SelectedItem);
+            AgregarComponente((AbstractComponent)lbxFamilias.SelectedItem);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            AgregarComponente((Componente)lbxPatente.SelectedItem);
+            AgregarComponente((AbstractComponent)lbxPatente.SelectedItem);
         }
 
-        private void AgregarComponente(Componente componente)
+        private void AgregarComponente(AbstractComponent componente)
         {
             
             if (this.edicion != null && componente != null && permisosBLL.Existe(this.edicion, componente.Id) == false)
             {
-                this.edicion.AgregarHijo(componente);
+                this.edicion.AddChild(componente);
                 ((TreeNode)tvPermisos.Nodes[0]).Nodes.Add(GenerateTreeNode(componente));
                 ((TreeNode)tvPermisos.Nodes[0]).Expand();
             }
         }
 
-        private void FiltrarComponentes(ListBox lbx, IEnumerable<Componente> componentes, string text)
+        private void FiltrarComponentes(ListBox lbx, IEnumerable<AbstractComponent> componentes, string text)
         {
 
             lbx.BeginUpdate();
@@ -164,7 +164,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             {
                 foreach (var componente in componentes)
                 {
-                    if (componente.Nombre.Contains(text))
+                    if (componente.Name.Contains(text))
                     {
                         lbx.Items.Add(componente);
                     }
@@ -186,14 +186,14 @@ namespace SistemaGestorEventos.GUI.Permisos
 
             if (string.IsNullOrWhiteSpace(nombre))
             {
-                MessageBox.Show(MultiIdioma.TraduccionODefault("errors.missing.grantname", "Debe indicar el nombre del permiso para crearlo"));
+                MessageBox.Show(MultiIdioma.TranslateOrDefault("errors.missing.grantname", "Debe indicar el nombre del permiso para crearlo"));
             }
 
-            var p = new Patente()
+            var p = new Grant()
             {
                 Id = Guid.NewGuid(),
-                Nombre = nombre,
-                Permiso = (TipoPermiso)cbxTipoPermiso.SelectedItem
+                Name = nombre,
+                GrantType = (GrantType)cbxTipoPermiso.SelectedItem
             };
 
             permisosBLL.GuardarComponente(p, false);
@@ -203,7 +203,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnQuitarPatete_Click(object sender, EventArgs e)
         {
-            BorrarComponente((Componente)lbxPatente.SelectedItem);
+            BorrarComponente((AbstractComponent)lbxPatente.SelectedItem);
         }
 
         private void btnCancelarFamilia_Click(object sender, EventArgs e)
@@ -220,8 +220,8 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnGuardarFamilia_Click(object sender, EventArgs e)
         {
-            this.permisosBLL.GuardarFamilia((Familia)this.edicion);
-            MessageBox.Show(MultiIdioma.TraduccionODefault("configurations.saved", "Se guardo correctamente la configuracion."));
+            this.permisosBLL.GuardarComponente(this.edicion,true);
+            MessageBox.Show(MultiIdioma.TranslateOrDefault("configurations.saved", "Se guardo correctamente la configuracion."));
         }
     }
 }

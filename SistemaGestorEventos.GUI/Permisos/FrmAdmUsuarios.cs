@@ -1,5 +1,5 @@
 ﻿using SistemaGestorEventos.BE;
-using SistemaGestorEventos.BE.Permisos;
+using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.Multiidioma;
 using System;
@@ -15,10 +15,10 @@ namespace SistemaGestorEventos.GUI.Permisos
 
     public partial class FrmAdmUsuarios : Form
     {
-        private UsuarioBLL usuarioBLL = UsuarioBLL.Instance;
-        private PermisosBLL permisosBLL = PermisosBLL.Instance;
+        private UserBLL usuarioBLL = UserBLL.Instance;
+        private GrantsBLL grantsBLL = GrantsBLL.Instance;
 
-        private Usuario editable;
+        private User editable;
 
         public FrmAdmUsuarios()
         {
@@ -38,12 +38,12 @@ namespace SistemaGestorEventos.GUI.Permisos
             cbxUsuario.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             cbxFamilias.DisplayMember = "Nombre";
-            cbxFamilias.DataSource = permisosBLL.GetAllFamilias();
+            cbxFamilias.DataSource = grantsBLL.GetAllFamilias();
             cbxFamilias.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbxFamilias.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             cbxPatentes.DisplayMember = "Nombre";
-            cbxPatentes.DataSource = permisosBLL.GetAllPatentes();
+            cbxPatentes.DataSource = grantsBLL.GetAllPatentes();
             cbxPatentes.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbxPatentes.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
@@ -52,9 +52,9 @@ namespace SistemaGestorEventos.GUI.Permisos
         {
             if (cbxUsuario.SelectedItem != null)
             {
-                this.editable = (Usuario)cbxUsuario.SelectedItem;
+                this.editable = (User)cbxUsuario.SelectedItem;
 
-                this.permisosBLL.FillUserComponents(this.editable);
+                this.editable.Permisos = this.grantsBLL.GetAllUserComponents(this.editable);
                 CargarConfiguracionUsuario();
 
             }
@@ -62,13 +62,13 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnAgregarFamilia_Click(object sender, EventArgs e)
         {
-            var componente = (Componente)cbxFamilias.SelectedItem;
+            var componente = (BE.Grants.AbstractComponent)cbxFamilias.SelectedItem;
             AgregarComponente(componente);
         }
 
         #region funciones
 
-        void AgregarComponente(Componente componente)
+        void AgregarComponente(BE.Grants.AbstractComponent componente)
         {
             if (this.editable != null)
             {
@@ -78,7 +78,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
                     foreach (var item in this.editable.Permisos)
                     {
-                        if (permisosBLL.Existe(item, componente.Id))
+                        if (grantsBLL.Existe(item, componente.Id))
                         {
                             esta = true;
                             break;
@@ -88,8 +88,8 @@ namespace SistemaGestorEventos.GUI.Permisos
                     if (! esta) 
                     {
                         // no esta!
-                        if (componente is Familia)
-                            permisosBLL.FillFamilyComponents((Familia)componente);
+                        if (componente is Family)
+                            grantsBLL.FillFamilyComponents((Family)componente);
 
                         this.editable.Permisos.Add(componente);
                         this.CargarConfiguracionUsuario();
@@ -100,7 +100,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             }
         }
 
-        void QuitarComponente(Componente componente)
+        void QuitarComponente(BE.Grants.AbstractComponent componente)
         {
             if (this.editable != null && componente != null)
             {
@@ -125,13 +125,13 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.treeView1.ExpandAll();
         }
 
-        void LlenarTreeView(TreeNode padre, Componente c)
+        void LlenarTreeView(TreeNode padre, BE.Grants.AbstractComponent c)
         {
-            TreeNode hijo = new TreeNode(c.Nombre);
+            TreeNode hijo = new TreeNode(c.Name);
             hijo.Tag = c;
             padre.Nodes.Add(hijo);
 
-            foreach (var item in c.Hijos)
+            foreach (var item in c.Childs)
             {
                 LlenarTreeView(hijo, item);
             }
@@ -153,18 +153,18 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void btnQuitarFamilia_Click(object sender, EventArgs e)
         {
-            QuitarComponente((Familia)cbxFamilias.SelectedItem);
+            QuitarComponente((Family)cbxFamilias.SelectedItem);
         }
 
         private void btnAgregarPatente_Click(object sender, EventArgs e)
         {
-            var componente = (Componente)cbxPatentes.SelectedItem;
+            var componente = (BE.Grants.AbstractComponent)cbxPatentes.SelectedItem;
             AgregarComponente(componente);
         }
 
         private void btnQuitarPatente_Click(object sender, EventArgs e)
         {
-            QuitarComponente((Componente)cbxPatentes.SelectedItem);
+            QuitarComponente((BE.Grants.AbstractComponent)cbxPatentes.SelectedItem);
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
