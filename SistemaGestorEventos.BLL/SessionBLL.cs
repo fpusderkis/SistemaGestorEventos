@@ -46,7 +46,7 @@ namespace SistemaGestorEventos.BLL
                 throw new SistemaGestorEventos.BLL.Exceptions.BusinessException("login.lockeduser", "Usuario bloqueado");
             }
 
-            var pass = Cypher.Hash(password);
+            var pass = Cypher.Hash(password, user.Id);
 
             if (user.Password != pass)
             {
@@ -100,7 +100,7 @@ namespace SistemaGestorEventos.BLL
             }
 
             usuario.Id = Guid.NewGuid();
-            usuario.Password = Cypher.Hash(usuario.Password);
+            usuario.Password = Cypher.Hash(usuario.Password,usuario.Id);
             usuario.CheckDigit = DigitoVerificador.GenerarDigitoVerificador(usuario.Id, usuario.Password);
             usuario.Language = "es_AR";
             usuario.LastLogin = DateTime.Now;
