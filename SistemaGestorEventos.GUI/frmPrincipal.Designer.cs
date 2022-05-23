@@ -39,7 +39,6 @@ namespace SistemaGestorEventos.GUI
             this.admnistrarUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCambiarIdioma = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuLogo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,8 +49,7 @@ namespace SistemaGestorEventos.GUI
             this.mnuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuLogo1,
             this.mnuUsuario,
-            this.mnuIdioma,
-            this.mnuLogo});
+            this.mnuIdioma});
             this.mnuPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mnuPrincipal.Name = "mnuPrincipal";
             this.mnuPrincipal.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -145,12 +143,6 @@ namespace SistemaGestorEventos.GUI
             this.mnuCambiarIdioma.Text = "Cambiar Idioma";
             this.mnuCambiarIdioma.Click += new System.EventHandler(this.mnuCambiarIdioma_Click);
             // 
-            // mnuLogo
-            // 
-            this.mnuLogo.Name = "mnuLogo";
-            this.mnuLogo.Size = new System.Drawing.Size(39, 73);
-            this.mnuLogo.Text = "    ";
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -180,7 +172,6 @@ namespace SistemaGestorEventos.GUI
         private System.Windows.Forms.ToolStripMenuItem admnistrarPermisosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem admnistrarUsuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuCambiarIdioma;
-        private System.Windows.Forms.ToolStripMenuItem mnuLogo;
         private System.Windows.Forms.ToolStripMenuItem mnuLogo1;
     }
 }
