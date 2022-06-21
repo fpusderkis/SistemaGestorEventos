@@ -19,7 +19,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private GrantsBLL permisosBLL = GrantsBLL.Instance;
 
-        private AbstractComponent edicion;
+        private Family edicion;
 
         public FrmAdminPermisos()
         {
@@ -74,23 +74,14 @@ namespace SistemaGestorEventos.GUI.Permisos
                 Name = txtFamilia.Text
             };
 
-            permisosBLL.GuardarComponente(familia,true);
+            permisosBLL.SaveComponent(familia,true);
             CargarFamilias();
             txtFamilia.Text = null;
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            tvPermisos.BeginUpdate();
-            tvPermisos.Nodes.Clear();
-            this.edicion = (Family)lbxFamilias.SelectedItem;
-            this.permisosBLL.FillFamilyComponents((Family)this.edicion);
-            
-            tvPermisos.Nodes.Add(GenerateTreeNode(this.edicion));
-            tvPermisos.ExpandAll();
-
-
-            tvPermisos.EndUpdate();
+            updateTreeView((Family)lbxFamilias.SelectedItem);
         }
 
         private TreeNode GenerateTreeNode(AbstractComponent componente)
@@ -118,17 +109,9 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void BorrarComponente(AbstractComponent componente)
         {
-            if (this.edicion != null && componente != null && componente.Name != this.edicion.Name)
+            if (this.edicion != null && componente != null && componente.Name != this.edicion.Name && this.permisosBLL.DeleteRelatedComponent(this.edicion, componente))
             {
-                this.edicion.RemoveChild(componente);
-                foreach (TreeNode nodo in ((TreeNode)tvPermisos.Nodes[0]).Nodes)
-                {
-                    if (nodo.Text == componente.Name)
-                    {
-                        ((TreeNode)tvPermisos.Nodes[0]).Nodes.Remove(nodo);
-                        break;
-                    }
-                }
+                this.updateTreeView(this.edicion);
             }
         }
 
@@ -145,11 +128,9 @@ namespace SistemaGestorEventos.GUI.Permisos
         private void AgregarComponente(AbstractComponent componente)
         {
             
-            if (this.edicion != null && componente != null && permisosBLL.Existe(this.edicion, componente.Id) == false)
+            if (this.edicion != null && componente != null && permisosBLL.AddToComponent(this.edicion,componente))
             {
-                this.edicion.AddChild(componente);
-                ((TreeNode)tvPermisos.Nodes[0]).Nodes.Add(GenerateTreeNode(componente));
-                ((TreeNode)tvPermisos.Nodes[0]).Expand();
+                this.updateTreeView(this.edicion);
             }
         }
 
@@ -196,7 +177,7 @@ namespace SistemaGestorEventos.GUI.Permisos
                 GrantType = (GrantType)cbxTipoPermiso.SelectedItem
             };
 
-            permisosBLL.GuardarComponente(p, false);
+            permisosBLL.SaveComponent(p, false);
             CargarPatentes();
             txtPatente.Text = null;
         }
@@ -218,10 +199,19 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.Close();
         }
 
-        private void btnGuardarFamilia_Click(object sender, EventArgs e)
+       private void updateTreeView(Family component)
         {
-            this.permisosBLL.GuardarComponente(this.edicion,true);
-            MessageBox.Show(MultiIdioma.TranslateOrDefault("configurations.saved", "Se guardo correctamente la configuracion."));
+            
+            tvPermisos.BeginUpdate();
+            tvPermisos.Nodes.Clear();
+            this.edicion = component;
+            this.permisosBLL.FillFamilyComponents(component);
+
+            tvPermisos.Nodes.Add(GenerateTreeNode(component));
+            tvPermisos.ExpandAll();
+
+
+            tvPermisos.EndUpdate();
         }
     }
 }

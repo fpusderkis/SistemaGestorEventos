@@ -45,8 +45,6 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnCrearPatente = new System.Windows.Forms.Button();
             this.lbxPatente = new System.Windows.Forms.ListBox();
             this.gbxTreeEditar = new System.Windows.Forms.GroupBox();
-            this.btnGuardarFamilia = new System.Windows.Forms.Button();
-            this.btnCancelarFamilia = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.gbxFamilias.SuspendLayout();
             this.gbxPatentes.SuspendLayout();
@@ -55,9 +53,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // tvPermisos
             // 
-            this.tvPermisos.Location = new System.Drawing.Point(6, 22);
+            this.tvPermisos.Location = new System.Drawing.Point(7, 29);
+            this.tvPermisos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tvPermisos.Name = "tvPermisos";
-            this.tvPermisos.Size = new System.Drawing.Size(277, 349);
+            this.tvPermisos.Size = new System.Drawing.Size(316, 464);
             this.tvPermisos.TabIndex = 0;
             // 
             // gbxFamilias
@@ -68,9 +67,11 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.gbxFamilias.Controls.Add(this.btnAdd);
             this.gbxFamilias.Controls.Add(this.btnAgregar);
             this.gbxFamilias.Controls.Add(this.txtFamilia);
-            this.gbxFamilias.Location = new System.Drawing.Point(12, 12);
+            this.gbxFamilias.Location = new System.Drawing.Point(14, 16);
+            this.gbxFamilias.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxFamilias.Name = "gbxFamilias";
-            this.gbxFamilias.Size = new System.Drawing.Size(342, 190);
+            this.gbxFamilias.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxFamilias.Size = new System.Drawing.Size(391, 253);
             this.gbxFamilias.TabIndex = 1;
             this.gbxFamilias.TabStop = false;
             this.gbxFamilias.Tag = "families";
@@ -78,9 +79,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(102, 153);
+            this.btnEditar.Location = new System.Drawing.Point(117, 204);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(153, 23);
+            this.btnEditar.Size = new System.Drawing.Size(175, 31);
             this.btnEditar.TabIndex = 6;
             this.btnEditar.Tag = "btn.config.selected";
             this.btnEditar.Text = "Configurar seleccionado";
@@ -89,9 +91,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(272, 103);
+            this.btnQuitar.Location = new System.Drawing.Point(311, 137);
+            this.btnQuitar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(56, 44);
+            this.btnQuitar.Size = new System.Drawing.Size(64, 59);
             this.btnQuitar.TabIndex = 4;
             this.btnQuitar.Text = "<<";
             this.btnQuitar.UseVisualStyleBackColor = true;
@@ -100,18 +103,20 @@ namespace SistemaGestorEventos.GUI.Permisos
             // lbxFamilias
             // 
             this.lbxFamilias.FormattingEnabled = true;
-            this.lbxFamilias.ItemHeight = 15;
-            this.lbxFamilias.Location = new System.Drawing.Point(6, 53);
+            this.lbxFamilias.ItemHeight = 20;
+            this.lbxFamilias.Location = new System.Drawing.Point(7, 71);
+            this.lbxFamilias.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxFamilias.Name = "lbxFamilias";
-            this.lbxFamilias.Size = new System.Drawing.Size(260, 94);
+            this.lbxFamilias.Size = new System.Drawing.Size(297, 124);
             this.lbxFamilias.TabIndex = 2;
             // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdd.Location = new System.Drawing.Point(7, 153);
+            this.btnAdd.Location = new System.Drawing.Point(8, 204);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(80, 23);
+            this.btnAdd.Size = new System.Drawing.Size(91, 31);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Tag = "btn.add";
             this.btnAdd.Text = "Agregar";
@@ -120,9 +125,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(272, 53);
+            this.btnAgregar.Location = new System.Drawing.Point(311, 71);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(56, 44);
+            this.btnAgregar.Size = new System.Drawing.Size(64, 59);
             this.btnAgregar.TabIndex = 3;
             this.btnAgregar.Text = ">>";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -130,9 +136,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // txtFamilia
             // 
-            this.txtFamilia.Location = new System.Drawing.Point(7, 23);
+            this.txtFamilia.Location = new System.Drawing.Point(8, 31);
+            this.txtFamilia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtFamilia.Name = "txtFamilia";
-            this.txtFamilia.Size = new System.Drawing.Size(259, 23);
+            this.txtFamilia.Size = new System.Drawing.Size(295, 27);
             this.txtFamilia.TabIndex = 0;
             this.txtFamilia.TextChanged += new System.EventHandler(this.txtFamilia_TextChanged);
             // 
@@ -144,9 +151,11 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.gbxPatentes.Controls.Add(this.btnQuitarPatete);
             this.gbxPatentes.Controls.Add(this.btnCrearPatente);
             this.gbxPatentes.Controls.Add(this.lbxPatente);
-            this.gbxPatentes.Location = new System.Drawing.Point(12, 208);
+            this.gbxPatentes.Location = new System.Drawing.Point(14, 277);
+            this.gbxPatentes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxPatentes.Name = "gbxPatentes";
-            this.gbxPatentes.Size = new System.Drawing.Size(342, 230);
+            this.gbxPatentes.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxPatentes.Size = new System.Drawing.Size(391, 307);
             this.gbxPatentes.TabIndex = 2;
             this.gbxPatentes.TabStop = false;
             this.gbxPatentes.Tag = "grants";
@@ -155,24 +164,27 @@ namespace SistemaGestorEventos.GUI.Permisos
             // cbxTipoPermiso
             // 
             this.cbxTipoPermiso.FormattingEnabled = true;
-            this.cbxTipoPermiso.Location = new System.Drawing.Point(12, 153);
+            this.cbxTipoPermiso.Location = new System.Drawing.Point(14, 204);
+            this.cbxTipoPermiso.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxTipoPermiso.Name = "cbxTipoPermiso";
-            this.cbxTipoPermiso.Size = new System.Drawing.Size(260, 23);
+            this.cbxTipoPermiso.Size = new System.Drawing.Size(297, 28);
             this.cbxTipoPermiso.TabIndex = 11;
             // 
             // txtPatente
             // 
-            this.txtPatente.Location = new System.Drawing.Point(12, 23);
+            this.txtPatente.Location = new System.Drawing.Point(14, 31);
+            this.txtPatente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPatente.Name = "txtPatente";
-            this.txtPatente.Size = new System.Drawing.Size(260, 23);
+            this.txtPatente.Size = new System.Drawing.Size(297, 27);
             this.txtPatente.TabIndex = 0;
             this.txtPatente.TextChanged += new System.EventHandler(this.txtPatente_TextChanged);
             // 
             // btnAgregarPatente
             // 
-            this.btnAgregarPatente.Location = new System.Drawing.Point(278, 52);
+            this.btnAgregarPatente.Location = new System.Drawing.Point(318, 69);
+            this.btnAgregarPatente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAgregarPatente.Name = "btnAgregarPatente";
-            this.btnAgregarPatente.Size = new System.Drawing.Size(56, 44);
+            this.btnAgregarPatente.Size = new System.Drawing.Size(64, 59);
             this.btnAgregarPatente.TabIndex = 9;
             this.btnAgregarPatente.Text = ">>";
             this.btnAgregarPatente.UseVisualStyleBackColor = true;
@@ -180,9 +192,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // btnQuitarPatete
             // 
-            this.btnQuitarPatete.Location = new System.Drawing.Point(278, 102);
+            this.btnQuitarPatete.Location = new System.Drawing.Point(318, 136);
+            this.btnQuitarPatete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnQuitarPatete.Name = "btnQuitarPatete";
-            this.btnQuitarPatete.Size = new System.Drawing.Size(56, 44);
+            this.btnQuitarPatete.Size = new System.Drawing.Size(64, 59);
             this.btnQuitarPatete.TabIndex = 10;
             this.btnQuitarPatete.Text = "<<";
             this.btnQuitarPatete.UseVisualStyleBackColor = true;
@@ -191,9 +204,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // btnCrearPatente
             // 
             this.btnCrearPatente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCrearPatente.Location = new System.Drawing.Point(12, 182);
+            this.btnCrearPatente.Location = new System.Drawing.Point(14, 243);
+            this.btnCrearPatente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCrearPatente.Name = "btnCrearPatente";
-            this.btnCrearPatente.Size = new System.Drawing.Size(80, 23);
+            this.btnCrearPatente.Size = new System.Drawing.Size(91, 31);
             this.btnCrearPatente.TabIndex = 7;
             this.btnCrearPatente.Tag = "btn.create";
             this.btnCrearPatente.Text = "Crear";
@@ -203,51 +217,32 @@ namespace SistemaGestorEventos.GUI.Permisos
             // lbxPatente
             // 
             this.lbxPatente.FormattingEnabled = true;
-            this.lbxPatente.ItemHeight = 15;
-            this.lbxPatente.Location = new System.Drawing.Point(12, 52);
+            this.lbxPatente.ItemHeight = 20;
+            this.lbxPatente.Location = new System.Drawing.Point(14, 69);
+            this.lbxPatente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxPatente.Name = "lbxPatente";
-            this.lbxPatente.Size = new System.Drawing.Size(260, 94);
+            this.lbxPatente.Size = new System.Drawing.Size(297, 124);
             this.lbxPatente.TabIndex = 8;
             // 
             // gbxTreeEditar
             // 
             this.gbxTreeEditar.Controls.Add(this.tvPermisos);
-            this.gbxTreeEditar.Location = new System.Drawing.Point(361, 12);
+            this.gbxTreeEditar.Location = new System.Drawing.Point(413, 16);
+            this.gbxTreeEditar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxTreeEditar.Name = "gbxTreeEditar";
-            this.gbxTreeEditar.Size = new System.Drawing.Size(292, 378);
+            this.gbxTreeEditar.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxTreeEditar.Size = new System.Drawing.Size(334, 504);
             this.gbxTreeEditar.TabIndex = 3;
             this.gbxTreeEditar.TabStop = false;
             this.gbxTreeEditar.Tag = "edit.family";
             this.gbxTreeEditar.Text = "Editar familia";
             // 
-            // btnGuardarFamilia
-            // 
-            this.btnGuardarFamilia.Location = new System.Drawing.Point(367, 407);
-            this.btnGuardarFamilia.Name = "btnGuardarFamilia";
-            this.btnGuardarFamilia.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnGuardarFamilia.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardarFamilia.TabIndex = 4;
-            this.btnGuardarFamilia.Tag = "btn.save";
-            this.btnGuardarFamilia.Text = "Guardar";
-            this.btnGuardarFamilia.UseVisualStyleBackColor = true;
-            this.btnGuardarFamilia.Click += new System.EventHandler(this.btnGuardarFamilia_Click);
-            // 
-            // btnCancelarFamilia
-            // 
-            this.btnCancelarFamilia.Location = new System.Drawing.Point(448, 407);
-            this.btnCancelarFamilia.Name = "btnCancelarFamilia";
-            this.btnCancelarFamilia.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarFamilia.TabIndex = 5;
-            this.btnCancelarFamilia.Tag = "btn.dismiss";
-            this.btnCancelarFamilia.Text = "Descartar";
-            this.btnCancelarFamilia.UseVisualStyleBackColor = true;
-            this.btnCancelarFamilia.Click += new System.EventHandler(this.btnCancelarFamilia_Click);
-            // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(578, 407);
+            this.btnSalir.Location = new System.Drawing.Point(661, 543);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.Size = new System.Drawing.Size(86, 31);
             this.btnSalir.TabIndex = 6;
             this.btnSalir.Tag = "btn.exit";
             this.btnSalir.Text = "Salir";
@@ -256,16 +251,15 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // FrmAdminPermisos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 450);
+            this.ClientSize = new System.Drawing.Size(781, 600);
             this.ControlBox = false;
             this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnCancelarFamilia);
-            this.Controls.Add(this.btnGuardarFamilia);
             this.Controls.Add(this.gbxTreeEditar);
             this.Controls.Add(this.gbxPatentes);
             this.Controls.Add(this.gbxFamilias);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmAdminPermisos";
             this.Tag = "title.admin.grants";
             this.Text = "Administrar permisos";

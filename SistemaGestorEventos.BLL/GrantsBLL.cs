@@ -1,6 +1,7 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.DAL.Permisos;
+using SistemaGestorEventos.SharedServices.exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,19 +23,24 @@ namespace SistemaGestorEventos.BLL
         private GrantsDAL permisosDAL = GrantsDAL.Instance;
 
 
-
-        public bool Existe(AbstractComponent c, Guid id)
+        /// <summary>
+        /// Revisa en funcion del ID si es o si contiene el componente dentro de la estructura del composite.
+        /// </summary>
+        /// <param name="c">componente</param>
+        /// <param name="id">Id</param>
+        /// <returns>true si existe</returns>
+        public bool ExistsRelatedComponent(AbstractComponent parent, AbstractComponent child)
         {
             bool existe = false;
 
-            if (c.Id.Equals(id))
+            if (parent.Id.Equals(child.Id))
                 existe = true;
             else
 
-                foreach (var item in c.Childs)
+                foreach (var item in parent.Childs)
                 {
 
-                    existe = Existe(item, id);
+                    existe = ExistsRelatedComponent(item, child);
                     if (existe) return true;
                 }
 
@@ -42,6 +48,16 @@ namespace SistemaGestorEventos.BLL
 
         }
 
+        public bool AddToComponent(AbstractComponent parent, AbstractComponent child)
+        {
+            if (!ExistsRelatedComponent(parent, child))
+            {
+                permisosDAL.AddRelatedComponent(parent.Id, child.Id);
+                return true;
+            }
+
+            return false;
+        }
 
         public Array GetAllPermission()
         {
@@ -49,16 +65,24 @@ namespace SistemaGestorEventos.BLL
         }
 
 
-        public AbstractComponent GuardarComponente(AbstractComponent p, bool esfamilia)
+
+        public AbstractComponent SaveComponent(AbstractComponent p, bool esfamilia)
         {
-            return permisosDAL.GuardarComponente(p, esfamilia);
+            var components = permisosDAL.GetAll(p.Name);
+
+            if (components != null && components.Count > 0)
+            {
+                throw new ValidationException("Ya existe un permiso con este nombre");
+            }
+
+            return permisosDAL.SaveComponent(p, esfamilia);
         }
 
-
-        public void GuardarFamilia(Family c)
+        public AbstractComponent UpdateComponent(AbstractComponent component)
         {
-            permisosDAL.GuardarComponente(c,true);
+            return permisosDAL.SaveComponent(component, component is Family);
         }
+
 
         public IList<Grant> GetAllPatentes()
         {
@@ -106,8 +130,19 @@ namespace SistemaGestorEventos.BLL
             }
         }
 
+        public bool DeleteRelatedComponent(AbstractComponent parent, AbstractComponent child)
+        {
+            if (ExistsRelatedComponent(parent, child))
+            {
+                permisosDAL.DeleteRelatedComponent(parent.Id, child.Id);
+                return true;
+            }
+            return false;
+        }
+
         public void FillFamilyComponents(Family familia)
         {
+            familia.Clear();
             permisosDAL.FillFamilyComponents(familia);
         }
 

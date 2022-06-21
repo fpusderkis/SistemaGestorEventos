@@ -78,7 +78,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
                     foreach (var item in this.editable.Permisos)
                     {
-                        if (grantsBLL.Existe(item, componente.Id))
+                        if (grantsBLL.ExistsRelatedComponent(item, componente))
                         {
                             esta = true;
                             break;

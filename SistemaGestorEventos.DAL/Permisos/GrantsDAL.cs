@@ -1,5 +1,6 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BE.Grants;
+using SistemaGestorEventos.SharedServices.Persistance;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -16,30 +17,28 @@ namespace SistemaGestorEventos.DAL.Permisos
 
         public static GrantsDAL Instance => instance;
 
-        public AbstractComponent GuardarComponente(AbstractComponent p, bool esfamilia)
+        public AbstractComponent SaveComponent(AbstractComponent p, bool isFamily)
         {
+
             using (var connection = this.GetSqlConnection())
             {
-                
-                var cmd = new SqlCommand();
-                cmd.Connection = connection;
+                var db = new Database(connection);
 
-                var sql = $@"insert into permiso (id,nombre,permiso) values (@id,@nombre,@permiso); ";
+                var sql = $@"insert into permiso (id,nombre,permiso) values (@id,@nombre,@permiso);";
 
-                cmd.CommandText = sql;
-                cmd.Parameters.Add(new SqlParameter("nombre", p.Name));
-                cmd.Parameters.Add(new SqlParameter("id", p.Id));
+                db.AddParameter("@nombre", p.Name)
+                    .AddParameter("@id", p.Id)
+                    ;
 
 
 
-                if (esfamilia)
-                    cmd.Parameters.Add(new SqlParameter("permiso", DBNull.Value));
+                if (isFamily)
+                    db.AddParameter("@permiso", DBNull.Value);
                 else
-                    cmd.Parameters.Add(new SqlParameter("permiso", p.GrantType.ToString()));
+                    db.AddParameter("@permiso", p.GrantType.ToString());
 
                 connection.Open();
-                cmd.ExecuteNonQuery();
-                
+                db.ExecuteNonQuery(sql);
                 return p;
             }
 
@@ -84,6 +83,37 @@ namespace SistemaGestorEventos.DAL.Permisos
             }
         }
 
+        public void AddRelatedComponent(Guid parentId, Guid childId)
+        {
+            using (var connection = this.GetSqlConnection())
+            {
+                connection.Open();
+                var db = new Database(connection);
+
+                var sql = "INSERT INTO [permiso_permiso] ([id_permiso_padre],[id_permiso_hijo]) VALUES (@id_permiso_padre, @id_permiso_hijo)";
+
+                db.AddParameter("@id_permiso_padre",parentId)
+                    .AddParameter("@id_permiso_hijo",childId)
+                    .ExecuteNonQuery(sql);
+
+            }
+        }
+
+        public void DeleteRelatedComponent(Guid parentId, Guid childId)
+        {
+            using (var connection = this.GetSqlConnection())
+            {
+                connection.Open();
+                var db = new Database(connection);
+
+                var sql = "DELETE FROM [permiso_permiso] WHERE [id_permiso_padre] = @id_permiso_padre AND [id_permiso_hijo] = @id_permiso_hijo";
+
+                db.AddParameter("@id_permiso_padre", parentId)
+                    .AddParameter("@id_permiso_hijo", childId)
+                    .ExecuteNonQuery(sql);
+
+            }
+        }
         public List<Family> GetAllFamilias()
         {
 
@@ -122,6 +152,12 @@ namespace SistemaGestorEventos.DAL.Permisos
                 return lista;
             }
         }
+
+        /// <summary>
+        /// Hace una busqueda recursiva para obtener todo el arbol de permisos para una familia.
+        /// </summary>
+        /// <param name="familia"></param>
+        /// <returns></returns>
         public IList<AbstractComponent> GetAll(string familia)
         {
             var where = "is NULL";
@@ -196,9 +232,6 @@ namespace SistemaGestorEventos.DAL.Permisos
                     {
                         padre.AddChild(c);
                     }
-
-
-
                 }
                 reader.Close();
                 return lista;
