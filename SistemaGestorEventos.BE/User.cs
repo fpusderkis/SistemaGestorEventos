@@ -13,12 +13,15 @@ namespace SistemaGestorEventos.BE
 
         }
 
-        public User(string username, string password, string idioma) : base()
+        public User(string username, string password) : base()
         {
             Username = username ?? throw new ArgumentNullException(nameof(username));
             Password = password ?? throw new ArgumentNullException(nameof(password));
-            Language = idioma ?? throw new ArgumentNullException(nameof(idioma));
         }
+
+        public String Mail { get; set; }
+
+        public String Phone { get; set; }
 
         public string Username { get; set; }
 

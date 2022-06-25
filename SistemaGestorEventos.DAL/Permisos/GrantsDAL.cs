@@ -45,7 +45,7 @@ namespace SistemaGestorEventos.DAL.Permisos
         }
 
 
-        public IList<Grant> GetAllPatentes()
+        public IList<Grant> GetAllGrants()
         {
             using (var connection = this.GetSqlConnection())
             {
@@ -323,7 +323,6 @@ namespace SistemaGestorEventos.DAL.Permisos
         }
         public void FillFamilyComponents(Family familia)
         {
-            familia.Clear();
             foreach (var item in GetAll($"='{familia.Id}'"))
             {
                 familia.AddChild(item);

@@ -31,6 +31,8 @@ namespace SistemaGestorEventos.GUI.Permisos
         {
             this.cbxUsuario = new System.Windows.Forms.ComboBox();
             this.gbxConfigurarUsuario = new System.Windows.Forms.GroupBox();
+            this.btnNewEdit = new System.Windows.Forms.Button();
+            this.btnBlock = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.btnConfigurar = new System.Windows.Forms.Button();
             this.gbxFamilia = new System.Windows.Forms.GroupBox();
@@ -52,36 +54,64 @@ namespace SistemaGestorEventos.GUI.Permisos
             // cbxUsuario
             // 
             this.cbxUsuario.FormattingEnabled = true;
-            this.cbxUsuario.Location = new System.Drawing.Point(6, 22);
+            this.cbxUsuario.Location = new System.Drawing.Point(7, 29);
+            this.cbxUsuario.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxUsuario.Name = "cbxUsuario";
-            this.cbxUsuario.Size = new System.Drawing.Size(157, 23);
+            this.cbxUsuario.Size = new System.Drawing.Size(278, 28);
             this.cbxUsuario.TabIndex = 0;
             // 
             // gbxConfigurarUsuario
             // 
+            this.gbxConfigurarUsuario.Controls.Add(this.btnNewEdit);
+            this.gbxConfigurarUsuario.Controls.Add(this.btnBlock);
             this.gbxConfigurarUsuario.Controls.Add(this.treeView1);
             this.gbxConfigurarUsuario.Controls.Add(this.btnConfigurar);
             this.gbxConfigurarUsuario.Controls.Add(this.cbxUsuario);
-            this.gbxConfigurarUsuario.Location = new System.Drawing.Point(13, 13);
+            this.gbxConfigurarUsuario.Location = new System.Drawing.Point(15, 17);
+            this.gbxConfigurarUsuario.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxConfigurarUsuario.Name = "gbxConfigurarUsuario";
-            this.gbxConfigurarUsuario.Size = new System.Drawing.Size(255, 425);
+            this.gbxConfigurarUsuario.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxConfigurarUsuario.Size = new System.Drawing.Size(291, 567);
             this.gbxConfigurarUsuario.TabIndex = 1;
             this.gbxConfigurarUsuario.TabStop = false;
             this.gbxConfigurarUsuario.Tag = "admin.users.usersetup";
             this.gbxConfigurarUsuario.Text = "Configurar Usuario";
             // 
+            // btnNewEdit
+            // 
+            this.btnNewEdit.Location = new System.Drawing.Point(157, 71);
+            this.btnNewEdit.Name = "btnNewEdit";
+            this.btnNewEdit.Size = new System.Drawing.Size(128, 31);
+            this.btnNewEdit.TabIndex = 4;
+            this.btnNewEdit.Tag = "btn.new";
+            this.btnNewEdit.Text = "Alta";
+            this.btnNewEdit.UseVisualStyleBackColor = true;
+            // 
+            // btnBlock
+            // 
+            this.btnBlock.Location = new System.Drawing.Point(7, 71);
+            this.btnBlock.Name = "btnBlock";
+            this.btnBlock.Size = new System.Drawing.Size(128, 31);
+            this.btnBlock.TabIndex = 3;
+            this.btnBlock.Tag = "block";
+            this.btnBlock.Text = "Bloquear";
+            this.btnBlock.UseVisualStyleBackColor = true;
+            this.btnBlock.Click += new System.EventHandler(this.btnBlock_Click);
+            // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(6, 52);
+            this.treeView1.Location = new System.Drawing.Point(7, 147);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(239, 362);
+            this.treeView1.Size = new System.Drawing.Size(278, 420);
             this.treeView1.TabIndex = 2;
             // 
             // btnConfigurar
             // 
-            this.btnConfigurar.Location = new System.Drawing.Point(174, 22);
+            this.btnConfigurar.Location = new System.Drawing.Point(7, 107);
+            this.btnConfigurar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnConfigurar.Name = "btnConfigurar";
-            this.btnConfigurar.Size = new System.Drawing.Size(75, 23);
+            this.btnConfigurar.Size = new System.Drawing.Size(278, 31);
             this.btnConfigurar.TabIndex = 1;
             this.btnConfigurar.Tag = "btn.config";
             this.btnConfigurar.Text = "Configurar";
@@ -93,9 +123,11 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.gbxFamilia.Controls.Add(this.btnQuitarFamilia);
             this.gbxFamilia.Controls.Add(this.btnAgregarFamilia);
             this.gbxFamilia.Controls.Add(this.cbxFamilias);
-            this.gbxFamilia.Location = new System.Drawing.Point(274, 65);
+            this.gbxFamilia.Location = new System.Drawing.Point(333, 17);
+            this.gbxFamilia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxFamilia.Name = "gbxFamilia";
-            this.gbxFamilia.Size = new System.Drawing.Size(514, 97);
+            this.gbxFamilia.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxFamilia.Size = new System.Drawing.Size(337, 129);
             this.gbxFamilia.TabIndex = 2;
             this.gbxFamilia.TabStop = false;
             this.gbxFamilia.Tag = "family";
@@ -103,9 +135,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // btnQuitarFamilia
             // 
-            this.btnQuitarFamilia.Location = new System.Drawing.Point(87, 53);
+            this.btnQuitarFamilia.Location = new System.Drawing.Point(99, 71);
+            this.btnQuitarFamilia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnQuitarFamilia.Name = "btnQuitarFamilia";
-            this.btnQuitarFamilia.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitarFamilia.Size = new System.Drawing.Size(86, 31);
             this.btnQuitarFamilia.TabIndex = 4;
             this.btnQuitarFamilia.Tag = "btn.remove";
             this.btnQuitarFamilia.Text = "Quitar";
@@ -114,9 +147,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // btnAgregarFamilia
             // 
-            this.btnAgregarFamilia.Location = new System.Drawing.Point(6, 53);
+            this.btnAgregarFamilia.Location = new System.Drawing.Point(7, 71);
+            this.btnAgregarFamilia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAgregarFamilia.Name = "btnAgregarFamilia";
-            this.btnAgregarFamilia.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarFamilia.Size = new System.Drawing.Size(86, 31);
             this.btnAgregarFamilia.TabIndex = 3;
             this.btnAgregarFamilia.Tag = "btn.add";
             this.btnAgregarFamilia.Text = "Agregar";
@@ -126,9 +160,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // cbxFamilias
             // 
             this.cbxFamilias.FormattingEnabled = true;
-            this.cbxFamilias.Location = new System.Drawing.Point(6, 24);
+            this.cbxFamilias.Location = new System.Drawing.Point(7, 32);
+            this.cbxFamilias.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxFamilias.Name = "cbxFamilias";
-            this.cbxFamilias.Size = new System.Drawing.Size(502, 23);
+            this.cbxFamilias.Size = new System.Drawing.Size(312, 28);
             this.cbxFamilias.TabIndex = 3;
             // 
             // groupBox1
@@ -136,9 +171,11 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.groupBox1.Controls.Add(this.btnQuitarPatente);
             this.groupBox1.Controls.Add(this.btnAgregarPatente);
             this.groupBox1.Controls.Add(this.cbxPatentes);
-            this.groupBox1.Location = new System.Drawing.Point(274, 168);
+            this.groupBox1.Location = new System.Drawing.Point(333, 164);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(514, 97);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(337, 129);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Tag = "grants";
@@ -146,9 +183,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // btnQuitarPatente
             // 
-            this.btnQuitarPatente.Location = new System.Drawing.Point(87, 53);
+            this.btnQuitarPatente.Location = new System.Drawing.Point(99, 71);
+            this.btnQuitarPatente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnQuitarPatente.Name = "btnQuitarPatente";
-            this.btnQuitarPatente.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitarPatente.Size = new System.Drawing.Size(86, 31);
             this.btnQuitarPatente.TabIndex = 4;
             this.btnQuitarPatente.Tag = "btn.remove";
             this.btnQuitarPatente.Text = "Quitar";
@@ -157,9 +195,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // btnAgregarPatente
             // 
-            this.btnAgregarPatente.Location = new System.Drawing.Point(6, 53);
+            this.btnAgregarPatente.Location = new System.Drawing.Point(7, 71);
+            this.btnAgregarPatente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAgregarPatente.Name = "btnAgregarPatente";
-            this.btnAgregarPatente.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarPatente.Size = new System.Drawing.Size(86, 31);
             this.btnAgregarPatente.TabIndex = 3;
             this.btnAgregarPatente.Tag = "btn.add";
             this.btnAgregarPatente.Text = "Agregar";
@@ -169,16 +208,18 @@ namespace SistemaGestorEventos.GUI.Permisos
             // cbxPatentes
             // 
             this.cbxPatentes.FormattingEnabled = true;
-            this.cbxPatentes.Location = new System.Drawing.Point(6, 24);
+            this.cbxPatentes.Location = new System.Drawing.Point(7, 35);
+            this.cbxPatentes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxPatentes.Name = "cbxPatentes";
-            this.cbxPatentes.Size = new System.Drawing.Size(502, 23);
+            this.cbxPatentes.Size = new System.Drawing.Size(312, 28);
             this.cbxPatentes.TabIndex = 3;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(291, 404);
+            this.btnGuardar.Location = new System.Drawing.Point(312, 539);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(145, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(166, 31);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Tag = "btn.config.save";
             this.btnGuardar.Text = "Guardar configuracion";
@@ -187,9 +228,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(492, 404);
+            this.btnCancelar.Location = new System.Drawing.Point(515, 539);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(145, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(166, 31);
             this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Tag = "btn.cancel";
             this.btnCancelar.Text = "Cancelar";
@@ -198,9 +240,10 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(643, 404);
+            this.btnSalir.Location = new System.Drawing.Point(687, 539);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(145, 23);
+            this.btnSalir.Size = new System.Drawing.Size(166, 31);
             this.btnSalir.TabIndex = 8;
             this.btnSalir.Tag = "btn.exit";
             this.btnSalir.Text = "Salir";
@@ -209,9 +252,9 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             // FrmAdmUsuarios
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(865, 600);
             this.ControlBox = false;
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCancelar);
@@ -219,6 +262,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbxFamilia);
             this.Controls.Add(this.gbxConfigurarUsuario);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmAdmUsuarios";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -250,5 +294,7 @@ namespace SistemaGestorEventos.GUI.Permisos
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnNewEdit;
+        private System.Windows.Forms.Button btnBlock;
     }
 }

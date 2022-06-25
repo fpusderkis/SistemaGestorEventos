@@ -86,7 +86,7 @@ namespace SistemaGestorEventos.BLL
 
         public IList<Grant> GetAllPatentes()
         {
-            return permisosDAL.GetAllPatentes();
+            return permisosDAL.GetAllGrants();
         }
 
         public IList<Family> GetAllFamilias()

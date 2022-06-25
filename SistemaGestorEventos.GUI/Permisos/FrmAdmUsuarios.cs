@@ -55,7 +55,7 @@ namespace SistemaGestorEventos.GUI.Permisos
                 this.editable = (User)cbxUsuario.SelectedItem;
 
                 this.editable.Permisos = this.grantsBLL.GetAllUserComponents(this.editable);
-                CargarConfiguracionUsuario();
+                ReloadTreeView();
 
             }
         }
@@ -92,7 +92,7 @@ namespace SistemaGestorEventos.GUI.Permisos
                             grantsBLL.FillFamilyComponents((Family)componente);
 
                         this.editable.Permisos.Add(componente);
-                        this.CargarConfiguracionUsuario();
+                        this.ReloadTreeView();
 
                     }
                 }
@@ -106,12 +106,12 @@ namespace SistemaGestorEventos.GUI.Permisos
             {
                 if (this.editable.Permisos.RemoveAll(c => c.Id == componente.Id) > 0)
                 {
-                    CargarConfiguracionUsuario();
+                    ReloadTreeView();
                 }
             }
             
         }
-        void CargarConfiguracionUsuario()
+        void ReloadTreeView()
         {
             this.treeView1.Nodes.Clear();
             TreeNode root = new TreeNode(this.editable.Username);
@@ -170,7 +170,30 @@ namespace SistemaGestorEventos.GUI.Permisos
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (this.editable != null)
-                usuarioBLL.GuardarPermisos(this.editable);
+            {
+                usuarioBLL.SaveUserGrants(this.editable);
+                MessageBox.Show(MultiIdioma.TranslateOrDefault("grants.correctsave",$"Los permisos se guardaron correctamente para el usuario {this.editable.Username}."));
+            }
+                
+        }
+
+        private void btnBlock_Click(object sender, EventArgs e)
+        {
+
+            var user = (User)cbxUsuario.SelectedItem;
+
+            if (user == null)
+            {
+                MessageBox.Show("Seleccione un usuario", "Bloquear usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            DialogResult result = MessageBox.Show("Desea bloquear el usuario?", "Bloquear usuario", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
+            if (DialogResult.OK == result)
+            {
+                usuarioBLL.LockUser(user.Username);
+                MessageBox.Show("Usuario bloqueado correctamente", "Bloquear usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
         
