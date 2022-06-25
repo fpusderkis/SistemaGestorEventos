@@ -44,6 +44,49 @@ namespace SistemaGestorEventos.DAL.Permisos
 
         }
 
+        public AbstractComponent GetGrantByName(string grantName)
+        {
+            using (var connection = this.GetSqlConnection())
+            {
+                connection.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = connection;
+
+                var sql = $@"select * from permiso p where p.nombre like @grantName;";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.AddWithValue("@grantName", grantName);
+
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var id = reader.GetGuid(reader.GetOrdinal("id"));
+                    var nombre = reader.GetString(reader.GetOrdinal("nombre"));
+                    var permiso = reader.GetString(reader.GetOrdinal("permiso"));
+
+
+                    AbstractComponent c;
+                    if (string.IsNullOrWhiteSpace(permiso))
+                    {
+                        c = new Family();
+                    }
+                    else
+                    {
+                        c = new Grant();
+                    }
+
+                    c.Id = id;
+                    c.Name = nombre;
+                    c.GrantType = (GrantType)Enum.Parse(typeof(GrantType), permiso);
+                    reader.Close();
+                    return c;
+                }
+
+                return null;
+            }
+        }
+
 
         public IList<Grant> GetAllGrants()
         {

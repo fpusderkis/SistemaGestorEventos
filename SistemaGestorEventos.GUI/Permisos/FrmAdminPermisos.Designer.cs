@@ -253,6 +253,8 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(781, 600);
             this.ControlBox = false;
             this.Controls.Add(this.btnSalir);
@@ -261,6 +263,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.Controls.Add(this.gbxFamilias);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmAdminPermisos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "title.admin.grants";
             this.Text = "Administrar permisos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

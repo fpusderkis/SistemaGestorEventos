@@ -24,13 +24,15 @@ namespace SistemaGestorEventos.GUI.Permisos
         public FrmAdminPermisos()
         {
             InitializeComponent();
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(this.TraducirTextos);
             CargarFamilias();
             CargarPatentes();
             FiltrarComponentes(lbxFamilias, this.familias, txtFamilia.Text);
             FiltrarComponentes(lbxPatente, this.patentes, txtPatente.Text);
 
             cbxTipoPermiso.DataSource = permisosBLL.GetAllPermission();
+            TraducirTextos();
+            MultiIdioma.SuscribeCambioDeIdiomaEvent(this.TraducirTextos);
+
 
 
         }
@@ -53,12 +55,11 @@ namespace SistemaGestorEventos.GUI.Permisos
        
         private void TraducirTextos()
         {
-            WinformUtils.TraducirControl(this);
+           WinformUtils.TraducirControl(this);
         }
 
         private void FrmAdminPermisos_Load(object sender, EventArgs e)
         {
-            TraducirTextos();
         }
 
         private void txtFamilia_TextChanged(object sender, EventArgs e)

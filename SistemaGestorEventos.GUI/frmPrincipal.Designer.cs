@@ -32,9 +32,7 @@ namespace SistemaGestorEventos.GUI
             this.mnuPrincipal = new System.Windows.Forms.MenuStrip();
             this.mnuLogo1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUsuario = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRegistrar = new System.Windows.Forms.ToolStripMenuItem();
             this.admnistrarPermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.admnistrarUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuIdioma = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +53,7 @@ namespace SistemaGestorEventos.GUI
             this.mnuPrincipal.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.mnuPrincipal.Size = new System.Drawing.Size(819, 77);
             this.mnuPrincipal.TabIndex = 1;
+            this.mnuPrincipal.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mnuPrincipal_ItemClicked);
             // 
             // mnuLogo1
             // 
@@ -73,23 +72,13 @@ namespace SistemaGestorEventos.GUI
             // mnuUsuario
             // 
             this.mnuUsuario.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuLogin,
             this.mnuLogout,
-            this.mnuRegistrar,
             this.admnistrarPermisosToolStripMenuItem,
             this.admnistrarUsuariosToolStripMenuItem});
             this.mnuUsuario.Name = "mnuUsuario";
             this.mnuUsuario.Size = new System.Drawing.Size(73, 73);
             this.mnuUsuario.Tag = "mnu.usuario";
             this.mnuUsuario.Text = "Usuario";
-            // 
-            // mnuLogin
-            // 
-            this.mnuLogin.Name = "mnuLogin";
-            this.mnuLogin.Size = new System.Drawing.Size(227, 26);
-            this.mnuLogin.Tag = "mnu.login";
-            this.mnuLogin.Text = "Iniciar Sesión";
-            this.mnuLogin.Click += new System.EventHandler(this.mnuLogin_Click);
             // 
             // mnuLogout
             // 
@@ -99,14 +88,6 @@ namespace SistemaGestorEventos.GUI
             this.mnuLogout.Text = "Cerrar sesión";
             this.mnuLogout.Visible = false;
             this.mnuLogout.Click += new System.EventHandler(this.mnuLogout_Click);
-            // 
-            // mnuRegistrar
-            // 
-            this.mnuRegistrar.Name = "mnuRegistrar";
-            this.mnuRegistrar.Size = new System.Drawing.Size(227, 26);
-            this.mnuRegistrar.Tag = "mnu.singin";
-            this.mnuRegistrar.Text = "Registrar";
-            this.mnuRegistrar.Click += new System.EventHandler(this.mnuRegistrar_Click);
             // 
             // admnistrarPermisosToolStripMenuItem
             // 
@@ -165,9 +146,7 @@ namespace SistemaGestorEventos.GUI
         #endregion
         private System.Windows.Forms.MenuStrip mnuPrincipal;
         private System.Windows.Forms.ToolStripMenuItem mnuUsuario;
-        private System.Windows.Forms.ToolStripMenuItem mnuLogin;
         private System.Windows.Forms.ToolStripMenuItem mnuLogout;
-        private System.Windows.Forms.ToolStripMenuItem mnuRegistrar;
         private System.Windows.Forms.ToolStripMenuItem mnuIdioma;
         private System.Windows.Forms.ToolStripMenuItem admnistrarPermisosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem admnistrarUsuariosToolStripMenuItem;
