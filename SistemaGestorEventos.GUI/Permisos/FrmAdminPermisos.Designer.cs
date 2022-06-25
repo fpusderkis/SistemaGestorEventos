@@ -292,8 +292,6 @@ namespace SistemaGestorEventos.GUI.Permisos
         private System.Windows.Forms.Button btnQuitarPatete;
         private System.Windows.Forms.Button btnCrearPatente;
         private System.Windows.Forms.ListBox lbxPatente;
-        private System.Windows.Forms.Button btnGuardarFamilia;
-        private System.Windows.Forms.Button btnCancelarFamilia;
         private System.Windows.Forms.Button btnSalir;
     }
 }

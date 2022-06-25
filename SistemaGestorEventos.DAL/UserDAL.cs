@@ -63,7 +63,7 @@ namespace SistemaGestorEventos.DAL
                 connection.Open();
 
                 IList<User> lista = new Database(connection)
-                    .ExecuteQuery<User>("SELECT username,password,language,id FROM Usuarios;");
+                    .ExecuteQuery<User>("SELECT * FROM Usuarios;");
 
                 return lista;
             }

@@ -36,7 +36,7 @@ namespace SistemaGestorEventos.BE
 
         public int FailCount { get; set; } = 0;
 
-        public DateTime LastLogin { get; set; }
+        public DateTime? LastLogin { get; set; }
 
         public bool Expired { get; set; } = false;
 

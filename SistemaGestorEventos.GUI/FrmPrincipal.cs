@@ -20,16 +20,8 @@ namespace SistemaGestorEventos.GUI
         {
             InitializeComponent();
             loginForm = new FrmLogin();
-            loginForm.Dock = DockStyle.Fill;
-            loginForm.MdiParent = this;
-            loginForm.MaximizeBox = false;
-            loginForm.MinimizeBox = false;
-            loginForm.ControlBox = false;
-            loginForm.ShowIcon = false;
-            loginForm.Text = "";
-
-            loginForm.WindowState = FormWindowState.Maximized;
-
+            PrepareForm(loginForm);
+            
             SESSION.SuscribeSessionStatusChangeEvent(() => {
                 this.mnuLogin.Visible = SESSION.IsNotLogged();
                 this.mnuLogout.Visible = SESSION.IsLogged();
@@ -49,7 +41,18 @@ namespace SistemaGestorEventos.GUI
             MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);
         }
 
-        
+        private void PrepareForm(Form form)
+        {
+            form.Dock = DockStyle.Fill;
+            form.MdiParent = this;
+            form.MaximizeBox = false;
+            form.MinimizeBox = false;
+            form.ControlBox = false;
+            form.ShowIcon = false;
+            form.Text = "";
+            loginForm.WindowState = FormWindowState.Maximized;
+        }
+
 
         private void TraducirTextos()
         {
@@ -73,7 +76,9 @@ namespace SistemaGestorEventos.GUI
 
         private void mnuLogin_Click(object sender, EventArgs e)
         {
-            new FrmLogin().Show();
+            var form = new FrmLogin();
+            PrepareForm(form);
+            form.Show();
         }
 
         private void mnuLogout_Click(object sender, EventArgs e)
@@ -84,7 +89,7 @@ namespace SistemaGestorEventos.GUI
         private void mnuRegistrar_Click(object sender, EventArgs e)
         {
             var registrar = new usuario.FrmRegistrar();
-            registrar.MdiParent = this;
+            PrepareForm(registrar);
             registrar.Show();
         }
 
@@ -101,20 +106,21 @@ namespace SistemaGestorEventos.GUI
         private void admnistrarPermisosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var permisosForm = new FrmAdminPermisos();
-            permisosForm.MdiParent = this;
+            PrepareForm(permisosForm);
             permisosForm.Show();
         }
 
         private void admnistrarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FrmAdmUsuarios();
-            form.MdiParent = this;
+            PrepareForm(form);
             
             form.Show();
         }
 
         private void mnuCambiarIdioma_Click(object sender, EventArgs e)
         {
+            //popup
             new FrmCambiarIdioma().Show();
         }
 
