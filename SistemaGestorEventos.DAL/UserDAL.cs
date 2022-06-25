@@ -84,6 +84,8 @@ namespace SistemaGestorEventos.DAL
                     .AddParameter("@Idioma", user.Language)
                     .AddParameter("@expired", user.Expired)
                     .AddParameter("@checkdigit", user.CheckDigit)
+                    .AddParameter("@lastname", user.Lastname)
+                    .AddParameter("@name", user.Name)
                     .ExecuteNonQuery("sp_Usuario_Upsert", true);
                     
             }

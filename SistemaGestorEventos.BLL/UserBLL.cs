@@ -62,7 +62,7 @@ namespace SistemaGestorEventos.BLL
             RecalculateUserIntegrity(usuario, usuario.Password);
             usuario.Expired = true;
 
-            usuario.Language = "es_AR";
+            usuario.Language = "es-AR";
 
             SaveUser(usuario);
         }
