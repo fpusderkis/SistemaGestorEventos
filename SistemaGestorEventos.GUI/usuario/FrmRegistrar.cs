@@ -15,6 +15,7 @@ namespace SistemaGestorEventos.GUI.usuario
     public partial class FrmRegistrar : Form
     {
         private readonly SessionBLL sessionBLL = SessionBLL.GetInstance();
+        private readonly UserBLL userBLL = UserBLL.Instance;
 
         public FrmRegistrar()
         {
@@ -34,11 +35,13 @@ namespace SistemaGestorEventos.GUI.usuario
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            var usuario = new User(this.txtUsername.Text,this.txtClave.Text,this.cmbIdioma.Text.ToString());
+            var usuario = new User(this.txtUsername.Text,this.txtClave.Text);
+            usuario.Phone = txtTelefono.Text;
+            usuario.Mail = txtEmail.Text;
 
             try
             {
-                sessionBLL.Register(usuario);
+                userBLL.Register(usuario);
                 this.Close();
             } catch (ValidationException ve)
             {

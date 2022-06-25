@@ -56,7 +56,7 @@ namespace SistemaGestorEventos.BLL
                 throw new SistemaGestorEventos.BLL.Exceptions.BusinessException("login.invaliduserpass", "Usuario y/o clave invalida");
             }
 
-            var digit = DigitoVerificador.GenerarDigitoVerificador(user.Id, pass);
+            var digit = CheckerDigit.Generate(user.Id, pass);
 
             if (digit != user.CheckDigit)
             {
@@ -84,31 +84,6 @@ namespace SistemaGestorEventos.BLL
             SESSION.Login(user, grants);
 
             return user;
-        }
-
-        public void Register(User usuario)
-        {
-            if (string.IsNullOrWhiteSpace(usuario.Username)) throw new ValidationException("Nombre de usuario invalido");
-            if (string.IsNullOrWhiteSpace(usuario.Password)) throw new ValidationException("Password invalido");
-            if (string.IsNullOrWhiteSpace(usuario.Language)) throw new ValidationException("Idioma invalido");
-
-            var usuarioBD = usuarioDAL.FindByUsername(usuario.Username);
-
-            if (usuarioBD != null)
-            {
-                throw new ValidationException("El nombre de usuario ya esta registrado");
-            }
-
-            usuario.Id = Guid.NewGuid();
-            usuario.Password = Cypher.Hash(usuario.Password,usuario.Id);
-            usuario.CheckDigit = DigitoVerificador.GenerarDigitoVerificador(usuario.Id, usuario.Password);
-            usuario.Language = "es_AR";
-            usuario.LastLogin = DateTime.Now;
-            usuario.Expired = false;
-
-            usuarioDAL.SaveUser(usuario);
-
-            SESSION.Login(usuario, null);
         }
 
         public void Logout()

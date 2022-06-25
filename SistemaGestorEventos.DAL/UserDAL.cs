@@ -29,7 +29,7 @@ namespace SistemaGestorEventos.DAL
             }
         }
 
-        public void GuardarPermisos(User usuario)
+        public void SaveUserGrants(User usuario)
         {
             using (var connection = this.GetSqlConnection())
             {
