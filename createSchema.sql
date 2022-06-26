@@ -330,7 +330,9 @@ ALTER PROCEDURE [dbo].[sp_Usuario_Upsert]
 	@FailCount int,
 	@LastLogin datetime,
 	@expired tinyint,
-	@checkdigit int
+	@checkdigit int,
+	@lastname varchar(250),
+	@name varchar(250)
 
 AS
 BEGIN
@@ -350,6 +352,8 @@ BEGIN
 			  ,[LastLogin] = @lastlogin
 			  ,[expired] = @expired
 			  ,[checkdigit] = @checkdigit
+			  ,[Lastname] = @lastname
+			  ,[Name] = @name
 		 WHERE Id = @Id;
 	
 		ELSE 
@@ -362,7 +366,9 @@ BEGIN
 				   ,[FailCount]
 				   ,[LastLogin]
 				   ,[expired]
-				   ,[checkdigit])
+				   ,[checkdigit]
+				   ,[Lastname]
+				   ,[Name])
 			 VALUES
 				   (@id
 				   ,@username
@@ -371,7 +377,9 @@ BEGIN
 				   ,@FailCount
 				   ,@LastLogin
 				   ,@expired
-				   ,@checkdigit)
+				   ,@checkdigit
+				   ,@lastname
+				   ,@name)
  
  
 	  COMMIT

@@ -38,10 +38,13 @@ namespace SistemaGestorEventos.GUI.usuario
             var usuario = new User(this.txtUsername.Text,this.txtClave.Text);
             usuario.Phone = txtTelefono.Text;
             usuario.Mail = txtEmail.Text;
+            usuario.Name = txtName.Text;
+            usuario.Lastname = txtLastname.Text;
 
             try
             {
                 userBLL.Register(usuario);
+                MessageBox.Show(MultiIdioma.TranslateOrDefault("register.success", "Usuario dado de alta correctamente."));
                 this.Close();
             } catch (ValidationException ve)
             {

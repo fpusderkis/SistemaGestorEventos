@@ -34,6 +34,10 @@ namespace SistemaGestorEventos.GUI.usuario
             this.txtClave = new System.Windows.Forms.TextBox();
             this.lblClave = new System.Windows.Forms.Label();
             this.gbxUsuario = new System.Windows.Forms.GroupBox();
+            this.lblLastname = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtLastname = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.gbxContacto = new System.Windows.Forms.GroupBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.lblTelefono = new System.Windows.Forms.Label();
@@ -42,10 +46,6 @@ namespace SistemaGestorEventos.GUI.usuario
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.lblLastname = new System.Windows.Forms.Label();
             this.gbxUsuario.SuspendLayout();
             this.gbxContacto.SuspendLayout();
             this.SuspendLayout();
@@ -92,8 +92,8 @@ namespace SistemaGestorEventos.GUI.usuario
             // 
             this.gbxUsuario.Controls.Add(this.lblLastname);
             this.gbxUsuario.Controls.Add(this.lblName);
-            this.gbxUsuario.Controls.Add(this.textBox2);
-            this.gbxUsuario.Controls.Add(this.textBox1);
+            this.gbxUsuario.Controls.Add(this.txtLastname);
+            this.gbxUsuario.Controls.Add(this.txtName);
             this.gbxUsuario.Controls.Add(this.txtUsername);
             this.gbxUsuario.Controls.Add(this.lblUsername);
             this.gbxUsuario.Controls.Add(this.lblClave);
@@ -107,6 +107,40 @@ namespace SistemaGestorEventos.GUI.usuario
             this.gbxUsuario.TabStop = false;
             this.gbxUsuario.Tag = "user";
             this.gbxUsuario.Text = "Usuario";
+            // 
+            // lblLastname
+            // 
+            this.lblLastname.AutoSize = true;
+            this.lblLastname.Location = new System.Drawing.Point(72, 156);
+            this.lblLastname.Name = "lblLastname";
+            this.lblLastname.Size = new System.Drawing.Size(66, 20);
+            this.lblLastname.TabIndex = 7;
+            this.lblLastname.Tag = "lastname";
+            this.lblLastname.Text = "Apellido";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(74, 114);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(64, 20);
+            this.lblName.TabIndex = 6;
+            this.lblName.Tag = "name";
+            this.lblName.Text = "Nombre";
+            // 
+            // txtLastname
+            // 
+            this.txtLastname.Location = new System.Drawing.Point(141, 153);
+            this.txtLastname.Name = "txtLastname";
+            this.txtLastname.Size = new System.Drawing.Size(239, 27);
+            this.txtLastname.TabIndex = 5;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(141, 107);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(239, 27);
+            this.txtName.TabIndex = 4;
             // 
             // gbxContacto
             // 
@@ -194,40 +228,6 @@ namespace SistemaGestorEventos.GUI.usuario
             this.lblError.Size = new System.Drawing.Size(0, 20);
             this.lblError.TabIndex = 12;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(141, 107);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(239, 27);
-            this.textBox1.TabIndex = 4;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(141, 153);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(239, 27);
-            this.textBox2.TabIndex = 5;
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(75, 115);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(64, 20);
-            this.lblName.TabIndex = 6;
-            this.lblName.Tag = "name";
-            this.lblName.Text = "Nombre";
-            // 
-            // lblLastname
-            // 
-            this.lblLastname.AutoSize = true;
-            this.lblLastname.Location = new System.Drawing.Point(69, 156);
-            this.lblLastname.Name = "lblLastname";
-            this.lblLastname.Size = new System.Drawing.Size(66, 20);
-            this.lblLastname.TabIndex = 7;
-            this.lblLastname.Tag = "lastname";
-            this.lblLastname.Text = "Apellido";
-            // 
             // FrmRegistrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -245,9 +245,9 @@ namespace SistemaGestorEventos.GUI.usuario
             this.Name = "FrmRegistrar";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "title.signin";
             this.Text = "Registrar";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmRegistrar_Load);
             this.gbxUsuario.ResumeLayout(false);
             this.gbxUsuario.PerformLayout();
@@ -275,7 +275,7 @@ namespace SistemaGestorEventos.GUI.usuario
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Label lblLastname;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtLastname;
+        private System.Windows.Forms.TextBox txtName;
     }
 }

@@ -68,9 +68,9 @@ namespace SistemaGestorEventos.BLL
 
         public AbstractComponent SaveComponent(AbstractComponent p, bool esfamilia)
         {
-            var components = permisosDAL.GetAll(p.Name);
+            var components = permisosDAL.GetGrantByName(p.Name);
 
-            if (components != null && components.Count > 0)
+            if (components != null)
             {
                 throw new ValidationException("Ya existe un permiso con este nombre");
             }

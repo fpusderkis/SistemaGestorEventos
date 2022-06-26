@@ -63,7 +63,7 @@ namespace SistemaGestorEventos.DAL
                 connection.Open();
 
                 IList<User> lista = new Database(connection)
-                    .ExecuteQuery<User>("SELECT username,password,language,id FROM Usuarios;");
+                    .ExecuteQuery<User>("SELECT * FROM Usuarios;");
 
                 return lista;
             }
@@ -84,6 +84,8 @@ namespace SistemaGestorEventos.DAL
                     .AddParameter("@Idioma", user.Language)
                     .AddParameter("@expired", user.Expired)
                     .AddParameter("@checkdigit", user.CheckDigit)
+                    .AddParameter("@lastname", user.Lastname)
+                    .AddParameter("@name", user.Name)
                     .ExecuteNonQuery("sp_Usuario_Upsert", true);
                     
             }

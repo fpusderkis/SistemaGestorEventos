@@ -86,6 +86,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             this.btnNewEdit.Tag = "btn.new";
             this.btnNewEdit.Text = "Alta";
             this.btnNewEdit.UseVisualStyleBackColor = true;
+            this.btnNewEdit.Click += new System.EventHandler(this.btnNewEdit_Click);
             // 
             // btnBlock
             // 
@@ -254,6 +255,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(865, 600);
             this.ControlBox = false;
             this.Controls.Add(this.btnSalir);

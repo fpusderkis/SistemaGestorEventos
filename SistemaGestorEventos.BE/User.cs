@@ -29,6 +29,10 @@ namespace SistemaGestorEventos.BE
 
         public string Language { get; set; }
 
+        public string Name { get; set; }
+
+        public string Lastname { get; set; } = string.Empty;
+
         // TODO: ¿¿BORRAR PERMISOS?? pasaron a la sesion.
         // Tener en cuenta que se usan en el componente que hace abmc de permisos de usuario. entrega 2.
         public List<AbstractComponent> Permisos { get; set; }
@@ -36,7 +40,7 @@ namespace SistemaGestorEventos.BE
 
         public int FailCount { get; set; } = 0;
 
-        public DateTime LastLogin { get; set; }
+        public DateTime? LastLogin { get; set; }
 
         public bool Expired { get; set; } = false;
 

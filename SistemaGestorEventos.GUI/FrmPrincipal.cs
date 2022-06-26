@@ -19,38 +19,51 @@ namespace SistemaGestorEventos.GUI
         public FrmPrincipal()
         {
             InitializeComponent();
-            loginForm = new FrmLogin();
-            loginForm.Dock = DockStyle.Fill;
-            loginForm.MdiParent = this;
-            loginForm.MaximizeBox = false;
-            loginForm.MinimizeBox = false;
-            loginForm.ControlBox = false;
-            loginForm.ShowIcon = false;
-            loginForm.Text = "";
-
-            loginForm.WindowState = FormWindowState.Maximized;
-
+            
             SESSION.SuscribeSessionStatusChangeEvent(() => {
-                this.mnuLogin.Visible = SESSION.IsNotLogged();
                 this.mnuLogout.Visible = SESSION.IsLogged();
-                this.mnuRegistrar.Visible = SESSION.IsNotLogged();
                 bool esAdmin = SESSION.HasGrant(GrantType.AdministradorSistema);
                 this.admnistrarPermisosToolStripMenuItem.Visible = esAdmin;
                 this.admnistrarUsuariosToolStripMenuItem.Visible = esAdmin;
-
+                if (SESSION.IsNotLogged())
+                {
+                    ShowFormAlone(new FrmLogin());
+                }
             });
             TraducirTextos();
 
             if (SESSION.IsNotLogged())
             {
-                loginForm.Show();
+                ShowFormAlone(new FrmLogin());
             }
 
             MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);
         }
 
-        
+        private void PrepareForm(Form form)
+        {
+            form.Dock = DockStyle.Fill;
+            form.MdiParent = this;
+            form.MaximizeBox = false;
+            form.MinimizeBox = false;
+            form.ControlBox = false;
+            form.ShowIcon = false;
+            form.Text = "";
+            form.WindowState = FormWindowState.Maximized;
+        }
 
+        private void ShowFormAlone(Form form)
+        {
+            this.SuspendLayout();
+
+            foreach (var child in this.MdiChildren)
+            {
+                child.Close();
+            }
+            PrepareForm(form);
+            form.Show();
+            this.ResumeLayout();
+        }
         private void TraducirTextos()
         {
             WinformUtils.TraducirControl(this);
@@ -73,19 +86,13 @@ namespace SistemaGestorEventos.GUI
 
         private void mnuLogin_Click(object sender, EventArgs e)
         {
-            new FrmLogin().Show();
+            var form = new FrmLogin();
+            ShowFormAlone(form);
         }
 
         private void mnuLogout_Click(object sender, EventArgs e)
         {
             SessionBLL.GetInstance().Logout();
-        }
-
-        private void mnuRegistrar_Click(object sender, EventArgs e)
-        {
-            var registrar = new usuario.FrmRegistrar();
-            registrar.MdiParent = this;
-            registrar.Show();
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
@@ -101,24 +108,26 @@ namespace SistemaGestorEventos.GUI
         private void admnistrarPermisosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var permisosForm = new FrmAdminPermisos();
-            permisosForm.MdiParent = this;
-            permisosForm.Show();
+            ShowFormAlone(permisosForm);
         }
 
         private void admnistrarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new FrmAdmUsuarios();
-            form.MdiParent = this;
-            
-            form.Show();
+            ShowFormAlone(new FrmAdmUsuarios());
         }
 
         private void mnuCambiarIdioma_Click(object sender, EventArgs e)
         {
+            //popup
             new FrmCambiarIdioma().Show();
         }
 
         private void mnuLogo1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuPrincipal_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }

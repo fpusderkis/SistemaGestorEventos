@@ -24,7 +24,15 @@ namespace SistemaGestorEventos.SharedServices.Persistance
 
             var sqlParameter = new SqlParameter();
             sqlParameter.ParameterName = name;
-            sqlParameter.Value = value;
+
+            if (value != null)
+            {
+                sqlParameter.Value = value;
+            } 
+            else
+            {
+                sqlParameter.Value = DBNull.Value;
+            }
 
             _cmd.Parameters.Add(sqlParameter);
 

@@ -1,6 +1,7 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
+using SistemaGestorEventos.GUI.usuario;
 using SistemaGestorEventos.SharedServices.Multiidioma;
 using System;
 using System.Collections.Generic;
@@ -194,6 +195,15 @@ namespace SistemaGestorEventos.GUI.Permisos
                 usuarioBLL.LockUser(user.Username);
                 MessageBox.Show("Usuario bloqueado correctamente", "Bloquear usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void btnNewEdit_Click(object sender, EventArgs e)
+        {
+            var form = new FrmRegistrar();
+            var dialogResult = form.ShowDialog();
+
+            cbxUsuario.DataSource = usuarioBLL.GetAll();
+            btnCancelar_Click(null,null);
         }
     }
         
