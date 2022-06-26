@@ -90,6 +90,29 @@ namespace SistemaGestorEventos.BLL
             SaveUser(user);
         }
 
+        public void ResetUserPassword(string username, string actual, string newpass)
+        {
+            if (string.IsNullOrWhiteSpace(actual)) throw new ValidationException(SharedServices.Multiidioma.MultiIdioma.TranslateOrDefault("errors.changepass.currentrequired","Contraseña requerida"));
+            if (string.IsNullOrWhiteSpace(newpass)) throw new ValidationException(SharedServices.Multiidioma.MultiIdioma.TranslateOrDefault("errors.changepass.newpassrequired", "Contraseña nueva requerida"));
+
+            var user = FindUser(username);
+
+            var actualhash = Cypher.Hash(actual, user.Id);
+
+            if (!actualhash.Equals(user.Password))
+            {
+                BitacoraSingleton.GetInstance.Log(user.Id, "Clave invalida en intento de reseteo de password");
+                throw new ValidationException(SharedServices.Multiidioma.MultiIdioma.TranslateOrDefault("errors.changepass.invalidpass", "Contraseña actual invalida."));
+                
+            }
+
+            user.Password = Cypher.Hash(actual, user.Id);
+
+            RecalculateUserIntegrity(user, newpass);
+
+            SaveUser(user);
+        }
+
         public void LockUser(string username)
         {
             var user = FindUser(username);
