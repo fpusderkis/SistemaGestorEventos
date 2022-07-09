@@ -445,6 +445,7 @@ namespace SistemaGestorEventos.GUI
             this.btnAgregarServicio.Tag = "servicio.btn.agregar";
             this.btnAgregarServicio.Text = "Agregar";
             this.btnAgregarServicio.UseVisualStyleBackColor = false;
+            this.btnAgregarServicio.Click += new System.EventHandler(this.btnAgregarServicio_Click);
             // 
             // gvServicios
             // 
@@ -499,6 +500,7 @@ namespace SistemaGestorEventos.GUI
             this.btnCrear.Tag = "event.create";
             this.btnCrear.Text = "Crear evento";
             this.btnCrear.UseVisualStyleBackColor = false;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // btnCancelar
             // 

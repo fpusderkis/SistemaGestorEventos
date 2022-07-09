@@ -14,7 +14,6 @@ namespace SistemaGestorEventos.GUI
     {
         private readonly SessionHandler SESSION = SessionHandler.GetInstance;
 
-        private FrmLogin loginForm;
 
         public FrmPrincipal()
         {
@@ -28,6 +27,9 @@ namespace SistemaGestorEventos.GUI
                 if (SESSION.IsNotLogged())
                 {
                     ShowFormAlone(new FrmLogin());
+                } else
+                {
+                    ShowFormAlone(new Home.Home());
                 }
             });
             TraducirTextos();
@@ -44,11 +46,10 @@ namespace SistemaGestorEventos.GUI
         {
             form.Dock = DockStyle.Fill;
             form.MdiParent = this;
-            form.MaximizeBox = false;
-            form.MinimizeBox = false;
             form.ControlBox = false;
             form.ShowIcon = false;
             form.Text = "";
+            form.Activate();
             form.WindowState = FormWindowState.Maximized;
         }
 

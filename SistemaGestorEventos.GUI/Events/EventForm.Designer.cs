@@ -1,0 +1,1215 @@
+﻿namespace SistemaGestorEventos.GUI.Events
+{
+    partial class EventForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.tabEventDetails = new System.Windows.Forms.TabControl();
+            this.tabCharacteristics = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.lblBudget = new System.Windows.Forms.Label();
+            this.lblGuess = new System.Windows.Forms.Label();
+            this.lblEventType = new System.Windows.Forms.Label();
+            this.lblSpecialRequests = new System.Windows.Forms.Label();
+            this.txtEventTitle = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblMinus = new System.Windows.Forms.Label();
+            this.txtBudgetMax = new System.Windows.Forms.NumericUpDown();
+            this.txtBudgetMin = new System.Windows.Forms.NumericUpDown();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtpToDate = new System.Windows.Forms.DateTimePicker();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.tabLugares = new System.Windows.Forms.TabPage();
+            this.gbxEventroomsDetails = new System.Windows.Forms.GroupBox();
+            this.tblEventroomsMainDetail = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpEventroomsDetails = new System.Windows.Forms.TableLayoutPanel();
+            this.lblEventroomsDetails = new System.Windows.Forms.Label();
+            this.txtEventroomDetailsValue = new System.Windows.Forms.TextBox();
+            this.lblSelectedEventroomDetailValue = new System.Windows.Forms.Label();
+            this.tlpSearchResultEventrooms = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvEventrooms = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.gbxEventroomsFilters = new System.Windows.Forms.GroupBox();
+            this.btnSearchEventroom = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblFilterPlaceName = new System.Windows.Forms.Label();
+            this.txtFilterEventroomId = new System.Windows.Forms.TextBox();
+            this.tabAditionalServices = new System.Windows.Forms.TabPage();
+            this.tlpASDetails = new System.Windows.Forms.TableLayoutPanel();
+            this.lblDetalle = new System.Windows.Forms.Label();
+            this.txtASDetails = new System.Windows.Forms.TextBox();
+            this.lblASQty = new System.Windows.Forms.Label();
+            this.txtASQty = new System.Windows.Forms.NumericUpDown();
+            this.tlpAditionalServicesFilters = new System.Windows.Forms.TableLayoutPanel();
+            this.panelFilterASName = new System.Windows.Forms.Panel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.lblFilterASName = new System.Windows.Forms.Label();
+            this.btnSearchAS = new System.Windows.Forms.Button();
+            this.dgvSearchAS = new System.Windows.Forms.DataGridView();
+            this.btnAddAS = new System.Windows.Forms.Button();
+            this.dgvAddedServices = new System.Windows.Forms.DataGridView();
+            this.btnASRemove = new System.Windows.Forms.Button();
+            this.lblASAdded = new System.Windows.Forms.Label();
+            this.tabPagos = new System.Windows.Forms.TabPage();
+            this.tlpPayments = new System.Windows.Forms.TableLayoutPanel();
+            this.lblPayments = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tlpListOfPayments = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvRegisterdPayments = new System.Windows.Forms.DataGridView();
+            this.tlpNewPayment = new System.Windows.Forms.TableLayoutPanel();
+            this.lblType = new System.Windows.Forms.Label();
+            this.lblPaymentAmount = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblPaymentDate = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtNewPaymentAmount = new System.Windows.Forms.NumericUpDown();
+            this.txtConciliationKey = new System.Windows.Forms.TextBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.btnAddNewPayment = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblPaidValue = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblPaid = new System.Windows.Forms.Label();
+            this.lblPendingPayment = new System.Windows.Forms.Label();
+            this.lblTotalValue = new System.Windows.Forms.Label();
+            this.lblPendingPayValue = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.tabEventDetails.SuspendLayout();
+            this.tabCharacteristics.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBudgetMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBudgetMin)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.tabLugares.SuspendLayout();
+            this.gbxEventroomsDetails.SuspendLayout();
+            this.tblEventroomsMainDetail.SuspendLayout();
+            this.tlpEventroomsDetails.SuspendLayout();
+            this.tlpSearchResultEventrooms.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEventrooms)).BeginInit();
+            this.gbxEventroomsFilters.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tabAditionalServices.SuspendLayout();
+            this.tlpASDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtASQty)).BeginInit();
+            this.tlpAditionalServicesFilters.SuspendLayout();
+            this.panelFilterASName.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSearchAS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddedServices)).BeginInit();
+            this.tabPagos.SuspendLayout();
+            this.tlpPayments.SuspendLayout();
+            this.tlpListOfPayments.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterdPayments)).BeginInit();
+            this.tlpNewPayment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNewPaymentAmount)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // tabEventDetails
+            // 
+            this.tabEventDetails.Controls.Add(this.tabCharacteristics);
+            this.tabEventDetails.Controls.Add(this.tabLugares);
+            this.tabEventDetails.Controls.Add(this.tabAditionalServices);
+            this.tabEventDetails.Controls.Add(this.tabPagos);
+            this.tabEventDetails.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabEventDetails.Location = new System.Drawing.Point(0, 0);
+            this.tabEventDetails.Name = "tabEventDetails";
+            this.tabEventDetails.SelectedIndex = 0;
+            this.tabEventDetails.Size = new System.Drawing.Size(800, 402);
+            this.tabEventDetails.TabIndex = 0;
+            // 
+            // tabCharacteristics
+            // 
+            this.tabCharacteristics.Controls.Add(this.tableLayoutPanel1);
+            this.tabCharacteristics.Location = new System.Drawing.Point(4, 29);
+            this.tabCharacteristics.Name = "tabCharacteristics";
+            this.tabCharacteristics.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCharacteristics.Size = new System.Drawing.Size(792, 369);
+            this.tabCharacteristics.TabIndex = 0;
+            this.tabCharacteristics.Tag = "tab.characteristics";
+            this.tabCharacteristics.Text = "Caracteristicas";
+            this.tabCharacteristics.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.textBox5, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.textBox4, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblTitle, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblDescription, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblBudget, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblGuess, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lblEventType, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lblSpecialRequests, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.txtEventTitle, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 3);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 363);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox5.Location = new System.Drawing.Point(192, 252);
+            this.textBox5.MaxLength = 1000;
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(587, 119);
+            this.textBox5.TabIndex = 8;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox4.Location = new System.Drawing.Point(192, 222);
+            this.textBox4.MaxLength = 255;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(587, 27);
+            this.textBox4.TabIndex = 6;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(192, 37);
+            this.textBox1.MaxLength = 255;
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(587, 119);
+            this.textBox1.TabIndex = 2;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Location = new System.Drawing.Point(139, 4);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(47, 20);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Tag = "title.Title";
+            this.lblTitle.Text = "Titulo";
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(99, 34);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(87, 20);
+            this.lblDescription.TabIndex = 1;
+            this.lblDescription.Tag = "description.title";
+            this.lblDescription.Text = "Descripcion";
+            // 
+            // lblBudget
+            // 
+            this.lblBudget.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBudget.AutoSize = true;
+            this.lblBudget.Location = new System.Drawing.Point(97, 159);
+            this.lblBudget.Name = "lblBudget";
+            this.lblBudget.Size = new System.Drawing.Size(89, 20);
+            this.lblBudget.TabIndex = 2;
+            this.lblBudget.Tag = "minus";
+            this.lblBudget.Text = "Presupuesto";
+            // 
+            // lblGuess
+            // 
+            this.lblGuess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGuess.AutoSize = true;
+            this.lblGuess.Location = new System.Drawing.Point(117, 189);
+            this.lblGuess.Name = "lblGuess";
+            this.lblGuess.Size = new System.Drawing.Size(69, 20);
+            this.lblGuess.TabIndex = 3;
+            this.lblGuess.Tag = "guess.title";
+            this.lblGuess.Text = "Invitados";
+            // 
+            // lblEventType
+            // 
+            this.lblEventType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEventType.AutoSize = true;
+            this.lblEventType.Location = new System.Drawing.Point(77, 219);
+            this.lblEventType.Name = "lblEventType";
+            this.lblEventType.Size = new System.Drawing.Size(109, 20);
+            this.lblEventType.TabIndex = 4;
+            this.lblEventType.Tag = "event.tyle.title";
+            this.lblEventType.Text = "Tipo de evento";
+            // 
+            // lblSpecialRequests
+            // 
+            this.lblSpecialRequests.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSpecialRequests.AutoSize = true;
+            this.lblSpecialRequests.Location = new System.Drawing.Point(53, 249);
+            this.lblSpecialRequests.Name = "lblSpecialRequests";
+            this.lblSpecialRequests.Size = new System.Drawing.Size(133, 20);
+            this.lblSpecialRequests.TabIndex = 5;
+            this.lblSpecialRequests.Tag = "specialrequest.title";
+            this.lblSpecialRequests.Text = "Pedidos especiales";
+            // 
+            // txtEventTitle
+            // 
+            this.txtEventTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtEventTitle.Location = new System.Drawing.Point(192, 7);
+            this.txtEventTitle.MaxLength = 255;
+            this.txtEventTitle.Name = "txtEventTitle";
+            this.txtEventTitle.Size = new System.Drawing.Size(587, 27);
+            this.txtEventTitle.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dtpFecha);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblMinus);
+            this.panel1.Controls.Add(this.txtBudgetMax);
+            this.panel1.Controls.Add(this.txtBudgetMin);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(192, 162);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(587, 24);
+            this.panel1.TabIndex = 9;
+            // 
+            // dtpFecha
+            // 
+            this.dtpFecha.CustomFormat = "dd/MM/yy HH:mm";
+            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFecha.Location = new System.Drawing.Point(324, 0);
+            this.dtpFecha.MinDate = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(260, 27);
+            this.dtpFecha.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(271, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Fecha";
+            // 
+            // lblMinus
+            // 
+            this.lblMinus.AutoSize = true;
+            this.lblMinus.Location = new System.Drawing.Point(130, 2);
+            this.lblMinus.Name = "lblMinus";
+            this.lblMinus.Size = new System.Drawing.Size(23, 20);
+            this.lblMinus.TabIndex = 2;
+            this.lblMinus.Tag = "minus";
+            this.lblMinus.Text = " - ";
+            // 
+            // txtBudgetMax
+            // 
+            this.txtBudgetMax.Location = new System.Drawing.Point(159, -3);
+            this.txtBudgetMax.Name = "txtBudgetMax";
+            this.txtBudgetMax.Size = new System.Drawing.Size(101, 27);
+            this.txtBudgetMax.TabIndex = 1;
+            // 
+            // txtBudgetMin
+            // 
+            this.txtBudgetMin.Location = new System.Drawing.Point(3, 0);
+            this.txtBudgetMin.Name = "txtBudgetMin";
+            this.txtBudgetMin.Size = new System.Drawing.Size(121, 27);
+            this.txtBudgetMin.TabIndex = 0;
+            this.txtBudgetMin.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.dtpToDate);
+            this.panel2.Controls.Add(this.numericUpDown1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(192, 192);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(587, 24);
+            this.panel2.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(271, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Hasta";
+            // 
+            // dtpToDate
+            // 
+            this.dtpToDate.CustomFormat = "dd/MM/yy HH:mm";
+            this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpToDate.Location = new System.Drawing.Point(324, 0);
+            this.dtpToDate.Name = "dtpToDate";
+            this.dtpToDate.Size = new System.Drawing.Size(260, 27);
+            this.dtpToDate.TabIndex = 1;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(5, 1);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(150, 27);
+            this.numericUpDown1.TabIndex = 0;
+            // 
+            // tabLugares
+            // 
+            this.tabLugares.Controls.Add(this.gbxEventroomsDetails);
+            this.tabLugares.Controls.Add(this.tlpSearchResultEventrooms);
+            this.tabLugares.Controls.Add(this.gbxEventroomsFilters);
+            this.tabLugares.Location = new System.Drawing.Point(4, 29);
+            this.tabLugares.Name = "tabLugares";
+            this.tabLugares.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLugares.Size = new System.Drawing.Size(792, 369);
+            this.tabLugares.TabIndex = 1;
+            this.tabLugares.Tag = "tab.eventrooms";
+            this.tabLugares.Text = "Lugares";
+            this.tabLugares.UseVisualStyleBackColor = true;
+            // 
+            // gbxEventroomsDetails
+            // 
+            this.gbxEventroomsDetails.Controls.Add(this.tblEventroomsMainDetail);
+            this.gbxEventroomsDetails.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbxEventroomsDetails.Location = new System.Drawing.Point(3, 214);
+            this.gbxEventroomsDetails.Name = "gbxEventroomsDetails";
+            this.gbxEventroomsDetails.Size = new System.Drawing.Size(786, 157);
+            this.gbxEventroomsDetails.TabIndex = 3;
+            this.gbxEventroomsDetails.TabStop = false;
+            this.gbxEventroomsDetails.Tag = "eventroom.details.title";
+            this.gbxEventroomsDetails.Text = "Detalle";
+            // 
+            // tblEventroomsMainDetail
+            // 
+            this.tblEventroomsMainDetail.ColumnCount = 1;
+            this.tblEventroomsMainDetail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblEventroomsMainDetail.Controls.Add(this.tlpEventroomsDetails, 0, 1);
+            this.tblEventroomsMainDetail.Controls.Add(this.lblSelectedEventroomDetailValue, 0, 0);
+            this.tblEventroomsMainDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblEventroomsMainDetail.Location = new System.Drawing.Point(3, 23);
+            this.tblEventroomsMainDetail.Name = "tblEventroomsMainDetail";
+            this.tblEventroomsMainDetail.RowCount = 2;
+            this.tblEventroomsMainDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tblEventroomsMainDetail.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblEventroomsMainDetail.Size = new System.Drawing.Size(780, 131);
+            this.tblEventroomsMainDetail.TabIndex = 0;
+            // 
+            // tlpEventroomsDetails
+            // 
+            this.tlpEventroomsDetails.ColumnCount = 2;
+            this.tlpEventroomsDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tlpEventroomsDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpEventroomsDetails.Controls.Add(this.lblEventroomsDetails, 0, 0);
+            this.tlpEventroomsDetails.Controls.Add(this.txtEventroomDetailsValue, 1, 0);
+            this.tlpEventroomsDetails.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpEventroomsDetails.Location = new System.Drawing.Point(3, 38);
+            this.tlpEventroomsDetails.Name = "tlpEventroomsDetails";
+            this.tlpEventroomsDetails.RowCount = 1;
+            this.tlpEventroomsDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpEventroomsDetails.Size = new System.Drawing.Size(774, 96);
+            this.tlpEventroomsDetails.TabIndex = 0;
+            // 
+            // lblEventroomsDetails
+            // 
+            this.lblEventroomsDetails.AutoSize = true;
+            this.lblEventroomsDetails.Location = new System.Drawing.Point(3, 0);
+            this.lblEventroomsDetails.Name = "lblEventroomsDetails";
+            this.lblEventroomsDetails.Size = new System.Drawing.Size(63, 20);
+            this.lblEventroomsDetails.TabIndex = 0;
+            this.lblEventroomsDetails.Text = "Detalles";
+            // 
+            // txtEventroomDetailsValue
+            // 
+            this.txtEventroomDetailsValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtEventroomDetailsValue.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtEventroomDetailsValue.Location = new System.Drawing.Point(83, 3);
+            this.txtEventroomDetailsValue.MaxLength = 1000;
+            this.txtEventroomDetailsValue.Multiline = true;
+            this.txtEventroomDetailsValue.Name = "txtEventroomDetailsValue";
+            this.txtEventroomDetailsValue.Size = new System.Drawing.Size(688, 90);
+            this.txtEventroomDetailsValue.TabIndex = 1;
+            // 
+            // lblSelectedEventroomDetailValue
+            // 
+            this.lblSelectedEventroomDetailValue.AutoSize = true;
+            this.lblSelectedEventroomDetailValue.Location = new System.Drawing.Point(3, 0);
+            this.lblSelectedEventroomDetailValue.Name = "lblSelectedEventroomDetailValue";
+            this.lblSelectedEventroomDetailValue.Size = new System.Drawing.Size(231, 20);
+            this.lblSelectedEventroomDetailValue.TabIndex = 1;
+            this.lblSelectedEventroomDetailValue.Text = "lblSelectedEventroomDetailValue";
+            // 
+            // tlpSearchResultEventrooms
+            // 
+            this.tlpSearchResultEventrooms.ColumnCount = 2;
+            this.tlpSearchResultEventrooms.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.67939F));
+            this.tlpSearchResultEventrooms.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.32061F));
+            this.tlpSearchResultEventrooms.Controls.Add(this.dgvEventrooms, 0, 0);
+            this.tlpSearchResultEventrooms.Controls.Add(this.button1, 1, 0);
+            this.tlpSearchResultEventrooms.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpSearchResultEventrooms.Location = new System.Drawing.Point(3, 89);
+            this.tlpSearchResultEventrooms.Name = "tlpSearchResultEventrooms";
+            this.tlpSearchResultEventrooms.RowCount = 1;
+            this.tlpSearchResultEventrooms.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpSearchResultEventrooms.Size = new System.Drawing.Size(786, 125);
+            this.tlpSearchResultEventrooms.TabIndex = 2;
+            // 
+            // dgvEventrooms
+            // 
+            this.dgvEventrooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEventrooms.Location = new System.Drawing.Point(3, 3);
+            this.dgvEventrooms.MultiSelect = false;
+            this.dgvEventrooms.Name = "dgvEventrooms";
+            this.dgvEventrooms.ReadOnly = true;
+            this.dgvEventrooms.RowHeadersWidth = 51;
+            this.dgvEventrooms.RowTemplate.Height = 29;
+            this.dgvEventrooms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEventrooms.Size = new System.Drawing.Size(636, 119);
+            this.dgvEventrooms.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(645, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(135, 119);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Seleccionar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // gbxEventroomsFilters
+            // 
+            this.gbxEventroomsFilters.Controls.Add(this.btnSearchEventroom);
+            this.gbxEventroomsFilters.Controls.Add(this.tableLayoutPanel3);
+            this.gbxEventroomsFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbxEventroomsFilters.Location = new System.Drawing.Point(3, 3);
+            this.gbxEventroomsFilters.Name = "gbxEventroomsFilters";
+            this.gbxEventroomsFilters.Size = new System.Drawing.Size(786, 86);
+            this.gbxEventroomsFilters.TabIndex = 0;
+            this.gbxEventroomsFilters.TabStop = false;
+            this.gbxEventroomsFilters.Text = "Filtros";
+            // 
+            // btnSearchEventroom
+            // 
+            this.btnSearchEventroom.Location = new System.Drawing.Point(645, 20);
+            this.btnSearchEventroom.Name = "btnSearchEventroom";
+            this.btnSearchEventroom.Size = new System.Drawing.Size(135, 60);
+            this.btnSearchEventroom.TabIndex = 3;
+            this.btnSearchEventroom.Tag = "btn.search";
+            this.btnSearchEventroom.Text = "Buscar";
+            this.btnSearchEventroom.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.95812F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.04188F));
+            this.tableLayoutPanel3.Controls.Add(this.textBox2, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lblFilterPlaceName, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtFilterEventroomId, 0, 1);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(13, 19);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(626, 61);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox2.Location = new System.Drawing.Point(159, 33);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(464, 27);
+            this.textBox2.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Codigo lugar";
+            // 
+            // lblFilterPlaceName
+            // 
+            this.lblFilterPlaceName.AutoSize = true;
+            this.lblFilterPlaceName.Location = new System.Drawing.Point(159, 0);
+            this.lblFilterPlaceName.Name = "lblFilterPlaceName";
+            this.lblFilterPlaceName.Size = new System.Drawing.Size(64, 20);
+            this.lblFilterPlaceName.TabIndex = 1;
+            this.lblFilterPlaceName.Text = "Nombre";
+            // 
+            // txtFilterEventroomId
+            // 
+            this.txtFilterEventroomId.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFilterEventroomId.Location = new System.Drawing.Point(3, 33);
+            this.txtFilterEventroomId.Name = "txtFilterEventroomId";
+            this.txtFilterEventroomId.Size = new System.Drawing.Size(150, 27);
+            this.txtFilterEventroomId.TabIndex = 1;
+            // 
+            // tabAditionalServices
+            // 
+            this.tabAditionalServices.Controls.Add(this.tlpASDetails);
+            this.tabAditionalServices.Controls.Add(this.tlpAditionalServicesFilters);
+            this.tabAditionalServices.Location = new System.Drawing.Point(4, 29);
+            this.tabAditionalServices.Name = "tabAditionalServices";
+            this.tabAditionalServices.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAditionalServices.Size = new System.Drawing.Size(792, 369);
+            this.tabAditionalServices.TabIndex = 2;
+            this.tabAditionalServices.Tag = "tab.aditionalServices";
+            this.tabAditionalServices.Text = "Servicios adicionales";
+            this.tabAditionalServices.UseVisualStyleBackColor = true;
+            // 
+            // tlpASDetails
+            // 
+            this.tlpASDetails.ColumnCount = 4;
+            this.tlpASDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
+            this.tlpASDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 419F));
+            this.tlpASDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.tlpASDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.tlpASDetails.Controls.Add(this.lblDetalle, 0, 0);
+            this.tlpASDetails.Controls.Add(this.txtASDetails, 1, 0);
+            this.tlpASDetails.Controls.Add(this.lblASQty, 2, 0);
+            this.tlpASDetails.Controls.Add(this.txtASQty, 3, 0);
+            this.tlpASDetails.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpASDetails.Location = new System.Drawing.Point(3, 264);
+            this.tlpASDetails.Name = "tlpASDetails";
+            this.tlpASDetails.RowCount = 1;
+            this.tlpASDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpASDetails.Size = new System.Drawing.Size(786, 106);
+            this.tlpASDetails.TabIndex = 1;
+            // 
+            // lblDetalle
+            // 
+            this.lblDetalle.AutoSize = true;
+            this.lblDetalle.Location = new System.Drawing.Point(3, 0);
+            this.lblDetalle.Name = "lblDetalle";
+            this.lblDetalle.Size = new System.Drawing.Size(57, 20);
+            this.lblDetalle.TabIndex = 0;
+            this.lblDetalle.Tag = "detail.title";
+            this.lblDetalle.Text = "Detalle";
+            // 
+            // txtASDetails
+            // 
+            this.txtASDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtASDetails.Location = new System.Drawing.Point(74, 3);
+            this.txtASDetails.Multiline = true;
+            this.txtASDetails.Name = "txtASDetails";
+            this.txtASDetails.Size = new System.Drawing.Size(413, 100);
+            this.txtASDetails.TabIndex = 1;
+            // 
+            // lblASQty
+            // 
+            this.lblASQty.AutoSize = true;
+            this.lblASQty.Location = new System.Drawing.Point(493, 0);
+            this.lblASQty.Name = "lblASQty";
+            this.lblASQty.Size = new System.Drawing.Size(69, 20);
+            this.lblASQty.TabIndex = 2;
+            this.lblASQty.Tag = "as.quantity.title";
+            this.lblASQty.Text = "Cantidad";
+            // 
+            // txtASQty
+            // 
+            this.txtASQty.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtASQty.Location = new System.Drawing.Point(569, 3);
+            this.txtASQty.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.txtASQty.Name = "txtASQty";
+            this.txtASQty.Size = new System.Drawing.Size(214, 27);
+            this.txtASQty.TabIndex = 3;
+            // 
+            // tlpAditionalServicesFilters
+            // 
+            this.tlpAditionalServicesFilters.ColumnCount = 2;
+            this.tlpAditionalServicesFilters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.15267F));
+            this.tlpAditionalServicesFilters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.84733F));
+            this.tlpAditionalServicesFilters.Controls.Add(this.panelFilterASName, 0, 0);
+            this.tlpAditionalServicesFilters.Controls.Add(this.btnSearchAS, 1, 0);
+            this.tlpAditionalServicesFilters.Controls.Add(this.dgvSearchAS, 0, 1);
+            this.tlpAditionalServicesFilters.Controls.Add(this.btnAddAS, 1, 1);
+            this.tlpAditionalServicesFilters.Controls.Add(this.dgvAddedServices, 0, 4);
+            this.tlpAditionalServicesFilters.Controls.Add(this.btnASRemove, 1, 4);
+            this.tlpAditionalServicesFilters.Controls.Add(this.lblASAdded, 0, 3);
+            this.tlpAditionalServicesFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpAditionalServicesFilters.Location = new System.Drawing.Point(3, 3);
+            this.tlpAditionalServicesFilters.Name = "tlpAditionalServicesFilters";
+            this.tlpAditionalServicesFilters.RowCount = 5;
+            this.tlpAditionalServicesFilters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpAditionalServicesFilters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tlpAditionalServicesFilters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tlpAditionalServicesFilters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpAditionalServicesFilters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpAditionalServicesFilters.Size = new System.Drawing.Size(786, 261);
+            this.tlpAditionalServicesFilters.TabIndex = 0;
+            // 
+            // panelFilterASName
+            // 
+            this.panelFilterASName.Controls.Add(this.textBox3);
+            this.panelFilterASName.Controls.Add(this.lblFilterASName);
+            this.panelFilterASName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFilterASName.Location = new System.Drawing.Point(3, 3);
+            this.panelFilterASName.Name = "panelFilterASName";
+            this.panelFilterASName.Size = new System.Drawing.Size(624, 24);
+            this.panelFilterASName.TabIndex = 0;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.textBox3.Location = new System.Drawing.Point(99, 0);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(525, 27);
+            this.textBox3.TabIndex = 1;
+            // 
+            // lblFilterASName
+            // 
+            this.lblFilterASName.AutoSize = true;
+            this.lblFilterASName.Location = new System.Drawing.Point(5, 6);
+            this.lblFilterASName.Name = "lblFilterASName";
+            this.lblFilterASName.Size = new System.Drawing.Size(64, 20);
+            this.lblFilterASName.TabIndex = 0;
+            this.lblFilterASName.Tag = "aditionalservice.name.Title";
+            this.lblFilterASName.Text = "Nombre";
+            // 
+            // btnSearchAS
+            // 
+            this.btnSearchAS.Location = new System.Drawing.Point(633, 3);
+            this.btnSearchAS.Name = "btnSearchAS";
+            this.btnSearchAS.Size = new System.Drawing.Size(148, 24);
+            this.btnSearchAS.TabIndex = 1;
+            this.btnSearchAS.Tag = "btn.search";
+            this.btnSearchAS.Text = "Buscar";
+            this.btnSearchAS.UseVisualStyleBackColor = true;
+            // 
+            // dgvSearchAS
+            // 
+            this.dgvSearchAS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSearchAS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSearchAS.Location = new System.Drawing.Point(3, 33);
+            this.dgvSearchAS.Name = "dgvSearchAS";
+            this.dgvSearchAS.RowHeadersWidth = 51;
+            this.dgvSearchAS.RowTemplate.Height = 29;
+            this.dgvSearchAS.Size = new System.Drawing.Size(624, 119);
+            this.dgvSearchAS.TabIndex = 2;
+            // 
+            // btnAddAS
+            // 
+            this.btnAddAS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddAS.Location = new System.Drawing.Point(633, 123);
+            this.btnAddAS.Name = "btnAddAS";
+            this.btnAddAS.Size = new System.Drawing.Size(150, 29);
+            this.btnAddAS.TabIndex = 3;
+            this.btnAddAS.Tag = "btn.add";
+            this.btnAddAS.Text = "Agregar";
+            this.btnAddAS.UseVisualStyleBackColor = true;
+            // 
+            // dgvAddedServices
+            // 
+            this.dgvAddedServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAddedServices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAddedServices.Location = new System.Drawing.Point(3, 188);
+            this.dgvAddedServices.Name = "dgvAddedServices";
+            this.dgvAddedServices.RowHeadersWidth = 51;
+            this.dgvAddedServices.RowTemplate.Height = 29;
+            this.dgvAddedServices.Size = new System.Drawing.Size(624, 70);
+            this.dgvAddedServices.TabIndex = 4;
+            // 
+            // btnASRemove
+            // 
+            this.btnASRemove.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnASRemove.Location = new System.Drawing.Point(633, 229);
+            this.btnASRemove.Name = "btnASRemove";
+            this.btnASRemove.Size = new System.Drawing.Size(150, 29);
+            this.btnASRemove.TabIndex = 5;
+            this.btnASRemove.Tag = "btn.remove";
+            this.btnASRemove.Text = "Eliminar";
+            this.btnASRemove.UseVisualStyleBackColor = true;
+            // 
+            // lblASAdded
+            // 
+            this.lblASAdded.AutoSize = true;
+            this.lblASAdded.Location = new System.Drawing.Point(3, 165);
+            this.lblASAdded.Name = "lblASAdded";
+            this.lblASAdded.Size = new System.Drawing.Size(150, 20);
+            this.lblASAdded.TabIndex = 6;
+            this.lblASAdded.Tag = "as.addedservices";
+            this.lblASAdded.Text = "Servicios contratados";
+            // 
+            // tabPagos
+            // 
+            this.tabPagos.Controls.Add(this.tlpPayments);
+            this.tabPagos.Location = new System.Drawing.Point(4, 29);
+            this.tabPagos.Name = "tabPagos";
+            this.tabPagos.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPagos.Size = new System.Drawing.Size(792, 369);
+            this.tabPagos.TabIndex = 3;
+            this.tabPagos.Tag = "payments.title";
+            this.tabPagos.Text = "Pagos";
+            this.tabPagos.UseVisualStyleBackColor = true;
+            // 
+            // tlpPayments
+            // 
+            this.tlpPayments.ColumnCount = 1;
+            this.tlpPayments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpPayments.Controls.Add(this.lblPayments, 0, 0);
+            this.tlpPayments.Controls.Add(this.label4, 0, 2);
+            this.tlpPayments.Controls.Add(this.tlpListOfPayments, 0, 1);
+            this.tlpPayments.Controls.Add(this.tlpNewPayment, 0, 3);
+            this.tlpPayments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpPayments.Location = new System.Drawing.Point(3, 3);
+            this.tlpPayments.Name = "tlpPayments";
+            this.tlpPayments.RowCount = 4;
+            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpPayments.Size = new System.Drawing.Size(786, 363);
+            this.tlpPayments.TabIndex = 0;
+            // 
+            // lblPayments
+            // 
+            this.lblPayments.AutoSize = true;
+            this.lblPayments.Location = new System.Drawing.Point(3, 0);
+            this.lblPayments.Name = "lblPayments";
+            this.lblPayments.Size = new System.Drawing.Size(124, 20);
+            this.lblPayments.TabIndex = 0;
+            this.lblPayments.Tag = "payments.registered";
+            this.lblPayments.Text = "Pagos Realizados";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 155);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(151, 20);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Registrar nuevo pago";
+            // 
+            // tlpListOfPayments
+            // 
+            this.tlpListOfPayments.ColumnCount = 1;
+            this.tlpListOfPayments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 98.97436F));
+            this.tlpListOfPayments.Controls.Add(this.dgvRegisterdPayments, 0, 0);
+            this.tlpListOfPayments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpListOfPayments.Location = new System.Drawing.Point(3, 33);
+            this.tlpListOfPayments.Name = "tlpListOfPayments";
+            this.tlpListOfPayments.RowCount = 1;
+            this.tlpListOfPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpListOfPayments.Size = new System.Drawing.Size(780, 119);
+            this.tlpListOfPayments.TabIndex = 4;
+            // 
+            // dgvRegisterdPayments
+            // 
+            this.dgvRegisterdPayments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRegisterdPayments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvRegisterdPayments.Location = new System.Drawing.Point(3, 3);
+            this.dgvRegisterdPayments.Name = "dgvRegisterdPayments";
+            this.dgvRegisterdPayments.RowHeadersWidth = 51;
+            this.dgvRegisterdPayments.RowTemplate.Height = 29;
+            this.dgvRegisterdPayments.Size = new System.Drawing.Size(774, 113);
+            this.dgvRegisterdPayments.TabIndex = 3;
+            // 
+            // tlpNewPayment
+            // 
+            this.tlpNewPayment.ColumnCount = 5;
+            this.tlpNewPayment.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134F));
+            this.tlpNewPayment.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tlpNewPayment.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 297F));
+            this.tlpNewPayment.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 165F));
+            this.tlpNewPayment.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tlpNewPayment.Controls.Add(this.lblType, 0, 0);
+            this.tlpNewPayment.Controls.Add(this.lblPaymentAmount, 1, 0);
+            this.tlpNewPayment.Controls.Add(this.label5, 2, 0);
+            this.tlpNewPayment.Controls.Add(this.lblPaymentDate, 3, 0);
+            this.tlpNewPayment.Controls.Add(this.comboBox1, 0, 1);
+            this.tlpNewPayment.Controls.Add(this.txtNewPaymentAmount, 1, 1);
+            this.tlpNewPayment.Controls.Add(this.txtConciliationKey, 2, 1);
+            this.tlpNewPayment.Controls.Add(this.dateTimePicker2, 3, 1);
+            this.tlpNewPayment.Controls.Add(this.btnAddNewPayment, 4, 1);
+            this.tlpNewPayment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpNewPayment.Location = new System.Drawing.Point(3, 178);
+            this.tlpNewPayment.Name = "tlpNewPayment";
+            this.tlpNewPayment.RowCount = 2;
+            this.tlpNewPayment.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.03297F));
+            this.tlpNewPayment.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.96703F));
+            this.tlpNewPayment.Size = new System.Drawing.Size(780, 182);
+            this.tlpNewPayment.TabIndex = 5;
+            // 
+            // lblType
+            // 
+            this.lblType.AutoSize = true;
+            this.lblType.Location = new System.Drawing.Point(3, 0);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(39, 20);
+            this.lblType.TabIndex = 0;
+            this.lblType.Tag = "type.title";
+            this.lblType.Text = "Tipo";
+            // 
+            // lblPaymentAmount
+            // 
+            this.lblPaymentAmount.AutoSize = true;
+            this.lblPaymentAmount.Location = new System.Drawing.Point(137, 0);
+            this.lblPaymentAmount.Name = "lblPaymentAmount";
+            this.lblPaymentAmount.Size = new System.Drawing.Size(53, 20);
+            this.lblPaymentAmount.TabIndex = 1;
+            this.lblPaymentAmount.Text = "Monto";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(242, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(90, 20);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Conciliación";
+            // 
+            // lblPaymentDate
+            // 
+            this.lblPaymentDate.AutoSize = true;
+            this.lblPaymentDate.Location = new System.Drawing.Point(539, 0);
+            this.lblPaymentDate.Name = "lblPaymentDate";
+            this.lblPaymentDate.Size = new System.Drawing.Size(109, 20);
+            this.lblPaymentDate.TabIndex = 3;
+            this.lblPaymentDate.Tag = "payment.date";
+            this.lblPaymentDate.Text = "Fecha del Pago";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(3, 34);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(128, 28);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // txtNewPaymentAmount
+            // 
+            this.txtNewPaymentAmount.Location = new System.Drawing.Point(137, 34);
+            this.txtNewPaymentAmount.Maximum = new decimal(new int[] {
+            600000,
+            0,
+            0,
+            0});
+            this.txtNewPaymentAmount.Name = "txtNewPaymentAmount";
+            this.txtNewPaymentAmount.Size = new System.Drawing.Size(99, 27);
+            this.txtNewPaymentAmount.TabIndex = 5;
+            // 
+            // txtConciliationKey
+            // 
+            this.txtConciliationKey.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtConciliationKey.Location = new System.Drawing.Point(242, 34);
+            this.txtConciliationKey.MaxLength = 255;
+            this.txtConciliationKey.Name = "txtConciliationKey";
+            this.txtConciliationKey.Size = new System.Drawing.Size(291, 27);
+            this.txtConciliationKey.TabIndex = 6;
+            this.txtConciliationKey.Tag = "conciliation";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dateTimePicker2.Location = new System.Drawing.Point(539, 34);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(159, 27);
+            this.dateTimePicker2.TabIndex = 7;
+            // 
+            // btnAddNewPayment
+            // 
+            this.btnAddNewPayment.Location = new System.Drawing.Point(704, 34);
+            this.btnAddNewPayment.Name = "btnAddNewPayment";
+            this.btnAddNewPayment.Size = new System.Drawing.Size(73, 29);
+            this.btnAddNewPayment.TabIndex = 8;
+            this.btnAddNewPayment.Tag = "btn.add";
+            this.btnAddNewPayment.Text = "Agregar";
+            this.btnAddNewPayment.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.lblPaidValue, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblTotal, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblPaid, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblPendingPayment, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.lblTotalValue, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblPendingPayValue, 1, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(550, 404);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(250, 125);
+            this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // lblPaidValue
+            // 
+            this.lblPaidValue.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblPaidValue.AutoSize = true;
+            this.lblPaidValue.Location = new System.Drawing.Point(247, 51);
+            this.lblPaidValue.Name = "lblPaidValue";
+            this.lblPaidValue.Size = new System.Drawing.Size(0, 20);
+            this.lblPaidValue.TabIndex = 5;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(80, 10);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(42, 20);
+            this.lblTotal.TabIndex = 0;
+            this.lblTotal.Tag = "total.title";
+            this.lblTotal.Text = "Total";
+            // 
+            // lblPaid
+            // 
+            this.lblPaid.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblPaid.AutoSize = true;
+            this.lblPaid.Location = new System.Drawing.Point(51, 51);
+            this.lblPaid.Name = "lblPaid";
+            this.lblPaid.Size = new System.Drawing.Size(71, 20);
+            this.lblPaid.TabIndex = 1;
+            this.lblPaid.Tag = "paid.title";
+            this.lblPaid.Text = "Abonado";
+            // 
+            // lblPendingPayment
+            // 
+            this.lblPendingPayment.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblPendingPayment.AutoSize = true;
+            this.lblPendingPayment.Location = new System.Drawing.Point(48, 93);
+            this.lblPendingPayment.Name = "lblPendingPayment";
+            this.lblPendingPayment.Size = new System.Drawing.Size(74, 20);
+            this.lblPendingPayment.TabIndex = 2;
+            this.lblPendingPayment.Tag = "pendingtopay.title";
+            this.lblPendingPayment.Text = "Pendiente";
+            // 
+            // lblTotalValue
+            // 
+            this.lblTotalValue.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblTotalValue.AutoSize = true;
+            this.lblTotalValue.Location = new System.Drawing.Point(247, 10);
+            this.lblTotalValue.Name = "lblTotalValue";
+            this.lblTotalValue.Size = new System.Drawing.Size(0, 20);
+            this.lblTotalValue.TabIndex = 3;
+            // 
+            // lblPendingPayValue
+            // 
+            this.lblPendingPayValue.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblPendingPayValue.AutoSize = true;
+            this.lblPendingPayValue.Location = new System.Drawing.Point(247, 93);
+            this.lblPendingPayValue.Name = "lblPendingPayValue";
+            this.lblPendingPayValue.Size = new System.Drawing.Size(0, 20);
+            this.lblPendingPayValue.TabIndex = 4;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(433, 404);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(111, 123);
+            this.btnGuardar.TabIndex = 2;
+            this.btnGuardar.Tag = "btn.save";
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(4, 406);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(111, 123);
+            this.btnSalir.TabIndex = 0;
+            this.btnSalir.Tag = "btn.close";
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // EventForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 537);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.tableLayoutPanel2);
+            this.Controls.Add(this.tabEventDetails);
+            this.Name = "EventForm";
+            this.Text = "EventForm";
+            this.Load += new System.EventHandler(this.EventForm_Load);
+            this.tabEventDetails.ResumeLayout(false);
+            this.tabCharacteristics.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBudgetMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBudgetMin)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.tabLugares.ResumeLayout(false);
+            this.gbxEventroomsDetails.ResumeLayout(false);
+            this.tblEventroomsMainDetail.ResumeLayout(false);
+            this.tblEventroomsMainDetail.PerformLayout();
+            this.tlpEventroomsDetails.ResumeLayout(false);
+            this.tlpEventroomsDetails.PerformLayout();
+            this.tlpSearchResultEventrooms.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEventrooms)).EndInit();
+            this.gbxEventroomsFilters.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            this.tabAditionalServices.ResumeLayout(false);
+            this.tlpASDetails.ResumeLayout(false);
+            this.tlpASDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtASQty)).EndInit();
+            this.tlpAditionalServicesFilters.ResumeLayout(false);
+            this.tlpAditionalServicesFilters.PerformLayout();
+            this.panelFilterASName.ResumeLayout(false);
+            this.panelFilterASName.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSearchAS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddedServices)).EndInit();
+            this.tabPagos.ResumeLayout(false);
+            this.tlpPayments.ResumeLayout(false);
+            this.tlpPayments.PerformLayout();
+            this.tlpListOfPayments.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterdPayments)).EndInit();
+            this.tlpNewPayment.ResumeLayout(false);
+            this.tlpNewPayment.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNewPaymentAmount)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TabControl tabEventDetails;
+        private System.Windows.Forms.TabPage tabCharacteristics;
+        private System.Windows.Forms.TabPage tabLugares;
+        private System.Windows.Forms.TabPage tabAditionalServices;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Label lblSpecialRequests;
+        private System.Windows.Forms.Label lblBudget;
+        
+        private System.Windows.Forms.Label lblGuess;
+        private System.Windows.Forms.Label lblEventType;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtEventTitle;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.NumericUpDown txtBudgetMax;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.NumericUpDown txtBudgetMin;
+        private System.Windows.Forms.Label lblMinus;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblPaidValue;
+        private System.Windows.Forms.Label lblPaid;
+        private System.Windows.Forms.Label lblPendingPayment;
+        private System.Windows.Forms.Label lblTotalValue;
+        private System.Windows.Forms.Label lblPendingPayValue;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabPagos;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dtpToDate;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.GroupBox gbxEventroomsDetails;
+        private System.Windows.Forms.TableLayoutPanel tlpSearchResultEventrooms;
+        private System.Windows.Forms.DataGridView dgvEventrooms;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox gbxEventroomsFilters;
+        private System.Windows.Forms.Button btnSearchEventroom;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblFilterPlaceName;
+        private System.Windows.Forms.TextBox txtFilterEventroomId;
+        private System.Windows.Forms.TableLayoutPanel tblEventroomsMainDetail;
+        private System.Windows.Forms.TableLayoutPanel tlpEventroomsDetails;
+        private System.Windows.Forms.Label lblEventroomsDetails;
+        private System.Windows.Forms.TextBox txtEventroomDetailsValue;
+        private System.Windows.Forms.Label lblSelectedEventroomDetailValue;
+        private System.Windows.Forms.TableLayoutPanel tlpAditionalServicesFilters;
+        private System.Windows.Forms.TableLayoutPanel tlpASDetails;
+        private System.Windows.Forms.Label lblDetalle;
+        private System.Windows.Forms.TextBox txtASDetails;
+        private System.Windows.Forms.Label lblASQty;
+        private System.Windows.Forms.NumericUpDown txtASQty;
+        private System.Windows.Forms.Panel panelFilterASName;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label lblFilterASName;
+        private System.Windows.Forms.Button btnSearchAS;
+        private System.Windows.Forms.DataGridView dgvSearchAS;
+        private System.Windows.Forms.Button btnAddAS;
+        private System.Windows.Forms.DataGridView dgvAddedServices;
+        private System.Windows.Forms.Button btnASRemove;
+        private System.Windows.Forms.Label lblASAdded;
+        private System.Windows.Forms.TableLayoutPanel tlpPayments;
+        private System.Windows.Forms.Label lblPayments;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TableLayoutPanel tlpListOfPayments;
+        private System.Windows.Forms.DataGridView dgvRegisterdPayments;
+        private System.Windows.Forms.TableLayoutPanel tlpNewPayment;
+        private System.Windows.Forms.Label lblType;
+        private System.Windows.Forms.Label lblPaymentAmount;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblPaymentDate;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.NumericUpDown txtNewPaymentAmount;
+        private System.Windows.Forms.TextBox txtConciliationKey;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Button btnAddNewPayment;
+    }
+}

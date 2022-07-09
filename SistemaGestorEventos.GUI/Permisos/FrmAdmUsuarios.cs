@@ -33,6 +33,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         private void FrmAdmUsuarios_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             cbxUsuario.DisplayMember = "Username";
             cbxUsuario.DataSource = usuarioBLL.GetAll();
             cbxUsuario.AutoCompleteMode = AutoCompleteMode.Suggest;

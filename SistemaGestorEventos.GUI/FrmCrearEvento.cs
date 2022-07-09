@@ -40,5 +40,15 @@ namespace SistemaGestorEventos.GUI
         {
             new Lugares.BuscarLugares().Show();
         }
+
+        private void btnAgregarServicio_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
