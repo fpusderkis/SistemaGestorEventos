@@ -39,6 +39,22 @@ namespace SistemaGestorEventos.SharedServices.Persistance
             return this;
         }
 
+        public Database AddOutParameter(string name, SqlDbType type)
+        {
+
+            var sqlParameter = new SqlParameter(name, type);
+            sqlParameter.Direction = ParameterDirection.Output;
+
+            _cmd.Parameters.Add(sqlParameter);
+
+            return this;
+        }
+
+        public T ReadOutputParameter<T>(string name)
+        {
+            var retorno = (SqlParameter)_cmd.Parameters[name];
+            return (T)retorno.Value;
+        }
         public T ExecuteScalar<T>(string query, bool isStoredProcedure = false)
         {
 

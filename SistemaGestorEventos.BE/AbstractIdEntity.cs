@@ -4,8 +4,8 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE
 {
-    public abstract class AbstractEntity<T>
+    public class AbstractIdEntity: AbstractEntity<Int32?>
     {
-        public T Id { get; set; }
+        
     }
 }

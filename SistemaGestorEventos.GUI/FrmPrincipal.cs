@@ -29,7 +29,7 @@ namespace SistemaGestorEventos.GUI
                     ShowFormAlone(new FrmLogin());
                 } else
                 {
-                    ShowFormAlone(new Home.Home());
+                    ShowFormAlone(new Home.FrmHome());
                 }
             });
             TraducirTextos();

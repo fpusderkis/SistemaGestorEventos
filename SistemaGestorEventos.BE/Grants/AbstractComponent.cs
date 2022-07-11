@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE.Grants
 {
-    public abstract class AbstractComponent : AbstractEntity
+    public abstract class AbstractComponent : AbstractGuidEntity
     {
         public string Name { get; set; }
         

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE
 {
-    public class Participante : AbstractEntity
+    public class Participante : AbstractGuidEntity
     {
         public string Nombre { get; set; }
 

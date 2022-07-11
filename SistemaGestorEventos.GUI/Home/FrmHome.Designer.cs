@@ -1,6 +1,6 @@
 ﻿namespace SistemaGestorEventos.GUI.Home
 {
-    partial class Home
+    partial class FrmHome
     {
         /// <summary>
         /// Required designer variable.
@@ -36,13 +36,10 @@
             this.txtTaxId = new System.Windows.Forms.TextBox();
             this.lblMail = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.CUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbxcName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbxCxMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbxcPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvCustomers = new System.Windows.Forms.DataGridView();
             this.lblTaxId = new System.Windows.Forms.Label();
             this.gbxEvents = new System.Windows.Forms.GroupBox();
+            this.btnEventsSearch = new System.Windows.Forms.Button();
             this.btnNewEvent = new System.Windows.Forms.Button();
             this.lblEstado = new System.Windows.Forms.Label();
             this.cbxEventStatus = new System.Windows.Forms.ComboBox();
@@ -54,19 +51,25 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvEvents = new System.Windows.Forms.DataGridView();
             this.tbxcEventDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbxcCxName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbxcEventTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbxcStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbxcName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbxCxMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.gbxCustomers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.gbxEvents.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEvents)).BeginInit();
             this.SuspendLayout();
             // 
             // gbxCustomers
             // 
+            this.gbxCustomers.Controls.Add(this.btnEditar);
             this.gbxCustomers.Controls.Add(this.btnAttendNew);
             this.gbxCustomers.Controls.Add(this.btnFindCx);
             this.gbxCustomers.Controls.Add(this.txtMail);
@@ -74,7 +77,7 @@
             this.gbxCustomers.Controls.Add(this.txtTaxId);
             this.gbxCustomers.Controls.Add(this.lblMail);
             this.gbxCustomers.Controls.Add(this.lblName);
-            this.gbxCustomers.Controls.Add(this.dataGridView1);
+            this.gbxCustomers.Controls.Add(this.dgvCustomers);
             this.gbxCustomers.Controls.Add(this.lblTaxId);
             this.gbxCustomers.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbxCustomers.Location = new System.Drawing.Point(0, 0);
@@ -94,6 +97,7 @@
             this.btnAttendNew.TabIndex = 3;
             this.btnAttendNew.Text = "Nuevo";
             this.btnAttendNew.UseVisualStyleBackColor = true;
+            this.btnAttendNew.Click += new System.EventHandler(this.btnAttendNew_Click);
             // 
             // btnFindCx
             // 
@@ -104,6 +108,7 @@
             this.btnFindCx.Tag = "btn.search";
             this.btnFindCx.Text = "Buscar";
             this.btnFindCx.UseVisualStyleBackColor = true;
+            this.btnFindCx.Click += new System.EventHandler(this.btnFindCx_Click);
             // 
             // txtMail
             // 
@@ -146,57 +151,25 @@
             this.lblName.Tag = "name.title";
             this.lblName.Text = "Nombre";
             // 
-            // dataGridView1
+            // dgvCustomers
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvCustomers.AllowUserToAddRows = false;
+            this.dgvCustomers.AllowUserToDeleteRows = false;
+            this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.CUIT,
             this.tbxcName,
-            this.tbxCxMail,
-            this.tbxcPhone});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 104);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(663, 112);
-            this.dataGridView1.TabIndex = 5;
-            // 
-            // CUIT
-            // 
-            this.CUIT.HeaderText = "CUIT";
-            this.CUIT.MinimumWidth = 6;
-            this.CUIT.Name = "CUIT";
-            this.CUIT.ReadOnly = true;
-            this.CUIT.Width = 125;
-            // 
-            // tbxcName
-            // 
-            this.tbxcName.HeaderText = "Nombre";
-            this.tbxcName.MinimumWidth = 6;
-            this.tbxcName.Name = "tbxcName";
-            this.tbxcName.ReadOnly = true;
-            this.tbxcName.Width = 125;
-            // 
-            // tbxCxMail
-            // 
-            this.tbxCxMail.HeaderText = "Mail";
-            this.tbxCxMail.MinimumWidth = 6;
-            this.tbxCxMail.Name = "tbxCxMail";
-            this.tbxCxMail.ReadOnly = true;
-            this.tbxCxMail.Width = 125;
-            // 
-            // tbxcPhone
-            // 
-            this.tbxcPhone.HeaderText = "Telefono";
-            this.tbxcPhone.MinimumWidth = 6;
-            this.tbxcPhone.Name = "tbxcPhone";
-            this.tbxcPhone.ReadOnly = true;
-            this.tbxcPhone.Width = 125;
+            this.tbxCxMail});
+            this.dgvCustomers.Location = new System.Drawing.Point(12, 104);
+            this.dgvCustomers.MultiSelect = false;
+            this.dgvCustomers.Name = "dgvCustomers";
+            this.dgvCustomers.ReadOnly = true;
+            this.dgvCustomers.RowHeadersWidth = 51;
+            this.dgvCustomers.RowTemplate.Height = 29;
+            this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCustomers.Size = new System.Drawing.Size(663, 112);
+            this.dgvCustomers.TabIndex = 5;
             // 
             // lblTaxId
             // 
@@ -210,6 +183,7 @@
             // 
             // gbxEvents
             // 
+            this.gbxEvents.Controls.Add(this.btnEventsSearch);
             this.gbxEvents.Controls.Add(this.btnNewEvent);
             this.gbxEvents.Controls.Add(this.lblEstado);
             this.gbxEvents.Controls.Add(this.cbxEventStatus);
@@ -221,7 +195,7 @@
             this.gbxEvents.Controls.Add(this.label3);
             this.gbxEvents.Controls.Add(this.label2);
             this.gbxEvents.Controls.Add(this.label1);
-            this.gbxEvents.Controls.Add(this.dataGridView2);
+            this.gbxEvents.Controls.Add(this.dgvEvents);
             this.gbxEvents.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbxEvents.Location = new System.Drawing.Point(0, 251);
             this.gbxEvents.Name = "gbxEvents";
@@ -231,9 +205,19 @@
             this.gbxEvents.Tag = "events.title";
             this.gbxEvents.Text = "Eventos";
             // 
+            // btnEventsSearch
+            // 
+            this.btnEventsSearch.Location = new System.Drawing.Point(673, 95);
+            this.btnEventsSearch.Name = "btnEventsSearch";
+            this.btnEventsSearch.Size = new System.Drawing.Size(94, 29);
+            this.btnEventsSearch.TabIndex = 12;
+            this.btnEventsSearch.Tag = "btn.search";
+            this.btnEventsSearch.Text = "Buscar";
+            this.btnEventsSearch.UseVisualStyleBackColor = true;
+            // 
             // btnNewEvent
             // 
-            this.btnNewEvent.Location = new System.Drawing.Point(672, 127);
+            this.btnNewEvent.Location = new System.Drawing.Point(672, 165);
             this.btnNewEvent.Name = "btnNewEvent";
             this.btnNewEvent.Size = new System.Drawing.Size(94, 29);
             this.btnNewEvent.TabIndex = 11;
@@ -262,7 +246,7 @@
             // 
             // btnOpenEvent
             // 
-            this.btnOpenEvent.Location = new System.Drawing.Point(672, 92);
+            this.btnOpenEvent.Location = new System.Drawing.Point(672, 130);
             this.btnOpenEvent.Name = "btnOpenEvent";
             this.btnOpenEvent.Size = new System.Drawing.Size(94, 29);
             this.btnOpenEvent.TabIndex = 8;
@@ -272,14 +256,18 @@
             // 
             // dtpTo
             // 
-            this.dtpTo.Location = new System.Drawing.Point(469, 44);
+            this.dtpTo.CustomFormat = "dd/MM/yy";
+            this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTo.Location = new System.Drawing.Point(469, 46);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(83, 27);
             this.dtpTo.TabIndex = 7;
             // 
             // dtpFrom
             // 
-            this.dtpFrom.Location = new System.Drawing.Point(380, 44);
+            this.dtpFrom.CustomFormat = "dd/MM/yy";
+            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFrom.Location = new System.Drawing.Point(380, 46);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(83, 27);
             this.dtpFrom.TabIndex = 6;
@@ -328,23 +316,25 @@
             this.label1.Tag = "eventtitle.tittle";
             this.label1.Text = "Titulo";
             // 
-            // dataGridView2
+            // dgvEvents
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvEvents.AllowUserToAddRows = false;
+            this.dgvEvents.AllowUserToDeleteRows = false;
+            this.dgvEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tbxcEventDate,
             this.tbxcCxName,
             this.tbxcEventTitle,
             this.tbxcStatus});
-            this.dataGridView2.Location = new System.Drawing.Point(12, 92);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 29;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(654, 102);
-            this.dataGridView2.TabIndex = 0;
+            this.dgvEvents.Location = new System.Drawing.Point(12, 92);
+            this.dgvEvents.MultiSelect = false;
+            this.dgvEvents.Name = "dgvEvents";
+            this.dgvEvents.ReadOnly = true;
+            this.dgvEvents.RowHeadersWidth = 51;
+            this.dgvEvents.RowTemplate.Height = 29;
+            this.dgvEvents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEvents.Size = new System.Drawing.Size(654, 102);
+            this.dgvEvents.TabIndex = 0;
             // 
             // tbxcEventDate
             // 
@@ -378,23 +368,67 @@
             this.tbxcStatus.ReadOnly = true;
             this.tbxcStatus.Width = 125;
             // 
-            // Home
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 51;
+            // 
+            // CUIT
+            // 
+            this.CUIT.HeaderText = "CUIT";
+            this.CUIT.MinimumWidth = 6;
+            this.CUIT.Name = "CUIT";
+            this.CUIT.ReadOnly = true;
+            this.CUIT.Width = 125;
+            // 
+            // tbxcName
+            // 
+            this.tbxcName.HeaderText = "Nombre";
+            this.tbxcName.MinimumWidth = 6;
+            this.tbxcName.Name = "tbxcName";
+            this.tbxcName.ReadOnly = true;
+            this.tbxcName.Width = 125;
+            // 
+            // tbxCxMail
+            // 
+            this.tbxCxMail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tbxCxMail.HeaderText = "Mail";
+            this.tbxCxMail.MinimumWidth = 6;
+            this.tbxCxMail.Name = "tbxCxMail";
+            this.tbxCxMail.ReadOnly = true;
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(681, 139);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(94, 29);
+            this.btnEditar.TabIndex = 12;
+            this.btnEditar.Tag = "btn.edit";
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // FrmHome
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 560);
             this.Controls.Add(this.gbxEvents);
             this.Controls.Add(this.gbxCustomers);
-            this.Name = "Home";
+            this.Name = "FrmHome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Home";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.gbxCustomers.ResumeLayout(false);
             this.gbxCustomers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
             this.gbxEvents.ResumeLayout(false);
             this.gbxEvents.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEvents)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -409,11 +443,7 @@
         private System.Windows.Forms.TextBox txtTaxId;
         private System.Windows.Forms.Label lblMail;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CUIT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tbxcName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tbxCxMail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tbxcPhone;
+        private System.Windows.Forms.DataGridView dgvCustomers;
         private System.Windows.Forms.Label lblTaxId;
         private System.Windows.Forms.GroupBox gbxEvents;
         private System.Windows.Forms.Button btnOpenEvent;
@@ -424,7 +454,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvEvents;
         private System.Windows.Forms.DataGridViewTextBoxColumn tbxcEventDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn tbxcCxName;
         private System.Windows.Forms.DataGridViewTextBoxColumn tbxcEventTitle;
@@ -432,5 +462,11 @@
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.ComboBox cbxEventStatus;
         private System.Windows.Forms.Button btnNewEvent;
+        private System.Windows.Forms.Button btnEventsSearch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CUIT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tbxcName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tbxCxMail;
+        private System.Windows.Forms.Button btnEditar;
     }
 }

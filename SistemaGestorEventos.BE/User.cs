@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SistemaGestorEventos.BE
 {
-    public class User : AbstractEntity, IUser
+    public class User : AbstractGuidEntity, IUser
     {
 
         public User()

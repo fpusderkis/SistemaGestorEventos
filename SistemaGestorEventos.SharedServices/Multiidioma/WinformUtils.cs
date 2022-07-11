@@ -100,5 +100,17 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
                 HacerVisibles(c);
             }
         }
+
+
+        public static void ShowErrorList(String title, List<String> errors)
+        {
+            String errorDescription = "";
+            errors.ForEach((e) =>
+            {
+                errorDescription = $"{errorDescription}- {e}\n";
+            });
+
+            MessageBox.Show(errorDescription,title,MessageBoxButtons.OK,MessageBoxIcon.Error);
+        }
     }
 }

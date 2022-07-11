@@ -22,10 +22,7 @@ namespace SistemaGestorEventos.BLL
 
         }
 
-        public void AgregarParticipante(Evento evento, Particpante participante)
-        {
-
-        }
+        
 
         public void GenerarResumen(Evento evento)
         {

@@ -21,6 +21,13 @@ namespace SistemaGestorEventos.DAL
             return new SqlConnection(GetConnectionString());
         }
 
+        protected SqlConnection GetSqlConnectionOpen()
+        {
+            var con = GetSqlConnection();
+            con.Open();
+            return con;
+        }
+
         protected void InvokeProcedure(string name, IDictionary<string,object> parameters)
         {
             using (var con = this.GetSqlConnection())
