@@ -31,9 +31,8 @@
             this.tabEventDetails = new System.Windows.Forms.TabControl();
             this.tabCharacteristics = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSpecialRequest = new System.Windows.Forms.TextBox();
+            this.txtEventDescription = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             this.lblBudget = new System.Windows.Forms.Label();
@@ -51,6 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dtpToDate = new System.Windows.Forms.DateTimePicker();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.cmbEventType = new System.Windows.Forms.ComboBox();
             this.tabLugares = new System.Windows.Forms.TabPage();
             this.gbxEventroomsDetails = new System.Windows.Forms.GroupBox();
             this.tblEventroomsMainDetail = new System.Windows.Forms.TableLayoutPanel();
@@ -72,18 +72,19 @@
             this.tlpASDetails = new System.Windows.Forms.TableLayoutPanel();
             this.lblDetalle = new System.Windows.Forms.Label();
             this.txtASDetails = new System.Windows.Forms.TextBox();
-            this.lblASQty = new System.Windows.Forms.Label();
-            this.txtASQty = new System.Windows.Forms.NumericUpDown();
             this.tlpAditionalServicesFilters = new System.Windows.Forms.TableLayoutPanel();
             this.panelFilterASName = new System.Windows.Forms.Panel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.lblFilterASName = new System.Windows.Forms.Label();
             this.btnSearchAS = new System.Windows.Forms.Button();
             this.dgvSearchAS = new System.Windows.Forms.DataGridView();
-            this.btnAddAS = new System.Windows.Forms.Button();
             this.dgvAddedServices = new System.Windows.Forms.DataGridView();
             this.btnASRemove = new System.Windows.Forms.Button();
             this.lblASAdded = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtASQty = new System.Windows.Forms.NumericUpDown();
+            this.lblASQty = new System.Windows.Forms.Label();
+            this.btnAddAS = new System.Windows.Forms.Button();
             this.tabPagos = new System.Windows.Forms.TabPage();
             this.tlpPayments = new System.Windows.Forms.TableLayoutPanel();
             this.lblPayments = new System.Windows.Forms.Label();
@@ -109,6 +110,8 @@
             this.lblPendingPayValue = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnPresupuestar = new System.Windows.Forms.Button();
+            this.btnApproveEvent = new System.Windows.Forms.Button();
             this.tabEventDetails.SuspendLayout();
             this.tabCharacteristics.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -127,11 +130,12 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tabAditionalServices.SuspendLayout();
             this.tlpASDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtASQty)).BeginInit();
             this.tlpAditionalServicesFilters.SuspendLayout();
             this.panelFilterASName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearchAS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddedServices)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtASQty)).BeginInit();
             this.tabPagos.SuspendLayout();
             this.tlpPayments.SuspendLayout();
             this.tlpListOfPayments.SuspendLayout();
@@ -143,6 +147,7 @@
             // 
             // tabEventDetails
             // 
+            this.tabEventDetails.AllowDrop = true;
             this.tabEventDetails.Controls.Add(this.tabCharacteristics);
             this.tabEventDetails.Controls.Add(this.tabLugares);
             this.tabEventDetails.Controls.Add(this.tabAditionalServices);
@@ -171,9 +176,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.textBox5, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.textBox4, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtSpecialRequest, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.txtEventDescription, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblTitle, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblDescription, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblBudget, 0, 2);
@@ -183,6 +187,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtEventTitle, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.cmbEventType, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -198,34 +203,25 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 363);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // textBox5
+            // txtSpecialRequest
             // 
-            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(192, 252);
-            this.textBox5.MaxLength = 1000;
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(587, 119);
-            this.textBox5.TabIndex = 8;
+            this.txtSpecialRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSpecialRequest.Location = new System.Drawing.Point(192, 252);
+            this.txtSpecialRequest.MaxLength = 1000;
+            this.txtSpecialRequest.Multiline = true;
+            this.txtSpecialRequest.Name = "txtSpecialRequest";
+            this.txtSpecialRequest.Size = new System.Drawing.Size(587, 119);
+            this.txtSpecialRequest.TabIndex = 8;
             // 
-            // textBox4
+            // txtEventDescription
             // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(192, 222);
-            this.textBox4.MaxLength = 255;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(587, 27);
-            this.textBox4.TabIndex = 6;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(192, 37);
-            this.textBox1.MaxLength = 255;
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(587, 119);
-            this.textBox1.TabIndex = 2;
+            this.txtEventDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtEventDescription.Location = new System.Drawing.Point(192, 37);
+            this.txtEventDescription.MaxLength = 255;
+            this.txtEventDescription.Multiline = true;
+            this.txtEventDescription.Name = "txtEventDescription";
+            this.txtEventDescription.Size = new System.Drawing.Size(587, 119);
+            this.txtEventDescription.TabIndex = 2;
             // 
             // lblTitle
             // 
@@ -394,6 +390,15 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(150, 27);
             this.numericUpDown1.TabIndex = 0;
+            // 
+            // cmbEventType
+            // 
+            this.cmbEventType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmbEventType.FormattingEnabled = true;
+            this.cmbEventType.Location = new System.Drawing.Point(192, 222);
+            this.cmbEventType.Name = "cmbEventType";
+            this.cmbEventType.Size = new System.Drawing.Size(587, 28);
+            this.cmbEventType.TabIndex = 11;
             // 
             // tabLugares
             // 
@@ -612,8 +617,6 @@
             this.tlpASDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
             this.tlpASDetails.Controls.Add(this.lblDetalle, 0, 0);
             this.tlpASDetails.Controls.Add(this.txtASDetails, 1, 0);
-            this.tlpASDetails.Controls.Add(this.lblASQty, 2, 0);
-            this.tlpASDetails.Controls.Add(this.txtASQty, 3, 0);
             this.tlpASDetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpASDetails.Location = new System.Drawing.Point(3, 264);
             this.tlpASDetails.Name = "tlpASDetails";
@@ -641,29 +644,6 @@
             this.txtASDetails.Size = new System.Drawing.Size(413, 100);
             this.txtASDetails.TabIndex = 1;
             // 
-            // lblASQty
-            // 
-            this.lblASQty.AutoSize = true;
-            this.lblASQty.Location = new System.Drawing.Point(493, 0);
-            this.lblASQty.Name = "lblASQty";
-            this.lblASQty.Size = new System.Drawing.Size(69, 20);
-            this.lblASQty.TabIndex = 2;
-            this.lblASQty.Tag = "as.quantity.title";
-            this.lblASQty.Text = "Cantidad";
-            // 
-            // txtASQty
-            // 
-            this.txtASQty.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtASQty.Location = new System.Drawing.Point(569, 3);
-            this.txtASQty.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.txtASQty.Name = "txtASQty";
-            this.txtASQty.Size = new System.Drawing.Size(214, 27);
-            this.txtASQty.TabIndex = 3;
-            // 
             // tlpAditionalServicesFilters
             // 
             this.tlpAditionalServicesFilters.ColumnCount = 2;
@@ -672,10 +652,10 @@
             this.tlpAditionalServicesFilters.Controls.Add(this.panelFilterASName, 0, 0);
             this.tlpAditionalServicesFilters.Controls.Add(this.btnSearchAS, 1, 0);
             this.tlpAditionalServicesFilters.Controls.Add(this.dgvSearchAS, 0, 1);
-            this.tlpAditionalServicesFilters.Controls.Add(this.btnAddAS, 1, 1);
             this.tlpAditionalServicesFilters.Controls.Add(this.dgvAddedServices, 0, 4);
             this.tlpAditionalServicesFilters.Controls.Add(this.btnASRemove, 1, 4);
             this.tlpAditionalServicesFilters.Controls.Add(this.lblASAdded, 0, 3);
+            this.tlpAditionalServicesFilters.Controls.Add(this.tableLayoutPanel4, 1, 1);
             this.tlpAditionalServicesFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpAditionalServicesFilters.Location = new System.Drawing.Point(3, 3);
             this.tlpAditionalServicesFilters.Name = "tlpAditionalServicesFilters";
@@ -737,18 +717,6 @@
             this.dgvSearchAS.Size = new System.Drawing.Size(624, 119);
             this.dgvSearchAS.TabIndex = 2;
             // 
-            // btnAddAS
-            // 
-            this.btnAddAS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddAS.Location = new System.Drawing.Point(633, 123);
-            this.btnAddAS.Name = "btnAddAS";
-            this.btnAddAS.Size = new System.Drawing.Size(150, 29);
-            this.btnAddAS.TabIndex = 3;
-            this.btnAddAS.Tag = "btn.add";
-            this.btnAddAS.Text = "Agregar";
-            this.btnAddAS.UseVisualStyleBackColor = true;
-            // 
             // dgvAddedServices
             // 
             this.dgvAddedServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -780,6 +748,58 @@
             this.lblASAdded.TabIndex = 6;
             this.lblASAdded.Tag = "as.addedservices";
             this.lblASAdded.Text = "Servicios contratados";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.Controls.Add(this.txtASQty, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lblASQty, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnAddAS, 0, 2);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(633, 33);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(150, 119);
+            this.tableLayoutPanel4.TabIndex = 7;
+            // 
+            // txtASQty
+            // 
+            this.txtASQty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtASQty.Location = new System.Drawing.Point(3, 33);
+            this.txtASQty.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.txtASQty.Name = "txtASQty";
+            this.txtASQty.Size = new System.Drawing.Size(150, 27);
+            this.txtASQty.TabIndex = 3;
+            // 
+            // lblASQty
+            // 
+            this.lblASQty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblASQty.AutoSize = true;
+            this.lblASQty.Location = new System.Drawing.Point(3, 10);
+            this.lblASQty.Name = "lblASQty";
+            this.lblASQty.Size = new System.Drawing.Size(69, 20);
+            this.lblASQty.TabIndex = 4;
+            this.lblASQty.Tag = "quantity.title";
+            this.lblASQty.Text = "Cantidad";
+            // 
+            // btnAddAS
+            // 
+            this.btnAddAS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddAS.Location = new System.Drawing.Point(3, 87);
+            this.btnAddAS.Name = "btnAddAS";
+            this.btnAddAS.Size = new System.Drawing.Size(150, 29);
+            this.btnAddAS.TabIndex = 3;
+            this.btnAddAS.Tag = "btn.add";
+            this.btnAddAS.Text = "Agregar";
+            this.btnAddAS.UseVisualStyleBackColor = true;
             // 
             // tabPagos
             // 
@@ -1069,11 +1089,36 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // btnPresupuestar
+            // 
+            this.btnPresupuestar.Location = new System.Drawing.Point(316, 402);
+            this.btnPresupuestar.Name = "btnPresupuestar";
+            this.btnPresupuestar.Size = new System.Drawing.Size(111, 123);
+            this.btnPresupuestar.TabIndex = 3;
+            this.btnPresupuestar.Tag = "btn.presupuestar";
+            this.btnPresupuestar.Text = "Generar Presupuesto";
+            this.btnPresupuestar.UseVisualStyleBackColor = true;
+            this.btnPresupuestar.Visible = false;
+            // 
+            // btnApproveEvent
+            // 
+            this.btnApproveEvent.Location = new System.Drawing.Point(199, 402);
+            this.btnApproveEvent.Name = "btnApproveEvent";
+            this.btnApproveEvent.Size = new System.Drawing.Size(111, 123);
+            this.btnApproveEvent.TabIndex = 4;
+            this.btnApproveEvent.Tag = "btn.approveevent";
+            this.btnApproveEvent.Text = "Aprobar y Organizar";
+            this.btnApproveEvent.UseVisualStyleBackColor = true;
+            this.btnApproveEvent.Visible = false;
+            // 
             // EventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnSalir;
             this.ClientSize = new System.Drawing.Size(800, 537);
+            this.Controls.Add(this.btnApproveEvent);
+            this.Controls.Add(this.btnPresupuestar);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -1106,13 +1151,15 @@
             this.tabAditionalServices.ResumeLayout(false);
             this.tlpASDetails.ResumeLayout(false);
             this.tlpASDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtASQty)).EndInit();
             this.tlpAditionalServicesFilters.ResumeLayout(false);
             this.tlpAditionalServicesFilters.PerformLayout();
             this.panelFilterASName.ResumeLayout(false);
             this.panelFilterASName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearchAS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddedServices)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtASQty)).EndInit();
             this.tabPagos.ResumeLayout(false);
             this.tlpPayments.ResumeLayout(false);
             this.tlpPayments.PerformLayout();
@@ -1141,10 +1188,9 @@
         
         private System.Windows.Forms.Label lblGuess;
         private System.Windows.Forms.Label lblEventType;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtEventDescription;
         private System.Windows.Forms.TextBox txtEventTitle;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtSpecialRequest;
         private System.Windows.Forms.NumericUpDown txtBudgetMax;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.NumericUpDown txtBudgetMin;
@@ -1183,9 +1229,6 @@
         private System.Windows.Forms.Label lblSelectedEventroomDetailValue;
         private System.Windows.Forms.TableLayoutPanel tlpAditionalServicesFilters;
         private System.Windows.Forms.TableLayoutPanel tlpASDetails;
-        private System.Windows.Forms.Label lblDetalle;
-        private System.Windows.Forms.TextBox txtASDetails;
-        private System.Windows.Forms.Label lblASQty;
         private System.Windows.Forms.NumericUpDown txtASQty;
         private System.Windows.Forms.Panel panelFilterASName;
         private System.Windows.Forms.TextBox textBox3;
@@ -1211,5 +1254,12 @@
         private System.Windows.Forms.TextBox txtConciliationKey;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button btnAddNewPayment;
+        private System.Windows.Forms.ComboBox cmbEventType;
+        private System.Windows.Forms.Label lblDetalle;
+        private System.Windows.Forms.TextBox txtASDetails;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label lblASQty;
+        private System.Windows.Forms.Button btnPresupuestar;
+        private System.Windows.Forms.Button btnApproveEvent;
     }
 }

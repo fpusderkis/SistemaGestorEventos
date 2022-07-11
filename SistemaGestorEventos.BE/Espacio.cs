@@ -14,7 +14,7 @@ namespace SistemaGestorEventos.BE
 
         public double Precio { get; set; }
 
-        public Lugar Lugar { get; set; }
+        public EventRoom Lugar { get; set; }
 
     }
 }

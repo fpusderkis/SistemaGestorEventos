@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE
 {
-    public enum EstadoEvento
+    public enum EventStatus
     {
         Iniciado,
         Confirmado,

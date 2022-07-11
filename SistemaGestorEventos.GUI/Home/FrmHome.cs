@@ -32,8 +32,23 @@ namespace SistemaGestorEventos.GUI.Home
 
         private void btnNewEvent_Click(object sender, EventArgs e)
         {
-            var form = new Events.EventForm();
-            form.ShowDialog();
+            
+            if (dgvCustomers.SelectedRows.Count == 1)
+            {
+                String taxPayerId = (string)dgvCustomers.SelectedRows[0].Cells[1].Value;
+                var customer = customerBLL.FindCustomer(taxPayerId, null, null)[0];
+
+                var eventToEdit = new Event();
+                eventToEdit.Customer = customer;
+                var form = new Events.EventForm(eventToEdit);
+                
+
+                form.ShowDialog();
+            } else
+            {
+                MessageBox.Show(MultiIdioma.TranslateOrDefault("home.error.selectcustomer", "Seleccione un cliente"));
+                
+            }
         }
 
         private void btnAttendNew_Click(object sender, EventArgs e)

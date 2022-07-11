@@ -7,17 +7,17 @@ namespace SistemaGestorEventos.BLL
 {
     public class NotificadorBLL
     {
-        public void NotificarNuevaReservaLugar(Evento evento)
+        public void NotificarNuevaReservaLugar(Event evento)
         {
 
         }
 
-        public void NotificarNuevaReservaServicios(Evento evento)
+        public void NotificarNuevaReservaServicios(Event evento)
         {
 
         }
 
-        public void NotificarNuevaReservaParticipantes(Evento evento)
+        public void NotificarNuevaReservaParticipantes(Event evento)
         {
 
         }

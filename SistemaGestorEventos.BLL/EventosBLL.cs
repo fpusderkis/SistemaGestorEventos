@@ -7,29 +7,29 @@ namespace SistemaGestorEventos.BLL
 {
     public class EventosBLL
     {
-        public void CrearEvento(Evento evento)
+        public void CrearEvento(Event evento)
         {
 
         }
 
-        public void AgregarLugar(Evento evento, Espacio espacio)
+        public void AgregarLugar(Event evento, Espacio espacio)
         {
 
         }
 
-        public void AgregarServicio(Evento evento, Servicio servicio)
+        public void AgregarServicio(Event evento, Servicio servicio)
         {
 
         }
 
         
 
-        public void GenerarResumen(Evento evento)
+        public void GenerarResumen(Event evento)
         {
 
         }
 
-        public void ConfirmarCreacionEvento(Evento evento)
+        public void ConfirmarCreacionEvento(Event evento)
         {
 
         }

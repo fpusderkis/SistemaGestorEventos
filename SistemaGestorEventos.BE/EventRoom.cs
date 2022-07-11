@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE
 {
-    public class Lugar
+    public class EventRoom
     {
         public string Nombre { get; set; }
 

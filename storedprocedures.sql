@@ -109,3 +109,73 @@ BEGIN
 	  COMMIT
 END
 GO
+
+USE [sgedb]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_Usuario_Upsert]    Script Date: 10/7/2022 20:32:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_Customer_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int, 
+	@Name varchar(100),
+	@LastName varchar(100),
+	@Mail varchar(500),
+	@Phone varchar(500),
+	@Address varchar(500),
+	@ZipCode varchar(10),
+	@TaxPayerId varchar(50),
+	@GeneratedId int OUTPUT
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF EXISTS ( SELECT * FROM dbo.[Customers] WITH (UPDLOCK) WHERE Id = @Id)
+		BEGIN
+			UPDATE [dbo].[Customers]
+			   SET [Name] = @Name
+				  ,[LastName] = @LastName
+				  ,[Mail] = @Mail
+				  ,[Phone] = @Phone
+				  ,[Address] = @Address
+				  ,[ZipCode] = @ZipCode
+				  ,[TaxPayerId] = @TaxPayerId
+			 WHERE Id = @Id;
+			SET @GeneratedId = @Id;
+		COMMIT
+		END
+		ELSE 
+		BEGIN
+		  	INSERT INTO [dbo].[Customers]
+			   ([Name]
+			   ,[LastName]
+			   ,[Mail]
+			   ,[Phone]
+			   ,[Address]
+			   ,[ZipCode]
+			   ,[TaxPayerId])
+			 VALUES
+				   (@Name
+				   ,@LastName
+				   ,@Mail
+				   ,@Phone
+				   ,@Address
+				   ,@ZipCode
+				   ,@TaxPayerId);
+			COMMIT
+			SET @GeneratedId = @@IDENTITY
+			END
+END
+GO
+
+

@@ -11,7 +11,7 @@ namespace SistemaGestorEventos.GUI
 {
     public partial class FrmCrearEvento : Form
     {
-        private Evento evento = null;
+        private Event evento = null;
         public FrmCrearEvento()
         {
             InitializeComponent();
@@ -25,10 +25,10 @@ namespace SistemaGestorEventos.GUI
 
         private void FrmCrearEvento_Load(object sender, EventArgs e)
         {
-            evento = new Evento();
-            evento.Participantes.Add(new Participante());
+            evento = new Event();
+            
             var binding = new BindingSource();
-            binding.DataSource = evento.Participantes;
+            
             binding.AllowNew = true;
             
             this.gvParticipantes.AutoGenerateColumns = false;

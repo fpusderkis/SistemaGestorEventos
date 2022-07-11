@@ -7,7 +7,7 @@ namespace SistemaGestorEventos.BLL
 {
     public class LugarBLL : AbstractBLL
     {
-        public List<Lugar> BuscarLugaresDisponibles()
+        public List<EventRoom> BuscarLugaresDisponibles()
         {
             return null;
         }

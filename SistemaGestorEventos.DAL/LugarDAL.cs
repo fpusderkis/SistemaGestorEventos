@@ -7,9 +7,9 @@ namespace SistemaGestorEventos.DAL
 {
     public class LugarDAL : AbstractDAL
     {
-        public List<Lugar> BuscarLugares(String nombre, Guid idLocalidad, Guid idCategoria)
+        public List<EventRoom> BuscarLugares(String nombre, Guid idLocalidad, Guid idCategoria)
         {
-            return new List<Lugar>();
+            return new List<EventRoom>();
         }
     }
 }
