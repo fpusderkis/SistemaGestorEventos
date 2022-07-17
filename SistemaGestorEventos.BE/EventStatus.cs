@@ -6,8 +6,9 @@ namespace SistemaGestorEventos.BE
 {
     public enum EventStatus
     {
-        Iniciado,
-        Confirmado,
-        Cancelado
+        INITIALIZED,
+        PRESUPUESTED,
+        CONFIRMED,
+        
     }
 }

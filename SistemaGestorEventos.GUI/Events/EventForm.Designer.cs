@@ -60,11 +60,16 @@
             this.lblSelectedEventroomDetailValue = new System.Windows.Forms.Label();
             this.tlpSearchResultEventrooms = new System.Windows.Forms.TableLayoutPanel();
             this.dgvEventrooms = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventRoomColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvERCCapacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvERCBucket = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvERCPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.gbxEventroomsFilters = new System.Windows.Forms.GroupBox();
             this.btnSearchEventroom = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtFilterEventroomName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblFilterPlaceName = new System.Windows.Forms.Label();
             this.txtFilterEventroomId = new System.Windows.Forms.TextBox();
@@ -337,19 +342,31 @@
             this.lblMinus.Name = "lblMinus";
             this.lblMinus.Size = new System.Drawing.Size(23, 20);
             this.lblMinus.TabIndex = 2;
-            this.lblMinus.Tag = "minus";
+            this.lblMinus.Tag = "";
             this.lblMinus.Text = " - ";
             // 
             // txtBudgetMax
             // 
+            this.txtBudgetMax.DecimalPlaces = 2;
             this.txtBudgetMax.Location = new System.Drawing.Point(159, -3);
+            this.txtBudgetMax.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.txtBudgetMax.Name = "txtBudgetMax";
             this.txtBudgetMax.Size = new System.Drawing.Size(101, 27);
             this.txtBudgetMax.TabIndex = 1;
             // 
             // txtBudgetMin
             // 
+            this.txtBudgetMin.DecimalPlaces = 2;
             this.txtBudgetMin.Location = new System.Drawing.Point(3, 0);
+            this.txtBudgetMin.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.txtBudgetMin.Name = "txtBudgetMin";
             this.txtBudgetMin.Size = new System.Drawing.Size(121, 27);
             this.txtBudgetMin.TabIndex = 0;
@@ -387,18 +404,26 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(5, 1);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(150, 27);
             this.numericUpDown1.TabIndex = 0;
             // 
             // cmbEventType
             // 
+            this.cmbEventType.DisplayMember = "Text";
             this.cmbEventType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbEventType.FormattingEnabled = true;
             this.cmbEventType.Location = new System.Drawing.Point(192, 222);
             this.cmbEventType.Name = "cmbEventType";
             this.cmbEventType.Size = new System.Drawing.Size(587, 28);
             this.cmbEventType.TabIndex = 11;
+            this.cmbEventType.ValueMember = "Value";
+            this.cmbEventType.SelectedIndexChanged += new System.EventHandler(this.cmbEventType_SelectedIndexChanged);
             // 
             // tabLugares
             // 
@@ -502,7 +527,15 @@
             // 
             // dgvEventrooms
             // 
+            this.dgvEventrooms.AllowUserToAddRows = false;
+            this.dgvEventrooms.AllowUserToDeleteRows = false;
             this.dgvEventrooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEventrooms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.EventRoomColumnName,
+            this.dgvERCCapacity,
+            this.dgvERCBucket,
+            this.dgvERCPrice});
             this.dgvEventrooms.Location = new System.Drawing.Point(3, 3);
             this.dgvEventrooms.MultiSelect = false;
             this.dgvEventrooms.Name = "dgvEventrooms";
@@ -513,14 +546,61 @@
             this.dgvEventrooms.Size = new System.Drawing.Size(636, 119);
             this.dgvEventrooms.TabIndex = 1;
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 70;
+            // 
+            // EventRoomColumnName
+            // 
+            this.EventRoomColumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.EventRoomColumnName.DataPropertyName = "Name";
+            this.EventRoomColumnName.HeaderText = "Nombre";
+            this.EventRoomColumnName.MinimumWidth = 6;
+            this.EventRoomColumnName.Name = "EventRoomColumnName";
+            this.EventRoomColumnName.ReadOnly = true;
+            // 
+            // dgvERCCapacity
+            // 
+            this.dgvERCCapacity.DataPropertyName = "Capacity";
+            this.dgvERCCapacity.HeaderText = "Capacidad";
+            this.dgvERCCapacity.MinimumWidth = 6;
+            this.dgvERCCapacity.Name = "dgvERCCapacity";
+            this.dgvERCCapacity.ReadOnly = true;
+            this.dgvERCCapacity.Width = 85;
+            // 
+            // dgvERCBucket
+            // 
+            this.dgvERCBucket.DataPropertyName = "BucketSize";
+            this.dgvERCBucket.HeaderText = "Tiempo (hs)";
+            this.dgvERCBucket.MinimumWidth = 6;
+            this.dgvERCBucket.Name = "dgvERCBucket";
+            this.dgvERCBucket.ReadOnly = true;
+            this.dgvERCBucket.Width = 85;
+            // 
+            // dgvERCPrice
+            // 
+            this.dgvERCPrice.DataPropertyName = "Price";
+            this.dgvERCPrice.HeaderText = "Precio";
+            this.dgvERCPrice.MinimumWidth = 6;
+            this.dgvERCPrice.Name = "dgvERCPrice";
+            this.dgvERCPrice.ReadOnly = true;
+            this.dgvERCPrice.Width = 85;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(645, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(135, 119);
             this.button1.TabIndex = 2;
+            this.button1.Tag = "btn.select";
             this.button1.Text = "Seleccionar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // gbxEventroomsFilters
             // 
@@ -543,13 +623,14 @@
             this.btnSearchEventroom.Tag = "btn.search";
             this.btnSearchEventroom.Text = "Buscar";
             this.btnSearchEventroom.UseVisualStyleBackColor = true;
+            this.btnSearchEventroom.Click += new System.EventHandler(this.btnSearchEventroom_Click);
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.95812F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.04188F));
-            this.tableLayoutPanel3.Controls.Add(this.textBox2, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.txtFilterEventroomName, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.lblFilterPlaceName, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.txtFilterEventroomId, 0, 1);
@@ -561,13 +642,14 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(626, 61);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // textBox2
+            // txtFilterEventroomName
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(159, 33);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(464, 27);
-            this.textBox2.TabIndex = 2;
+            this.txtFilterEventroomName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFilterEventroomName.Location = new System.Drawing.Point(159, 33);
+            this.txtFilterEventroomName.Name = "txtFilterEventroomName";
+            this.txtFilterEventroomName.Size = new System.Drawing.Size(464, 27);
+            this.txtFilterEventroomName.TabIndex = 2;
+            this.txtFilterEventroomName.Tag = "eventroom.name";
             // 
             // label3
             // 
@@ -1077,6 +1159,7 @@
             this.btnGuardar.Tag = "btn.save";
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnSalir
             // 
@@ -1218,7 +1301,7 @@
         private System.Windows.Forms.GroupBox gbxEventroomsFilters;
         private System.Windows.Forms.Button btnSearchEventroom;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtFilterEventroomName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblFilterPlaceName;
         private System.Windows.Forms.TextBox txtFilterEventroomId;
@@ -1261,5 +1344,10 @@
         private System.Windows.Forms.Label lblASQty;
         private System.Windows.Forms.Button btnPresupuestar;
         private System.Windows.Forms.Button btnApproveEvent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EventRoomColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvERCCapacity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvERCBucket;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvERCPrice;
     }
 }

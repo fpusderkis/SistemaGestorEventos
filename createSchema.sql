@@ -384,3 +384,112 @@ BEGIN
  
 	  COMMIT
 END
+
+
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_Usuario_Upsert]    Script Date: 17/7/2022 17:28:28 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_Event_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int OUTPUT, 
+	@Title varchar(100),
+	@Description varchar(1000),
+	@MinBudget numeric(18,2),
+	@MaxBudget numeric(18,2),
+	@Guess int,
+	@EventType varchar(50),
+	@EventRoomId int,
+	@EventRoomDetails varchar(300),
+	@EventRoomPrice numeric(18,2),
+	@CustomerId int,
+    @UserId uniqueidentifier,
+    @SpecialRequest varchar(1000),
+    @Status varchar(50),
+    @DateFrom datetime,
+    @DateTo datetime
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF @Id is not null 
+		BEGIN
+			UPDATE [dbo].[Events]
+			   SET [Title] = @Title
+				  ,[Description] = @Description
+				  ,[MinBudget] = @MinBudget
+				  ,[MaxBudget] = @MaxBudget
+				  ,[Guess] = @Guess
+				  ,[EventType] = @EventType
+				  ,[EventRoomId] = @EventRoomId
+				  ,[EventRoomDetails] = @EventRoomDetails
+				  ,[EventRoomPrice] = @EventRoomPrice
+				  ,[CustomerId] = @CustomerId
+				  ,[LastUpdatedAt] = CURRENT_TIMESTAMP 
+				  ,[LastUpdatedBy] = @UserId
+				  ,[SpecialRequest] = @SpecialRequest
+				  ,[Status] = @Status
+				  ,[DateFrom] = @DateFrom
+				  ,[DateTo] = @DateTo
+			 WHERE Id = @Id;
+			 
+		END
+		ELSE 
+		BEGIN
+			INSERT INTO [dbo].[Events]
+				   ([Title]
+				   ,[Description]
+				   ,[MinBudget]
+				   ,[MaxBudget]
+				   ,[Guess]
+				   ,[EventType]
+				   ,[EventRoomId]
+				   ,[EventRoomDetails]
+				   ,[EventRoomPrice]
+				   ,[CustomerId]
+				   ,[CreatedAt]
+				   ,[LastUpdatedAt]
+				   ,[LastUpdatedBy]
+				   ,[CreatedBy]
+				   ,[SpecialRequest]
+				   ,[Status]
+				   ,[DateFrom]
+				   ,[DateTo])
+			 VALUES
+				   (@Title
+				   ,@Description
+				   ,@MinBudget
+				   ,@MaxBudget
+				   ,@Guess
+				   ,@EventType
+				   ,@EventRoomId
+				   ,@EventRoomDetails
+				   ,@EventRoomPrice
+				   ,@CustomerId
+				   ,SYSDATETIME()
+				   ,NULL -- [LastUpdatedAt]
+				   ,NULL -- [LastUpdatedBy]
+				   ,@UserId
+				   ,@SpecialRequest
+				   ,@Status
+				   ,@DateFrom
+				   ,@DateTo);
+
+		    SELECT @Id = SCOPE_IDENTITY();
+			END
+ 
+ 
+	  COMMIT
+END
+GO
+
+

@@ -67,7 +67,12 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
 
         public static string Traduccion(string key, string idioma)
         {
-            if (instance.idiomasCache[idioma] == null)
+            if (string.IsNullOrWhiteSpace(idioma))
+            {
+                return null;
+            }
+
+            if (!string.IsNullOrWhiteSpace(idioma) && instance.idiomasCache[idioma] == null)
             {
                 instance.LoadIdioma(idioma);
             }
@@ -104,6 +109,7 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
 
         public static void AddTranslate(string key, string value)
         {
+            if (instance.idiomaDefecto != null)
             AddTranslate(instance.idiomaDefecto,key, value);
         }
 

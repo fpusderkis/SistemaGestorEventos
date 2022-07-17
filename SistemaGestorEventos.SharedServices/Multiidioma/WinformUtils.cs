@@ -12,6 +12,12 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
     {
         public static void TraducirControl(Control control)
         {
+            if (control.IsDisposed)
+            {
+                // Nothing to do here
+                return;
+            }
+
             var key = string.Empty;
             var traduccion = string.Empty;
             string text;

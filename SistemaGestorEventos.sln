@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaGestorEventos.GUI", "SistemaGestorEventos.GUI\SistemaGestorEventos.GUI.csproj", "{408075B0-02AA-4381-ABB0-EE92E0882F28}"
 EndProject
@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{E7
 		data.sql = data.sql
 		storedprocedures.sql = storedprocedures.sql
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaGestorEventos.Test", "SistemaGestorEventos.Test\SistemaGestorEventos.Test.csproj", "{A031FB8D-1535-48F1-894B-6932090DCB73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +54,10 @@ Global
 		{A0FE71A1-572E-423A-9355-B03F85AFA7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0FE71A1-572E-423A-9355-B03F85AFA7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0FE71A1-572E-423A-9355-B03F85AFA7F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A031FB8D-1535-48F1-894B-6932090DCB73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A031FB8D-1535-48F1-894B-6932090DCB73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A031FB8D-1535-48F1-894B-6932090DCB73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A031FB8D-1535-48F1-894B-6932090DCB73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

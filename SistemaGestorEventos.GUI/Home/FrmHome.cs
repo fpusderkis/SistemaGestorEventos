@@ -1,6 +1,7 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,9 +26,13 @@ namespace SistemaGestorEventos.GUI.Home
         private void Translate()
         {
             WinformUtils.TraducirControl(this);
-            dgvCustomers.Columns[1].HeaderText = MultiIdioma.TranslateOrDefault("home.custommers.taxPayerId", "CUIL/CUIT");
-            dgvCustomers.Columns[2].HeaderText = MultiIdioma.TranslateOrDefault("home.custommers.name", "Nombre");
-            dgvCustomers.Columns[3].HeaderText = MultiIdioma.TranslateOrDefault("home.custommers.mail", "Mail");
+            if (dgvCustomers.Columns.Count> 3)
+            {
+                dgvCustomers.Columns[1].HeaderText = MultiIdioma.TranslateOrDefault("home.custommers.taxPayerId", "CUIL/CUIT");
+                dgvCustomers.Columns[2].HeaderText = MultiIdioma.TranslateOrDefault("home.custommers.name", "Nombre");
+                dgvCustomers.Columns[3].HeaderText = MultiIdioma.TranslateOrDefault("home.custommers.mail", "Mail");
+            }
+            
         }
 
         private void btnNewEvent_Click(object sender, EventArgs e)
@@ -40,6 +45,7 @@ namespace SistemaGestorEventos.GUI.Home
 
                 var eventToEdit = new Event();
                 eventToEdit.Customer = customer;
+                eventToEdit.CreatedBy = (User) SessionHandler.GetInstance.User;
                 var form = new Events.EventForm(eventToEdit);
                 
 
