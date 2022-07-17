@@ -8,6 +8,7 @@ namespace SistemaGestorEventos.BE
     {
         public Event()
         {
+            this.Status = EventStatus.INITIALIZED;
         }
         public String Title { get; set; }
 
@@ -26,13 +27,16 @@ namespace SistemaGestorEventos.BE
         public DateTime DateTo { get; set; }
 
         public EventRoom EventRoom { get; set; }
+        public string? EventRoomDetails { get; set; }
+        
+        public decimal? EventRoomPrice { get; set; }
 
-        public EventType EventType { get; set; }
+        public EventType? EventType { get; set; }
 
         public List<Servicio> AditionalServices { get; set; }
 
 
-        public int GuessQuantity { get; set; }
+        public Int32? GuessQuantity { get; set; }
 
         public EventStatus Status { get; set; }
 

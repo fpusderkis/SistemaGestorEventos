@@ -4,21 +4,18 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE
 {
-    public class EventRoom
+    public class EventRoom : AbstractIdEntity
     {
-        public string Nombre { get; set; }
+        public string Name { get; set; }
 
-        public string Direccion { get; set; }
-        public List<string> Politicas { get; set; }
+        public string Address { get; set; }
+        public List<string> Policies { get; set; }
 
-        public int CapacidadMaxima { get; set; }
+        public int Capacity { get; set; }
 
-        public double Precio { get; set; }
+        public Decimal Price { get; set; }
 
-        public TipoLugar Tipo { get; set; }
-
-        public Categoria Categoria { get; set; }
-
+        public Decimal BucketSize { get; set; }
 
     }
 }
