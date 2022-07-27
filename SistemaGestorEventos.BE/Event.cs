@@ -27,19 +27,26 @@ namespace SistemaGestorEventos.BE
         public DateTime DateTo { get; set; }
 
         public EventRoom EventRoom { get; set; }
+
+        public List<Policy> EventRoomPolicies { get; set; } = new List<Policy>();
+#nullable enable
         public string? EventRoomDetails { get; set; }
         
         public decimal? EventRoomPrice { get; set; }
 
         public EventType? EventType { get; set; }
 
-        public List<Servicio> AditionalServices { get; set; }
+#nullable disable
+        public List<AditionalService> AditionalServices { get; set; }
 
 
         public Int32? GuessQuantity { get; set; }
 
         public EventStatus Status { get; set; }
 
+        public decimal Price { get; set; }
+
+        public decimal MinReservationPrice { get; set; }
 
 
     }

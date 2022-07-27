@@ -9,7 +9,7 @@ namespace SistemaGestorEventos.BE
         public string Name { get; set; }
 
         public string Address { get; set; }
-        public List<string> Policies { get; set; }
+        public List<Policy> Policies { get; set; }
 
         public int Capacity { get; set; }
 

@@ -1,13 +1,11 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace SistemaGestorEventos.GUI.Home
@@ -16,10 +14,35 @@ namespace SistemaGestorEventos.GUI.Home
     {
 
         private CustomerBLL customerBLL = CustomerBLL.Instance;
+        private EventBLL eventBLL = EventBLL.Instance;
+        private SessionHandler SESSION = SessionHandler.GetInstance;
+        #region "event filter fields"
+        public string Title { get; set; }
+        public string Roomname { get; set; }
+
+        public DateTime DateForm { get; set; } = DateTime.Now.AddMonths(-6).Date;
+        public DateTime DateTo { get; set; } = DateTime.Now.AddMonths(+6).AddDays(1).Date.AddTicks(-1);
+        
+        public EventStatus? EventStatus { get; set; }
+
+        #endregion
         public FrmHome()
         {
             InitializeComponent();
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(Translate);
+
+            this.dgvEvents.AutoGenerateColumns = false;
+            this.dgvcEventFrom.Tag = "eventgrid.date.title";
+            this.dgvcEventTitle.Tag = "eventgrid.title.title";
+            this.dgvcStatus.Tag = "eventgrid.status.title";
+
+            this.txtEventTitle.DataBindings.Add("Text", this, "Title");
+            
+            this.txtEventRoom.DataBindings.Add("Text", this, "Roomname");
+            this.dtpFrom.DataBindings.Add("Value", this, "DateForm");
+            this.dtpTo.DataBindings.Add("Value", this, "DateTo");
+            this.cbxEventStatus.DataBindings.Add("SelectedValue", this, "EventStatus");
+
+            MultiLang.SubscribeChangeLangEvent(Translate);
 
         }
 
@@ -28,11 +51,23 @@ namespace SistemaGestorEventos.GUI.Home
             WinformUtils.TraducirControl(this);
             if (dgvCustomers.Columns.Count> 3)
             {
-                dgvCustomers.Columns[1].HeaderText = MultiIdioma.TranslateOrDefault("home.custommers.taxPayerId", "CUIL/CUIT");
-                dgvCustomers.Columns[2].HeaderText = MultiIdioma.TranslateOrDefault("home.custommers.name", "Nombre");
-                dgvCustomers.Columns[3].HeaderText = MultiIdioma.TranslateOrDefault("home.custommers.mail", "Mail");
+                dgvCustomers.Columns[1].HeaderText = MultiLang.TranslateOrDefault("home.custommers.taxPayerId", "CUIL/CUIT");
+                dgvCustomers.Columns[2].HeaderText = MultiLang.TranslateOrDefault("home.custommers.name", "Nombre");
+                dgvCustomers.Columns[3].HeaderText = MultiLang.TranslateOrDefault("home.custommers.mail", "Mail");
             }
-            
+
+            var selected = this.cbxEventStatus.SelectedValue;
+
+            this.cbxEventStatus.DataSource = Enum.GetValues(typeof(EventStatus)).Cast<EventStatus>()
+              .Select(x =>
+              new { Value = x, Text = MultiLang.TranslateOrDefault("eventstatus." + x.ToString(), x.ToString()) })
+              .ToList();
+
+            if (selected != null)
+            {
+                this.cbxEventStatus.SelectedValue = selected;
+            }
+
         }
 
         private void btnNewEvent_Click(object sender, EventArgs e)
@@ -48,12 +83,10 @@ namespace SistemaGestorEventos.GUI.Home
                 eventToEdit.CreatedBy = (User) SessionHandler.GetInstance.User;
                 var form = new Events.EventForm(eventToEdit);
                 
-
                 form.ShowDialog();
             } else
             {
-                MessageBox.Show(MultiIdioma.TranslateOrDefault("home.error.selectcustomer", "Seleccione un cliente"));
-                
+                MessageBox.Show(MultiLang.TranslateOrDefault("home.error.selectcustomer", "Seleccione un cliente"));
             }
         }
 
@@ -96,6 +129,49 @@ namespace SistemaGestorEventos.GUI.Home
                 var editCustommer = new Custommers.FrmRegisterCustomer();
                 editCustommer.EditCustomer(customer);
                 editCustommer.ShowDialog();
+            }
+        }
+
+        private void btnEventsSearch_Click(object sender, EventArgs e)
+        {
+            var selectedCustomer = (Customer)dgvCustomers.CurrentRow?.DataBoundItem;
+            int? eventId = null;
+
+            if (!string.IsNullOrEmpty(txtEventId.Text))
+            {
+                eventId = int.Parse(txtEventId.Text);
+            }
+            
+
+            var events = this.eventBLL.FindEvents(
+                eventId: eventId,
+                customerId: selectedCustomer?.Id,
+                title: Title,
+                from: DateForm,
+                to: DateTo,
+                status: EventStatus
+                );
+
+            this.dgvEvents.DataSource = events;
+        }
+
+        private void txtEventId_TextChanged(object sender, EventArgs e)
+        {
+            txtEventId.Text = Regex.Replace(txtEventId.Text, "[^0-9]", "");
+        }
+
+        private void btnOpenEvent_Click(object sender, EventArgs e)
+        {
+            var selectedEvent = (Event)this.dgvEvents.CurrentRow?.DataBoundItem;
+
+            if (selectedEvent != null)
+            {
+                Event editable = this.eventBLL.LoadFullEvent((int)selectedEvent.Id);
+                editable.ModifiedBy = (User) SESSION.User;
+
+                var eventForm = new Events.EventForm(editable);
+                eventForm.ShowDialog();
+
             }
         }
     }

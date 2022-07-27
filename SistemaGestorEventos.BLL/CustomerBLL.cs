@@ -2,7 +2,7 @@
 using SistemaGestorEventos.DAL;
 using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.Cyphers;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,7 +30,7 @@ namespace SistemaGestorEventos.BLL
             var savedCustomer = customerDAL.FindByTaxPayerId(encripted.TaxPayerId);
             if (savedCustomer != null && savedCustomer.Id != customer.Id)
             {
-                errors.Add(MultiIdioma.TranslateOrDefault("errors.customer.taxPayerId.exists", "Ya existe un cliente registrado con ese mismo CUIT/CUILT"));
+                errors.Add(MultiLang.TranslateOrDefault("errors.customer.taxPayerId.exists", "Ya existe un cliente registrado con ese mismo CUIT/CUILT"));
                 return errors;
             }
             
@@ -39,7 +39,7 @@ namespace SistemaGestorEventos.BLL
 
             if (savedCustomer != null && savedCustomer.Id != customer.Id)
             {
-                errors.Add(MultiIdioma.TranslateOrDefault("errors.customer.taxPayerId.exists", "Ya existe un cliente registrado con ese mismo CUIT/CUILT"));
+                errors.Add(MultiLang.TranslateOrDefault("errors.customer.taxPayerId.exists", "Ya existe un cliente registrado con ese mismo CUIT/CUILT"));
                 return errors;
             }
 
@@ -135,12 +135,12 @@ namespace SistemaGestorEventos.BLL
         private List<string> ValidateCustomer(Customer customer)
         {
             List<string> errors = new List<string>();
-            if (String.IsNullOrWhiteSpace(customer.Name)) errors.Add(MultiIdioma.TranslateOrDefault("errors.customer.name.required", "Ingrese el nombre del cliente"));
-            if (String.IsNullOrWhiteSpace(customer.LastName)) errors.Add(MultiIdioma.TranslateOrDefault("errors.customer.lastname.required", "Ingrese el Apellido del cliente"));
-            if (String.IsNullOrWhiteSpace(customer.TaxPayerId)) errors.Add(MultiIdioma.TranslateOrDefault("errors.customer.taxpayerid.required", "Ingrese el CUIT/CUIL del cliente"));
-            if (String.IsNullOrWhiteSpace(customer.Mail)) errors.Add(MultiIdioma.TranslateOrDefault("errors.customer.mail.required", "Ingrese el Mail del cliente"));
-            if (String.IsNullOrWhiteSpace(customer.Phone)) errors.Add(MultiIdioma.TranslateOrDefault("errors.customer.phone.required", "Ingrese el Teléfono del cliente"));
-            if (String.IsNullOrWhiteSpace(customer.Address)) errors.Add(MultiIdioma.TranslateOrDefault("errors.customer.address.required", "Ingrese el domicilio del cliente"));
+            if (String.IsNullOrWhiteSpace(customer.Name)) errors.Add(MultiLang.TranslateOrDefault("errors.customer.name.required", "Ingrese el nombre del cliente"));
+            if (String.IsNullOrWhiteSpace(customer.LastName)) errors.Add(MultiLang.TranslateOrDefault("errors.customer.lastname.required", "Ingrese el Apellido del cliente"));
+            if (String.IsNullOrWhiteSpace(customer.TaxPayerId)) errors.Add(MultiLang.TranslateOrDefault("errors.customer.taxpayerid.required", "Ingrese el CUIT/CUIL del cliente"));
+            if (String.IsNullOrWhiteSpace(customer.Mail)) errors.Add(MultiLang.TranslateOrDefault("errors.customer.mail.required", "Ingrese el Mail del cliente"));
+            if (String.IsNullOrWhiteSpace(customer.Phone)) errors.Add(MultiLang.TranslateOrDefault("errors.customer.phone.required", "Ingrese el Teléfono del cliente"));
+            if (String.IsNullOrWhiteSpace(customer.Address)) errors.Add(MultiLang.TranslateOrDefault("errors.customer.address.required", "Ingrese el domicilio del cliente"));
 
             return errors;
         }

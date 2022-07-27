@@ -1,5 +1,5 @@
 ﻿using SistemaGestorEventos.BE;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SistemaGestorEventos.DAL
 {
-    public class MultiIdiomaDAL : AbstractDAL, IMultiIdiomaDataSource
+    public class MultiIdiomaDAL : AbstractDAL, IMultiLangDataSource
     {
         private static readonly MultiIdiomaDAL multiIdiomaDAL = new MultiIdiomaDAL();
 
@@ -23,7 +23,7 @@ namespace SistemaGestorEventos.DAL
             });
         }
 
-        public void UpsertTraduccion(string idioma, string key, string value)
+        public void UpsertTranslate(string idioma, string key, string value)
         {
             this.InvokeProcedure("sp_Traducciones_Upsert", new Dictionary<string, object>() {
                 { "@idioma", idioma},
@@ -32,7 +32,7 @@ namespace SistemaGestorEventos.DAL
             });
         }
 
-        public Dictionary<string, string> CargarIdioma(string idioma)
+        public Dictionary<string, string> LoadLang(string idioma)
         {
             using (var connection = this.GetSqlConnection())
             {

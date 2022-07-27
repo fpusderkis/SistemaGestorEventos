@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabEventDetails = new System.Windows.Forms.TabControl();
             this.tabCharacteristics = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -77,19 +78,22 @@
             this.tlpASDetails = new System.Windows.Forms.TableLayoutPanel();
             this.lblDetalle = new System.Windows.Forms.Label();
             this.txtASDetails = new System.Windows.Forms.TextBox();
-            this.tlpAditionalServicesFilters = new System.Windows.Forms.TableLayoutPanel();
-            this.panelFilterASName = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.lblFilterASName = new System.Windows.Forms.Label();
-            this.btnSearchAS = new System.Windows.Forms.Button();
-            this.dgvSearchAS = new System.Windows.Forms.DataGridView();
-            this.dgvAddedServices = new System.Windows.Forms.DataGridView();
-            this.btnASRemove = new System.Windows.Forms.Button();
-            this.lblASAdded = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.txtASQty = new System.Windows.Forms.NumericUpDown();
             this.lblASQty = new System.Windows.Forms.Label();
             this.btnAddAS = new System.Windows.Forms.Button();
+            this.tlpAditionalServicesFilters = new System.Windows.Forms.TableLayoutPanel();
+            this.panelFilterASName = new System.Windows.Forms.Panel();
+            this.txtFilterASName = new System.Windows.Forms.TextBox();
+            this.lblFilterASName = new System.Windows.Forms.Label();
+            this.btnSearchAS = new System.Windows.Forms.Button();
+            this.dgvSearchAS = new System.Windows.Forms.DataGridView();
+            this.dgvASFilterCId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvASFilterCName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvASFilterCPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvAddedServices = new System.Windows.Forms.DataGridView();
+            this.btnASRemove = new System.Windows.Forms.Button();
+            this.lblASAdded = new System.Windows.Forms.Label();
             this.tabPagos = new System.Windows.Forms.TabPage();
             this.tlpPayments = new System.Windows.Forms.TableLayoutPanel();
             this.lblPayments = new System.Windows.Forms.Label();
@@ -135,12 +139,12 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tabAditionalServices.SuspendLayout();
             this.tlpASDetails.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtASQty)).BeginInit();
             this.tlpAditionalServicesFilters.SuspendLayout();
             this.panelFilterASName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearchAS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddedServices)).BeginInit();
-            this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtASQty)).BeginInit();
             this.tabPagos.SuspendLayout();
             this.tlpPayments.SuspendLayout();
             this.tlpListOfPayments.SuspendLayout();
@@ -699,6 +703,7 @@
             this.tlpASDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
             this.tlpASDetails.Controls.Add(this.lblDetalle, 0, 0);
             this.tlpASDetails.Controls.Add(this.txtASDetails, 1, 0);
+            this.tlpASDetails.Controls.Add(this.tableLayoutPanel4, 3, 0);
             this.tlpASDetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpASDetails.Location = new System.Drawing.Point(3, 264);
             this.tlpASDetails.Name = "tlpASDetails";
@@ -726,6 +731,58 @@
             this.txtASDetails.Size = new System.Drawing.Size(413, 100);
             this.txtASDetails.TabIndex = 1;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.Controls.Add(this.txtASQty, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lblASQty, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnAddAS, 0, 2);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(569, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(214, 100);
+            this.tableLayoutPanel4.TabIndex = 7;
+            // 
+            // txtASQty
+            // 
+            this.txtASQty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtASQty.Location = new System.Drawing.Point(3, 33);
+            this.txtASQty.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.txtASQty.Name = "txtASQty";
+            this.txtASQty.Size = new System.Drawing.Size(208, 27);
+            this.txtASQty.TabIndex = 3;
+            // 
+            // lblASQty
+            // 
+            this.lblASQty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblASQty.AutoSize = true;
+            this.lblASQty.Location = new System.Drawing.Point(3, 10);
+            this.lblASQty.Name = "lblASQty";
+            this.lblASQty.Size = new System.Drawing.Size(69, 20);
+            this.lblASQty.TabIndex = 4;
+            this.lblASQty.Tag = "quantity.title";
+            this.lblASQty.Text = "Cantidad";
+            // 
+            // btnAddAS
+            // 
+            this.btnAddAS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddAS.Location = new System.Drawing.Point(3, 68);
+            this.btnAddAS.Name = "btnAddAS";
+            this.btnAddAS.Size = new System.Drawing.Size(208, 29);
+            this.btnAddAS.TabIndex = 3;
+            this.btnAddAS.Tag = "btn.add";
+            this.btnAddAS.Text = "Agregar";
+            this.btnAddAS.UseVisualStyleBackColor = true;
+            // 
             // tlpAditionalServicesFilters
             // 
             this.tlpAditionalServicesFilters.ColumnCount = 2;
@@ -737,7 +794,6 @@
             this.tlpAditionalServicesFilters.Controls.Add(this.dgvAddedServices, 0, 4);
             this.tlpAditionalServicesFilters.Controls.Add(this.btnASRemove, 1, 4);
             this.tlpAditionalServicesFilters.Controls.Add(this.lblASAdded, 0, 3);
-            this.tlpAditionalServicesFilters.Controls.Add(this.tableLayoutPanel4, 1, 1);
             this.tlpAditionalServicesFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpAditionalServicesFilters.Location = new System.Drawing.Point(3, 3);
             this.tlpAditionalServicesFilters.Name = "tlpAditionalServicesFilters";
@@ -752,7 +808,7 @@
             // 
             // panelFilterASName
             // 
-            this.panelFilterASName.Controls.Add(this.textBox3);
+            this.panelFilterASName.Controls.Add(this.txtFilterASName);
             this.panelFilterASName.Controls.Add(this.lblFilterASName);
             this.panelFilterASName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFilterASName.Location = new System.Drawing.Point(3, 3);
@@ -760,13 +816,13 @@
             this.panelFilterASName.Size = new System.Drawing.Size(624, 24);
             this.panelFilterASName.TabIndex = 0;
             // 
-            // textBox3
+            // txtFilterASName
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.textBox3.Location = new System.Drawing.Point(99, 0);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(525, 27);
-            this.textBox3.TabIndex = 1;
+            this.txtFilterASName.Dock = System.Windows.Forms.DockStyle.Right;
+            this.txtFilterASName.Location = new System.Drawing.Point(99, 0);
+            this.txtFilterASName.Name = "txtFilterASName";
+            this.txtFilterASName.Size = new System.Drawing.Size(525, 27);
+            this.txtFilterASName.TabIndex = 1;
             // 
             // lblFilterASName
             // 
@@ -787,17 +843,58 @@
             this.btnSearchAS.Tag = "btn.search";
             this.btnSearchAS.Text = "Buscar";
             this.btnSearchAS.UseVisualStyleBackColor = true;
+            this.btnSearchAS.Click += new System.EventHandler(this.btnSearchAS_Click);
             // 
             // dgvSearchAS
             // 
+            this.dgvSearchAS.AllowUserToAddRows = false;
+            this.dgvSearchAS.AllowUserToDeleteRows = false;
             this.dgvSearchAS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSearchAS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvASFilterCId,
+            this.dgvASFilterCName,
+            this.dgvASFilterCPrice});
             this.dgvSearchAS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSearchAS.Location = new System.Drawing.Point(3, 33);
+            this.dgvSearchAS.MultiSelect = false;
             this.dgvSearchAS.Name = "dgvSearchAS";
+            this.dgvSearchAS.ReadOnly = true;
             this.dgvSearchAS.RowHeadersWidth = 51;
             this.dgvSearchAS.RowTemplate.Height = 29;
+            this.dgvSearchAS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSearchAS.Size = new System.Drawing.Size(624, 119);
             this.dgvSearchAS.TabIndex = 2;
+            // 
+            // dgvASFilterCId
+            // 
+            this.dgvASFilterCId.DataPropertyName = "Id";
+            this.dgvASFilterCId.HeaderText = "Id";
+            this.dgvASFilterCId.MinimumWidth = 6;
+            this.dgvASFilterCId.Name = "dgvASFilterCId";
+            this.dgvASFilterCId.ReadOnly = true;
+            this.dgvASFilterCId.Width = 80;
+            // 
+            // dgvASFilterCName
+            // 
+            this.dgvASFilterCName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvASFilterCName.DataPropertyName = "Name";
+            this.dgvASFilterCName.HeaderText = "Nombre";
+            this.dgvASFilterCName.MinimumWidth = 6;
+            this.dgvASFilterCName.Name = "dgvASFilterCName";
+            this.dgvASFilterCName.ReadOnly = true;
+            // 
+            // dgvASFilterCPrice
+            // 
+            this.dgvASFilterCPrice.DataPropertyName = "Price";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dgvASFilterCPrice.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvASFilterCPrice.HeaderText = "Precio";
+            this.dgvASFilterCPrice.MinimumWidth = 6;
+            this.dgvASFilterCPrice.Name = "dgvASFilterCPrice";
+            this.dgvASFilterCPrice.ReadOnly = true;
+            this.dgvASFilterCPrice.Width = 125;
             // 
             // dgvAddedServices
             // 
@@ -830,58 +927,6 @@
             this.lblASAdded.TabIndex = 6;
             this.lblASAdded.Tag = "as.addedservices";
             this.lblASAdded.Text = "Servicios contratados";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.Controls.Add(this.txtASQty, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.lblASQty, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnAddAS, 0, 2);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(633, 33);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(150, 119);
-            this.tableLayoutPanel4.TabIndex = 7;
-            // 
-            // txtASQty
-            // 
-            this.txtASQty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtASQty.Location = new System.Drawing.Point(3, 33);
-            this.txtASQty.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.txtASQty.Name = "txtASQty";
-            this.txtASQty.Size = new System.Drawing.Size(150, 27);
-            this.txtASQty.TabIndex = 3;
-            // 
-            // lblASQty
-            // 
-            this.lblASQty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblASQty.AutoSize = true;
-            this.lblASQty.Location = new System.Drawing.Point(3, 10);
-            this.lblASQty.Name = "lblASQty";
-            this.lblASQty.Size = new System.Drawing.Size(69, 20);
-            this.lblASQty.TabIndex = 4;
-            this.lblASQty.Tag = "quantity.title";
-            this.lblASQty.Text = "Cantidad";
-            // 
-            // btnAddAS
-            // 
-            this.btnAddAS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddAS.Location = new System.Drawing.Point(3, 87);
-            this.btnAddAS.Name = "btnAddAS";
-            this.btnAddAS.Size = new System.Drawing.Size(150, 29);
-            this.btnAddAS.TabIndex = 3;
-            this.btnAddAS.Tag = "btn.add";
-            this.btnAddAS.Text = "Agregar";
-            this.btnAddAS.UseVisualStyleBackColor = true;
             // 
             // tabPagos
             // 
@@ -1207,7 +1252,8 @@
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tabEventDetails);
             this.Name = "EventForm";
-            this.Text = "EventForm";
+            this.Tag = "eventform.title";
+            this.Text = "Evento";
             this.Load += new System.EventHandler(this.EventForm_Load);
             this.tabEventDetails.ResumeLayout(false);
             this.tabCharacteristics.ResumeLayout(false);
@@ -1234,15 +1280,15 @@
             this.tabAditionalServices.ResumeLayout(false);
             this.tlpASDetails.ResumeLayout(false);
             this.tlpASDetails.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtASQty)).EndInit();
             this.tlpAditionalServicesFilters.ResumeLayout(false);
             this.tlpAditionalServicesFilters.PerformLayout();
             this.panelFilterASName.ResumeLayout(false);
             this.panelFilterASName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearchAS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddedServices)).EndInit();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtASQty)).EndInit();
             this.tabPagos.ResumeLayout(false);
             this.tlpPayments.ResumeLayout(false);
             this.tlpPayments.PerformLayout();
@@ -1314,7 +1360,7 @@
         private System.Windows.Forms.TableLayoutPanel tlpASDetails;
         private System.Windows.Forms.NumericUpDown txtASQty;
         private System.Windows.Forms.Panel panelFilterASName;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtFilterASName;
         private System.Windows.Forms.Label lblFilterASName;
         private System.Windows.Forms.Button btnSearchAS;
         private System.Windows.Forms.DataGridView dgvSearchAS;
@@ -1349,5 +1395,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvERCCapacity;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvERCBucket;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvERCPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCPrice;
     }
 }

@@ -7,7 +7,7 @@ namespace SistemaGestorEventos.BE
     public enum EventStatus
     {
         INITIALIZED,
-        PRESUPUESTED,
+        BUDGET,
         CONFIRMED,
         
     }

@@ -1,6 +1,6 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +18,8 @@ namespace SistemaGestorEventos.GUI.Events
         private Event editable;
 
         private EventRoomBLL eventRoomsBLL = EventRoomBLL.Instance;
-        private EventsBLL eventsBLL = EventsBLL.Instance;
+        private AditionalServicesBLL aditionalServicesBLL = AditionalServicesBLL.Instance;
+        private EventBLL eventsBLL = EventBLL.Instance;
 
         public EventForm(Event editable)
         {
@@ -26,7 +27,7 @@ namespace SistemaGestorEventos.GUI.Events
             InitializeComponent();
             Translate();
             
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(Translate);
+            MultiLang.SubscribeChangeLangEvent(Translate);
            
 
             if (this.editable.Id == null)
@@ -44,8 +45,10 @@ namespace SistemaGestorEventos.GUI.Events
             dtpToDate.DataBindings.Add("Value", this.editable, "DateTo");
             cmbEventType.DataBindings.Add("SelectedValue", this.editable, "EventType");
             txtSpecialRequest.DataBindings.Add("Text", this.editable, "SpecialRequest");
-            
-            
+
+            dgvSearchAS.AutoGenerateColumns = false;
+           
+            CalculateEventRoomLegend(this.editable);
 
         }
         private EventForm() : this(new Event())
@@ -59,7 +62,7 @@ namespace SistemaGestorEventos.GUI.Events
 
             this.cmbEventType.DataSource = Enum.GetValues(typeof(EventType)).Cast<EventType>()
               .Select(x => 
-              new { Value = x, Text = MultiIdioma.TranslateOrDefault("eventtype." + x.ToString(), x.ToString()) })
+              new { Value = x, Text = MultiLang.TranslateOrDefault("eventtype." + x.ToString(), x.ToString()) })
               .ToList();
 
             if (selected != null)
@@ -67,11 +70,16 @@ namespace SistemaGestorEventos.GUI.Events
                 this.cmbEventType.SelectedValue = selected;
             }
 
+            this.dgvASFilterCId.HeaderText = MultiLang.TranslateOrDefault("filter.aditionalservice.column.id", "Id");
+            this.dgvASFilterCName.HeaderText = MultiLang.TranslateOrDefault("filter.aditionalservice.column.name", "Nombre");
+            this.dgvASFilterCPrice.HeaderText = MultiLang.TranslateOrDefault("filter.aditionalservice.column.price", "Precio");
+
         }
 
         private void EventForm_Load(object sender, EventArgs e)
         {
             lblSelectedEventroomDetailValue.Text = "";
+            CalculateEventRoomLegend(this.editable);
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -113,10 +121,10 @@ namespace SistemaGestorEventos.GUI.Events
 
             if (errors.Count > 0)
             {
-                WinformUtils.ShowErrorList(MultiIdioma.TranslateOrDefault("event.errortitle", "Deberá corregir los siguientes puntos"), errors);
+                WinformUtils.ShowErrorList(MultiLang.TranslateOrDefault("event.errortitle", "Deberá corregir los siguientes puntos"), errors);
             } else
             {
-                MessageBox.Show(MultiIdioma.TranslateOrDefault("event.savedok", "Evento guardado con éxito"));
+                MessageBox.Show(MultiLang.TranslateOrDefault("event.savedok", "Evento guardado con éxito"));
             }
 
         }
@@ -136,10 +144,24 @@ namespace SistemaGestorEventos.GUI.Events
                 {
                     this.editable.EventRoom = valor;
                     this.editable.EventRoomPrice = valor.Price; // calcular precio
-                    this.lblSelectedEventroomDetailValue.Text = $"{valor.Id} - {valor.Name} - $ {valor.Price} / {valor.BucketSize} Hs.";
+                    CalculateEventRoomLegend(this.editable);
                 }
             }
 
+        }
+
+        private void CalculateEventRoomLegend(Event evt)
+        {
+            if (evt.EventRoom != null)
+            {
+                this.lblSelectedEventroomDetailValue.Text = $"{evt.EventRoom.Id} - {evt.EventRoom.Name} - $ {evt.EventRoomPrice} / {evt.EventRoom.BucketSize} Hs.";
+            }
+        }
+
+        private void btnSearchAS_Click(object sender, EventArgs e)
+        {
+            var services = aditionalServicesBLL.FindServicesByName(this.txtFilterASName.Text.Trim());
+            this.dgvSearchAS.DataSource = services;
         }
     }
 }

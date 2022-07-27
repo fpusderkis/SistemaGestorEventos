@@ -1,7 +1,7 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.exceptions;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +20,7 @@ namespace SistemaGestorEventos.GUI.usuario
         public FrmRegistrar()
         {
             InitializeComponent();
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);
+            MultiLang.SubscribeChangeLangEvent(TraducirTextos);
         }
 
         private void TraducirTextos()
@@ -44,7 +44,7 @@ namespace SistemaGestorEventos.GUI.usuario
             try
             {
                 userBLL.Register(usuario);
-                MessageBox.Show(MultiIdioma.TranslateOrDefault("register.success", "Usuario dado de alta correctamente."));
+                MessageBox.Show(MultiLang.TranslateOrDefault("register.success", "Usuario dado de alta correctamente."));
                 this.Close();
             } catch (ValidationException ve)
             {

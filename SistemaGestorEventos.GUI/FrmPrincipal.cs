@@ -3,7 +3,7 @@ using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.GUI.Idioma;
 using SistemaGestorEventos.GUI.Permisos;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Windows.Forms;
@@ -39,7 +39,7 @@ namespace SistemaGestorEventos.GUI
                 ShowFormAlone(new FrmLogin());
             }
 
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);
+            MultiLang.SubscribeChangeLangEvent(TraducirTextos);
         }
 
         private void PrepareForm(Form form)

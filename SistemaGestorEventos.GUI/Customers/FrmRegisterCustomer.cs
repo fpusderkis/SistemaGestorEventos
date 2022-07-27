@@ -1,6 +1,6 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +21,7 @@ namespace SistemaGestorEventos.GUI.Custommers
         {
             InitializeComponent();
             Translate();
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(Translate);
+            MultiLang.SubscribeChangeLangEvent(Translate);
 
         }
 
@@ -41,17 +41,17 @@ namespace SistemaGestorEventos.GUI.Custommers
             if (errors.Count > 0)
             {
                 WinformUtils.ShowErrorList(
-                    MultiIdioma.TranslateOrDefault("errors.customer.errortitle", "No fue posible guardar el cliente")
+                    MultiLang.TranslateOrDefault("errors.customer.errortitle", "No fue posible guardar el cliente")
                     , errors);
             } else {
-                MessageBox.Show(MultiIdioma.TranslateOrDefault("customer.savedsuccess", "Cliente guardado correctamente"));
+                MessageBox.Show(MultiLang.TranslateOrDefault("customer.savedsuccess", "Cliente guardado correctamente"));
                 this.Close();
             }
         }
 
         private void FrmRegisterCustomer_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MultiIdioma.UnsuscribeCambioDeIdiomaEvent(Translate);
+            MultiLang.UnscribeChangeLangEvent(Translate);
         }
 
         private void FrmRegisterCustomer_Load(object sender, EventArgs e)

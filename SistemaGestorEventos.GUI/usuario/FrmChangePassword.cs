@@ -1,6 +1,6 @@
 ﻿using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.exceptions;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +19,7 @@ namespace SistemaGestorEventos.GUI.usuario
         {
             InitializeComponent();
             TraducirTextos();
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);
+            MultiLang.SubscribeChangeLangEvent(TraducirTextos);
 
         }
 
@@ -32,19 +32,19 @@ namespace SistemaGestorEventos.GUI.usuario
         {
             if (string.IsNullOrWhiteSpace(txtNewPass.Text) || string.IsNullOrWhiteSpace(txtNewPassRepeat.Text))
             {
-                MessageBox.Show(MultiIdioma.TranslateOrDefault("password.change.error.newpassmandatory", "Escriba la nueva contraseña"));
+                MessageBox.Show(MultiLang.TranslateOrDefault("password.change.error.newpassmandatory", "Escriba la nueva contraseña"));
                 return;
             }
 
             if (!txtNewPass.Text.Equals(txtNewPassRepeat.Text))
             {
-                MessageBox.Show(MultiIdioma.TranslateOrDefault("password.change.error.newpassnotsame", "Las nuevas contraseñas no coinciden."));
+                MessageBox.Show(MultiLang.TranslateOrDefault("password.change.error.newpassnotsame", "Las nuevas contraseñas no coinciden."));
                 return;
             }
             try
             {
                 userBLL.ResetUserPassword(txtUsername.Text, txtPassword.Text, txtNewPass.Text);
-                MessageBox.Show(MultiIdioma.TranslateOrDefault("password.change.ok", "Clave cambiada correctamente"));
+                MessageBox.Show(MultiLang.TranslateOrDefault("password.change.ok", "Clave cambiada correctamente"));
                 this.Close();
             } catch (ValidationException ve)
             {

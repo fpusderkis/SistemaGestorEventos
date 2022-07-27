@@ -1,7 +1,7 @@
 ﻿using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.BLL.Exceptions;
 using SistemaGestorEventos.GUI.usuario;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Windows.Forms;
 
@@ -32,12 +32,12 @@ namespace SistemaGestorEventos.GUI
             catch (PasswordExpiredException ex)
             {
                 var changeForm = new FrmChangePassword();
-                changeForm.Text = MultiIdioma.TranslateOrDefault(ex.MessageKey, ex.MessageText);
+                changeForm.Text = MultiLang.TranslateOrDefault(ex.MessageKey, ex.MessageText);
                 changeForm.ShowDialog();
             }
             catch (BLL.Exceptions.BusinessException ex)
             {
-                this.lblError.Text = MultiIdioma.TranslateOrDefault(ex.MessageKey,ex.MessageText);
+                this.lblError.Text = MultiLang.TranslateOrDefault(ex.MessageKey,ex.MessageText);
                 this.lblError.Visible = true;
             }
            

@@ -2,7 +2,7 @@ using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.bitacora.writers;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
@@ -41,7 +41,7 @@ namespace SistemaGestorEventos.GUI
                 
             });
 
-            MultiIdioma.Initialize(MultiIdiomaBLL.Instance, "es-AR");
+            MultiLang.Initialize(MultiIdiomaBLL.Instance, "es-AR");
 
             // Add the event handler for handling UI thread exceptions to the event.
             Application.ThreadException += new
@@ -49,7 +49,7 @@ namespace SistemaGestorEventos.GUI
               Console.WriteLine("ERROR NO CONTROLADO: " + e.Exception.Message);
               Console.WriteLine(e.Exception.StackTrace);
               BitacoraSingleton.GetInstance.Log($"ERROR NO CONTROLADO: {e.Exception.Message}");
-              MessageBox.Show(MultiIdioma.TranslateOrDefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
+              MessageBox.Show(MultiLang.TranslateOrDefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
           });
 
             // Set the unhandled exception mode to force all Windows Forms errors
@@ -61,7 +61,7 @@ namespace SistemaGestorEventos.GUI
                 Console.WriteLine("ERROR NO CONTROLADO: " + ((Exception)e.ExceptionObject).Message);
                 Console.WriteLine(((Exception)e.ExceptionObject).StackTrace);
                 BitacoraSingleton.GetInstance.Log($"ERROR NO CONTROLADO: {((Exception)e.ExceptionObject).Message}");
-                MessageBox.Show(MultiIdioma.TranslateOrDefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
+                MessageBox.Show(MultiLang.TranslateOrDefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
             };
 
             Application.Run(new FrmPrincipal());

@@ -1,6 +1,6 @@
 ﻿using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace SistemaGestorEventos.GUI.Idioma
         public FrmCambiarIdioma()
         {
             InitializeComponent();
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(this.TraducirForm);
+            MultiLang.SubscribeChangeLangEvent(this.TraducirForm);
         }
 
         private void TraducirForm()
@@ -49,7 +49,7 @@ namespace SistemaGestorEventos.GUI.Idioma
         {
             if (cbxIdiomas.SelectedItem != null)
             {
-                MultiIdioma.CambiarIdioma(((SistemaGestorEventos.BE.Idioma)cbxIdiomas.SelectedItem).Id);
+                MultiLang.ChangeLang(((SistemaGestorEventos.BE.Idioma)cbxIdiomas.SelectedItem).Id);
                 Close();
             }
         }
