@@ -70,5 +70,34 @@ namespace SistemaGestorEventos.BLL
 
             return eventDAL.LoadFullEvent(evt);
         }
+
+        public decimal CalculateCost(Event evt)
+        {
+            decimal cost = 0;
+
+            cost += evt.EventRoom.Price;
+            evt.AditionalServices.ForEach(aditionalService =>
+            {
+                cost += aditionalService.Price * aditionalService.Quantity ;
+            });
+
+
+            return cost;
+        }
+
+
+        public decimal CalculateMinPendingAmount(Event evt)
+        {
+            
+            return CalculateCost(evt) / 2; // 50%
+            
+        }
+
+        public decimal CalculatePaidAmount(Event evt)
+        {
+            decimal paidAmount = 0;
+            evt.Payments.ForEach(p => paidAmount += p.Amount);
+            return paidAmount;
+        }
     }
 }

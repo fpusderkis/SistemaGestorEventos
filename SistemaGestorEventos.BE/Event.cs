@@ -27,9 +27,8 @@ namespace SistemaGestorEventos.BE
         public DateTime DateTo { get; set; }
 
         public EventRoom EventRoom { get; set; }
-
-        public List<Policy> EventRoomPolicies { get; set; } = new List<Policy>();
-#nullable enable
+        
+        #nullable enable
         public string? EventRoomDetails { get; set; }
         
         public decimal? EventRoomPrice { get; set; }
@@ -37,7 +36,7 @@ namespace SistemaGestorEventos.BE
         public EventType? EventType { get; set; }
 
 #nullable disable
-        public List<AditionalService> AditionalServices { get; set; }
+        public List<AditionalService> AditionalServices { get; set; } = new List<AditionalService>();
 
 
         public Int32? GuessQuantity { get; set; }
@@ -47,6 +46,8 @@ namespace SistemaGestorEventos.BE
         public decimal Price { get; set; }
 
         public decimal MinReservationPrice { get; set; }
+
+        public List<Payment> Payments { get; set; } = new List<Payment>();
 
 
     }

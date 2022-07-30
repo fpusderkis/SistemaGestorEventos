@@ -28,6 +28,8 @@ namespace SistemaGestorEventos.BE
         public string Description { get; set; }
 
         public decimal Price { get; set; }
+
+        public AditionalServiceStatus Status { get; set; } = AditionalServiceStatus.PENDING;
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 

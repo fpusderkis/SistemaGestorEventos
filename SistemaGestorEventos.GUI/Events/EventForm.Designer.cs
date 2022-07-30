@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabEventDetails = new System.Windows.Forms.TabControl();
             this.tabCharacteristics = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -81,17 +84,22 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.txtASQty = new System.Windows.Forms.NumericUpDown();
             this.lblASQty = new System.Windows.Forms.Label();
-            this.btnAddAS = new System.Windows.Forms.Button();
             this.tlpAditionalServicesFilters = new System.Windows.Forms.TableLayoutPanel();
             this.panelFilterASName = new System.Windows.Forms.Panel();
             this.txtFilterASName = new System.Windows.Forms.TextBox();
             this.lblFilterASName = new System.Windows.Forms.Label();
             this.btnSearchAS = new System.Windows.Forms.Button();
+            this.btnAddAS = new System.Windows.Forms.Button();
             this.dgvSearchAS = new System.Windows.Forms.DataGridView();
             this.dgvASFilterCId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvASFilterCName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvASFilterCPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvAddedServices = new System.Windows.Forms.DataGridView();
+            this.dgvASCId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvASCName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvASCQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvASCPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvASCTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnASRemove = new System.Windows.Forms.Button();
             this.lblASAdded = new System.Windows.Forms.Label();
             this.tabPagos = new System.Windows.Forms.TabPage();
@@ -99,18 +107,24 @@
             this.lblPayments = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tlpListOfPayments = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvRegisterdPayments = new System.Windows.Forms.DataGridView();
+            this.dgvPayments = new System.Windows.Forms.DataGridView();
+            this.dgvPaymentsCId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvPaymentsCType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvPaymentsCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvPaymentsCConciliationKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvPaymentsCAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpNewPayment = new System.Windows.Forms.TableLayoutPanel();
             this.lblType = new System.Windows.Forms.Label();
             this.lblPaymentAmount = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblPaymentDate = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxNewPaymentType = new System.Windows.Forms.ComboBox();
             this.txtNewPaymentAmount = new System.Windows.Forms.NumericUpDown();
             this.txtConciliationKey = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpNewPaymentDate = new System.Windows.Forms.DateTimePicker();
             this.btnAddNewPayment = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnDeleteSelectedPayment = new System.Windows.Forms.Button();
+            this.totalAmountsLP = new System.Windows.Forms.TableLayoutPanel();
             this.lblPaidValue = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblPaid = new System.Windows.Forms.Label();
@@ -119,7 +133,6 @@
             this.lblPendingPayValue = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.btnPresupuestar = new System.Windows.Forms.Button();
             this.btnApproveEvent = new System.Windows.Forms.Button();
             this.tabEventDetails.SuspendLayout();
             this.tabCharacteristics.SuspendLayout();
@@ -148,10 +161,10 @@
             this.tabPagos.SuspendLayout();
             this.tlpPayments.SuspendLayout();
             this.tlpListOfPayments.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterdPayments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPayments)).BeginInit();
             this.tlpNewPayment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNewPaymentAmount)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.totalAmountsLP.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabEventDetails
@@ -165,7 +178,7 @@
             this.tabEventDetails.Location = new System.Drawing.Point(0, 0);
             this.tabEventDetails.Name = "tabEventDetails";
             this.tabEventDetails.SelectedIndex = 0;
-            this.tabEventDetails.Size = new System.Drawing.Size(800, 402);
+            this.tabEventDetails.Size = new System.Drawing.Size(800, 458);
             this.tabEventDetails.TabIndex = 0;
             // 
             // tabCharacteristics
@@ -174,7 +187,7 @@
             this.tabCharacteristics.Location = new System.Drawing.Point(4, 29);
             this.tabCharacteristics.Name = "tabCharacteristics";
             this.tabCharacteristics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCharacteristics.Size = new System.Drawing.Size(792, 369);
+            this.tabCharacteristics.Size = new System.Drawing.Size(792, 425);
             this.tabCharacteristics.TabIndex = 0;
             this.tabCharacteristics.Tag = "tab.characteristics";
             this.tabCharacteristics.Text = "Caracteristicas";
@@ -209,7 +222,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 363);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 419);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtSpecialRequest
@@ -219,7 +232,7 @@
             this.txtSpecialRequest.MaxLength = 1000;
             this.txtSpecialRequest.Multiline = true;
             this.txtSpecialRequest.Name = "txtSpecialRequest";
-            this.txtSpecialRequest.Size = new System.Drawing.Size(587, 119);
+            this.txtSpecialRequest.Size = new System.Drawing.Size(587, 160);
             this.txtSpecialRequest.TabIndex = 8;
             // 
             // txtEventDescription
@@ -437,7 +450,7 @@
             this.tabLugares.Location = new System.Drawing.Point(4, 29);
             this.tabLugares.Name = "tabLugares";
             this.tabLugares.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLugares.Size = new System.Drawing.Size(792, 369);
+            this.tabLugares.Size = new System.Drawing.Size(792, 425);
             this.tabLugares.TabIndex = 1;
             this.tabLugares.Tag = "tab.eventrooms";
             this.tabLugares.Text = "Lugares";
@@ -688,7 +701,7 @@
             this.tabAditionalServices.Location = new System.Drawing.Point(4, 29);
             this.tabAditionalServices.Name = "tabAditionalServices";
             this.tabAditionalServices.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAditionalServices.Size = new System.Drawing.Size(792, 369);
+            this.tabAditionalServices.Size = new System.Drawing.Size(792, 425);
             this.tabAditionalServices.TabIndex = 2;
             this.tabAditionalServices.Tag = "tab.aditionalServices";
             this.tabAditionalServices.Text = "Servicios adicionales";
@@ -705,11 +718,11 @@
             this.tlpASDetails.Controls.Add(this.txtASDetails, 1, 0);
             this.tlpASDetails.Controls.Add(this.tableLayoutPanel4, 3, 0);
             this.tlpASDetails.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tlpASDetails.Location = new System.Drawing.Point(3, 264);
+            this.tlpASDetails.Location = new System.Drawing.Point(3, 338);
             this.tlpASDetails.Name = "tlpASDetails";
             this.tlpASDetails.RowCount = 1;
             this.tlpASDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpASDetails.Size = new System.Drawing.Size(786, 106);
+            this.tlpASDetails.Size = new System.Drawing.Size(786, 82);
             this.tlpASDetails.TabIndex = 1;
             // 
             // lblDetalle
@@ -728,7 +741,7 @@
             this.txtASDetails.Location = new System.Drawing.Point(74, 3);
             this.txtASDetails.Multiline = true;
             this.txtASDetails.Name = "txtASDetails";
-            this.txtASDetails.Size = new System.Drawing.Size(413, 100);
+            this.txtASDetails.Size = new System.Drawing.Size(413, 76);
             this.txtASDetails.TabIndex = 1;
             // 
             // tableLayoutPanel4
@@ -737,14 +750,13 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.Controls.Add(this.txtASQty, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.lblASQty, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnAddAS, 0, 2);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(569, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(214, 100);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(214, 76);
             this.tableLayoutPanel4.TabIndex = 7;
             // 
             // txtASQty
@@ -759,6 +771,7 @@
             this.txtASQty.Name = "txtASQty";
             this.txtASQty.Size = new System.Drawing.Size(208, 27);
             this.txtASQty.TabIndex = 3;
+            this.txtASQty.ValueChanged += new System.EventHandler(this.txtASQty_ValueChanged);
             // 
             // lblASQty
             // 
@@ -771,18 +784,6 @@
             this.lblASQty.Tag = "quantity.title";
             this.lblASQty.Text = "Cantidad";
             // 
-            // btnAddAS
-            // 
-            this.btnAddAS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddAS.Location = new System.Drawing.Point(3, 68);
-            this.btnAddAS.Name = "btnAddAS";
-            this.btnAddAS.Size = new System.Drawing.Size(208, 29);
-            this.btnAddAS.TabIndex = 3;
-            this.btnAddAS.Tag = "btn.add";
-            this.btnAddAS.Text = "Agregar";
-            this.btnAddAS.UseVisualStyleBackColor = true;
-            // 
             // tlpAditionalServicesFilters
             // 
             this.tlpAditionalServicesFilters.ColumnCount = 2;
@@ -790,6 +791,7 @@
             this.tlpAditionalServicesFilters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.84733F));
             this.tlpAditionalServicesFilters.Controls.Add(this.panelFilterASName, 0, 0);
             this.tlpAditionalServicesFilters.Controls.Add(this.btnSearchAS, 1, 0);
+            this.tlpAditionalServicesFilters.Controls.Add(this.btnAddAS, 1, 1);
             this.tlpAditionalServicesFilters.Controls.Add(this.dgvSearchAS, 0, 1);
             this.tlpAditionalServicesFilters.Controls.Add(this.dgvAddedServices, 0, 4);
             this.tlpAditionalServicesFilters.Controls.Add(this.btnASRemove, 1, 4);
@@ -803,7 +805,7 @@
             this.tlpAditionalServicesFilters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tlpAditionalServicesFilters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpAditionalServicesFilters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpAditionalServicesFilters.Size = new System.Drawing.Size(786, 261);
+            this.tlpAditionalServicesFilters.Size = new System.Drawing.Size(786, 335);
             this.tlpAditionalServicesFilters.TabIndex = 0;
             // 
             // panelFilterASName
@@ -844,6 +846,19 @@
             this.btnSearchAS.Text = "Buscar";
             this.btnSearchAS.UseVisualStyleBackColor = true;
             this.btnSearchAS.Click += new System.EventHandler(this.btnSearchAS_Click);
+            // 
+            // btnAddAS
+            // 
+            this.btnAddAS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddAS.Location = new System.Drawing.Point(633, 123);
+            this.btnAddAS.Name = "btnAddAS";
+            this.btnAddAS.Size = new System.Drawing.Size(150, 29);
+            this.btnAddAS.TabIndex = 3;
+            this.btnAddAS.Tag = "btn.add";
+            this.btnAddAS.Text = "Agregar";
+            this.btnAddAS.UseVisualStyleBackColor = true;
+            this.btnAddAS.Click += new System.EventHandler(this.btnAddAS_Click);
             // 
             // dgvSearchAS
             // 
@@ -886,10 +901,10 @@
             // dgvASFilterCPrice
             // 
             this.dgvASFilterCPrice.DataPropertyName = "Price";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dgvASFilterCPrice.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dgvASFilterCPrice.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvASFilterCPrice.HeaderText = "Precio";
             this.dgvASFilterCPrice.MinimumWidth = 6;
             this.dgvASFilterCPrice.Name = "dgvASFilterCPrice";
@@ -898,25 +913,87 @@
             // 
             // dgvAddedServices
             // 
+            this.dgvAddedServices.AllowUserToAddRows = false;
+            this.dgvAddedServices.AllowUserToDeleteRows = false;
             this.dgvAddedServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAddedServices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvASCId,
+            this.dgvASCName,
+            this.dgvASCQty,
+            this.dgvASCPrice,
+            this.dgvASCTotal});
             this.dgvAddedServices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAddedServices.Location = new System.Drawing.Point(3, 188);
             this.dgvAddedServices.Name = "dgvAddedServices";
+            this.dgvAddedServices.ReadOnly = true;
             this.dgvAddedServices.RowHeadersWidth = 51;
             this.dgvAddedServices.RowTemplate.Height = 29;
-            this.dgvAddedServices.Size = new System.Drawing.Size(624, 70);
+            this.dgvAddedServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAddedServices.Size = new System.Drawing.Size(624, 144);
             this.dgvAddedServices.TabIndex = 4;
+            this.dgvAddedServices.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAddedServices_CellFormatting);
+            this.dgvAddedServices.SelectionChanged += new System.EventHandler(this.dgvAddedServices_SelectionChanged);
+            // 
+            // dgvASCId
+            // 
+            this.dgvASCId.DataPropertyName = "Service.Id";
+            this.dgvASCId.HeaderText = "Id";
+            this.dgvASCId.MinimumWidth = 6;
+            this.dgvASCId.Name = "dgvASCId";
+            this.dgvASCId.ReadOnly = true;
+            this.dgvASCId.Width = 80;
+            // 
+            // dgvASCName
+            // 
+            this.dgvASCName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvASCName.DataPropertyName = "Service.Name";
+            this.dgvASCName.HeaderText = "Nombre";
+            this.dgvASCName.MinimumWidth = 6;
+            this.dgvASCName.Name = "dgvASCName";
+            this.dgvASCName.ReadOnly = true;
+            // 
+            // dgvASCQty
+            // 
+            this.dgvASCQty.DataPropertyName = "Quantity";
+            this.dgvASCQty.HeaderText = "Cantidad";
+            this.dgvASCQty.MinimumWidth = 6;
+            this.dgvASCQty.Name = "dgvASCQty";
+            this.dgvASCQty.ReadOnly = true;
+            this.dgvASCQty.Width = 40;
+            // 
+            // dgvASCPrice
+            // 
+            this.dgvASCPrice.DataPropertyName = "Price";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dgvASCPrice.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvASCPrice.HeaderText = "Price";
+            this.dgvASCPrice.MinimumWidth = 6;
+            this.dgvASCPrice.Name = "dgvASCPrice";
+            this.dgvASCPrice.ReadOnly = true;
+            this.dgvASCPrice.Width = 80;
+            // 
+            // dgvASCTotal
+            // 
+            this.dgvASCTotal.DataPropertyName = "Status";
+            this.dgvASCTotal.HeaderText = "Estado";
+            this.dgvASCTotal.MinimumWidth = 6;
+            this.dgvASCTotal.Name = "dgvASCTotal";
+            this.dgvASCTotal.ReadOnly = true;
+            this.dgvASCTotal.Width = 125;
             // 
             // btnASRemove
             // 
             this.btnASRemove.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnASRemove.Location = new System.Drawing.Point(633, 229);
+            this.btnASRemove.Location = new System.Drawing.Point(633, 303);
             this.btnASRemove.Name = "btnASRemove";
             this.btnASRemove.Size = new System.Drawing.Size(150, 29);
             this.btnASRemove.TabIndex = 5;
             this.btnASRemove.Tag = "btn.remove";
             this.btnASRemove.Text = "Eliminar";
             this.btnASRemove.UseVisualStyleBackColor = true;
+            this.btnASRemove.Click += new System.EventHandler(this.btnASRemove_Click);
             // 
             // lblASAdded
             // 
@@ -934,7 +1011,7 @@
             this.tabPagos.Location = new System.Drawing.Point(4, 29);
             this.tabPagos.Name = "tabPagos";
             this.tabPagos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagos.Size = new System.Drawing.Size(792, 369);
+            this.tabPagos.Size = new System.Drawing.Size(792, 425);
             this.tabPagos.TabIndex = 3;
             this.tabPagos.Tag = "payments.title";
             this.tabPagos.Text = "Pagos";
@@ -945,18 +1022,20 @@
             this.tlpPayments.ColumnCount = 1;
             this.tlpPayments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpPayments.Controls.Add(this.lblPayments, 0, 0);
-            this.tlpPayments.Controls.Add(this.label4, 0, 2);
+            this.tlpPayments.Controls.Add(this.label4, 0, 3);
             this.tlpPayments.Controls.Add(this.tlpListOfPayments, 0, 1);
-            this.tlpPayments.Controls.Add(this.tlpNewPayment, 0, 3);
+            this.tlpPayments.Controls.Add(this.tlpNewPayment, 0, 4);
+            this.tlpPayments.Controls.Add(this.btnDeleteSelectedPayment, 0, 2);
             this.tlpPayments.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpPayments.Location = new System.Drawing.Point(3, 3);
             this.tlpPayments.Name = "tlpPayments";
-            this.tlpPayments.RowCount = 4;
+            this.tlpPayments.RowCount = 5;
             this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpPayments.Size = new System.Drawing.Size(786, 363);
+            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
+            this.tlpPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 67F));
+            this.tlpPayments.Size = new System.Drawing.Size(786, 419);
             this.tlpPayments.TabIndex = 0;
             // 
             // lblPayments
@@ -972,9 +1051,9 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 155);
+            this.label4.Location = new System.Drawing.Point(3, 175);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(151, 20);
+            this.label4.Size = new System.Drawing.Size(151, 19);
             this.label4.TabIndex = 2;
             this.label4.Text = "Registrar nuevo pago";
             // 
@@ -982,25 +1061,86 @@
             // 
             this.tlpListOfPayments.ColumnCount = 1;
             this.tlpListOfPayments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 98.97436F));
-            this.tlpListOfPayments.Controls.Add(this.dgvRegisterdPayments, 0, 0);
+            this.tlpListOfPayments.Controls.Add(this.dgvPayments, 0, 0);
             this.tlpListOfPayments.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpListOfPayments.Location = new System.Drawing.Point(3, 33);
             this.tlpListOfPayments.Name = "tlpListOfPayments";
             this.tlpListOfPayments.RowCount = 1;
             this.tlpListOfPayments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpListOfPayments.Size = new System.Drawing.Size(780, 119);
+            this.tlpListOfPayments.Size = new System.Drawing.Size(780, 104);
             this.tlpListOfPayments.TabIndex = 4;
             // 
-            // dgvRegisterdPayments
+            // dgvPayments
             // 
-            this.dgvRegisterdPayments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegisterdPayments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvRegisterdPayments.Location = new System.Drawing.Point(3, 3);
-            this.dgvRegisterdPayments.Name = "dgvRegisterdPayments";
-            this.dgvRegisterdPayments.RowHeadersWidth = 51;
-            this.dgvRegisterdPayments.RowTemplate.Height = 29;
-            this.dgvRegisterdPayments.Size = new System.Drawing.Size(774, 113);
-            this.dgvRegisterdPayments.TabIndex = 3;
+            this.dgvPayments.AllowUserToAddRows = false;
+            this.dgvPayments.AllowUserToDeleteRows = false;
+            this.dgvPayments.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgvPayments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPayments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvPaymentsCId,
+            this.dgvPaymentsCType,
+            this.dgvPaymentsCDate,
+            this.dgvPaymentsCConciliationKey,
+            this.dgvPaymentsCAmount});
+            this.dgvPayments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPayments.Location = new System.Drawing.Point(3, 3);
+            this.dgvPayments.MultiSelect = false;
+            this.dgvPayments.Name = "dgvPayments";
+            this.dgvPayments.ReadOnly = true;
+            this.dgvPayments.RowHeadersWidth = 51;
+            this.dgvPayments.RowTemplate.Height = 29;
+            this.dgvPayments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPayments.Size = new System.Drawing.Size(774, 98);
+            this.dgvPayments.TabIndex = 0;
+            this.dgvPayments.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvPayments_CellFormatting);
+            this.dgvPayments.SelectionChanged += new System.EventHandler(this.dgvPayments_SelectionChanged);
+            // 
+            // dgvPaymentsCId
+            // 
+            this.dgvPaymentsCId.HeaderText = "#";
+            this.dgvPaymentsCId.MinimumWidth = 6;
+            this.dgvPaymentsCId.Name = "dgvPaymentsCId";
+            this.dgvPaymentsCId.ReadOnly = true;
+            this.dgvPaymentsCId.Width = 45;
+            // 
+            // dgvPaymentsCType
+            // 
+            this.dgvPaymentsCType.HeaderText = "Tipo";
+            this.dgvPaymentsCType.MinimumWidth = 6;
+            this.dgvPaymentsCType.Name = "dgvPaymentsCType";
+            this.dgvPaymentsCType.ReadOnly = true;
+            this.dgvPaymentsCType.Width = 60;
+            // 
+            // dgvPaymentsCDate
+            // 
+            dataGridViewCellStyle7.Format = "d";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dgvPaymentsCDate.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvPaymentsCDate.HeaderText = "Fecha";
+            this.dgvPaymentsCDate.MinimumWidth = 6;
+            this.dgvPaymentsCDate.Name = "dgvPaymentsCDate";
+            this.dgvPaymentsCDate.ReadOnly = true;
+            this.dgvPaymentsCDate.Width = 80;
+            // 
+            // dgvPaymentsCConciliationKey
+            // 
+            this.dgvPaymentsCConciliationKey.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvPaymentsCConciliationKey.HeaderText = "Conciliación";
+            this.dgvPaymentsCConciliationKey.MinimumWidth = 6;
+            this.dgvPaymentsCConciliationKey.Name = "dgvPaymentsCConciliationKey";
+            this.dgvPaymentsCConciliationKey.ReadOnly = true;
+            // 
+            // dgvPaymentsCAmount
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle8.Format = "C2";
+            dataGridViewCellStyle8.NullValue = null;
+            this.dgvPaymentsCAmount.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvPaymentsCAmount.HeaderText = "Amount";
+            this.dgvPaymentsCAmount.MinimumWidth = 6;
+            this.dgvPaymentsCAmount.Name = "dgvPaymentsCAmount";
+            this.dgvPaymentsCAmount.ReadOnly = true;
+            this.dgvPaymentsCAmount.Width = 80;
             // 
             // tlpNewPayment
             // 
@@ -1014,18 +1154,18 @@
             this.tlpNewPayment.Controls.Add(this.lblPaymentAmount, 1, 0);
             this.tlpNewPayment.Controls.Add(this.label5, 2, 0);
             this.tlpNewPayment.Controls.Add(this.lblPaymentDate, 3, 0);
-            this.tlpNewPayment.Controls.Add(this.comboBox1, 0, 1);
+            this.tlpNewPayment.Controls.Add(this.cbxNewPaymentType, 0, 1);
             this.tlpNewPayment.Controls.Add(this.txtNewPaymentAmount, 1, 1);
             this.tlpNewPayment.Controls.Add(this.txtConciliationKey, 2, 1);
-            this.tlpNewPayment.Controls.Add(this.dateTimePicker2, 3, 1);
+            this.tlpNewPayment.Controls.Add(this.dtpNewPaymentDate, 3, 1);
             this.tlpNewPayment.Controls.Add(this.btnAddNewPayment, 4, 1);
             this.tlpNewPayment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpNewPayment.Location = new System.Drawing.Point(3, 178);
+            this.tlpNewPayment.Location = new System.Drawing.Point(3, 197);
             this.tlpNewPayment.Name = "tlpNewPayment";
             this.tlpNewPayment.RowCount = 2;
             this.tlpNewPayment.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.03297F));
             this.tlpNewPayment.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.96703F));
-            this.tlpNewPayment.Size = new System.Drawing.Size(780, 182);
+            this.tlpNewPayment.Size = new System.Drawing.Size(780, 219);
             this.tlpNewPayment.TabIndex = 5;
             // 
             // lblType
@@ -1066,17 +1206,20 @@
             this.lblPaymentDate.Tag = "payment.date";
             this.lblPaymentDate.Text = "Fecha del Pago";
             // 
-            // comboBox1
+            // cbxNewPaymentType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(128, 28);
-            this.comboBox1.TabIndex = 4;
+            this.cbxNewPaymentType.DisplayMember = "Text";
+            this.cbxNewPaymentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxNewPaymentType.ForeColor = System.Drawing.SystemColors.Window;
+            this.cbxNewPaymentType.Location = new System.Drawing.Point(3, 40);
+            this.cbxNewPaymentType.Name = "cbxNewPaymentType";
+            this.cbxNewPaymentType.Size = new System.Drawing.Size(128, 28);
+            this.cbxNewPaymentType.TabIndex = 4;
+            this.cbxNewPaymentType.ValueMember = "Value";
             // 
             // txtNewPaymentAmount
             // 
-            this.txtNewPaymentAmount.Location = new System.Drawing.Point(137, 34);
+            this.txtNewPaymentAmount.Location = new System.Drawing.Point(137, 40);
             this.txtNewPaymentAmount.Maximum = new decimal(new int[] {
             600000,
             0,
@@ -1085,55 +1228,70 @@
             this.txtNewPaymentAmount.Name = "txtNewPaymentAmount";
             this.txtNewPaymentAmount.Size = new System.Drawing.Size(99, 27);
             this.txtNewPaymentAmount.TabIndex = 5;
+            this.txtNewPaymentAmount.ValueChanged += new System.EventHandler(this.txtNewPaymentAmount_ValueChanged);
             // 
             // txtConciliationKey
             // 
             this.txtConciliationKey.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtConciliationKey.Location = new System.Drawing.Point(242, 34);
+            this.txtConciliationKey.Location = new System.Drawing.Point(242, 40);
             this.txtConciliationKey.MaxLength = 255;
             this.txtConciliationKey.Name = "txtConciliationKey";
             this.txtConciliationKey.Size = new System.Drawing.Size(291, 27);
             this.txtConciliationKey.TabIndex = 6;
             this.txtConciliationKey.Tag = "conciliation";
             // 
-            // dateTimePicker2
+            // dtpNewPaymentDate
             // 
-            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dateTimePicker2.Location = new System.Drawing.Point(539, 34);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(159, 27);
-            this.dateTimePicker2.TabIndex = 7;
+            this.dtpNewPaymentDate.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpNewPaymentDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNewPaymentDate.Location = new System.Drawing.Point(539, 40);
+            this.dtpNewPaymentDate.Name = "dtpNewPaymentDate";
+            this.dtpNewPaymentDate.Size = new System.Drawing.Size(159, 27);
+            this.dtpNewPaymentDate.TabIndex = 7;
             // 
             // btnAddNewPayment
             // 
-            this.btnAddNewPayment.Location = new System.Drawing.Point(704, 34);
+            this.btnAddNewPayment.Enabled = false;
+            this.btnAddNewPayment.Location = new System.Drawing.Point(704, 40);
             this.btnAddNewPayment.Name = "btnAddNewPayment";
             this.btnAddNewPayment.Size = new System.Drawing.Size(73, 29);
             this.btnAddNewPayment.TabIndex = 8;
             this.btnAddNewPayment.Tag = "btn.add";
             this.btnAddNewPayment.Text = "Agregar";
             this.btnAddNewPayment.UseVisualStyleBackColor = true;
+            this.btnAddNewPayment.Click += new System.EventHandler(this.btnAddNewPayment_Click);
             // 
-            // tableLayoutPanel2
+            // btnDeleteSelectedPayment
             // 
-            this.tableLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.lblPaidValue, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.lblTotal, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lblPaid, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.lblPendingPayment, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.lblTotalValue, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lblPendingPayValue, 1, 2);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(550, 404);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(250, 125);
-            this.tableLayoutPanel2.TabIndex = 1;
+            this.btnDeleteSelectedPayment.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnDeleteSelectedPayment.Location = new System.Drawing.Point(594, 143);
+            this.btnDeleteSelectedPayment.Name = "btnDeleteSelectedPayment";
+            this.btnDeleteSelectedPayment.Size = new System.Drawing.Size(189, 29);
+            this.btnDeleteSelectedPayment.TabIndex = 6;
+            this.btnDeleteSelectedPayment.Text = "Borrar seleccionado";
+            this.btnDeleteSelectedPayment.UseVisualStyleBackColor = true;
+            this.btnDeleteSelectedPayment.Click += new System.EventHandler(this.btnDeleteSelectedPayment_Click);
+            // 
+            // totalAmountsLP
+            // 
+            this.totalAmountsLP.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.totalAmountsLP.ColumnCount = 2;
+            this.totalAmountsLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.totalAmountsLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.totalAmountsLP.Controls.Add(this.lblPaidValue, 1, 1);
+            this.totalAmountsLP.Controls.Add(this.lblTotal, 0, 0);
+            this.totalAmountsLP.Controls.Add(this.lblPaid, 0, 1);
+            this.totalAmountsLP.Controls.Add(this.lblPendingPayment, 0, 2);
+            this.totalAmountsLP.Controls.Add(this.lblTotalValue, 1, 0);
+            this.totalAmountsLP.Controls.Add(this.lblPendingPayValue, 1, 2);
+            this.totalAmountsLP.Location = new System.Drawing.Point(550, 509);
+            this.totalAmountsLP.Name = "totalAmountsLP";
+            this.totalAmountsLP.RowCount = 3;
+            this.totalAmountsLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.totalAmountsLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.totalAmountsLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.totalAmountsLP.Size = new System.Drawing.Size(250, 125);
+            this.totalAmountsLP.TabIndex = 1;
             // 
             // lblPaidValue
             // 
@@ -1197,7 +1355,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(433, 404);
+            this.btnGuardar.Location = new System.Drawing.Point(434, 509);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(111, 123);
             this.btnGuardar.TabIndex = 2;
@@ -1208,7 +1366,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(4, 406);
+            this.btnSalir.Location = new System.Drawing.Point(5, 511);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(111, 123);
             this.btnSalir.TabIndex = 0;
@@ -1217,20 +1375,9 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // btnPresupuestar
-            // 
-            this.btnPresupuestar.Location = new System.Drawing.Point(316, 402);
-            this.btnPresupuestar.Name = "btnPresupuestar";
-            this.btnPresupuestar.Size = new System.Drawing.Size(111, 123);
-            this.btnPresupuestar.TabIndex = 3;
-            this.btnPresupuestar.Tag = "btn.presupuestar";
-            this.btnPresupuestar.Text = "Generar Presupuesto";
-            this.btnPresupuestar.UseVisualStyleBackColor = true;
-            this.btnPresupuestar.Visible = false;
-            // 
             // btnApproveEvent
             // 
-            this.btnApproveEvent.Location = new System.Drawing.Point(199, 402);
+            this.btnApproveEvent.Location = new System.Drawing.Point(317, 507);
             this.btnApproveEvent.Name = "btnApproveEvent";
             this.btnApproveEvent.Size = new System.Drawing.Size(111, 123);
             this.btnApproveEvent.TabIndex = 4;
@@ -1244,12 +1391,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(800, 537);
+            this.ClientSize = new System.Drawing.Size(800, 642);
             this.Controls.Add(this.btnApproveEvent);
-            this.Controls.Add(this.btnPresupuestar);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.tableLayoutPanel2);
+            this.Controls.Add(this.totalAmountsLP);
             this.Controls.Add(this.tabEventDetails);
             this.Name = "EventForm";
             this.Tag = "eventform.title";
@@ -1293,12 +1439,12 @@
             this.tlpPayments.ResumeLayout(false);
             this.tlpPayments.PerformLayout();
             this.tlpListOfPayments.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRegisterdPayments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPayments)).EndInit();
             this.tlpNewPayment.ResumeLayout(false);
             this.tlpNewPayment.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNewPaymentAmount)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.totalAmountsLP.ResumeLayout(false);
+            this.totalAmountsLP.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1324,7 +1470,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.NumericUpDown txtBudgetMin;
         private System.Windows.Forms.Label lblMinus;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel totalAmountsLP;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblPaidValue;
         private System.Windows.Forms.Label lblPaid;
@@ -1372,23 +1518,21 @@
         private System.Windows.Forms.Label lblPayments;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TableLayoutPanel tlpListOfPayments;
-        private System.Windows.Forms.DataGridView dgvRegisterdPayments;
         private System.Windows.Forms.TableLayoutPanel tlpNewPayment;
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Label lblPaymentAmount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblPaymentDate;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxNewPaymentType;
         private System.Windows.Forms.NumericUpDown txtNewPaymentAmount;
         private System.Windows.Forms.TextBox txtConciliationKey;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpNewPaymentDate;
         private System.Windows.Forms.Button btnAddNewPayment;
         private System.Windows.Forms.ComboBox cmbEventType;
         private System.Windows.Forms.Label lblDetalle;
         private System.Windows.Forms.TextBox txtASDetails;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label lblASQty;
-        private System.Windows.Forms.Button btnPresupuestar;
         private System.Windows.Forms.Button btnApproveEvent;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventRoomColumnName;
@@ -1398,5 +1542,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCTotal;
+        private System.Windows.Forms.DataGridView dgvPayments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCConciliationKey;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCAmount;
+        private System.Windows.Forms.Button btnDeleteSelectedPayment;
     }
 }

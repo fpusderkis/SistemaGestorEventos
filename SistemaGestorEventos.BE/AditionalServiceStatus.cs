@@ -4,8 +4,8 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE
 {
-    public enum PolicyType
+    public enum AditionalServiceStatus
     {
-        SERVICE, EVENTROOM
+        PENDING, CONFIRMED, CANCELED_PROVIDER, CANCELED_CUSTOMER
     }
 }

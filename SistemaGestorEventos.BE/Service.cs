@@ -18,6 +18,7 @@ namespace SistemaGestorEventos.BE
 
         public DateTime UpdatedAt { get; set; }
 
+
         public decimal Price { get {
                 return ProviderPrice + ProviderPrice * ( Fee / 100 );
             } 

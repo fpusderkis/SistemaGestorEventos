@@ -44,13 +44,14 @@ namespace SistemaGestorEventos.GUI
             MultiLang.Initialize(MultiIdiomaBLL.Instance, "es-AR");
 
             // Add the event handler for handling UI thread exceptions to the event.
-            Application.ThreadException += new
-          System.Threading.ThreadExceptionEventHandler((object sender, ThreadExceptionEventArgs e) => {
-              Console.WriteLine("ERROR NO CONTROLADO: " + e.Exception.Message);
-              Console.WriteLine(e.Exception.StackTrace);
-              BitacoraSingleton.GetInstance.Log($"ERROR NO CONTROLADO: {e.Exception.Message}");
-              MessageBox.Show(MultiLang.TranslateOrDefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
-          });
+          //  Application.ThreadException += new
+          //System.Threading.ThreadExceptionEventHandler((object sender, ThreadExceptionEventArgs e) => {
+          //    Console.WriteLine("ERROR NO CONTROLADO: " + e.Exception.Message);
+          //    Console.WriteLine(e.Exception.StackTrace);
+          //    BitacoraSingleton.GetInstance.Log($"ERROR NO CONTROLADO: {e.Exception.Message}");
+          //    MessageBox.Show(MultiLang.TranslateOrDefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
+              
+          //});
 
             // Set the unhandled exception mode to force all Windows Forms errors
             // to go through our handler.

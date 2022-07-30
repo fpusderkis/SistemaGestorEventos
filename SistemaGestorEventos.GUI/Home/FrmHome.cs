@@ -65,7 +65,7 @@ namespace SistemaGestorEventos.GUI.Home
 
             if (selected != null)
             {
-                this.cbxEventStatus.SelectedValue = selected;
+                this.cbxEventStatus.SelectedItem = selected;
             }
 
         }
