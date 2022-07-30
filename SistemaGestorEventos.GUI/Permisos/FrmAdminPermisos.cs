@@ -1,6 +1,6 @@
 ﻿using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +31,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
             cbxTipoPermiso.DataSource = permisosBLL.GetAllPermission();
             TraducirTextos();
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(this.TraducirTextos);
+            MultiLang.SubscribeChangeLangEvent(this.TraducirTextos);
 
 
 
@@ -39,7 +39,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
         ~FrmAdminPermisos()
         {
-            MultiIdioma.UnsuscribeCambioDeIdiomaEvent(this.TraducirTextos);
+            MultiLang.UnscribeChangeLangEvent(this.TraducirTextos);
         }
 
         private void CargarFamilias()
@@ -168,7 +168,7 @@ namespace SistemaGestorEventos.GUI.Permisos
 
             if (string.IsNullOrWhiteSpace(nombre))
             {
-                MessageBox.Show(MultiIdioma.TranslateOrDefault("errors.missing.grantname", "Debe indicar el nombre del permiso para crearlo"));
+                MessageBox.Show(MultiLang.TranslateOrDefault("errors.missing.grantname", "Debe indicar el nombre del permiso para crearlo"));
             }
 
             var p = new Grant()

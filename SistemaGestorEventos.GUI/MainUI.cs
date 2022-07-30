@@ -1,6 +1,6 @@
 ﻿using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.GUI.Idioma;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace SistemaGestorEventos.GUI
             
 
             SESSION.SuscribeSessionStatusChangeEvent(SessionChangeEvent);
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(TraducirTextos);
+            MultiLang.SubscribeChangeLangEvent(TraducirTextos);
 
         }
         
@@ -201,7 +201,7 @@ namespace SistemaGestorEventos.GUI
 
         private void mnuHomeCrearEvento_Click(object sender, EventArgs e)
         {
-            openChildForm(new FrmCrearEvento());
+            //openChildForm(new FrmCrearEvento());
         }
 
         private void panelContenedor_Resize(object sender, EventArgs e)

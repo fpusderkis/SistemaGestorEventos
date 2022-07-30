@@ -9,12 +9,12 @@ namespace SistemaGestorEventos.Test.BLL
 {
     public class EventsBLLTest
     {
-        private EventsBLL target;
+        private EventBLL target;
 
         [SetUp]
         public void SetUp()
         {
-            target = EventsBLL.Instance;
+            target = EventBLL.Instance;
         }
 
         [Test]

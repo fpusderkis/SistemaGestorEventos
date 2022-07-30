@@ -1,6 +1,6 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.DAL;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.Text;

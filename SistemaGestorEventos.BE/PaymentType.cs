@@ -4,11 +4,8 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE
 {
-    public enum EventStatus
+    public enum PaymentType
     {
-        INITIALIZED,
-        BUDGET,
-        CONFIRMED,
-        
+        CASH, CREDIT_CARD, DEBIT_CARD, CRYPTO
     }
 }

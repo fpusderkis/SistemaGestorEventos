@@ -2,7 +2,7 @@
 using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.GUI.usuario;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +25,7 @@ namespace SistemaGestorEventos.GUI.Permisos
         {
             InitializeComponent();
             WinformUtils.TraducirControl(this);
-            MultiIdioma.SuscribeCambioDeIdiomaEvent(() =>
+            MultiLang.SubscribeChangeLangEvent(() =>
             {
                 WinformUtils.TraducirControl(this);
             });
@@ -174,7 +174,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             if (this.editable != null)
             {
                 usuarioBLL.SaveUserGrants(this.editable);
-                MessageBox.Show(MultiIdioma.TranslateOrDefault("grants.correctsave",$"Los permisos se guardaron correctamente para el usuario {this.editable.Username}."));
+                MessageBox.Show(MultiLang.TranslateOrDefault("grants.correctsave",$"Los permisos se guardaron correctamente para el usuario {this.editable.Username}."));
             }
                 
         }

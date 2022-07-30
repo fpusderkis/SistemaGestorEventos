@@ -1,4 +1,4 @@
-﻿using SistemaGestorEventos.SharedServices.Multiidioma;
+﻿using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SistemaGestorEventos.SharedServices.Multiidioma
+namespace SistemaGestorEventos.SharedServices.i18n
 {
     public static class WinformUtils
     {
@@ -24,7 +24,7 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
             if (control.Tag != null && !string.IsNullOrWhiteSpace(control.Tag.ToString()))
             {
                 key = control.Tag.ToString();
-                traduccion = MultiIdioma.Translate(key);
+                traduccion = MultiLang.Translate(key);
                 if (control is TextBox)
                 {
                     text = ((TextBox)control).PlaceholderText;
@@ -40,8 +40,8 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
 
                 if (traduccion == null && !string.IsNullOrEmpty(text))
                 {
-                    MultiIdioma.AddTranslate(key, text);
-                    traduccion = MultiIdioma.Translate(key);
+                    MultiLang.AddTranslate(key, text);
+                    traduccion = MultiLang.Translate(key);
                 }
 
                 if (control is TextBox)
@@ -52,14 +52,16 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
                 {
                     control.Text = traduccion;
                 }
-            } 
+            }
+            
             if (control is MenuStrip menu)
             {
                 foreach (ToolStripMenuItem toolStrip in menu.Items)
                 {
                     TraducirMenuStrip(toolStrip);
                 }
-            } else
+            } 
+            else
             {
                 foreach (Control c in control.Controls)
                 {
@@ -74,13 +76,13 @@ namespace SistemaGestorEventos.SharedServices.Multiidioma
         {
             if (menu.Tag != null && !string.IsNullOrWhiteSpace(menu.Tag.ToString())) {
                 var key = menu.Tag.ToString();
-                var traduccion = MultiIdioma.Translate(key);
+                var traduccion = MultiLang.Translate(key);
                 var text = menu.Text;
 
                 if (traduccion == null && !string.IsNullOrEmpty(text))
                 {
-                    MultiIdioma.AddTranslate(key, text);
-                    traduccion = MultiIdioma.Translate(key);
+                    MultiLang.AddTranslate(key, text);
+                    traduccion = MultiLang.Translate(key);
                 }
                 
 

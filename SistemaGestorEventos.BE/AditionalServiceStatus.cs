@@ -4,7 +4,8 @@ using System.Text;
 
 namespace SistemaGestorEventos.BE
 {
-    public class Servicio
+    public enum AditionalServiceStatus
     {
+        PENDING, CONFIRMED, CANCELED_PROVIDER, CANCELED_CUSTOMER
     }
 }

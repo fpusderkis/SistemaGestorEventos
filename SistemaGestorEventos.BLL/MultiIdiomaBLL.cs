@@ -1,13 +1,13 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.DAL;
-using SistemaGestorEventos.SharedServices.Multiidioma;
+using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SistemaGestorEventos.BLL
 {
-    public class MultiIdiomaBLL : AbstractBLL,IMultiIdiomaDataSource
+    public class MultiIdiomaBLL : AbstractBLL,IMultiLangDataSource
     {
         private static readonly MultiIdiomaBLL multiIdiomaBLL = new MultiIdiomaBLL();
 
@@ -16,14 +16,14 @@ namespace SistemaGestorEventos.BLL
 
         private MultiIdiomaBLL() { }
 
-        public Dictionary<string, string> CargarIdioma(string idioma)
+        public Dictionary<string, string> LoadLang(string idioma)
         {
-            return multiIdiomaDAL.CargarIdioma(idioma);
+            return multiIdiomaDAL.LoadLang(idioma);
         }
 
-        public void UpsertTraduccion(string idioma, string key, string value)
+        public void UpsertTranslate(string idioma, string key, string value)
         {
-            multiIdiomaDAL.UpsertTraduccion(idioma, key, value);
+            multiIdiomaDAL.UpsertTranslate(idioma, key, value);
         }
 
         public List<Idioma> GetAllIdiomas()
@@ -33,13 +33,13 @@ namespace SistemaGestorEventos.BLL
 
         public Dictionary<string, string> GetTraduccionesDefault()
         {
-            return multiIdiomaDAL.CargarIdioma("es-AR");
+            return multiIdiomaDAL.LoadLang("es-AR");
         }
 
         public Dictionary<string,string> CargarIdiomaFull(string idioma)
         {
             var traduccionesDefault = this.GetTraduccionesDefault();
-            var traducciones = this.CargarIdioma(idioma);
+            var traducciones = this.LoadLang(idioma);
 
             foreach (string key in traduccionesDefault.Keys)
             {
@@ -56,7 +56,7 @@ namespace SistemaGestorEventos.BLL
         {
             foreach(var key in traducciones.Keys)
             {
-                UpsertTraduccion(idioma.Id, key, traducciones[key]);
+                UpsertTranslate(idioma.Id, key, traducciones[key]);
             }
         }
     }

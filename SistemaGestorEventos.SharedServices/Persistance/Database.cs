@@ -119,7 +119,14 @@ namespace SistemaGestorEventos.SharedServices.Persistance
                     {
                         if (ColumnExists(p.Name, reader) && reader[p.Name] != DBNull.Value)
                         {
-                            p.SetValue(obj, reader[p.Name]);
+                            try
+                            {
+                                p.SetValue(obj, reader[p.Name]);
+                            } catch (ArgumentException ae)
+                            {
+                                // nothing to do
+                            }
+                            
                         }
                     }
 
