@@ -1,6 +1,7 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.DAL;
 using SistemaGestorEventos.SharedServices.i18n;
+using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,8 @@ namespace SistemaGestorEventos.BLL
         private static readonly EventBLL instance = new EventBLL();
 
         private EventDAL eventDAL = EventDAL.Instance;
+        private PaymentBLL paymentBLL = PaymentBLL.Instance;
+
 
         private EventBLL()
         {
@@ -27,6 +30,13 @@ namespace SistemaGestorEventos.BLL
 
             if (errors.Count > 0) return errors;
 
+            if (evt.Id != null)
+            {
+                evt.ModifiedBy = (User) SessionHandler.GetInstance.User;
+            } else
+            {
+                evt.CreatedBy = (User)SessionHandler.GetInstance.User;
+            }
             eventDAL.SaveEvent(evt);
             
 
@@ -59,6 +69,17 @@ namespace SistemaGestorEventos.BLL
             return errors;
         }
 
+        private List<string> ValidateEventBudget(Event evt)
+        {
+            List<string> errors = ValidateEvent(evt);
+
+            if (evt.EventRoom == null)
+            {
+                errors.Add(MultiLang.TranslateOrDefault("event.error.eventroom.required", "Debe seleccionar un lugar de realización"));
+            }
+            return errors;
+        }
+
         public IList<Event> FindEvents(Int32? eventId, Int32? customerId, string title, DateTime? from, DateTime? to, EventStatus? status)
         {
             return eventDAL.FindEvents(eventId, customerId, title, from, to, status);
@@ -71,11 +92,18 @@ namespace SistemaGestorEventos.BLL
             return eventDAL.LoadFullEvent(evt);
         }
 
+        /// <summary>
+        /// Cost of event (included fees)
+        /// </summary>
+        /// <param name="evt"></param>
+        /// <returns></returns>
         public decimal CalculateCost(Event evt)
         {
             decimal cost = 0;
-
-            cost += evt.EventRoom.Price;
+            if (evt.EventRoom != null)
+            {
+                cost += evt.EventRoom.Price;
+            }
             evt.AditionalServices.ForEach(aditionalService =>
             {
                 cost += aditionalService.Price * aditionalService.Quantity ;
@@ -98,6 +126,48 @@ namespace SistemaGestorEventos.BLL
             decimal paidAmount = 0;
             evt.Payments.ForEach(p => paidAmount += p.Amount);
             return paidAmount;
+        }
+
+        public List<string> GenerateBudget(Event evt)
+        {
+            List<string> errors = ValidateEventBudget(evt);
+            if (errors.Count > 0) return errors;
+
+            evt.Status = EventStatus.BUDGET;
+            this.SaveEvent(evt);
+
+            return errors;
+        }
+
+        public List<string> AddPayment(Event editable, Payment payment)
+        {
+            
+            if (CalculateCost(editable) - CalculatePaidAmount(editable) - payment.Amount < 0)
+            {
+                var errors = new List<string>();
+                errors.Add(MultiLang.TranslateOrDefault("event.payment.error.totalamountexceded", "El pago que intenta registrar excede el monto total del evento"));
+                return errors;
+            }
+            payment.EventId = editable.Id;
+
+            return paymentBLL.SavePayment(payment);
+           
+        }
+
+        public List<string> Confirm(Event evt)
+        {
+            decimal paidAmount = CalculatePaidAmount(evt);
+            decimal minPaidAmount = CalculateMinPendingAmount(evt);
+
+            if (paidAmount < minPaidAmount)
+            {
+                var errors = new List<string>();
+                errors.Add(MultiLang.TranslateOrDefault("event.payment.error.totalamountexceded", "El pago que intenta registrar excede el monto total del evento"));
+                return errors;
+            }
+
+            evt.Status = EventStatus.CONFIRMED;
+            return SaveEvent(evt);
         }
     }
 }

@@ -56,9 +56,14 @@ namespace SistemaGestorEventos.SharedServices.Persistance
         {
 
             var sqlParameter = new SqlParameter(name, type);
-            sqlParameter.Value = value;
-            sqlParameter.Direction = ParameterDirection.InputOutput;
-
+            if (value == null )
+            {
+                sqlParameter.Direction = ParameterDirection.Output; 
+            } else
+            {
+                sqlParameter.Direction = ParameterDirection.InputOutput;
+                sqlParameter.Value = value;
+            }
             _cmd.Parameters.Add(sqlParameter);
 
             return this;
@@ -121,10 +126,19 @@ namespace SistemaGestorEventos.SharedServices.Persistance
                         {
                             try
                             {
-                                p.SetValue(obj, reader[p.Name]);
+                                var value = reader[p.Name];
+                                if (p.PropertyType.IsEnum && value != null)
+                                {
+                                    var enumValue = Enum.Parse(p.PropertyType, value.ToString());
+                                    p.SetValue(obj, enumValue);
+                                } else
+                                {
+                                    p.SetValue(obj, value);
+                                }
+                                
                             } catch (ArgumentException ae)
                             {
-                                // nothing to do
+                                Console.WriteLine(ae.Message);
                             }
                             
                         }

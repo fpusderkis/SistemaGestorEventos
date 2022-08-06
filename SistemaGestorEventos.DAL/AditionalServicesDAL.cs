@@ -23,6 +23,7 @@ namespace SistemaGestorEventos.DAL
         internal Service FindServiceById(Int32? serviceId, SqlConnection connection)
         {
             var db = new Database(connection);
+            db.AddParameter("@Id", serviceId);
             var services = db.ExecuteQuery<Service>("SELECT * FROM [Services] WHERE Id = @Id;");
 
             if (services.Count > 0)
@@ -52,6 +53,23 @@ namespace SistemaGestorEventos.DAL
 
             }
             
+        }
+
+        internal AditionalService SaveAditionalService(AditionalService aditionalService, SqlConnection connection)
+        {
+            var db = new Database(connection);
+
+            db.AddInOutParameter("@Id", aditionalService.Id, System.Data.SqlDbType.Int);
+            db.AddParameter("@ServiceId", aditionalService.Service.Id);
+            db.AddParameter("@EventId", aditionalService.EventId);
+            db.AddParameter("@Quantity", aditionalService.Quantity);
+            db.AddParameter("@Price", aditionalService.Quantity); 
+            db.AddParameter("@Description", aditionalService.Description); 
+
+            db.ExecuteNonQuery("sp_AditionalService_Upsert",true);
+
+            aditionalService.Id = db.ReadOutputParameter<int>("@Id");
+            return aditionalService;
         }
     }
 }

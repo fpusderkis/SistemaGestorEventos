@@ -287,3 +287,125 @@ END
 GO
 
 
+
+CREATE PROCEDURE [dbo].[sp_AditionalService_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int OUTPUT, 
+	@ServiceId int,
+	@EventId int,
+	@Quantity numeric(18,2),
+	@Price numeric(18,2),
+	@Description varchar(500)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF @Id is not null 
+		BEGIN
+			UPDATE [dbo].[AditionalServices]
+			   SET [ServiceId] = @ServiceId
+				  ,[EventId] = @EventId
+				  ,[Quantity] = @Quantity
+				  ,[Description] = @Description
+				  ,[Price] = @Price
+				  ,[UpdatedAt] = CURRENT_TIMESTAMP
+			 WHERE Id = @Id;
+
+			 
+		END
+		ELSE 
+		BEGIN
+			
+			INSERT INTO [dbo].[AditionalServices]
+			   ([ServiceId]
+			   ,[EventId]
+			   ,[Quantity]
+			   ,[Description]
+			   ,[Price]
+			   ,[CreatedAt]
+			   )
+			VALUES
+			   (
+			   @ServiceId
+			   ,@EventId
+			   ,@Quantity
+			   ,@Description
+			   ,@Price
+			   ,CURRENT_TIMESTAMP
+			   );
+
+		    SELECT @Id = SCOPE_IDENTITY();
+		END
+ 
+			
+	  COMMIT
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[sp_Payment_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int OUTPUT, 
+	@EventId int,
+	@Type varchar(20),
+	@Amount numeric(18,2),
+	@PaymentDate datetime,
+	@ConciliationKey varchar(50),
+	@Status bit,
+	@UserId uniqueidentifier
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF @Id is not null 
+		BEGIN
+			UPDATE [dbo].[Payments]
+			   SET [EventId] = @EventId
+				  ,[Type] = @Type
+				  ,[Amount] = @Amount
+				  ,[PaymentDate] = @PaymentDate
+				  ,[ConciliationKey] = @ConciliationKey
+				  ,[Status] = @Status
+				  ,[ModifiedAt] = CURRENT_TIMESTAMP
+				  ,[ModifiedBy] = @UserId
+			 WHERE Id = @Id
+		END
+		ELSE 
+		BEGIN
+
+			INSERT INTO [dbo].[Payments]
+					   ([EventId]
+					   ,[Type]
+					   ,[Amount]
+					   ,[PaymentDate]
+					   ,[ConciliationKey]
+					   ,[Status]
+					   ,[CreatedAt]
+					   ,[CreatedBy]
+					   )
+				 VALUES
+					   (@EventId
+					   ,@Type
+					   ,@Amount
+					   ,@PaymentDate
+					   ,@ConciliationKey
+					   ,@Status
+					   ,CURRENT_TIMESTAMP
+					   ,@UserId
+					   )
+
+		    SELECT @Id = SCOPE_IDENTITY();
+		END
+ 
+			
+	  COMMIT
+END

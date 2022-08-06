@@ -8,8 +8,9 @@ namespace SistemaGestorEventos.DAL
 {
     public class EventDAL : AbstractDAL
     {
-        private AditionalServicesDAL serviceDAL = AditionalServicesDAL.Instance;
+        private AditionalServicesDAL aditionalServiceDAL = AditionalServicesDAL.Instance;
         private static readonly EventDAL instance = new EventDAL();
+        private PaymentDAL paymentDAL = PaymentDAL.Instance;
 
         private EventDAL()
         {
@@ -68,6 +69,15 @@ namespace SistemaGestorEventos.DAL
                 db.ExecuteNonQuery("sp_Event_Upsert", true);
 
                 evt.Id = db.ReadOutputParameter<Int32>("@Id");
+
+                if (evt.AditionalServices != null)
+                {
+                    foreach (var aditionalService in evt.AditionalServices)
+                    {
+                        aditionalService.EventId = (int)evt.Id;
+                        aditionalServiceDAL.SaveAditionalService(aditionalService, con);
+                    }
+                }
 
             }
 
@@ -170,9 +180,15 @@ namespace SistemaGestorEventos.DAL
                 {
                     foreach (var aserv in aditionalServices)
                     {
-                        aserv.Service = serviceDAL.FindServiceById(aserv.ServiceId, con);
+                        aserv.Service = aditionalServiceDAL.FindServiceById(aserv.ServiceId, con);
                         evt.AditionalServices.Add(aserv);
                     }
+                }
+
+                var payments = paymentDAL.FindActivePaymentsByEventId(evt.Id, con);
+                foreach (var payment in payments)
+                {
+                    evt.Payments.Add(payment);
                 }
 
                 return evt;

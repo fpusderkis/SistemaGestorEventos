@@ -20,6 +20,7 @@ namespace SistemaGestorEventos.GUI.Events
         private EventRoomBLL eventRoomsBLL = EventRoomBLL.Instance;
         private AditionalServicesBLL aditionalServicesBLL = AditionalServicesBLL.Instance;
         private EventBLL eventsBLL = EventBLL.Instance;
+        private PaymentBLL paymentBLL = PaymentBLL.Instance;
 
         private BindingSource asBS;
         private BindingSource paymentsBS;
@@ -30,7 +31,6 @@ namespace SistemaGestorEventos.GUI.Events
             this.editable = editable;
             InitializeComponent();
             Translate();
-            
             MultiLang.SubscribeChangeLangEvent(Translate);
            
 
@@ -38,6 +38,9 @@ namespace SistemaGestorEventos.GUI.Events
             {
                 this.editable.DateFrom = DateTime.Now;
                 this.editable.DateTo = DateTime.Now.AddHours(4);
+            } else
+            {
+                this.Text = this.Text + "#" + this.editable.Id;
             }
 
             txtEventTitle.DataBindings.Add("Text", this.editable, "Title");
@@ -45,6 +48,8 @@ namespace SistemaGestorEventos.GUI.Events
             txtEventroomDetailsValue.DataBindings.Add("Text", this.editable, "EventRoomDetails");
             txtBudgetMin.DataBindings.Add("Text", this.editable, "MinBudget");
             txtBudgetMax.DataBindings.Add("Text", this.editable, "MaxBudget");
+            if(this.editable.GuessQuantity != null) txtGuessQty.Value = (int)this.editable.GuessQuantity;
+            
             dtpFecha.DataBindings.Add("Value", this.editable, "DateFrom");
             dtpToDate.DataBindings.Add("Value", this.editable, "DateTo");
             cmbEventType.DataBindings.Add("SelectedValue", this.editable, "EventType");
@@ -63,6 +68,7 @@ namespace SistemaGestorEventos.GUI.Events
             dgvPayments.DataSource = this.paymentsBS;
 
             CalculateEventRoomLegend(this.editable);
+            DrawActionButtons();
 
         }       
         private EventForm() : this(new Event())
@@ -257,6 +263,7 @@ namespace SistemaGestorEventos.GUI.Events
             this.lblPaidValue.Text = "$ " + this.eventsBLL.CalculatePaidAmount(this.editable);
             this.lblPendingPayValue.Text = "$ " + this.eventsBLL.CalculateMinPendingAmount(this.editable);
             this.lblTotalValue.Text = "$" + this.eventsBLL.CalculateCost(this.editable);
+            this.dgvAddedServices.Refresh();
             
         }
 
@@ -269,11 +276,28 @@ namespace SistemaGestorEventos.GUI.Events
         {
             var payment = new Payment();
             payment.Amount = txtNewPaymentAmount.Value;
-            payment.Active = true;
+            payment.Status = true;
             payment.ConciliationKey = txtConciliationKey.Text;
             payment.Type = (PaymentType) this.cbxNewPaymentType.SelectedValue;
             payment.PaymentDate = this.dtpNewPaymentDate.Value;
-            this.editable.Payments.Add(payment);
+            List<string> errors = this.eventsBLL.AddPayment(this.editable, payment);
+            
+            if (errors.Count > 0)
+            {
+                WinformUtils.ShowErrorList(MultiLang.TranslateOrDefault("event.payments.add.errortitle", "No se pudo registrar el pago"), errors);
+            } 
+            else
+            {
+                this.editable.Payments.Add(payment);
+
+                txtConciliationKey.Text = "";
+                this.dtpNewPaymentDate.Value = DateTime.Now;
+                txtNewPaymentAmount.Value = 0;
+                txtConciliationKey.Text = "";
+                
+                MessageBox.Show(MultiLang.TranslateOrDefault("event.payments.add.ok.body", "Pago registrado correctamente."));
+            }
+
             refreshDGVRegisterdPayments(this.editable.Payments);
 
         }
@@ -283,7 +307,8 @@ namespace SistemaGestorEventos.GUI.Events
         { 
 
             this.dgvPayments.DataSource = null;
-            this.dgvPayments.DataSource = this.editable.Payments.Where<Payment>(p => p.Active).ToList<Payment>();
+            this.dgvPayments.DataSource = this.editable.Payments.Where<Payment>(p => p.Status).ToList<Payment>();
+            CalculateEventAmounts();
 
         }
 
@@ -323,7 +348,8 @@ namespace SistemaGestorEventos.GUI.Events
                 if (DialogResult.Yes == confirmResult)
                 {
                     var payment = (Payment)dgvPayments.CurrentRow.DataBoundItem;
-                    payment.Active = false;
+                    payment.Status = false;
+                    paymentBLL.SavePayment(payment);
                     refreshDGVRegisterdPayments(this.editable.Payments);
                 }
             }
@@ -345,6 +371,69 @@ namespace SistemaGestorEventos.GUI.Events
                         );
                     refreshDGVAddedServices();
                 }
+            }
+        }
+
+        private void btnMakeBudget_Click(object sender, EventArgs e)
+        {
+            List <string> errors = this.eventsBLL.GenerateBudget(this.editable);
+
+            if (errors.Count > 0)
+            {
+                WinformUtils.ShowErrorList(MultiLang.TranslateOrDefault("event.errortitle", "Deberá corregir los siguientes puntos"), errors);
+            } else
+            {
+                String title = MultiLang.TranslateOrDefault("event.budget.created.title", "Presupuesto creado ") + "#" + this.editable.Id;
+                String body = MultiLang.TranslateOrDefault("event.budget.created.body", "Deberá abonar la seña minima para confirmar.");
+                MessageBox.Show(body,title,MessageBoxButtons.OK,MessageBoxIcon.Information);
+                DrawActionButtons();
+            }
+
+
+        }
+
+        private void DrawActionButtons()
+        {
+
+            this.btnGuardar.Visible = EventStatus.CONFIRMED.Equals(this.editable.Status) == false;
+
+            this.btnMakeBudget.Visible = EventStatus.INITIALIZED.Equals(this.editable.Status);
+
+            this.btnApproveEvent.Visible = EventStatus.BUDGET.Equals(this.editable.Status);
+
+            this.button1.Visible = EventStatus.INITIALIZED.Equals(this.editable.Status);
+            this.btnSearchEventroom.Enabled = EventStatus.INITIALIZED.Equals(this.editable.Status);
+
+            this.tabEventDetails.TabPages.Remove(this.tabPagos);
+            if (EventStatus.INITIALIZED.Equals(this.editable.Status) == false)
+            {
+                this.tabEventDetails.TabPages.Add(this.tabPagos);
+            }
+
+            this.btnAddAS.Visible = !EventStatus.CONFIRMED.Equals(this.editable.Status);
+
+
+        }
+
+        private void txtGuessQty_ValueChanged(object sender, EventArgs e)
+        {
+            this.editable.GuessQuantity = Decimal.ToInt32(txtGuessQty.Value) ;
+        }
+
+        private void btnApproveEvent_Click(object sender, EventArgs e)
+        {
+            var errors = eventsBLL.Confirm(this.editable);
+
+            if (errors.Count > 0)
+            {
+                WinformUtils.ShowErrorList(MultiLang.TranslateOrDefault("event.errortitle", "Deberá corregir los siguientes puntos"), errors);
+            }
+            else
+            {
+                String title = MultiLang.TranslateOrDefault("event.budget.confirmed.title", "Presupuesto CONFIRMADO ") + "#" + this.editable.Id;
+                String body = MultiLang.TranslateOrDefault("event.budget.confirmed.body", "Felicitaciones, el evento quedo confirmado y comenzaremos el proceso de reserva con los distintos proveedores para garantizar disponibilidad.");
+                MessageBox.Show(body, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DrawActionButtons();
             }
         }
     }

@@ -9,13 +9,13 @@ namespace SistemaGestorEventos.BE
         public decimal Amount { get; set; }
         public string ConciliationKey { get; set; }
         public PaymentType Type { get; set; }
-        public bool Active { get; set; }
+        public bool Status { get; set; }
 
         public DateTime PaymentDate { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt{ get; set; }
         public User CreatedBy { get; set; }
         public User UpdatedBy { get; set; }
-
+        public Int32? EventId { get; set; }
     }
 }

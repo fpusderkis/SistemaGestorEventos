@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabEventDetails = new System.Windows.Forms.TabControl();
             this.tabCharacteristics = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -53,7 +53,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.dtpToDate = new System.Windows.Forms.DateTimePicker();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.txtGuessQty = new System.Windows.Forms.NumericUpDown();
             this.cmbEventType = new System.Windows.Forms.ComboBox();
             this.tabLugares = new System.Windows.Forms.TabPage();
             this.gbxEventroomsDetails = new System.Windows.Forms.GroupBox();
@@ -134,6 +134,7 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnApproveEvent = new System.Windows.Forms.Button();
+            this.btnMakeBudget = new System.Windows.Forms.Button();
             this.tabEventDetails.SuspendLayout();
             this.tabCharacteristics.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -141,7 +142,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBudgetMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBudgetMin)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGuessQty)).BeginInit();
             this.tabLugares.SuspendLayout();
             this.gbxEventroomsDetails.SuspendLayout();
             this.tblEventroomsMainDetail.SuspendLayout();
@@ -393,7 +394,7 @@
             // 
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.dtpToDate);
-            this.panel2.Controls.Add(this.numericUpDown1);
+            this.panel2.Controls.Add(this.txtGuessQty);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(192, 192);
             this.panel2.Name = "panel2";
@@ -418,17 +419,18 @@
             this.dtpToDate.Size = new System.Drawing.Size(260, 27);
             this.dtpToDate.TabIndex = 1;
             // 
-            // numericUpDown1
+            // txtGuessQty
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(5, 1);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.txtGuessQty.Location = new System.Drawing.Point(5, 1);
+            this.txtGuessQty.Maximum = new decimal(new int[] {
             99999999,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(150, 27);
-            this.numericUpDown1.TabIndex = 0;
+            this.txtGuessQty.Name = "txtGuessQty";
+            this.txtGuessQty.Size = new System.Drawing.Size(150, 27);
+            this.txtGuessQty.TabIndex = 0;
+            this.txtGuessQty.ValueChanged += new System.EventHandler(this.txtGuessQty_ValueChanged);
             // 
             // cmbEventType
             // 
@@ -901,10 +903,10 @@
             // dgvASFilterCPrice
             // 
             this.dgvASFilterCPrice.DataPropertyName = "Price";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "C2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dgvASFilterCPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dgvASFilterCPrice.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvASFilterCPrice.HeaderText = "Precio";
             this.dgvASFilterCPrice.MinimumWidth = 6;
             this.dgvASFilterCPrice.Name = "dgvASFilterCPrice";
@@ -964,10 +966,10 @@
             // dgvASCPrice
             // 
             this.dgvASCPrice.DataPropertyName = "Price";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dgvASCPrice.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dgvASCPrice.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvASCPrice.HeaderText = "Price";
             this.dgvASCPrice.MinimumWidth = 6;
             this.dgvASCPrice.Name = "dgvASCPrice";
@@ -1113,9 +1115,9 @@
             // 
             // dgvPaymentsCDate
             // 
-            dataGridViewCellStyle7.Format = "d";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dgvPaymentsCDate.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgvPaymentsCDate.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPaymentsCDate.HeaderText = "Fecha";
             this.dgvPaymentsCDate.MinimumWidth = 6;
             this.dgvPaymentsCDate.Name = "dgvPaymentsCDate";
@@ -1132,10 +1134,10 @@
             // 
             // dgvPaymentsCAmount
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle8.Format = "C2";
-            dataGridViewCellStyle8.NullValue = null;
-            this.dgvPaymentsCAmount.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dgvPaymentsCAmount.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPaymentsCAmount.HeaderText = "Amount";
             this.dgvPaymentsCAmount.MinimumWidth = 6;
             this.dgvPaymentsCAmount.Name = "dgvPaymentsCAmount";
@@ -1274,7 +1276,6 @@
             // 
             // totalAmountsLP
             // 
-            this.totalAmountsLP.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.totalAmountsLP.ColumnCount = 2;
             this.totalAmountsLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.totalAmountsLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1377,7 +1378,8 @@
             // 
             // btnApproveEvent
             // 
-            this.btnApproveEvent.Location = new System.Drawing.Point(317, 507);
+            this.btnApproveEvent.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnApproveEvent.Location = new System.Drawing.Point(199, 509);
             this.btnApproveEvent.Name = "btnApproveEvent";
             this.btnApproveEvent.Size = new System.Drawing.Size(111, 123);
             this.btnApproveEvent.TabIndex = 4;
@@ -1385,6 +1387,20 @@
             this.btnApproveEvent.Text = "Aprobar y Organizar";
             this.btnApproveEvent.UseVisualStyleBackColor = true;
             this.btnApproveEvent.Visible = false;
+            this.btnApproveEvent.Click += new System.EventHandler(this.btnApproveEvent_Click);
+            // 
+            // btnMakeBudget
+            // 
+            this.btnMakeBudget.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnMakeBudget.Location = new System.Drawing.Point(317, 509);
+            this.btnMakeBudget.Name = "btnMakeBudget";
+            this.btnMakeBudget.Size = new System.Drawing.Size(111, 123);
+            this.btnMakeBudget.TabIndex = 5;
+            this.btnMakeBudget.Tag = "btn.makebudget";
+            this.btnMakeBudget.Text = "Presupuestar";
+            this.btnMakeBudget.UseVisualStyleBackColor = true;
+            this.btnMakeBudget.Visible = false;
+            this.btnMakeBudget.Click += new System.EventHandler(this.btnMakeBudget_Click);
             // 
             // EventForm
             // 
@@ -1392,6 +1408,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSalir;
             this.ClientSize = new System.Drawing.Size(800, 642);
+            this.Controls.Add(this.btnMakeBudget);
             this.Controls.Add(this.btnApproveEvent);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardar);
@@ -1411,7 +1428,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBudgetMin)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGuessQty)).EndInit();
             this.tabLugares.ResumeLayout(false);
             this.gbxEventroomsDetails.ResumeLayout(false);
             this.tblEventroomsMainDetail.ResumeLayout(false);
@@ -1485,7 +1502,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtpToDate;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown txtGuessQty;
         private System.Windows.Forms.GroupBox gbxEventroomsDetails;
         private System.Windows.Forms.TableLayoutPanel tlpSearchResultEventrooms;
         private System.Windows.Forms.DataGridView dgvEventrooms;
@@ -1554,5 +1571,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCConciliationKey;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCAmount;
         private System.Windows.Forms.Button btnDeleteSelectedPayment;
+        private System.Windows.Forms.Button btnMakeBudget;
     }
 }
