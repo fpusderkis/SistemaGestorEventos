@@ -1,5 +1,7 @@
 ﻿using SistemaGestorEventos.BE;
+using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
+using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
@@ -82,7 +84,7 @@ namespace SistemaGestorEventos.GUI.Home
                 eventToEdit.Customer = customer;
                 eventToEdit.CreatedBy = (User) SessionHandler.GetInstance.User;
                 var form = new Events.EventForm(eventToEdit);
-                
+                BitacoraSingleton.GetInstance.Log("Se abre evento NUEVO");
                 form.ShowDialog();
             } else
             {
@@ -170,9 +172,17 @@ namespace SistemaGestorEventos.GUI.Home
                 editable.ModifiedBy = (User) SESSION.User;
 
                 var eventForm = new Events.EventForm(editable);
+                BitacoraSingleton.GetInstance.Log($"Se abre el evento {editable.Id}");
                 eventForm.ShowDialog();
 
             }
+        }
+
+        private void FrmHome_Load(object sender, EventArgs e)
+        {
+            var canEditService = SessionHandler.GetInstance.HasGrant(GrantType.GestionarServicio);
+            btnNewEvent.Enabled = canEditService;
+            btnOpenEvent.Enabled = canEditService;
         }
     }
 }

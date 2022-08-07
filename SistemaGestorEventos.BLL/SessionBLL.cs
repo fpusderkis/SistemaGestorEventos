@@ -64,9 +64,7 @@ namespace SistemaGestorEventos.BLL
                 throw new SistemaGestorEventos.BLL.Exceptions.BusinessException("login.invaliddigit", "Registro de inicio de sesión corrupto,\n contacte al administrador");
             }
 
-            /**
-             * TODO Agregar a la especificación del word este camino alternativo.
-             */
+
 
             if (user.Expired == true)
             {

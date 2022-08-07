@@ -174,7 +174,7 @@ namespace SistemaGestorEventos.GUI.Permisos
             if (this.editable != null)
             {
                 usuarioBLL.SaveUserGrants(this.editable);
-                MessageBox.Show(MultiLang.TranslateOrDefault("grants.correctsave",$"Los permisos se guardaron correctamente para el usuario {this.editable.Username}."));
+                MessageBox.Show(MultiLang.TranslateOrDefault("grants.correctsave",$"Los permisos se guardaron correctamente para el usuario ") + this.editable.Username);
             }
                 
         }

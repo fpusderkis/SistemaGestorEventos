@@ -4,7 +4,6 @@ using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SistemaGestorEventos.BLL
 {
@@ -15,6 +14,7 @@ namespace SistemaGestorEventos.BLL
 
         private EventDAL eventDAL = EventDAL.Instance;
         private PaymentBLL paymentBLL = PaymentBLL.Instance;
+        private AditionalServicesBLL aditionalServiceBLL = AditionalServicesBLL.Instance;
 
 
         private EventBLL()
@@ -27,6 +27,15 @@ namespace SistemaGestorEventos.BLL
         public List<string> SaveEvent(Event evt)
         {
             var errors = ValidateEvent(evt);
+
+            if (evt.AditionalServices.Count > 0)
+            {
+                foreach (var serv in evt.AditionalServices)
+                {
+                    errors.AddRange(this.aditionalServiceBLL.ValidateAditionalService(serv));
+                }
+                
+            }
 
             if (errors.Count > 0) return errors;
 
