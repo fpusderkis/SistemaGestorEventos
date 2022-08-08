@@ -122,7 +122,7 @@ namespace SistemaGestorEventos.DAL
 
                 if (status != null)
                 {
-                    sql = sql + " AND STATUS < @Status";
+                    sql = sql + " AND STATUS = @Status";
                     db.AddParameter("@Status", status.ToString());
                 }
 

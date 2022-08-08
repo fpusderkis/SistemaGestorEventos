@@ -304,11 +304,15 @@
             // 
             // cbxEventStatus
             // 
+            this.cbxEventStatus.DisplayMember = "Text";
+            this.cbxEventStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxEventStatus.FormattingEnabled = true;
             this.cbxEventStatus.Location = new System.Drawing.Point(634, 43);
             this.cbxEventStatus.Name = "cbxEventStatus";
             this.cbxEventStatus.Size = new System.Drawing.Size(132, 28);
             this.cbxEventStatus.TabIndex = 9;
+            this.cbxEventStatus.ValueMember = "Value";
+            this.cbxEventStatus.SelectedIndexChanged += new System.EventHandler(this.cbxEventStatus_SelectedIndexChanged);
             // 
             // btnOpenEvent
             // 

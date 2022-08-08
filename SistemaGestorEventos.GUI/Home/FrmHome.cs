@@ -42,16 +42,17 @@ namespace SistemaGestorEventos.GUI.Home
             this.txtEventRoom.DataBindings.Add("Text", this, "Roomname");
             this.dtpFrom.DataBindings.Add("Value", this, "DateForm");
             this.dtpTo.DataBindings.Add("Value", this, "DateTo");
-            this.cbxEventStatus.DataBindings.Add("SelectedValue", this, "EventStatus");
-
+            this.cbxEventStatus.DataBindings.Add("SelectedItem", this, "EventStatus");
+            
             MultiLang.SubscribeChangeLangEvent(Translate);
+            Translate();
 
         }
 
         private void Translate()
         {
             WinformUtils.TraducirControl(this);
-            if (dgvCustomers.Columns.Count> 3)
+            if (dgvCustomers.Columns.Count > 3)
             {
                 dgvCustomers.Columns[1].HeaderText = MultiLang.TranslateOrDefault("home.custommers.taxPayerId", "CUIL/CUIT");
                 dgvCustomers.Columns[2].HeaderText = MultiLang.TranslateOrDefault("home.custommers.name", "Nombre");
@@ -60,14 +61,27 @@ namespace SistemaGestorEventos.GUI.Home
 
             var selected = this.cbxEventStatus.SelectedValue;
 
-            this.cbxEventStatus.DataSource = Enum.GetValues(typeof(EventStatus)).Cast<EventStatus>()
-              .Select(x =>
-              new { Value = x, Text = MultiLang.TranslateOrDefault("eventstatus." + x.ToString(), x.ToString()) })
-              .ToList();
+            ListItem<EventStatus?,string> item = new ListItem<EventStatus?, string>() { Key = null, Value = MultiLang.TranslateOrDefault("eventstatus.select", "Seleccione...")};
+            this.cbxEventStatus.Items.Clear();
+            this.cbxEventStatus.Items.Add(item);
+
+            foreach (var x in Enum.GetValues(typeof(EventStatus)).Cast<EventStatus>().ToList())
+            {
+                cbxEventStatus.Items.Add(
+                    new ListItem<EventStatus?, string>() { Key = x, Value = MultiLang.TranslateOrDefault("eventstatus." + x.ToString(), value: x.ToString()) }
+                    );
+            }
+                
+
+            this.cbxEventStatus.DisplayMember = "Value";
+            this.cbxEventStatus.ValueMember = "Key";
 
             if (selected != null)
             {
                 this.cbxEventStatus.SelectedItem = selected;
+            } else
+            {
+                this.cbxEventStatus.SelectedItem = item;
             }
 
         }
@@ -151,7 +165,7 @@ namespace SistemaGestorEventos.GUI.Home
                 title: Title,
                 from: DateForm,
                 to: DateTo,
-                status: EventStatus
+                status: (EventStatus?)this.cbxEventStatus.SelectedValue
                 );
 
             this.dgvEvents.DataSource = events;
@@ -183,6 +197,11 @@ namespace SistemaGestorEventos.GUI.Home
             var canEditService = SessionHandler.GetInstance.HasGrant(GrantType.GestionarServicio);
             btnNewEvent.Enabled = canEditService;
             btnOpenEvent.Enabled = canEditService;
+        }
+
+        private void cbxEventStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

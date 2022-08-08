@@ -39,19 +39,6 @@ namespace SistemaGestorEventos.SharedServices.Persistance
             return this;
         }
 
-        public Database AddNullParamete(string name)
-        {
-
-            var sqlParameter = new SqlParameter();
-            sqlParameter.ParameterName = name;
-
-            sqlParameter.Value = DBNull.Value;
-            
-
-            _cmd.Parameters.Add(sqlParameter);
-
-            return this;
-        }
         public Database AddInOutParameter<T>(string name, T value, SqlDbType type)
         {
 
