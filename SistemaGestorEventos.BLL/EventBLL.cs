@@ -125,9 +125,8 @@ namespace SistemaGestorEventos.BLL
 
         public decimal CalculateMinPendingAmount(Event evt)
         {
-            
-            return CalculateCost(evt) / 2; // 50%
-            
+            return CalculateCost(evt) / 2 /* 50% */;
+
         }
 
         public decimal CalculatePaidAmount(Event evt)
@@ -142,8 +141,11 @@ namespace SistemaGestorEventos.BLL
             List<string> errors = ValidateEventBudget(evt);
             if (errors.Count > 0) return errors;
 
+            var oldStatus = evt.Status;
             evt.Status = EventStatus.BUDGET;
-            this.SaveEvent(evt);
+
+            errors = this.SaveEvent(evt);
+            if (errors.Count > 0) evt.Status = oldStatus;
 
             return errors;
         }
@@ -167,16 +169,23 @@ namespace SistemaGestorEventos.BLL
         {
             decimal paidAmount = CalculatePaidAmount(evt);
             decimal minPaidAmount = CalculateMinPendingAmount(evt);
+            var errors = new List<string>();
 
             if (paidAmount < minPaidAmount)
             {
-                var errors = new List<string>();
-                errors.Add(MultiLang.TranslateOrDefault("event.payment.error.totalamountexceded", "El pago que intenta registrar excede el monto total del evento"));
+                
+                errors.Add(MultiLang.TranslateOrDefault("event.payment.error.minpaidneeded", "Todavía no se saldo la seña minima para confirmar el evento. Pendientes: ") + (minPaidAmount - paidAmount));
                 return errors;
             }
-
+            var oldstatus = evt.Status;
             evt.Status = EventStatus.CONFIRMED;
-            return SaveEvent(evt);
+            errors = SaveEvent(evt);
+            if (errors.Count > 0)
+            {
+                evt.Status = oldstatus;
+            }
+
+            return errors;
         }
     }
 }

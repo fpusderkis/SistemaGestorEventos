@@ -67,6 +67,9 @@ namespace SistemaGestorEventos.GUI.Events
             this.paymentsBS.DataSource = this.editable.Payments;
             dgvPayments.DataSource = this.paymentsBS;
 
+
+            this.dtpNewPaymentDate.MaxDate = DateTime.Now.AddHours(1);
+
             CalculateEventRoomLegend(this.editable);
             DrawActionButtons();
 
@@ -78,10 +81,11 @@ namespace SistemaGestorEventos.GUI.Events
         private void Translate()
         {
             WinformUtils.TraducirControl(this);
+            
             var selected = this.cmbEventType.SelectedValue;
 
             this.cmbEventType.DataSource = Enum.GetValues(typeof(EventType)).Cast<EventType>()
-              .Select(x => 
+              .Select(x =>
               new { Value = x, Text = MultiLang.TranslateOrDefault("eventtype." + x.ToString(), x.ToString()) })
               .ToList();
 
@@ -90,18 +94,8 @@ namespace SistemaGestorEventos.GUI.Events
                 this.cmbEventType.SelectedValue = selected;
             }
 
-            var selectedPaymentType = this.cbxNewPaymentType.SelectedValue;
 
-            this.cbxNewPaymentType.DataSource = Enum.GetValues(typeof(PaymentType)).Cast<PaymentType>()
-          .Select(x =>
-          new { Value = x, Text = MultiLang.TranslateOrDefault("paymentType." + x.ToString(), x.ToString()) })
-          .ToList();
-
-            if (selectedPaymentType != null)
-            {
-                this.cbxNewPaymentType.SelectedValue = selectedPaymentType;
-            }
-
+            refreshCmbPaymentType();
 
             this.dgvASFilterCId.HeaderText = MultiLang.TranslateOrDefault("filter.aditionalservice.column.id", "Id");
             this.dgvASFilterCName.HeaderText = MultiLang.TranslateOrDefault("filter.aditionalservice.column.name", "Nombre");
@@ -113,6 +107,32 @@ namespace SistemaGestorEventos.GUI.Events
             this.dgvPaymentsCId.HeaderText = MultiLang.TranslateOrDefault("dgvpayments.column.id", "Id");
             this.dgvPaymentsCType.HeaderText = MultiLang.TranslateOrDefault("dgvpayments.column.paymenttype", "Tipo");
 
+
+        }
+
+        private void refreshCmbPaymentType()
+        {
+            var selected = this.cbxNewPaymentType.SelectedValue;
+
+            cbxNewPaymentType.Items.Clear();
+            foreach (var x in Enum.GetValues(typeof(PaymentType)).Cast<PaymentType>().ToList())
+            {
+                cbxNewPaymentType.Items.Add(
+                    new ListItem<PaymentType?, string>() { Key = x, Value = MultiLang.TranslateOrDefault("paymenttype." + x.ToString(), value: x.ToString()) }
+                    );
+            }
+
+
+            this.cbxNewPaymentType.DisplayMember = "Value";
+            this.cbxNewPaymentType.ValueMember = "Key";
+
+            if (selected != null)
+            {
+                this.cbxNewPaymentType.SelectedItem = selected;
+            } else
+            {
+                this.cbxNewPaymentType.SelectedItem = cbxNewPaymentType.Items[0];
+            }
 
         }
 
@@ -260,8 +280,13 @@ namespace SistemaGestorEventos.GUI.Events
 
         private void CalculateEventAmounts()
         {
-            this.lblPaidValue.Text = "$ " + this.eventsBLL.CalculatePaidAmount(this.editable);
-            this.lblPendingPayValue.Text = "$ " + this.eventsBLL.CalculateMinPendingAmount(this.editable);
+            var paid = this.eventsBLL.CalculatePaidAmount(this.editable);
+            this.lblPaidValue.Text = "$ " + paid;
+
+            var pendingToConfirm = this.eventsBLL.CalculateMinPendingAmount(this.editable) - paid;
+            if (pendingToConfirm < 0) pendingToConfirm = 0;
+
+            this.lblPendingPayValue.Text = "$ " + pendingToConfirm;
             this.lblTotalValue.Text = "$" + this.eventsBLL.CalculateCost(this.editable);
             this.dgvAddedServices.Refresh();
             
@@ -278,7 +303,8 @@ namespace SistemaGestorEventos.GUI.Events
             payment.Amount = txtNewPaymentAmount.Value;
             payment.Status = true;
             payment.ConciliationKey = txtConciliationKey.Text;
-            payment.Type = (PaymentType) this.cbxNewPaymentType.SelectedValue;
+            ListItem<PaymentType?, string> selectedItem = (ListItem<PaymentType?, string>)this.cbxNewPaymentType.SelectedItem;
+            payment.Type = (PaymentType)selectedItem.Key;
             payment.PaymentDate = this.dtpNewPaymentDate.Value;
             List<string> errors = this.eventsBLL.AddPayment(this.editable, payment);
             
@@ -435,6 +461,11 @@ namespace SistemaGestorEventos.GUI.Events
                 MessageBox.Show(body, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DrawActionButtons();
             }
+        }
+
+        private void lblPendingPayment_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

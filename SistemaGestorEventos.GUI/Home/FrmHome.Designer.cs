@@ -90,6 +90,7 @@
             this.gbxCustomers.TabStop = false;
             this.gbxCustomers.Tag = "customers";
             this.gbxCustomers.Text = "Clientes";
+            this.gbxCustomers.Enter += new System.EventHandler(this.gbxCustomers_Enter);
             // 
             // btnEditar
             // 

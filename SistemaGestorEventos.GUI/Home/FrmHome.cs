@@ -203,5 +203,10 @@ namespace SistemaGestorEventos.GUI.Home
         {
 
         }
+
+        private void gbxCustomers_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

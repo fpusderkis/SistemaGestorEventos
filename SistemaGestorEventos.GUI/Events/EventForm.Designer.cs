@@ -1210,9 +1210,8 @@
             // 
             // cbxNewPaymentType
             // 
-            this.cbxNewPaymentType.DisplayMember = "Text";
+            this.cbxNewPaymentType.DisplayMember = "Key";
             this.cbxNewPaymentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxNewPaymentType.ForeColor = System.Drawing.SystemColors.Window;
             this.cbxNewPaymentType.Location = new System.Drawing.Point(3, 40);
             this.cbxNewPaymentType.Name = "cbxNewPaymentType";
             this.cbxNewPaymentType.Size = new System.Drawing.Size(128, 28);
@@ -1334,7 +1333,8 @@
             this.lblPendingPayment.Size = new System.Drawing.Size(74, 20);
             this.lblPendingPayment.TabIndex = 2;
             this.lblPendingPayment.Tag = "pendingtopay.title";
-            this.lblPendingPayment.Text = "Pendiente";
+            this.lblPendingPayment.Text = "Pago Min.";
+            this.lblPendingPayment.Click += new System.EventHandler(this.lblPendingPayment_Click);
             // 
             // lblTotalValue
             // 

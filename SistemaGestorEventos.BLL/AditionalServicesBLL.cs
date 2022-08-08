@@ -32,7 +32,7 @@ namespace SistemaGestorEventos.BLL
                 errors.Add(MultiLang.TranslateOrDefault("aditionalservice.error.quantity.minimum", "El minimo a contratar por cada servicio es de 1"));
             }
 
-            if (aserv.Price >= aserv.Service.ProviderPrice)
+            if (aserv.Price < aserv.Service.ProviderPrice)
             {
                 errors.Add(MultiLang.TranslateOrDefault("aditionalservice.error.providerprice.minimum", "El precio sugerido excede el precio minimo permitido."));
             }
