@@ -14,7 +14,7 @@ namespace SistemaGestorEventos.GUI.Idioma
 {
     public partial class FrmCambiarIdioma : Form
     {
-        private MultiIdiomaBLL multiIdiomaBLL = MultiIdiomaBLL.Instance;
+        private MultiLangBLL multiIdiomaBLL = MultiLangBLL.Instance;
 
         public FrmCambiarIdioma()
         {

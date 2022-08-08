@@ -7,14 +7,14 @@ using System.Text;
 
 namespace SistemaGestorEventos.BLL
 {
-    public class MultiIdiomaBLL : AbstractBLL,IMultiLangDataSource
+    public class MultiLangBLL : AbstractBLL,IMultiLangDataSource
     {
-        private static readonly MultiIdiomaBLL multiIdiomaBLL = new MultiIdiomaBLL();
+        private static readonly MultiLangBLL multiLangBll = new MultiLangBLL();
 
-        private readonly MultiIdiomaDAL multiIdiomaDAL = MultiIdiomaDAL.Instance;
-        public static MultiIdiomaBLL Instance => multiIdiomaBLL;
+        private readonly MultiLangDAL multiIdiomaDAL = MultiLangDAL.Instance;
+        public static MultiLangBLL Instance => multiLangBll;
 
-        private MultiIdiomaBLL() { }
+        private MultiLangBLL() { }
 
         public Dictionary<string, string> LoadLang(string idioma)
         {
@@ -36,6 +36,11 @@ namespace SistemaGestorEventos.BLL
             return multiIdiomaDAL.LoadLang("es-AR");
         }
 
+        /// <summary>
+        /// Carga el idioma seleccionado, haciendo un join con el idioma default para completar las keys faltantes.
+        /// </summary>
+        /// <param name="idioma">Idioma a cargar</param>
+        /// <returns>Listado completo de keyvalues traducidos.</returns>
         public Dictionary<string,string> CargarIdiomaFull(string idioma)
         {
             var traduccionesDefault = this.GetTraduccionesDefault();
@@ -52,9 +57,18 @@ namespace SistemaGestorEventos.BLL
             return traducciones;
         }
 
+        public Idioma CrearIdioma(string id, string description)
+        {
+            var lang = new Idioma() { Id = id, Descripcion = description };
+
+            multiIdiomaDAL.UpsertIdioma(lang);
+
+            return lang;
+        }
+
         public void GuardarIdioma(Idioma idioma, Dictionary<string, string> traducciones)
         {
-            foreach(var key in traducciones.Keys)
+            foreach (var key in traducciones.Keys)
             {
                 UpsertTranslate(idioma.Id, key, traducciones[key]);
             }

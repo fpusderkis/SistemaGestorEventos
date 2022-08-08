@@ -41,7 +41,7 @@ namespace SistemaGestorEventos.GUI
                 
             });
 
-            MultiLang.Initialize(MultiIdiomaBLL.Instance, "es-AR");
+            MultiLang.Initialize(MultiLangBLL.Instance, "es-AR");
 
             // Add the event handler for handling UI thread exceptions to the event.
           //  Application.ThreadException += new

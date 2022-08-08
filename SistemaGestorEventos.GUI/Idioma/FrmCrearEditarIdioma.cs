@@ -14,7 +14,7 @@ namespace SistemaGestorEventos.GUI.Idioma
     public partial class FrmCrearEditarIdioma : Form
     {
 
-        private MultiIdiomaBLL multiIdiomaBLL = MultiIdiomaBLL.Instance;
+        private MultiLangBLL multiIdiomaBLL = MultiLangBLL.Instance;
 
         private List<BE.Idioma> idiomas;
 
@@ -44,7 +44,7 @@ namespace SistemaGestorEventos.GUI.Idioma
 
         private void cbxId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id_idioma = (string)cbxId.SelectedItem;
+            string id_idioma = (string)cbxId.Text;
             if (string.IsNullOrWhiteSpace(id_idioma))
             {
                 txtDescipcion.Text = null;
@@ -77,7 +77,8 @@ namespace SistemaGestorEventos.GUI.Idioma
 
         private void btnGuardarIdioma_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace((string)cbxId.SelectedItem))
+            
+            if (string.IsNullOrWhiteSpace(this.cbxId.Text))
             {
                 MessageBox.Show(MultiLang.TranslateOrDefault("FrmCrearEditarIdioma.Error.SeleccionaIdioma", "Escriba un identificador de idioma, se recomienda el formato de la RFC3066 (es-AR)"));
                 return;
@@ -87,13 +88,17 @@ namespace SistemaGestorEventos.GUI.Idioma
                 return;
             } else if(string.IsNullOrWhiteSpace(txtTraducciones.Text))
             {
-                // a nadie le importa este escenario, implica que toco guardar sin proponer nada.
+                var lang = multiIdiomaBLL.CrearIdioma(cbxId.Text, txtDescipcion.Text);
+                FrmCrearEditarIdioma_Load(null, null);
+                cbxId.Text = lang.Id;
+                txtDescipcion.Text = lang.Descripcion;
+                cbxId_SelectedIndexChanged(null, null);
                 return;
             }
 
             var idioma = new BE.Idioma
             {
-                Id = (string)cbxId.SelectedItem,
+                Id = (string)cbxId.Text,
                 Descripcion = txtDescipcion.Text
             };
 
@@ -110,5 +115,6 @@ namespace SistemaGestorEventos.GUI.Idioma
 
             multiIdiomaBLL.GuardarIdioma(idioma, traducciones);
         }
+
     }
 }

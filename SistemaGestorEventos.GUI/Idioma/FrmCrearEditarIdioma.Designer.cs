@@ -47,12 +47,13 @@ namespace SistemaGestorEventos.GUI.Idioma
             this.groupBox1.Controls.Add(this.txtTraducciones);
             this.groupBox1.Controls.Add(this.txtDescipcion);
             this.groupBox1.Controls.Add(this.cbxId);
-            this.groupBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Location = new System.Drawing.Point(15, 17);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(803, 376);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(918, 501);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Tag = "lang.manage";
@@ -65,28 +66,31 @@ namespace SistemaGestorEventos.GUI.Idioma
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTraducciones.BackColor = System.Drawing.SystemColors.Window;
             this.txtTraducciones.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtTraducciones.Location = new System.Drawing.Point(7, 71);
+            this.txtTraducciones.Location = new System.Drawing.Point(8, 95);
+            this.txtTraducciones.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTraducciones.Multiline = true;
             this.txtTraducciones.Name = "txtTraducciones";
             this.txtTraducciones.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtTraducciones.Size = new System.Drawing.Size(762, 293);
+            this.txtTraducciones.Size = new System.Drawing.Size(870, 389);
             this.txtTraducciones.TabIndex = 2;
             // 
             // txtDescipcion
             // 
             this.txtDescipcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescipcion.Location = new System.Drawing.Point(135, 22);
+            this.txtDescipcion.Location = new System.Drawing.Point(154, 29);
+            this.txtDescipcion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDescipcion.Name = "txtDescipcion";
-            this.txtDescipcion.Size = new System.Drawing.Size(634, 27);
+            this.txtDescipcion.Size = new System.Drawing.Size(724, 32);
             this.txtDescipcion.TabIndex = 1;
             // 
             // cbxId
             // 
             this.cbxId.FormattingEnabled = true;
-            this.cbxId.Location = new System.Drawing.Point(7, 23);
+            this.cbxId.Location = new System.Drawing.Point(8, 31);
+            this.cbxId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxId.Name = "cbxId";
-            this.cbxId.Size = new System.Drawing.Size(121, 28);
+            this.cbxId.Size = new System.Drawing.Size(138, 33);
             this.cbxId.TabIndex = 0;
             this.cbxId.SelectedIndexChanged += new System.EventHandler(this.cbxId_SelectedIndexChanged);
             // 
@@ -99,9 +103,10 @@ namespace SistemaGestorEventos.GUI.Idioma
             this.btnGuardarIdioma.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarIdioma.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnGuardarIdioma.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnGuardarIdioma.Location = new System.Drawing.Point(13, 395);
+            this.btnGuardarIdioma.Location = new System.Drawing.Point(15, 527);
+            this.btnGuardarIdioma.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnGuardarIdioma.Name = "btnGuardarIdioma";
-            this.btnGuardarIdioma.Size = new System.Drawing.Size(100, 45);
+            this.btnGuardarIdioma.Size = new System.Drawing.Size(114, 60);
             this.btnGuardarIdioma.TabIndex = 1;
             this.btnGuardarIdioma.Tag = "btn.save";
             this.btnGuardarIdioma.Text = "Guardar";
@@ -117,9 +122,10 @@ namespace SistemaGestorEventos.GUI.Idioma
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(716, 393);
+            this.button1.Location = new System.Drawing.Point(818, 524);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 45);
+            this.button1.Size = new System.Drawing.Size(114, 60);
             this.button1.TabIndex = 2;
             this.button1.Tag = "btn.exit";
             this.button1.Text = "Salir";
@@ -128,13 +134,14 @@ namespace SistemaGestorEventos.GUI.Idioma
             // 
             // FrmCrearEditarIdioma
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(828, 450);
+            this.ClientSize = new System.Drawing.Size(946, 600);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnGuardarIdioma);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmCrearEditarIdioma";
             this.Tag = "title.lang.manage";
             this.Text = "Gestion de idiomas";

@@ -1,5 +1,6 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.SharedServices.i18n;
+using SistemaGestorEventos.SharedServices.Persistance;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,13 +8,13 @@ using System.Text;
 
 namespace SistemaGestorEventos.DAL
 {
-    public class MultiIdiomaDAL : AbstractDAL, IMultiLangDataSource
+    public class MultiLangDAL : AbstractDAL, IMultiLangDataSource
     {
-        private static readonly MultiIdiomaDAL multiIdiomaDAL = new MultiIdiomaDAL();
+        private static readonly MultiLangDAL multiLangDAL = new MultiLangDAL();
 
-        private MultiIdiomaDAL() { }
+        private MultiLangDAL() { }
 
-        public static MultiIdiomaDAL Instance => multiIdiomaDAL;
+        public static MultiLangDAL Instance => multiLangDAL;
 
         public void UpsertIdioma(Idioma idioma)
         {
@@ -34,20 +35,20 @@ namespace SistemaGestorEventos.DAL
 
         public Dictionary<string, string> LoadLang(string idioma)
         {
-            using (var connection = this.GetSqlConnection())
+            using (var connection = this.GetSqlConnectionOpen())
             {
                 SqlCommand sql = new SqlCommand("SELECT [clave],[valor] FROM Traducciones WHERE Idioma like @idioma; ");
                 sql.Connection = connection;
 
                 sql.Parameters.Add(new SqlParameter("@idioma", idioma));
-                connection.Open();
+                
                 var reader = sql.ExecuteReader();
 
                 Dictionary<string, string> traducciones = new Dictionary<string, string>();
 
                 while (reader.Read())
                 {
-                    traducciones.Add(reader["clave"].ToString(), reader["valor"].ToString()); 
+                    traducciones.Add(reader["clave"].ToString(), reader["valor"].ToString());
                 }
 
                 return traducciones;
