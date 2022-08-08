@@ -68,6 +68,7 @@ namespace SistemaGestorEventos.BLL
 
         public void GuardarIdioma(Idioma idioma, Dictionary<string, string> traducciones)
         {
+            CrearIdioma(idioma.Id,idioma.Descripcion);
             foreach (var key in traducciones.Keys)
             {
                 UpsertTranslate(idioma.Id, key, traducciones[key]);
