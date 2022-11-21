@@ -37,6 +37,14 @@ namespace SistemaGestorEventos.GUI
             this.admnistrarUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCambiarIdioma = new System.Windows.Forms.ToolStripMenuItem();
+            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administradorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generarBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restaurarBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBMCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sfdSaveBackup = new System.Windows.Forms.SaveFileDialog();
+            this.ofdOpenBackupDB = new System.Windows.Forms.OpenFileDialog();
+            this.lugaresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +55,9 @@ namespace SistemaGestorEventos.GUI
             this.mnuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuLogo1,
             this.mnuUsuario,
-            this.mnuIdioma});
+            this.mnuIdioma,
+            this.bitacoraToolStripMenuItem,
+            this.administradorToolStripMenuItem});
             this.mnuPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mnuPrincipal.Name = "mnuPrincipal";
             this.mnuPrincipal.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -124,6 +134,62 @@ namespace SistemaGestorEventos.GUI
             this.mnuCambiarIdioma.Text = "Cambiar Idioma";
             this.mnuCambiarIdioma.Click += new System.EventHandler(this.mnuCambiarIdioma_Click);
             // 
+            // bitacoraToolStripMenuItem
+            // 
+            this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(78, 73);
+            this.bitacoraToolStripMenuItem.Text = "Bitacora";
+            this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
+            // 
+            // administradorToolStripMenuItem
+            // 
+            this.administradorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generarBackupToolStripMenuItem,
+            this.restaurarBackupToolStripMenuItem,
+            this.aBMCToolStripMenuItem,
+            this.lugaresToolStripMenuItem});
+            this.administradorToolStripMenuItem.Name = "administradorToolStripMenuItem";
+            this.administradorToolStripMenuItem.Size = new System.Drawing.Size(118, 73);
+            this.administradorToolStripMenuItem.Text = "Administrador";
+            // 
+            // generarBackupToolStripMenuItem
+            // 
+            this.generarBackupToolStripMenuItem.Name = "generarBackupToolStripMenuItem";
+            this.generarBackupToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.generarBackupToolStripMenuItem.Text = "Generar backup";
+            this.generarBackupToolStripMenuItem.Click += new System.EventHandler(this.generarBackupToolStripMenuItem_Click);
+            // 
+            // restaurarBackupToolStripMenuItem
+            // 
+            this.restaurarBackupToolStripMenuItem.Name = "restaurarBackupToolStripMenuItem";
+            this.restaurarBackupToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.restaurarBackupToolStripMenuItem.Text = "Restaurar backup";
+            this.restaurarBackupToolStripMenuItem.Click += new System.EventHandler(this.restaurarBackupToolStripMenuItem_Click);
+            // 
+            // aBMCToolStripMenuItem
+            // 
+            this.aBMCToolStripMenuItem.Name = "aBMCToolStripMenuItem";
+            this.aBMCToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aBMCToolStripMenuItem.Text = "Servicios";
+            this.aBMCToolStripMenuItem.Click += new System.EventHandler(this.aBMCToolStripMenuItem_Click);
+            // 
+            // sfdSaveBackup
+            // 
+            this.sfdSaveBackup.DefaultExt = "bak";
+            this.sfdSaveBackup.Filter = "SQL backup files (*.bak)|*.bak";
+            // 
+            // ofdOpenBackupDB
+            // 
+            this.ofdOpenBackupDB.DefaultExt = "bak";
+            this.ofdOpenBackupDB.Filter = "SQL backup files (*.bak)|*.bak";
+            // 
+            // lugaresToolStripMenuItem
+            // 
+            this.lugaresToolStripMenuItem.Name = "lugaresToolStripMenuItem";
+            this.lugaresToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.lugaresToolStripMenuItem.Text = "Lugares";
+            this.lugaresToolStripMenuItem.Click += new System.EventHandler(this.lugaresToolStripMenuItem_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -152,5 +218,14 @@ namespace SistemaGestorEventos.GUI
         private System.Windows.Forms.ToolStripMenuItem admnistrarUsuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuCambiarIdioma;
         private System.Windows.Forms.ToolStripMenuItem mnuLogo1;
+        private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem administradorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generarBackupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem restaurarBackupToolStripMenuItem;
+
+        private System.Windows.Forms.SaveFileDialog sfdSaveBackup;
+        private System.Windows.Forms.OpenFileDialog ofdOpenBackupDB;
+        private System.Windows.Forms.ToolStripMenuItem aBMCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lugaresToolStripMenuItem;
     }
 }

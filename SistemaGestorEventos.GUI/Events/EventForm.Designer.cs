@@ -124,6 +124,14 @@
             this.dtpNewPaymentDate = new System.Windows.Forms.DateTimePicker();
             this.btnAddNewPayment = new System.Windows.Forms.Button();
             this.btnDeleteSelectedPayment = new System.Windows.Forms.Button();
+            this.tpCronology = new System.Windows.Forms.TabPage();
+            this.btnDiscartChronology = new System.Windows.Forms.Button();
+            this.btnSaveCronology = new System.Windows.Forms.Button();
+            this.btnDownActivity = new System.Windows.Forms.Button();
+            this.btnUpActivity = new System.Windows.Forms.Button();
+            this.dgvChronology = new System.Windows.Forms.DataGridView();
+            this.Orden = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Actividad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalAmountsLP = new System.Windows.Forms.TableLayoutPanel();
             this.lblPaidValue = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -165,6 +173,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPayments)).BeginInit();
             this.tlpNewPayment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNewPaymentAmount)).BeginInit();
+            this.tpCronology.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChronology)).BeginInit();
             this.totalAmountsLP.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -175,6 +185,7 @@
             this.tabEventDetails.Controls.Add(this.tabLugares);
             this.tabEventDetails.Controls.Add(this.tabAditionalServices);
             this.tabEventDetails.Controls.Add(this.tabPagos);
+            this.tabEventDetails.Controls.Add(this.tpCronology);
             this.tabEventDetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabEventDetails.Location = new System.Drawing.Point(0, 0);
             this.tabEventDetails.Name = "tabEventDetails";
@@ -1273,6 +1284,90 @@
             this.btnDeleteSelectedPayment.UseVisualStyleBackColor = true;
             this.btnDeleteSelectedPayment.Click += new System.EventHandler(this.btnDeleteSelectedPayment_Click);
             // 
+            // tpCronology
+            // 
+            this.tpCronology.Controls.Add(this.btnDiscartChronology);
+            this.tpCronology.Controls.Add(this.btnSaveCronology);
+            this.tpCronology.Controls.Add(this.btnDownActivity);
+            this.tpCronology.Controls.Add(this.btnUpActivity);
+            this.tpCronology.Controls.Add(this.dgvChronology);
+            this.tpCronology.Location = new System.Drawing.Point(4, 29);
+            this.tpCronology.Name = "tpCronology";
+            this.tpCronology.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCronology.Size = new System.Drawing.Size(792, 425);
+            this.tpCronology.TabIndex = 4;
+            this.tpCronology.Tag = "tab.cronology";
+            this.tpCronology.Text = "Cronología";
+            this.tpCronology.UseVisualStyleBackColor = true;
+            // 
+            // btnDiscartChronology
+            // 
+            this.btnDiscartChronology.Location = new System.Drawing.Point(22, 379);
+            this.btnDiscartChronology.Name = "btnDiscartChronology";
+            this.btnDiscartChronology.Size = new System.Drawing.Size(94, 29);
+            this.btnDiscartChronology.TabIndex = 4;
+            this.btnDiscartChronology.Tag = "btn.discart";
+            this.btnDiscartChronology.Text = "Descartar";
+            this.btnDiscartChronology.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveCronology
+            // 
+            this.btnSaveCronology.Location = new System.Drawing.Point(612, 379);
+            this.btnSaveCronology.Name = "btnSaveCronology";
+            this.btnSaveCronology.Size = new System.Drawing.Size(94, 29);
+            this.btnSaveCronology.TabIndex = 3;
+            this.btnSaveCronology.Tag = "btn.save";
+            this.btnSaveCronology.Text = "Guardar cronología";
+            this.btnSaveCronology.UseVisualStyleBackColor = true;
+            // 
+            // btnDownActivity
+            // 
+            this.btnDownActivity.Location = new System.Drawing.Point(712, 94);
+            this.btnDownActivity.Name = "btnDownActivity";
+            this.btnDownActivity.Size = new System.Drawing.Size(64, 53);
+            this.btnDownActivity.TabIndex = 2;
+            this.btnDownActivity.Text = "↓↓↓";
+            this.btnDownActivity.UseVisualStyleBackColor = true;
+            // 
+            // btnUpActivity
+            // 
+            this.btnUpActivity.Location = new System.Drawing.Point(712, 35);
+            this.btnUpActivity.Name = "btnUpActivity";
+            this.btnUpActivity.Size = new System.Drawing.Size(64, 53);
+            this.btnUpActivity.TabIndex = 1;
+            this.btnUpActivity.Text = "↑↑↑";
+            this.btnUpActivity.UseVisualStyleBackColor = true;
+            // 
+            // dgvChronology
+            // 
+            this.dgvChronology.AllowUserToOrderColumns = true;
+            this.dgvChronology.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvChronology.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Orden,
+            this.Actividad});
+            this.dgvChronology.Location = new System.Drawing.Point(22, 35);
+            this.dgvChronology.Name = "dgvChronology";
+            this.dgvChronology.RowHeadersWidth = 51;
+            this.dgvChronology.RowTemplate.Height = 29;
+            this.dgvChronology.Size = new System.Drawing.Size(684, 318);
+            this.dgvChronology.TabIndex = 0;
+            this.dgvChronology.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvChronology_UserAddedRow);
+            // 
+            // Orden
+            // 
+            this.Orden.HeaderText = "#";
+            this.Orden.MinimumWidth = 6;
+            this.Orden.Name = "Orden";
+            this.Orden.ReadOnly = true;
+            this.Orden.Width = 40;
+            // 
+            // Actividad
+            // 
+            this.Actividad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Actividad.HeaderText = "Actividad";
+            this.Actividad.MinimumWidth = 6;
+            this.Actividad.Name = "Actividad";
+            // 
             // totalAmountsLP
             // 
             this.totalAmountsLP.ColumnCount = 2;
@@ -1460,6 +1555,8 @@
             this.tlpNewPayment.ResumeLayout(false);
             this.tlpNewPayment.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNewPaymentAmount)).EndInit();
+            this.tpCronology.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChronology)).EndInit();
             this.totalAmountsLP.ResumeLayout(false);
             this.totalAmountsLP.PerformLayout();
             this.ResumeLayout(false);
@@ -1572,5 +1669,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCAmount;
         private System.Windows.Forms.Button btnDeleteSelectedPayment;
         private System.Windows.Forms.Button btnMakeBudget;
+        private System.Windows.Forms.TabPage tpCronology;
+        private System.Windows.Forms.DataGridView dgvChronology;
+        private System.Windows.Forms.Button btnDiscartChronology;
+        private System.Windows.Forms.Button btnSaveCronology;
+        private System.Windows.Forms.Button btnDownActivity;
+        private System.Windows.Forms.Button btnUpActivity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Orden;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Actividad;
     }
 }

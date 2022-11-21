@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaGestorEventos.SharedServices.Persistance;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
@@ -28,30 +29,24 @@ namespace SistemaGestorEventos.DAL
             return con;
         }
 
-        protected void InvokeProcedure(string name, IDictionary<string,object> parameters)
+        protected int InvokeProcedure(string name) {
+            return InvokeProcedure(name, null);
+        }
+
+        protected int InvokeProcedure(string name, IDictionary<string,object> parameters)
         {
-            using (var con = this.GetSqlConnection())
+            using (var con = this.GetSqlConnectionOpen())
             {
-                SqlCommand command = new SqlCommand(name);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
+                var db = new Database(con);
 
                 if (parameters != null)
                 {
                     foreach (string key in parameters.Keys) {
-                        if (parameters[key] == null)
-                        {
-                            command.Parameters.AddWithValue(key, DBNull.Value);
-                        } 
-                        else
-                        {
-                            command.Parameters.AddWithValue(key, parameters[key]);
-                        }
+                        db.AddParameter(key, parameters[key]);
                     }
                 }
 
-                command.Connection = con;
-                con.Open();
-                command.ExecuteNonQuery();
+                return db.ExecuteNonQuery(name,true);
             }
         }
 

@@ -120,5 +120,7 @@ namespace SistemaGestorEventos.SharedServices.i18n
 
             MessageBox.Show(errorDescription,title,MessageBoxButtons.OK,MessageBoxIcon.Error);
         }
+
+        
     }
 }

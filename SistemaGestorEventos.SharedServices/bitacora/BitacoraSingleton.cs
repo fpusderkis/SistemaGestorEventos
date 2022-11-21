@@ -9,5 +9,10 @@ namespace SistemaGestorEventos.SharedServices.bitacora
         private static Bitacora bitacora = new Bitacora();
 
         public static Bitacora GetInstance { get { return bitacora; } }
+
+        public static void Log(string msg)
+        {
+            GetInstance.Log(msg);
+        }
     }
 }

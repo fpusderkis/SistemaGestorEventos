@@ -29,6 +29,8 @@ namespace SistemaGestorEventos.BE
 
         public decimal Price { get; set; }
 
+        public decimal Cost { get; set; }
+
         public AditionalServiceStatus Status { get; set; } = AditionalServiceStatus.PENDING;
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

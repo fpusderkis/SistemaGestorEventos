@@ -1,5 +1,6 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
+using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,9 @@ namespace SistemaGestorEventos.GUI.Events
         private BindingSource asBS;
         private BindingSource paymentsBS;
 
+        private List<Activity> activities = new List<Activity>();
+
+        private BindingList<Activity> blActivity = new BindingList<Activity>();
 
         public EventForm(Event editable)
         {
@@ -140,6 +144,13 @@ namespace SistemaGestorEventos.GUI.Events
         {
             lblSelectedEventroomDetailValue.Text = "";
             CalculateEventRoomLegend(this.editable);
+            this.activities = new List<Activity>();
+            
+            
+
+            this.dgvChronology.DataSource = this.blActivity;
+
+
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -466,6 +477,16 @@ namespace SistemaGestorEventos.GUI.Events
         private void lblPendingPayment_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvChronology_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            BitacoraSingleton.GetInstance.Log("Added chronology row");
         }
     }
 }

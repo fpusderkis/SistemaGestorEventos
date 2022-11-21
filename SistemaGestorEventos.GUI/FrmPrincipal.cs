@@ -2,10 +2,13 @@
 using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.GUI.Idioma;
+using SistemaGestorEventos.GUI.Lugares;
 using SistemaGestorEventos.GUI.Permisos;
+using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SistemaGestorEventos.GUI
@@ -13,7 +16,7 @@ namespace SistemaGestorEventos.GUI
     public partial class FrmPrincipal : Form
     {
         private readonly SessionHandler SESSION = SessionHandler.GetInstance;
-
+        private bool integrity = false;
 
         public FrmPrincipal()
         {
@@ -22,8 +25,24 @@ namespace SistemaGestorEventos.GUI
             SESSION.SuscribeSessionStatusChangeEvent(() => {
                 this.mnuLogout.Visible = SESSION.IsLogged();
                 bool esAdmin = SESSION.HasGrant(GrantType.AdministradorSistema);
+                integrity = EventRoomBLL.Instance.ValidateDVV();
+
+                if (!integrity && !esAdmin && SESSION.IsLogged())
+                {
+                    var errors = new List<string>();
+                    errors.Add("Se encontro una o mas entidades corruptas. De aviso al administrador para continuar.");
+                    WinformUtils.ShowErrorList("Base de datos corrupta", errors);
+                    SESSION.Logout();
+                    return;
+                }
+
                 this.admnistrarPermisosToolStripMenuItem.Visible = esAdmin;
                 this.admnistrarUsuariosToolStripMenuItem.Visible = esAdmin;
+                this.administradorToolStripMenuItem.Visible = esAdmin;
+                this.administradorToolStripMenuItem.Visible = SESSION.HasGrant(GrantType.AdministradorSistema);
+                this.mnuUsuario.Visible = SESSION.IsLogged();
+                this.bitacoraToolStripMenuItem.Visible = SESSION.HasGrant(GrantType.AdministradorSistema);
+
                 if (SESSION.IsNotLogged())
                 {
                     ShowFormAlone(new FrmLogin());
@@ -99,6 +118,12 @@ namespace SistemaGestorEventos.GUI
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             TraducirTextos();
+            if (!integrity)
+            {
+                var errors = new List<string>();
+                errors.Add("Se encontro una o mas entidades corruptas. De aviso al administrador para continuar.");
+                WinformUtils.ShowErrorList("Base de datos corrupta", errors);
+            }
         }
 
         private void mnuEditorIdioma_Click(object sender, EventArgs e)
@@ -130,6 +155,67 @@ namespace SistemaGestorEventos.GUI
 
         private void mnuPrincipal_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+
+        }
+
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Bitacora.Bitacora().ShowDialog() ;
+        }
+
+        private void generarBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = sfdSaveBackup.ShowDialog();
+
+            if (DialogResult.OK == dr)
+            {
+                var fileName = sfdSaveBackup.FileName;
+                try
+                {
+                    BackupBLL.Instance.MakeBackup(fileName);
+                    MessageBox.Show(MultiLang.TranslateOrDefault("backup.generated.ok", "Backup generado con éxito."));
+                } catch 
+                {
+                    MessageBox.Show(MultiLang.TranslateOrDefault("backup.generated.fail", "No fue posible restaurar el backup"));
+                    BitacoraSingleton.Log($"No fue posible restaurar el backup {fileName}");
+                }
+                
+                
+                
+            } 
+        }
+
+
+        private void restaurarBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dr = this.ofdOpenBackupDB.ShowDialog();
+            if (DialogResult.OK == dr && this.ofdOpenBackupDB.CheckFileExists)
+            {
+                try
+                {
+                    BackupBLL.Instance.RestoreBackup(this.ofdOpenBackupDB.FileName);
+
+                    MessageBox.Show(MultiLang.TranslateOrDefault("backup.restored.ok", "Backup restaurado con éxito."));
+                }
+                catch
+                {
+                    MessageBox.Show(MultiLang.TranslateOrDefault("backup.restored.fail", "No fue posible restaurar el backup"));
+                    BitacoraSingleton.Log($"No fue posible restaurar el backup {this.ofdOpenBackupDB.FileName}");
+                }
+                
+            }
+        }
+
+        private void aBMCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lugaresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmPlaces = new FrmLugares();
+
+            frmPlaces.ShowDialog();
 
         }
     }

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using SistemaGestorEventos.BE;
+using SistemaGestorEventos.SharedServices.Persistance;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Text;
+
 
 namespace SistemaGestorEventos.DAL
 {
@@ -24,5 +25,27 @@ namespace SistemaGestorEventos.DAL
             
         }
 
+        public IList<Log> SearchLogs(string username, DateTime from, DateTime to)
+        {
+            using (var con = this.GetSqlConnectionOpen())
+            {
+                var db = new Database(con);
+
+                var sql = "SELECT l.id id, u.username username, l.creationDate creationDate, l.message message FROM Logs l LEFT JOIN Usuarios u ON l.userId = u.id where creationDate > @fromDate AND creationDate < @toDate ";
+
+                db.AddParameter("@fromDate", from).AddParameter("@toDate", to);
+
+                if (!string.IsNullOrEmpty(username))
+                {
+                    sql += " AND u.usuername like @username ";
+                    db.AddParameter("@username", username);
+                }
+
+                return db.ExecuteQuery<Log>(sql);
+
+            }
+
+            ;
+        }
     }
 }
