@@ -6,9 +6,11 @@ namespace SistemaGestorEventos.BE
 {
     public class Activity : AbstractIdEntity
     {
-        public int Order { get; set; }
+        public int ActivityOrder { get; set; }
 
-        public string description { get; set; }
+        public string Description { get; set; }
+
+        public Boolean Enabled { get; set; } = true;
 
     }
 }

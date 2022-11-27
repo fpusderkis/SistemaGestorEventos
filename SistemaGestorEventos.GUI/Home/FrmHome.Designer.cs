@@ -44,6 +44,10 @@
             this.tbxCxMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTaxId = new System.Windows.Forms.Label();
             this.gbxEvents = new System.Windows.Forms.GroupBox();
+            this.txtAssigned = new System.Windows.Forms.TextBox();
+            this.lblAssigned = new System.Windows.Forms.Label();
+            this.btnUnassigne = new System.Windows.Forms.Button();
+            this.btnAssign = new System.Windows.Forms.Button();
             this.txtEventId = new System.Windows.Forms.TextBox();
             this.lblFilterEventId = new System.Windows.Forms.Label();
             this.btnEventsSearch = new System.Windows.Forms.Button();
@@ -63,6 +67,7 @@
             this.dgvcEventTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcEventFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcEventAssignee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbxCustomers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.gbxEvents.SuspendLayout();
@@ -85,7 +90,7 @@
             this.gbxCustomers.Location = new System.Drawing.Point(0, 0);
             this.gbxCustomers.Margin = new System.Windows.Forms.Padding(10);
             this.gbxCustomers.Name = "gbxCustomers";
-            this.gbxCustomers.Size = new System.Drawing.Size(800, 251);
+            this.gbxCustomers.Size = new System.Drawing.Size(938, 251);
             this.gbxCustomers.TabIndex = 0;
             this.gbxCustomers.TabStop = false;
             this.gbxCustomers.Tag = "customers";
@@ -94,7 +99,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(681, 139);
+            this.btnEditar.Location = new System.Drawing.Point(832, 139);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(94, 29);
             this.btnEditar.TabIndex = 12;
@@ -105,7 +110,7 @@
             // 
             // btnAttendNew
             // 
-            this.btnAttendNew.Location = new System.Drawing.Point(681, 104);
+            this.btnAttendNew.Location = new System.Drawing.Point(832, 104);
             this.btnAttendNew.Name = "btnAttendNew";
             this.btnAttendNew.Size = new System.Drawing.Size(94, 29);
             this.btnAttendNew.TabIndex = 3;
@@ -115,7 +120,7 @@
             // 
             // btnFindCx
             // 
-            this.btnFindCx.Location = new System.Drawing.Point(681, 57);
+            this.btnFindCx.Location = new System.Drawing.Point(832, 57);
             this.btnFindCx.Name = "btnFindCx";
             this.btnFindCx.Size = new System.Drawing.Size(94, 29);
             this.btnFindCx.TabIndex = 11;
@@ -182,7 +187,7 @@
             this.dgvCustomers.RowHeadersWidth = 51;
             this.dgvCustomers.RowTemplate.Height = 29;
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomers.Size = new System.Drawing.Size(663, 112);
+            this.dgvCustomers.Size = new System.Drawing.Size(814, 112);
             this.dgvCustomers.TabIndex = 5;
             // 
             // Id
@@ -230,6 +235,10 @@
             // 
             // gbxEvents
             // 
+            this.gbxEvents.Controls.Add(this.txtAssigned);
+            this.gbxEvents.Controls.Add(this.lblAssigned);
+            this.gbxEvents.Controls.Add(this.btnUnassigne);
+            this.gbxEvents.Controls.Add(this.btnAssign);
             this.gbxEvents.Controls.Add(this.txtEventId);
             this.gbxEvents.Controls.Add(this.lblFilterEventId);
             this.gbxEvents.Controls.Add(this.btnEventsSearch);
@@ -248,11 +257,50 @@
             this.gbxEvents.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbxEvents.Location = new System.Drawing.Point(0, 251);
             this.gbxEvents.Name = "gbxEvents";
-            this.gbxEvents.Size = new System.Drawing.Size(800, 200);
+            this.gbxEvents.Size = new System.Drawing.Size(938, 297);
             this.gbxEvents.TabIndex = 1;
             this.gbxEvents.TabStop = false;
             this.gbxEvents.Tag = "events.title";
             this.gbxEvents.Text = "Eventos";
+            // 
+            // txtAssigned
+            // 
+            this.txtAssigned.Location = new System.Drawing.Point(786, 46);
+            this.txtAssigned.Name = "txtAssigned";
+            this.txtAssigned.Size = new System.Drawing.Size(146, 27);
+            this.txtAssigned.TabIndex = 18;
+            // 
+            // lblAssigned
+            // 
+            this.lblAssigned.AutoSize = true;
+            this.lblAssigned.Location = new System.Drawing.Point(786, 23);
+            this.lblAssigned.Name = "lblAssigned";
+            this.lblAssigned.Size = new System.Drawing.Size(72, 20);
+            this.lblAssigned.TabIndex = 17;
+            this.lblAssigned.Tag = "label.assigned";
+            this.lblAssigned.Text = "Asignado";
+            // 
+            // btnUnassigne
+            // 
+            this.btnUnassigne.Location = new System.Drawing.Point(831, 232);
+            this.btnUnassigne.Name = "btnUnassigne";
+            this.btnUnassigne.Size = new System.Drawing.Size(94, 29);
+            this.btnUnassigne.TabIndex = 16;
+            this.btnUnassigne.Tag = "event.unassign";
+            this.btnUnassigne.Text = "Desasignar";
+            this.btnUnassigne.UseVisualStyleBackColor = true;
+            this.btnUnassigne.Click += new System.EventHandler(this.btnUnassigne_Click);
+            // 
+            // btnAssign
+            // 
+            this.btnAssign.Location = new System.Drawing.Point(831, 197);
+            this.btnAssign.Name = "btnAssign";
+            this.btnAssign.Size = new System.Drawing.Size(94, 29);
+            this.btnAssign.TabIndex = 15;
+            this.btnAssign.Tag = "event.assignme";
+            this.btnAssign.Text = "Asignar";
+            this.btnAssign.UseVisualStyleBackColor = true;
+            this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
             // 
             // txtEventId
             // 
@@ -273,7 +321,7 @@
             // 
             // btnEventsSearch
             // 
-            this.btnEventsSearch.Location = new System.Drawing.Point(673, 95);
+            this.btnEventsSearch.Location = new System.Drawing.Point(832, 92);
             this.btnEventsSearch.Name = "btnEventsSearch";
             this.btnEventsSearch.Size = new System.Drawing.Size(94, 29);
             this.btnEventsSearch.TabIndex = 12;
@@ -284,7 +332,7 @@
             // 
             // btnNewEvent
             // 
-            this.btnNewEvent.Location = new System.Drawing.Point(672, 165);
+            this.btnNewEvent.Location = new System.Drawing.Point(831, 162);
             this.btnNewEvent.Name = "btnNewEvent";
             this.btnNewEvent.Size = new System.Drawing.Size(94, 29);
             this.btnNewEvent.TabIndex = 11;
@@ -317,7 +365,7 @@
             // 
             // btnOpenEvent
             // 
-            this.btnOpenEvent.Location = new System.Drawing.Point(672, 130);
+            this.btnOpenEvent.Location = new System.Drawing.Point(831, 127);
             this.btnOpenEvent.Name = "btnOpenEvent";
             this.btnOpenEvent.Size = new System.Drawing.Size(94, 29);
             this.btnOpenEvent.TabIndex = 8;
@@ -397,7 +445,8 @@
             this.dgvcEventId,
             this.dgvcEventTitle,
             this.dgvcEventFrom,
-            this.dgvcStatus});
+            this.dgvcStatus,
+            this.dgvcEventAssignee});
             this.dgvEvents.Location = new System.Drawing.Point(12, 92);
             this.dgvEvents.MultiSelect = false;
             this.dgvEvents.Name = "dgvEvents";
@@ -405,8 +454,9 @@
             this.dgvEvents.RowHeadersWidth = 51;
             this.dgvEvents.RowTemplate.Height = 29;
             this.dgvEvents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEvents.Size = new System.Drawing.Size(654, 102);
+            this.dgvEvents.Size = new System.Drawing.Size(801, 199);
             this.dgvEvents.TabIndex = 0;
+            this.dgvEvents.SelectionChanged += new System.EventHandler(this.dgvEvents_SelectionChanged);
             // 
             // dgvcEventId
             // 
@@ -444,11 +494,20 @@
             this.dgvcStatus.ReadOnly = true;
             this.dgvcStatus.Width = 125;
             // 
+            // dgvcEventAssignee
+            // 
+            this.dgvcEventAssignee.DataPropertyName = "Assigned";
+            this.dgvcEventAssignee.HeaderText = "Asignado";
+            this.dgvcEventAssignee.MinimumWidth = 6;
+            this.dgvcEventAssignee.Name = "dgvcEventAssignee";
+            this.dgvcEventAssignee.ReadOnly = true;
+            this.dgvcEventAssignee.Width = 125;
+            // 
             // FrmHome
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(800, 560);
+            this.ClientSize = new System.Drawing.Size(938, 560);
             this.Controls.Add(this.gbxEvents);
             this.Controls.Add(this.gbxCustomers);
             this.Name = "FrmHome";
@@ -499,9 +558,14 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.TextBox txtEventId;
         private System.Windows.Forms.Label lblFilterEventId;
+        private System.Windows.Forms.Button btnUnassigne;
+        private System.Windows.Forms.Button btnAssign;
+        private System.Windows.Forms.TextBox txtAssigned;
+        private System.Windows.Forms.Label lblAssigned;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcEventId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcEventTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcEventFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcEventAssignee;
     }
 }

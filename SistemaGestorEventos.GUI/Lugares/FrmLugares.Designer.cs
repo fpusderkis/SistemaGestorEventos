@@ -152,7 +152,7 @@
             this.tlpFilter.ColumnCount = 3;
             this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.48193F));
             this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.51807F));
-            this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
+            this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 149F));
             this.tlpFilter.Controls.Add(this.btnReset, 2, 1);
             this.tlpFilter.Controls.Add(this.lblId, 0, 0);
             this.tlpFilter.Controls.Add(this.lblName, 1, 0);
@@ -171,9 +171,9 @@
             // btnReset
             // 
             this.btnReset.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReset.Location = new System.Drawing.Point(622, 52);
+            this.btnReset.Location = new System.Drawing.Point(621, 52);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(143, 44);
+            this.btnReset.Size = new System.Drawing.Size(144, 44);
             this.btnReset.TabIndex = 5;
             this.btnReset.Tag = "btn.reset";
             this.btnReset.Text = "Borrar filtros";
@@ -215,15 +215,15 @@
             this.txtPlaceName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPlaceName.Location = new System.Drawing.Point(129, 52);
             this.txtPlaceName.Name = "txtPlaceName";
-            this.txtPlaceName.Size = new System.Drawing.Size(487, 27);
+            this.txtPlaceName.Size = new System.Drawing.Size(486, 27);
             this.txtPlaceName.TabIndex = 3;
             // 
             // btnPlaceSearch
             // 
             this.btnPlaceSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPlaceSearch.Location = new System.Drawing.Point(622, 3);
+            this.btnPlaceSearch.Location = new System.Drawing.Point(621, 3);
             this.btnPlaceSearch.Name = "btnPlaceSearch";
-            this.btnPlaceSearch.Size = new System.Drawing.Size(143, 43);
+            this.btnPlaceSearch.Size = new System.Drawing.Size(144, 43);
             this.btnPlaceSearch.TabIndex = 4;
             this.btnPlaceSearch.Tag = "btn.search";
             this.btnPlaceSearch.Text = "Buscar";

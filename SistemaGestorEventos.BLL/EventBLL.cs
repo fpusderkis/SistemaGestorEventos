@@ -1,9 +1,11 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.DAL;
+using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SistemaGestorEventos.BLL
 {
@@ -89,14 +91,21 @@ namespace SistemaGestorEventos.BLL
             return errors;
         }
 
-        public IList<Event> FindEvents(Int32? eventId, Int32? customerId, string title, DateTime? from, DateTime? to, EventStatus? status)
+        public IList<Event> FindEvents(Int32? eventId,
+            Int32? customerId,
+            string title,
+            DateTime? from,
+            DateTime? to,
+            EventStatus? status,
+            string assigned
+            )
         {
-            return eventDAL.FindEvents(eventId, customerId, title, from, to, status);
+            return eventDAL.FindEvents(eventId, customerId, title, from, to, status, assigned);
         }
 
         public Event LoadFullEvent(Int32 id)
         {
-            Event evt = FindEvents(id, null, null, null, null, null)[0];
+            Event evt = FindEvents(id, null, null, null, null, null,null)[0];
 
             return eventDAL.LoadFullEvent(evt);
         }
@@ -186,6 +195,107 @@ namespace SistemaGestorEventos.BLL
             }
 
             return errors;
+        }
+
+
+        public void Assign(Event selectedEvent, Guid userId)
+        {
+            eventDAL.UpdateAssiged((int)selectedEvent.Id, userId, userId);
+
+            BitacoraSingleton.Log($"Se asigno el usuario al evento {selectedEvent.Id}");
+        }
+
+        public void Unassign(Event selectedEvent, Guid userId)
+        {
+            eventDAL.UpdateAssiged((int)selectedEvent.Id, null, userId);
+
+            BitacoraSingleton.Log($"Se desasigno el usuario {selectedEvent.Assigned} al evento {selectedEvent.Id}");
+        }
+
+        public void RemoveActity(int eventId, Activity activity)
+        {
+            activity.Enabled = false;
+            BitacoraSingleton.Log($"Se guarda la actividad inhabilitada {activity.Id}-{activity.Description} asociada al evento {eventId}");
+            this.eventDAL.SaveActivity(eventId, activity);
+
+        }
+
+        public void SaveActivities(int eventId, List<Activity> activities)
+        {
+            if (activities != null)
+            {
+                foreach (var activity in activities)
+                {
+                    eventDAL.SaveActivity(eventId, activity);
+                    BitacoraSingleton.Log($"Se guarda la actividad {activity.Id}-{activity.Description} asociada al evento {eventId}");
+                }
+
+                BitacoraSingleton.Log($"Se guardo la cronología para el evento {eventId}");
+            }
+        }
+
+
+        public IList<Activity> LoadEnabledActivities(int eventId)
+        {
+            return this.eventDAL.LoadEnabledActivities(eventId);
+        }
+
+        public List<string> SaveEventGuest(Event currentEvent, Guest guest)
+        {
+            var errors = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(guest.Name))
+            {
+                errors.Add(MultiLang.TranslateOrDefault("event.guest.error.name.requerided", "Ingrese un nombre"));
+            }
+
+            if (string.IsNullOrWhiteSpace(guest.LastName))
+            {
+                errors.Add(MultiLang.TranslateOrDefault("event.guest.error.lastname.requerided", "Ingrese un apellido"));
+            }
+
+            if (guest.Quantity < 1)
+            {
+                guest.Quantity = 1;
+            }
+
+            IList<Guest> savedguests = eventDAL.FindGuestsForEvent((int)currentEvent.Id);
+            int currentquantity = 0;
+            foreach (var g in savedguests)
+            {
+                if (guest.Id != null && g.Id != guest.Id)
+                {
+                    currentquantity = g.Quantity;
+                }
+                
+            }
+            var newQty = currentquantity + guest.Quantity;
+            if ( newQty > currentEvent.GuessQuantity)
+            {
+                errors.Add(MultiLang.TranslateOrDefault("event.guest.error.maxexceded", "Se excedio la cantidad máxima de participantes contratados"));
+                BitacoraSingleton.Log($"Se excedio la capacidad de invitados en: {newQty - currentEvent.GuessQuantity}");
+            }
+
+            if (errors.Count == 0)
+            {
+                eventDAL.SaveEventGuest((int)currentEvent.Id, guest);
+                BitacoraSingleton.Log($"Se guarda el parnticipante {guest.Name} {guest.LastName} en el evento {currentEvent.Id}");
+            }
+
+            return errors;
+        }
+
+        public IList<Guest> FindGuests(int eventId)
+        {
+            return eventDAL.FindGuestsForEvent(eventId);
+        }
+
+        public void RemoveGuest(Event currentEvent, Guest guestToDelete)
+        {
+            guestToDelete.Enabled = false;
+
+            SaveEventGuest(currentEvent, guestToDelete);
+            BitacoraSingleton.Log($"Se elimino el invitado {guestToDelete.Name} {guestToDelete.LastName} ({guestToDelete.Id})");
         }
     }
 }

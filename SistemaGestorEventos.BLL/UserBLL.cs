@@ -120,5 +120,10 @@ namespace SistemaGestorEventos.BLL
 
             SaveUser(user);
         }
+
+        public User findUserById(Guid userId)
+        {
+            return userDAL.FindById(userId);
+        }
     }
 }

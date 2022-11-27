@@ -1,5 +1,6 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
+using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
@@ -56,13 +57,17 @@ namespace SistemaGestorEventos.GUI.Lugares
             txtBucketSize.Text = this.current.BucketSize.ToString();
             if (this.current.UpdatedBy != null)
             {
-                txtUsername.Text = this.current.UpdatedBy.ToString();
+                txtUsername.Text = UserBLL.Instance.findUserById(this.current.UpdatedBy).Username;
                 txtDate.Text = this.current.UpdatedAt.ToString("dd/MM/yyyy HH:mm:ss");
             } 
-            else
+            else if (this.current.CreatedBy != null)
             {
                 txtUsername.Text = this.current.CreatedBy.ToString();
                 txtDate.Text = this.current.CreatedAt.ToString("dd/MM/yyyy HH:mm:ss");
+            } else
+            {
+                txtUsername.Text = "";
+                txtDate.Text = "";
             }
 
             cbxIntegrity.Checked = EventRoomBLL.Instance.CheckIntegrity(eventRoom);
@@ -93,6 +98,10 @@ namespace SistemaGestorEventos.GUI.Lugares
         private void btnSave_Click(object sender, EventArgs e)
         {
             EventRoomBLL.Instance.Save(this.current, SessionHandler.GetInstance.User.Id);
+            BitacoraSingleton.Log("Se restauro la veresión " + this.current.CreatedAt + " - " + this.current.UpdatedBy + " del eventRoom " + this.current.Id);
+
+            MessageBox.Show(MultiLang.TranslateOrDefault("placehistory.history.restored", "Version restaurada OK"), MultiLang.TranslateOrDefault("placehistory.nohistory.error", "No hay registros anteriores"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
 
         private void btnBack_Click(object sender, EventArgs e)

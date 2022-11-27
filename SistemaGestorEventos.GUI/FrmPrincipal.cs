@@ -118,6 +118,7 @@ namespace SistemaGestorEventos.GUI
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             TraducirTextos();
+            integrity = EventRoomBLL.Instance.ValidateDVV();
             if (!integrity)
             {
                 var errors = new List<string>();
@@ -196,6 +197,8 @@ namespace SistemaGestorEventos.GUI
                     BackupBLL.Instance.RestoreBackup(this.ofdOpenBackupDB.FileName);
 
                     MessageBox.Show(MultiLang.TranslateOrDefault("backup.restored.ok", "Backup restaurado con éxito."));
+
+                    this.Close();
                 }
                 catch
                 {
@@ -208,7 +211,8 @@ namespace SistemaGestorEventos.GUI
 
         private void aBMCToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var frmServicos = new Services.ServicesFrm();
+            frmServicos.ShowDialog();
         }
 
         private void lugaresToolStripMenuItem_Click(object sender, EventArgs e)

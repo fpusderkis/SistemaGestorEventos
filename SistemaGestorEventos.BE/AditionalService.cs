@@ -8,19 +8,6 @@ namespace SistemaGestorEventos.BE
     {
         public Int32 EventId { get; set; }
 
-        public Int32? ServiceId
-            { 
-                get 
-                {
-                    return Service.Id;
-                } 
-                set 
-                {
-                    this.Service.Id = value;
-                }
-
-            }
-
         public Service Service { get; set; } = new Service();
 
         public decimal Quantity { get; set; }

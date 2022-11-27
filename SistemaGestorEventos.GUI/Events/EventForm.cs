@@ -6,9 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SistemaGestorEventos.GUI.Events
@@ -17,6 +15,8 @@ namespace SistemaGestorEventos.GUI.Events
     {
 
         private Event editable;
+
+        private Guest editableGuest;
 
         private EventRoomBLL eventRoomsBLL = EventRoomBLL.Instance;
         private AditionalServicesBLL aditionalServicesBLL = AditionalServicesBLL.Instance;
@@ -34,9 +34,6 @@ namespace SistemaGestorEventos.GUI.Events
         {
             this.editable = editable;
             InitializeComponent();
-            Translate();
-            MultiLang.SubscribeChangeLangEvent(Translate);
-           
 
             if (this.editable.Id == null)
             {
@@ -46,6 +43,7 @@ namespace SistemaGestorEventos.GUI.Events
             {
                 this.Text = this.Text + "#" + this.editable.Id;
             }
+            dgvGuests.AutoGenerateColumns = false;
 
             txtEventTitle.DataBindings.Add("Text", this.editable, "Title");
             txtEventDescription.DataBindings.Add("Text", this.editable, "Description");
@@ -111,6 +109,7 @@ namespace SistemaGestorEventos.GUI.Events
             this.dgvPaymentsCId.HeaderText = MultiLang.TranslateOrDefault("dgvpayments.column.id", "Id");
             this.dgvPaymentsCType.HeaderText = MultiLang.TranslateOrDefault("dgvpayments.column.paymenttype", "Tipo");
 
+            this.dgvChronology.AutoGenerateColumns = false;
 
         }
 
@@ -142,14 +141,66 @@ namespace SistemaGestorEventos.GUI.Events
 
         private void EventForm_Load(object sender, EventArgs e)
         {
+
+            cmbGuestFoodType.DataSource = Enum.GetValues(typeof(FoodType));
+            
+
+            BindGuest(new Guest());
+
+            Translate();
+            MultiLang.SubscribeChangeLangEvent(Translate);
+
             lblSelectedEventroomDetailValue.Text = "";
             CalculateEventRoomLegend(this.editable);
+            
             this.activities = new List<Activity>();
-            
-            
 
-            this.dgvChronology.DataSource = this.blActivity;
+            if (this.editable.Id != null)
+            {
+                var loadedActivities = this.eventsBLL.LoadEnabledActivities((int)this.editable.Id);
 
+                foreach (var activity in loadedActivities)
+                {
+                    this.activities.Add(activity);
+                }
+
+                refreshDGVGuests();
+            }
+
+
+            var bindingList = new BindingList<Activity>(this.activities);
+
+            var bindingDataSource = new BindingSource();
+            bindingDataSource.DataSource = bindingList;
+
+
+
+            this.dgvChronology.DataSource = bindingDataSource;
+
+
+
+        }
+
+        private void BindGuest(Guest guest)
+        {
+            this.editableGuest = guest;
+
+            txtGuestQuantity.DataBindings.Clear();
+            txtGuestQuantity.DataBindings.Add("Text", this.editableGuest, "Quantity");
+            
+            txtGuestName.DataBindings.Clear();
+            txtGuestName.DataBindings.Add("Text", this.editableGuest, "Name");
+
+            txtGuestLastName.DataBindings.Clear();
+            txtGuestLastName.DataBindings.Add("Text", this.editableGuest, "LastName");
+
+            txtGuestTaxPayerId.DataBindings.Clear();
+            txtGuestTaxPayerId.DataBindings.Add("Text", this.editableGuest, "TaxPayerId");
+            
+            txtGuestDetails.DataBindings.Clear();
+            txtGuestDetails.DataBindings.Add("Text", this.editableGuest, "Details");
+            
+            cmbGuestFoodType.SelectedItem = guest.FoodType;
 
         }
 
@@ -182,6 +233,16 @@ namespace SistemaGestorEventos.GUI.Events
             this.dgvEventrooms.DataSource = eventRooms;
 
             this.dgvEventrooms.ResumeLayout();
+        }
+        
+        private void refreshDGVGuests()
+        {
+            this.dgvGuests.SuspendLayout();
+            var guests = this.eventsBLL.FindGuests((int) this.editable.Id);
+
+            this.dgvGuests.DataSource = guests;
+
+            this.dgvGuests.ResumeLayout();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -487,6 +548,172 @@ namespace SistemaGestorEventos.GUI.Events
         private void dgvChronology_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
             BitacoraSingleton.GetInstance.Log("Added chronology row");
+            this.activities.Last().ActivityOrder = this.activities.Count;
+        }
+
+        private void dgvChronology_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+
+        }
+
+        private void btnUpActivity_Click(object sender, EventArgs e)
+        {
+            BitacoraSingleton.GetInstance.Log("move up activity");
+            if (this.dgvChronology.SelectedRows.Count == 1)
+            {
+                var current = (Activity)this.dgvChronology.SelectedRows[0].DataBoundItem;
+                var index = this.activities.IndexOf(current);
+
+                if (index > 0)
+                {
+                    var tmp = this.activities[index - 1];
+                    var tmpOrder = tmp.ActivityOrder;
+                    this.activities[index - 1] = current;
+                    this.activities[index] = tmp;
+                    tmp.ActivityOrder = current.ActivityOrder;
+                    current.ActivityOrder = tmpOrder;
+
+                    var ds = this.dgvChronology.DataSource;
+                    this.dgvChronology.DataSource = null;
+                    this.dgvChronology.DataSource = ds;
+                    var selectedRowIndex = this.dgvChronology.SelectedRows[0].Index;
+
+                    
+                    this.dgvChronology.Rows[selectedRowIndex - 1].Selected = true;
+
+                }
+            }
+        }
+
+        private void btnDownActivity_Click(object sender, EventArgs e)
+        {
+            BitacoraSingleton.GetInstance.Log("move up activity");
+            if (this.dgvChronology.SelectedRows.Count == 1)
+            {
+                var current = (Activity)this.dgvChronology.SelectedRows[0].DataBoundItem;
+                var index = this.activities.IndexOf(current);
+
+                if (index < this.activities.Count -1)
+                {
+                    var tmp = this.activities[index + 1];
+                    var tmpOrder = tmp.ActivityOrder;
+                    this.activities[index + 1] = current;
+                    this.activities[index] = tmp;
+                    tmp.ActivityOrder = current.ActivityOrder;
+                    current.ActivityOrder = tmpOrder;
+
+                    var ds = this.dgvChronology.DataSource;
+                    this.dgvChronology.DataSource = null;
+                    this.dgvChronology.DataSource = ds;
+                    var selectedRowIndex = this.dgvChronology.SelectedRows[0].Index;
+
+
+                    this.dgvChronology.Rows[selectedRowIndex].Selected = true;
+
+                }
+            }
+        }
+
+        private void btnDiscartChronology_Click(object sender, EventArgs e)
+        {
+            if (dgvChronology.SelectedRows.Count > 0 && dgvChronology.SelectedRows[0].DataBoundItem != null)
+            {
+                var activity = (Activity) this.dgvChronology.SelectedRows[0].DataBoundItem;
+                this.activities.Remove(activity);
+
+                this.eventsBLL.RemoveActity((int)this.editable.Id, activity);
+
+                var ds = this.dgvChronology.DataSource;
+                this.dgvChronology.DataSource = null;
+                this.dgvChronology.DataSource = ds;
+
+                foreach (var (item, index) in this.activities.Select((value, i) => (value, i)))
+                {
+                    item.ActivityOrder = index;
+                }
+            }
+        }
+
+        private void EventForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+            MultiLang.UnscribeChangeLangEvent(Translate);
+
+        }
+
+        private void btnSaveCronology_Click(object sender, EventArgs e)
+        {
+            this.eventsBLL.SaveActivities((int)this.editable.Id, this.activities);
+            MessageBox.Show(MultiLang.TranslateOrDefault("event.activities.savedok", $"Se guardo la cronología para el evento {this.editable.Id}"));
+        }
+
+        private void btnGuestSave_Click(object sender, EventArgs e)
+        {
+            List<string> errors = this.eventsBLL.SaveEventGuest(this.editable, this.editableGuest);
+            
+            if (errors.Count > 0)
+            {
+                WinformUtils.ShowErrorList(MultiLang.TranslateOrDefault("event.guests.save.error", "Deberá corregir los siguientes puntos"), errors);
+            } else
+            {
+                BindGuest(new Guest());
+                MessageBox.Show(MultiLang.TranslateOrDefault("event.guests.savedok", $"Invitado guardado con éxito"));
+
+                refreshDGVGuests();
+            }            
+        }
+
+        private void tpGuests_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbGuestFoodType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.editableGuest != null) this.editableGuest.FoodType = (FoodType)cmbGuestFoodType.SelectedValue;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (this.dgvGuests.SelectedRows.Count > 0)
+            {
+                BindGuest((Guest)this.dgvGuests.SelectedRows[0].DataBoundItem);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            BindGuest(new Guest());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            if (this.dgvGuests.SelectedRows.Count > 0)
+            {
+                Guest guestToDelete = (Guest)this.dgvGuests.SelectedRows[0].DataBoundItem;
+
+                var confirmResult = MessageBox.Show(
+                    MultiLang.TranslateOrDefault("event.guests.delete.confirm", "Desea eliminar al invitado: ") + guestToDelete.Name + " " + guestToDelete.LastName + "?",
+                    MultiLang.TranslateOrDefault("event.guests.delete.confirm.title", "Eliminar invitado"),
+                    MessageBoxButtons.YesNo);
+
+
+                if (DialogResult.Yes.Equals(confirmResult))
+                {
+                    eventsBLL.RemoveGuest(editable,guestToDelete);
+                    MessageBox.Show(MultiLang.TranslateOrDefault("event.guests.deletedok", $"Se elimino al participante."));
+                    refreshDGVGuests();
+                }
+            }
+            
+
+
+        }
+
+        private void btnConfirmService_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

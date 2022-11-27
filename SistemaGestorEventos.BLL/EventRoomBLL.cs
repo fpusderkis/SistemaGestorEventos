@@ -123,6 +123,7 @@ namespace SistemaGestorEventos.BLL
 
         public IList<EventRoom> FindHistory(int id)
         {
+            BitacoraSingleton.Log("Se consulto el historial del lugar " + id);
             return EventRoomDAL.Instance.FindHistory(id);
         }
 

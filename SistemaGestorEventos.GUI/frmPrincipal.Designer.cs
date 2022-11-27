@@ -42,9 +42,9 @@ namespace SistemaGestorEventos.GUI
             this.generarBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restaurarBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBMCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lugaresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdSaveBackup = new System.Windows.Forms.SaveFileDialog();
             this.ofdOpenBackupDB = new System.Windows.Forms.OpenFileDialog();
-            this.lugaresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +61,7 @@ namespace SistemaGestorEventos.GUI
             this.mnuPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mnuPrincipal.Name = "mnuPrincipal";
             this.mnuPrincipal.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.mnuPrincipal.Size = new System.Drawing.Size(819, 77);
+            this.mnuPrincipal.Size = new System.Drawing.Size(960, 77);
             this.mnuPrincipal.TabIndex = 1;
             this.mnuPrincipal.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mnuPrincipal_ItemClicked);
             // 
@@ -155,23 +155,30 @@ namespace SistemaGestorEventos.GUI
             // generarBackupToolStripMenuItem
             // 
             this.generarBackupToolStripMenuItem.Name = "generarBackupToolStripMenuItem";
-            this.generarBackupToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.generarBackupToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.generarBackupToolStripMenuItem.Text = "Generar backup";
             this.generarBackupToolStripMenuItem.Click += new System.EventHandler(this.generarBackupToolStripMenuItem_Click);
             // 
             // restaurarBackupToolStripMenuItem
             // 
             this.restaurarBackupToolStripMenuItem.Name = "restaurarBackupToolStripMenuItem";
-            this.restaurarBackupToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.restaurarBackupToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.restaurarBackupToolStripMenuItem.Text = "Restaurar backup";
             this.restaurarBackupToolStripMenuItem.Click += new System.EventHandler(this.restaurarBackupToolStripMenuItem_Click);
             // 
             // aBMCToolStripMenuItem
             // 
             this.aBMCToolStripMenuItem.Name = "aBMCToolStripMenuItem";
-            this.aBMCToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aBMCToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.aBMCToolStripMenuItem.Text = "Servicios";
             this.aBMCToolStripMenuItem.Click += new System.EventHandler(this.aBMCToolStripMenuItem_Click);
+            // 
+            // lugaresToolStripMenuItem
+            // 
+            this.lugaresToolStripMenuItem.Name = "lugaresToolStripMenuItem";
+            this.lugaresToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
+            this.lugaresToolStripMenuItem.Text = "Lugares";
+            this.lugaresToolStripMenuItem.Click += new System.EventHandler(this.lugaresToolStripMenuItem_Click);
             // 
             // sfdSaveBackup
             // 
@@ -183,18 +190,11 @@ namespace SistemaGestorEventos.GUI
             this.ofdOpenBackupDB.DefaultExt = "bak";
             this.ofdOpenBackupDB.Filter = "SQL backup files (*.bak)|*.bak";
             // 
-            // lugaresToolStripMenuItem
-            // 
-            this.lugaresToolStripMenuItem.Name = "lugaresToolStripMenuItem";
-            this.lugaresToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.lugaresToolStripMenuItem.Text = "Lugares";
-            this.lugaresToolStripMenuItem.Click += new System.EventHandler(this.lugaresToolStripMenuItem_Click);
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 918);
+            this.ClientSize = new System.Drawing.Size(960, 918);
             this.Controls.Add(this.mnuPrincipal);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnuPrincipal;

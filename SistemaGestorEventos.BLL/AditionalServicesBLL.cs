@@ -1,5 +1,6 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.DAL;
+using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.i18n;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,12 @@ namespace SistemaGestorEventos.BLL
             }
 
             return errors;
+        }
+
+        public void SaveService(Service service)
+        {
+            aditionalServiceDAL.SaveService(service);
+            BitacoraSingleton.Log($"Se guardo el servicio ({service.Id}) {service.Name}");
         }
     }
 }
