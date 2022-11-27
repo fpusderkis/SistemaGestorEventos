@@ -45,6 +45,7 @@ namespace SistemaGestorEventos.GUI
             this.lugaresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdSaveBackup = new System.Windows.Forms.SaveFileDialog();
             this.ofdOpenBackupDB = new System.Windows.Forms.OpenFileDialog();
+            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +55,7 @@ namespace SistemaGestorEventos.GUI
             this.mnuPrincipal.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuLogo1,
+            this.homeToolStripMenuItem,
             this.mnuUsuario,
             this.mnuIdioma,
             this.bitacoraToolStripMenuItem,
@@ -190,6 +192,13 @@ namespace SistemaGestorEventos.GUI
             this.ofdOpenBackupDB.DefaultExt = "bak";
             this.ofdOpenBackupDB.Filter = "SQL backup files (*.bak)|*.bak";
             // 
+            // homeToolStripMenuItem
+            // 
+            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(64, 73);
+            this.homeToolStripMenuItem.Text = "Home";
+            this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -227,5 +236,6 @@ namespace SistemaGestorEventos.GUI
         private System.Windows.Forms.OpenFileDialog ofdOpenBackupDB;
         private System.Windows.Forms.ToolStripMenuItem aBMCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lugaresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
     }
 }

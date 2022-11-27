@@ -1,7 +1,9 @@
 ﻿using SistemaGestorEventos.BE;
+using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.i18n;
+using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -323,15 +325,7 @@ namespace SistemaGestorEventos.GUI.Events
 
         private void dgvAddedServices_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (this.editable.AditionalServices.Count == 0)
-            {
-                return;
-            }
-            AditionalService data = (AditionalService)dgvAddedServices.Rows[e.RowIndex].DataBoundItem;
-
-            dgvAddedServices.Rows[e.RowIndex].Cells["dgvASCName"].Value = data.Service.Name;
-            dgvAddedServices.Rows[e.RowIndex].Cells["dgvASCId"].Value = data.Service.Id;
-            dgvAddedServices.Rows[e.RowIndex].Cells["dgvASCPrice"].Value = data.Service.Price * data.Quantity;
+            
         }
 
         private void dgvAddedServices_SelectionChanged(object sender, EventArgs e)
@@ -346,6 +340,8 @@ namespace SistemaGestorEventos.GUI.Events
 
                 txtASDetails.DataBindings.Add("Text", aditionalService, "Description");
                 txtASQty.DataBindings.Add("Text", aditionalService, "Quantity");
+                btnConfirmService.Enabled = AditionalServiceStatus.PENDING.Equals(aditionalService.Status)
+                    && SessionHandler.GetInstance.HasGrant(GrantType.Organizador);
                 CalculateEventAmounts();
             }
         }
@@ -503,10 +499,25 @@ namespace SistemaGestorEventos.GUI.Events
             this.btnSearchEventroom.Enabled = EventStatus.INITIALIZED.Equals(this.editable.Status);
 
             this.tabEventDetails.TabPages.Remove(this.tabPagos);
+            this.tabEventDetails.TabPages.Remove(this.tpCronology);
+            this.tabEventDetails.TabPages.Remove(this.tabPagos);
+            this.tabEventDetails.TabPages.Remove(this.tpGuests);
             if (EventStatus.INITIALIZED.Equals(this.editable.Status) == false)
             {
                 this.tabEventDetails.TabPages.Add(this.tabPagos);
             }
+            if (!EventStatus.CONFIRMED.Equals(this.editable.Status))
+            {
+                this.tabEventDetails.TabPages.Add(this.tpCronology);
+                this.tabEventDetails.TabPages.Add(this.tpGuests);
+            }
+
+            this.btnDiscartChronology.Enabled = SessionHandler.GetInstance.HasGrant(GrantType.Organizador);
+            this.btnSaveCronology.Enabled = SessionHandler.GetInstance.HasGrant(GrantType.Organizador);
+            this.btnUpActivity.Enabled = SessionHandler.GetInstance.HasGrant(GrantType.Organizador);
+            this.btnDownActivity.Enabled = SessionHandler.GetInstance.HasGrant(GrantType.Organizador);
+
+
 
             this.btnAddAS.Visible = !EventStatus.CONFIRMED.Equals(this.editable.Status);
 
@@ -712,6 +723,17 @@ namespace SistemaGestorEventos.GUI.Events
         }
 
         private void btnConfirmService_Click(object sender, EventArgs e)
+        {
+            if (dgvAddedServices.SelectedRows.Count == 1)
+            {
+                var aditionalService = (AditionalService)dgvAddedServices.SelectedRows[0].DataBoundItem;
+                var form = FrmAditionalService.CreateFromAditionalService(aditionalService);
+                form.ShowDialog();
+            }
+            
+        }
+
+        private void dgvAddedServices_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

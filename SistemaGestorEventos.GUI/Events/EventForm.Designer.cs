@@ -974,12 +974,13 @@
             this.dgvAddedServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAddedServices.Size = new System.Drawing.Size(624, 144);
             this.dgvAddedServices.TabIndex = 4;
+            this.dgvAddedServices.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAddedServices_CellContentClick);
             this.dgvAddedServices.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAddedServices_CellFormatting);
             this.dgvAddedServices.SelectionChanged += new System.EventHandler(this.dgvAddedServices_SelectionChanged);
             // 
             // dgvASCId
             // 
-            this.dgvASCId.DataPropertyName = "Service.Id";
+            this.dgvASCId.DataPropertyName = "Id";
             this.dgvASCId.HeaderText = "Id";
             this.dgvASCId.MinimumWidth = 6;
             this.dgvASCId.Name = "dgvASCId";
@@ -989,7 +990,7 @@
             // dgvASCName
             // 
             this.dgvASCName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvASCName.DataPropertyName = "Service.Name";
+            this.dgvASCName.DataPropertyName = "ServiceName";
             this.dgvASCName.HeaderText = "Nombre";
             this.dgvASCName.MinimumWidth = 6;
             this.dgvASCName.Name = "dgvASCName";
@@ -1006,7 +1007,7 @@
             // 
             // dgvASCPrice
             // 
-            this.dgvASCPrice.DataPropertyName = "Price";
+            this.dgvASCPrice.DataPropertyName = "CalculedPrice";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle2.Format = "C2";
             dataGridViewCellStyle2.NullValue = null;
@@ -1968,11 +1969,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCQty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCTotal;
         private System.Windows.Forms.DataGridView dgvPayments;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCType;
@@ -2015,5 +2011,10 @@
         private System.Windows.Forms.Button btnASRemove;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button btnConfirmService;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCTotal;
     }
 }

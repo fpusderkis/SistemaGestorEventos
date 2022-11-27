@@ -1,4 +1,5 @@
-﻿using SistemaGestorEventos.BE;
+﻿using Newtonsoft.Json;
+using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.SharedServices.i18n;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -91,6 +93,7 @@ namespace SistemaGestorEventos.GUI.Lugares
         {
             this.btnEditPlace.Enabled = this.dgvPlaces.CurrentRow != null;
             this.btnHistory.Enabled = this.dgvPlaces.CurrentRow != null;
+            this.btnExportToJson.Enabled = this.dgvPlaces.CurrentRow != null;
 
         }
 
@@ -127,6 +130,27 @@ namespace SistemaGestorEventos.GUI.Lugares
                 {
                     MessageBox.Show(MultiLang.TranslateOrDefault("eventrooms.dvv.generatedok", "DVV generado con éxito"));
                 }
+            }
+        }
+
+        private void btnExportToJson_Click(object sender, EventArgs e)
+        {
+            EventRoom room = (EventRoom)this.dgvPlaces.CurrentRow.DataBoundItem;
+            IList<EventRoom> history = EventRoomBLL.Instance.FindHistory((int)room.Id);
+
+            var jsonHistory = JsonConvert.SerializeObject(history);
+
+            var sfd = new SaveFileDialog();
+
+            sfd.DefaultExt = "json";
+            sfd.Filter = "JSON (*.json)|*.json";
+
+            var result = sfd.ShowDialog();
+
+            if (DialogResult.OK.Equals(result))
+            {
+                File.WriteAllText(sfd.FileName, jsonHistory);
+                MessageBox.Show(MultiLang.TranslateOrDefault("lugares.history.export.ok", "Exportado ok"));
             }
         }
     }

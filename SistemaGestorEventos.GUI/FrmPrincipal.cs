@@ -21,7 +21,7 @@ namespace SistemaGestorEventos.GUI
         public FrmPrincipal()
         {
             InitializeComponent();
-            
+            ShowMenus();
             SESSION.SuscribeSessionStatusChangeEvent(() => {
                 this.mnuLogout.Visible = SESSION.IsLogged();
                 bool esAdmin = SESSION.HasGrant(GrantType.AdministradorSistema);
@@ -36,13 +36,7 @@ namespace SistemaGestorEventos.GUI
                     return;
                 }
 
-                this.admnistrarPermisosToolStripMenuItem.Visible = esAdmin;
-                this.admnistrarUsuariosToolStripMenuItem.Visible = esAdmin;
-                this.administradorToolStripMenuItem.Visible = esAdmin;
-                this.administradorToolStripMenuItem.Visible = SESSION.HasGrant(GrantType.AdministradorSistema);
-                this.mnuUsuario.Visible = SESSION.IsLogged();
-                this.bitacoraToolStripMenuItem.Visible = SESSION.HasGrant(GrantType.AdministradorSistema);
-
+                ShowMenus();
                 if (SESSION.IsNotLogged())
                 {
                     ShowFormAlone(new FrmLogin());
@@ -59,6 +53,20 @@ namespace SistemaGestorEventos.GUI
             }
 
             MultiLang.SubscribeChangeLangEvent(TraducirTextos);
+        }
+
+        private void ShowMenus()
+        {
+            bool esAdmin = SESSION.HasGrant(GrantType.AdministradorSistema);
+
+            this.admnistrarPermisosToolStripMenuItem.Visible = esAdmin;
+            this.admnistrarUsuariosToolStripMenuItem.Visible = esAdmin;
+            this.administradorToolStripMenuItem.Visible = esAdmin;
+            this.administradorToolStripMenuItem.Visible = SESSION.HasGrant(GrantType.AdministradorSistema);
+            this.mnuUsuario.Visible = SESSION.IsLogged();
+            this.bitacoraToolStripMenuItem.Visible = SESSION.HasGrant(GrantType.AdministradorSistema);
+            this.homeToolStripMenuItem.Visible = SESSION.IsLogged();
+
         }
 
         private void PrepareForm(Form form)
@@ -221,6 +229,11 @@ namespace SistemaGestorEventos.GUI
 
             frmPlaces.ShowDialog();
 
+        }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowFormAlone(new Home.FrmHome());
         }
     }
 }

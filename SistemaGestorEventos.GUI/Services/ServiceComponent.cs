@@ -15,7 +15,7 @@ namespace SistemaGestorEventos.GUI.Services
             return CreateFrom(new Service());
         }
 
-        public static ServiceComponent CreateFrom(Service service)
+        public static ServiceComponent CreateFrom(Service service, bool RO = false)
         {
             var form = new ServiceComponent();
             form.service = service;
@@ -32,6 +32,10 @@ namespace SistemaGestorEventos.GUI.Services
             form.txtPrice.DataBindings.Add("Text", service, "ProviderPrice");
             form.txtFee.DataBindings.Add("Text", service, "Fee");
             form.cbxStatus.DataBindings.Add("Checked", service, "Status");
+
+            form.txtPrice.ReadOnly = RO;
+            form.txtFee.ReadOnly = RO;
+            form.txtName.ReadOnly = RO;
 
             return form;
         }

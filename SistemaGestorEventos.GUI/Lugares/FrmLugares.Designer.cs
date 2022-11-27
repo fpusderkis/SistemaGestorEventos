@@ -47,6 +47,7 @@
             this.btnEditPlace = new System.Windows.Forms.Button();
             this.btnHistory = new System.Windows.Forms.Button();
             this.btnDvv = new System.Windows.Forms.Button();
+            this.btnExportToJson = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlaces)).BeginInit();
             this.gbxFilter.SuspendLayout();
             this.tlpFilter.SuspendLayout();
@@ -152,7 +153,7 @@
             this.tlpFilter.ColumnCount = 3;
             this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.48193F));
             this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.51807F));
-            this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 149F));
+            this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
             this.tlpFilter.Controls.Add(this.btnReset, 2, 1);
             this.tlpFilter.Controls.Add(this.lblId, 0, 0);
             this.tlpFilter.Controls.Add(this.lblName, 1, 0);
@@ -171,9 +172,9 @@
             // btnReset
             // 
             this.btnReset.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReset.Location = new System.Drawing.Point(621, 52);
+            this.btnReset.Location = new System.Drawing.Point(618, 52);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(144, 44);
+            this.btnReset.Size = new System.Drawing.Size(147, 44);
             this.btnReset.TabIndex = 5;
             this.btnReset.Tag = "btn.reset";
             this.btnReset.Text = "Borrar filtros";
@@ -215,15 +216,15 @@
             this.txtPlaceName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPlaceName.Location = new System.Drawing.Point(129, 52);
             this.txtPlaceName.Name = "txtPlaceName";
-            this.txtPlaceName.Size = new System.Drawing.Size(486, 27);
+            this.txtPlaceName.Size = new System.Drawing.Size(483, 27);
             this.txtPlaceName.TabIndex = 3;
             // 
             // btnPlaceSearch
             // 
             this.btnPlaceSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPlaceSearch.Location = new System.Drawing.Point(621, 3);
+            this.btnPlaceSearch.Location = new System.Drawing.Point(618, 3);
             this.btnPlaceSearch.Name = "btnPlaceSearch";
-            this.btnPlaceSearch.Size = new System.Drawing.Size(144, 43);
+            this.btnPlaceSearch.Size = new System.Drawing.Size(147, 43);
             this.btnPlaceSearch.TabIndex = 4;
             this.btnPlaceSearch.Tag = "btn.search";
             this.btnPlaceSearch.Text = "Buscar";
@@ -274,11 +275,23 @@
             this.btnDvv.UseVisualStyleBackColor = true;
             this.btnDvv.Click += new System.EventHandler(this.btnDvv_Click);
             // 
+            // btnExportToJson
+            // 
+            this.btnExportToJson.Location = new System.Drawing.Point(686, 300);
+            this.btnExportToJson.Name = "btnExportToJson";
+            this.btnExportToJson.Size = new System.Drawing.Size(94, 68);
+            this.btnExportToJson.TabIndex = 6;
+            this.btnExportToJson.Tag = "btn.history.export";
+            this.btnExportToJson.Text = "Exportar Historial";
+            this.btnExportToJson.UseVisualStyleBackColor = true;
+            this.btnExportToJson.Click += new System.EventHandler(this.btnExportToJson_Click);
+            // 
             // FrmLugares
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnExportToJson);
             this.Controls.Add(this.btnDvv);
             this.Controls.Add(this.btnHistory);
             this.Controls.Add(this.btnEditPlace);
@@ -318,5 +331,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcPrice;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcPlaceActive;
         private System.Windows.Forms.Button btnDvv;
+        private System.Windows.Forms.Button btnExportToJson;
     }
 }

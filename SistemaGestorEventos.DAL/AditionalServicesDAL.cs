@@ -83,6 +83,14 @@ namespace SistemaGestorEventos.DAL
             }
         }
 
+        public AditionalService SaveAditionalService(AditionalService aditionalService)
+        {
+            using (var connection = this.GetSqlConnectionOpen())
+            {
+                return this.SaveAditionalService(aditionalService, connection);
+            }
+                
+        }
         internal AditionalService SaveAditionalService(AditionalService aditionalService, SqlConnection connection)
         {
             var db = new Database(connection);
@@ -91,7 +99,8 @@ namespace SistemaGestorEventos.DAL
             db.AddParameter("@ServiceId", aditionalService.Service.Id);
             db.AddParameter("@EventId", aditionalService.EventId);
             db.AddParameter("@Quantity", aditionalService.Quantity);
-            db.AddParameter("@Price", aditionalService.Quantity); 
+            db.AddParameter("@Price", aditionalService.Price); 
+            db.AddParameter("@Status", aditionalService.Status); 
             db.AddParameter("@Description", aditionalService.Description); 
 
             db.ExecuteNonQuery("sp_AditionalService_Upsert",true);

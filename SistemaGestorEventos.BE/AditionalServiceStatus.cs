@@ -6,6 +6,6 @@ namespace SistemaGestorEventos.BE
 {
     public enum AditionalServiceStatus
     {
-        PENDING, CONFIRMED, CANCELED_PROVIDER, CANCELED_CUSTOMER
+        PENDING, CONFIRMED, CANCELED_PROVIDER, CANCELED_CUSTOMER, CANELED_NOPENALTY
     }
 }

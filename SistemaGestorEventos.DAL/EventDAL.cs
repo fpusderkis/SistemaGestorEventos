@@ -193,7 +193,7 @@ namespace SistemaGestorEventos.DAL
                 {
                     foreach (var aserv in aditionalServices)
                     {
-                        aserv.Service = aditionalServiceDAL.FindServiceById(aserv.Id, con);
+                        aserv.Service = aditionalServiceDAL.FindServiceById(aserv.ServiceId, con);
                         evt.AditionalServices.Add(aserv);
                     }
                 }

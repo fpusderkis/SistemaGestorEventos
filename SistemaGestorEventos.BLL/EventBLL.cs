@@ -124,7 +124,12 @@ namespace SistemaGestorEventos.BLL
             }
             evt.AditionalServices.ForEach(aditionalService =>
             {
-                cost += aditionalService.Price * aditionalService.Quantity ;
+                if (!(aditionalService.Status.Equals(AditionalServiceStatus.CANCELED_PROVIDER)
+                || aditionalService.Status.Equals(AditionalServiceStatus.CANELED_NOPENALTY)))
+                {
+                    cost += aditionalService.Price * aditionalService.Quantity;
+                }
+                
             });
 
 
