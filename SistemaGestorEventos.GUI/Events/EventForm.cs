@@ -506,7 +506,7 @@ namespace SistemaGestorEventos.GUI.Events
             {
                 this.tabEventDetails.TabPages.Add(this.tabPagos);
             }
-            if (!EventStatus.CONFIRMED.Equals(this.editable.Status))
+            if (EventStatus.CONFIRMED.Equals(this.editable.Status))
             {
                 this.tabEventDetails.TabPages.Add(this.tpCronology);
                 this.tabEventDetails.TabPages.Add(this.tpGuests);

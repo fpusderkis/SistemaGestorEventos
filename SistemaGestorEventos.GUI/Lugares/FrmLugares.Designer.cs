@@ -153,7 +153,7 @@
             this.tlpFilter.ColumnCount = 3;
             this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.48193F));
             this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.51807F));
-            this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
+            this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
             this.tlpFilter.Controls.Add(this.btnReset, 2, 1);
             this.tlpFilter.Controls.Add(this.lblId, 0, 0);
             this.tlpFilter.Controls.Add(this.lblName, 1, 0);
@@ -172,9 +172,9 @@
             // btnReset
             // 
             this.btnReset.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReset.Location = new System.Drawing.Point(618, 52);
+            this.btnReset.Location = new System.Drawing.Point(615, 52);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(147, 44);
+            this.btnReset.Size = new System.Drawing.Size(150, 44);
             this.btnReset.TabIndex = 5;
             this.btnReset.Tag = "btn.reset";
             this.btnReset.Text = "Borrar filtros";
@@ -187,7 +187,7 @@
             this.lblId.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblId.Location = new System.Drawing.Point(3, 0);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(120, 49);
+            this.lblId.Size = new System.Drawing.Size(119, 49);
             this.lblId.TabIndex = 0;
             this.lblId.Tag = "places.label.filter.id";
             this.lblId.Text = "Id";
@@ -197,7 +197,7 @@
             // 
             this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(129, 29);
+            this.lblName.Location = new System.Drawing.Point(128, 29);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(64, 20);
             this.lblName.TabIndex = 1;
@@ -208,23 +208,23 @@
             // 
             this.txtPlaceId.Location = new System.Drawing.Point(3, 52);
             this.txtPlaceId.Name = "txtPlaceId";
-            this.txtPlaceId.Size = new System.Drawing.Size(120, 27);
+            this.txtPlaceId.Size = new System.Drawing.Size(119, 27);
             this.txtPlaceId.TabIndex = 2;
             // 
             // txtPlaceName
             // 
             this.txtPlaceName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPlaceName.Location = new System.Drawing.Point(129, 52);
+            this.txtPlaceName.Location = new System.Drawing.Point(128, 52);
             this.txtPlaceName.Name = "txtPlaceName";
-            this.txtPlaceName.Size = new System.Drawing.Size(483, 27);
+            this.txtPlaceName.Size = new System.Drawing.Size(481, 27);
             this.txtPlaceName.TabIndex = 3;
             // 
             // btnPlaceSearch
             // 
             this.btnPlaceSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPlaceSearch.Location = new System.Drawing.Point(618, 3);
+            this.btnPlaceSearch.Location = new System.Drawing.Point(615, 3);
             this.btnPlaceSearch.Name = "btnPlaceSearch";
-            this.btnPlaceSearch.Size = new System.Drawing.Size(147, 43);
+            this.btnPlaceSearch.Size = new System.Drawing.Size(150, 43);
             this.btnPlaceSearch.TabIndex = 4;
             this.btnPlaceSearch.Tag = "btn.search";
             this.btnPlaceSearch.Text = "Buscar";

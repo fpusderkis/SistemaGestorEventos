@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "secretStore": null,
+      "type": "mssql.onprem",
+      "connectionId": "ConnectionStrings:DESKTOP-VRDL6E3:SQLEXPRESS"
+    }
+  }
+}

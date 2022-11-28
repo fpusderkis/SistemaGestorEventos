@@ -1,4 +1,5 @@
-﻿using SistemaGestorEventos.BE;
+﻿using PdfSharp.Drawing;
+using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.GUI.Idioma;
@@ -234,6 +235,20 @@ namespace SistemaGestorEventos.GUI
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowFormAlone(new Home.FrmHome());
+        }
+
+        private void reporteEventosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var pdf = new PdfSharp.Pdf.PdfDocument();
+
+            var page = pdf.AddPage();
+
+            var xgraphics = XGraphics.FromPdfPage(page);
+            XFont TitleFont= new XFont("Verdana", 20, XFontStyle.Bold);
+
+            xgraphics.DrawString("Reporte de ventas del mes" + "Noviembre", TitleFont, XBrushes.Black,
+                new XRect(0, 0, page.Width, page.Height), XStringFormats.Center);
+                
         }
     }
 }
