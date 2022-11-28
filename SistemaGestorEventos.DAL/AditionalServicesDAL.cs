@@ -55,6 +55,42 @@ namespace SistemaGestorEventos.DAL
             
         }
 
+        public void SaveService(Service service)
+        {
+            using (var connection = this.GetSqlConnectionOpen())
+            {
+                var db = new Database(connection);
+
+                if (service.Id != null)
+                {
+                    db.AddInOutParameter("@Id", service.Id, System.Data.SqlDbType.Int);
+                }
+                else
+                {
+                    db.AddOutParameter("@Id", System.Data.SqlDbType.Int);
+                }
+
+                db.AddParameter("@Name", service.Name)
+                    .AddParameter("@ProviderPrice", service.ProviderPrice)
+                    .AddParameter("@Fee", service.Fee)
+                    .AddParameter("@Status", service.Status)
+
+                    ;
+
+
+                db.ExecuteNonQuery("sp_Services_Upsert", true);
+                service.Id = db.ReadOutputParameter<Int32>("@Id");
+            }
+        }
+
+        public AditionalService SaveAditionalService(AditionalService aditionalService)
+        {
+            using (var connection = this.GetSqlConnectionOpen())
+            {
+                return this.SaveAditionalService(aditionalService, connection);
+            }
+                
+        }
         internal AditionalService SaveAditionalService(AditionalService aditionalService, SqlConnection connection)
         {
             var db = new Database(connection);
@@ -63,7 +99,8 @@ namespace SistemaGestorEventos.DAL
             db.AddParameter("@ServiceId", aditionalService.Service.Id);
             db.AddParameter("@EventId", aditionalService.EventId);
             db.AddParameter("@Quantity", aditionalService.Quantity);
-            db.AddParameter("@Price", aditionalService.Quantity); 
+            db.AddParameter("@Price", aditionalService.Price); 
+            db.AddParameter("@Status", aditionalService.Status); 
             db.AddParameter("@Description", aditionalService.Description); 
 
             db.ExecuteNonQuery("sp_AditionalService_Upsert",true);

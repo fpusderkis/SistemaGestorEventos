@@ -8,7 +8,7 @@ namespace SistemaGestorEventos.BE.Grants
     {
         GestionarLugar,
         GestionarServicio,
-        AdministradorSistema
-           
+        AdministradorSistema,
+        Organizador
     }
 }

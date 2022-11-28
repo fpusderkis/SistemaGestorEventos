@@ -49,6 +49,8 @@ namespace SistemaGestorEventos.BE
 
         public List<Payment> Payments { get; set; } = new List<Payment>();
 
+        public Guid? AssignedId { get; set; }
+        public string Assigned { get; set; }
 
     }
 }

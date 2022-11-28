@@ -59,6 +59,7 @@ namespace SistemaGestorEventos.DAL
                 db.AddParameter("@Status", evt.Status.ToString());
                 db.AddParameter("@DateFrom", evt.DateFrom);
                 db.AddParameter("@DateTo", evt.DateTo);
+                db.AddParameter("@AssignedId", evt.AssignedId);
 
 
                 /// TODO save aditional services
@@ -85,9 +86,16 @@ namespace SistemaGestorEventos.DAL
         }
 
 
-        public IList<Event> FindEvents(Int32? eventId, Int32? customerId, string title, DateTime? from, DateTime? to, EventStatus? status)
+        public IList<Event> FindEvents(Int32? eventId,
+            Int32? customerId,
+            string title,
+            DateTime? from,
+            DateTime? to,
+            EventStatus? status,
+            string assigned
+            )
         {
-            var sql = "SELECT * FROM EVENTS WHERE 1=1 ";
+            var sql = "SELECT evt.*, assign.username Assigned FROM EVENTS evt LEFT JOIN Usuarios assign ON assign.Id = evt.AssignedId WHERE 1=1 ";
 
             using (var con = this.GetSqlConnectionOpen())
             {
@@ -95,18 +103,23 @@ namespace SistemaGestorEventos.DAL
 
                 if (eventId != null && eventId > 0)
                 {
-                    sql = sql + " AND ID = @Id";
+                    sql = sql + " AND evt.ID = @Id";
                     db.AddParameter("@Id", eventId);
                 }
                 if (customerId != null && customerId > 0)
                 {
-                    sql = sql + " AND CustomerId = @CustomerId";
+                    sql = sql + " AND evt.CustomerId = @CustomerId";
                     db.AddParameter("@CustomerId", customerId);
                 }
                 if (!string.IsNullOrWhiteSpace(title))
                 {
-                    sql = sql + " AND Title like @Title";
+                    sql = sql + " AND evt.Title like @Title";
                     db.AddParameter("@Title", $"%{title}%");
+                }
+                if (!string.IsNullOrWhiteSpace(assigned))
+                {
+                    sql = sql + " AND assign.username like @Assigned";
+                    db.AddParameter("@Assigned", assigned);
                 }
                 if (from != null)
                 {
@@ -192,6 +205,111 @@ namespace SistemaGestorEventos.DAL
                 }
 
                 return evt;
+            }
+        }
+
+        public void UpdateAssiged(int eventId, Guid? userId, Guid updatedById)
+        {
+            using (var con = this.GetSqlConnectionOpen())
+            {
+                
+
+                var db = new Database(con);
+                db.AddParameter("@AssignedId", userId)
+                    .AddParameter("@updatedById", updatedById)
+                    .AddParameter("@Id", eventId);
+                
+                db.ExecuteNonQuery("UPDATE [dbo].[Events] SET [LastUpdatedAt] = CURRENT_TIMESTAMP, [LastUpdatedBy] = @updatedById, [AssignedId] = @AssignedId WHERE Id = @Id");
+            }
+        }
+
+        public IList<Activity> LoadEnabledActivities(int eventId)
+        {
+            using (var con = this.GetSqlConnectionOpen())
+            {
+
+
+                var db = new Database(con);
+                db.AddParameter("@EventId", eventId);
+                return db.ExecuteQuery<Activity>("SELECT * FROM [Activities] WHERE Enabled = 1 AND EventId = @EventId ORDER BY ActivityOrder ASC");
+            }
+        }
+
+        public void SaveActivity(int eventId, Activity activity) {
+            using (var con = this.GetSqlConnectionOpen())
+            {
+                
+
+                var db = new Database(con);
+
+                if (activity.Id != null)
+                {
+                    db.AddInOutParameter("@Id", activity.Id, System.Data.SqlDbType.Int);
+                }
+                else
+                {
+                    db.AddOutParameter("@Id", System.Data.SqlDbType.Int);
+                }
+
+
+                db.AddParameter("@EventId", eventId)
+                    
+                    .AddParameter("@Description", activity.Description)
+                    .AddParameter("@ActivityOrder", activity.ActivityOrder)
+                    .AddParameter("@Enabled", activity.Enabled)
+                    ;
+
+              
+
+                db.ExecuteNonQuery("sp_Activity_Upsert",true);
+
+                activity.Id = db.ReadOutputParameter<Int32>("@Id");
+            }
+
+        }
+
+        public IList<Guest> FindGuestsForEvent(int eventId)
+        {
+            using (var con = this.GetSqlConnectionOpen())
+            {
+                var db = new Database(con);
+                db.AddParameter("@EventId", eventId);
+
+                return db.ExecuteQuery<Guest>("SELECT * FROM [Guests] WHERE Enabled = 1 AND EventId = @EventId ORDER BY Name ASC");
+            }
+        }
+
+        public void SaveEventGuest(int eventId, Guest guest)
+        {
+            using (var con = this.GetSqlConnectionOpen())
+            {
+
+
+                var db = new Database(con);
+
+                if (guest.Id != null)
+                {
+                    db.AddInOutParameter("@Id", guest.Id, System.Data.SqlDbType.Int);
+                }
+                else
+                {
+                    db.AddOutParameter("@Id", System.Data.SqlDbType.Int);
+                }
+   
+                db.AddParameter("@EventId", eventId)
+
+                    .AddParameter("@Name", guest.Name)
+                    .AddParameter("@LastName", guest.LastName)
+                    .AddParameter("@TaxPayerId", guest.TaxPayerId)
+                    .AddParameter("@FoodType", guest.FoodType)
+                    .AddParameter("@Quantity", guest.Quantity)
+                    .AddParameter("@Enabled", guest.Enabled)
+                    .AddParameter("@Details", guest.Details)
+                    ;
+
+                db.ExecuteNonQuery("[sp_Guest_Upsert]", true);
+
+                guest.Id = db.ReadOutputParameter<Int32>("@Id");
             }
         }
     }

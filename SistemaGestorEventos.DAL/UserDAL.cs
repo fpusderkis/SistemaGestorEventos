@@ -91,6 +91,18 @@ namespace SistemaGestorEventos.DAL
             }
         }
 
-        
+        public User FindById(Guid userId)
+        {
+            using (var connection = this.GetSqlConnection())
+            {
+                connection.Open();
+
+                IList<User> lista = new Database(connection)
+                    .AddParameter("@userId", userId)
+                    .ExecuteQuery<User>("SELECT * FROM Usuarios where ID = @userId");
+
+                return lista[0];
+            }
+        }
     }
 }

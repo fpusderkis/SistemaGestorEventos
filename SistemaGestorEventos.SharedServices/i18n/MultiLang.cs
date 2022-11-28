@@ -117,7 +117,7 @@ namespace SistemaGestorEventos.SharedServices.i18n
         {
             instance.datasource.UpsertTranslate(idioma, key, value);
             instance.LoadLang(idioma);
-            instance.FireOnLanguageChangeEvent();
+            
         }
     }
 }

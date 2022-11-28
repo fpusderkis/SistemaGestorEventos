@@ -1,6 +1,8 @@
-﻿using SistemaGestorEventos.DAL;
+﻿using SistemaGestorEventos.BE;
+using SistemaGestorEventos.DAL;
 using SistemaGestorEventos.SharedServices.bitacora;
 using System;
+using System.Collections.Generic;
 
 namespace SistemaGestorEventos.BLL
 {
@@ -21,6 +23,11 @@ namespace SistemaGestorEventos.BLL
             }
 
             BitacoraDAL.GetInstance.Write(guid, message);
+        }
+
+        public IList<Log> SearchLogs(string username, DateTime from, DateTime to)
+        {
+            return BitacoraDAL.GetInstance.SearchLogs(username, from, to);
         }
     }
 }

@@ -159,13 +159,15 @@ namespace SistemaGestorEventos.GUI.Home
             }
             
 
+
             var events = this.eventBLL.FindEvents(
                 eventId: eventId,
                 customerId: selectedCustomer?.Id,
                 title: Title,
                 from: DateForm,
                 to: DateTo,
-                status: (EventStatus?)this.cbxEventStatus.SelectedValue
+                status: (EventStatus?)this.cbxEventStatus.SelectedValue,
+                assigned: txtAssigned.Text
                 );
 
             this.dgvEvents.DataSource = events;
@@ -197,6 +199,12 @@ namespace SistemaGestorEventos.GUI.Home
             var canEditService = SessionHandler.GetInstance.HasGrant(GrantType.GestionarServicio);
             btnNewEvent.Enabled = canEditService;
             btnOpenEvent.Enabled = canEditService;
+
+            bool isOrg = SessionHandler.GetInstance.HasGrant(GrantType.Organizador)
+                        || SessionHandler.GetInstance.HasGrant(GrantType.AdministradorSistema);
+            btnAssign.Visible = isOrg;
+            btnUnassigne.Visible = isOrg;
+
         }
 
         private void cbxEventStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -207,6 +215,46 @@ namespace SistemaGestorEventos.GUI.Home
         private void gbxCustomers_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvEvents_SelectionChanged(object sender, EventArgs e)
+        {
+            var selectedEvent = (Event)this.dgvEvents.CurrentRow?.DataBoundItem;
+
+            enableAssignedButtons(selectedEvent);
+        }
+
+        private void btnAssign_Click(object sender, EventArgs e)
+        {
+            var selectedEvent = (Event)this.dgvEvents.CurrentRow?.DataBoundItem;
+
+            eventBLL.Assign(selectedEvent, SESSION.User.Id);
+            
+            btnEventsSearch_Click(null, null);
+            MessageBox.Show(MultiLang.TranslateOrDefault("home.events.asigned.ok", "Usuario asignado con éxtio"));
+
+            enableAssignedButtons(selectedEvent);
+        }
+
+        private void btnUnassigne_Click(object sender, EventArgs e)
+        {
+            var selectedEvent = (Event)this.dgvEvents.CurrentRow?.DataBoundItem;
+
+            eventBLL.Unassign(selectedEvent,SESSION.User.Id);
+            btnEventsSearch_Click(null, null);
+
+            MessageBox.Show(MultiLang.TranslateOrDefault("home.events.unnasigned.ok", "Usuario desasignado con éxtio"));
+            
+            selectedEvent.Assigned = null;
+            selectedEvent.AssignedId = null;
+
+            enableAssignedButtons(selectedEvent);
+        }
+
+        private void enableAssignedButtons(Event selectedEvent) 
+        {
+            btnAssign.Enabled = BE.EventStatus.CONFIRMED.Equals(selectedEvent.Status)  && selectedEvent.AssignedId == null;
+            btnUnassigne.Enabled = BE.EventStatus.CONFIRMED.Equals(selectedEvent.Status) && selectedEvent.AssignedId != null;
         }
     }
 }

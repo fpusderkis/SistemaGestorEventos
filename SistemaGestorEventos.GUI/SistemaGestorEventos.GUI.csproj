@@ -4,7 +4,13 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <IsPublishable>True</IsPublishable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="PdfSharp" Version="1.50.5147" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SistemaGestorEventos.BLL\SistemaGestorEventos.BLL.csproj" />

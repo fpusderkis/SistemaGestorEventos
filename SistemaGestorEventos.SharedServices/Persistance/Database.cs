@@ -114,9 +114,11 @@ namespace SistemaGestorEventos.SharedServices.Persistance
                             try
                             {
                                 var value = reader[p.Name];
-                                if (p.PropertyType.IsEnum && value != null)
+                                var u = Nullable.GetUnderlyingType(p.PropertyType);
+                                if ((p.PropertyType.IsEnum || (u != null && u.IsEnum)) && value != null)
                                 {
-                                    var enumValue = Enum.Parse(p.PropertyType, value.ToString());
+                                    Type type = u != null ? u : p.PropertyType;
+                                    var enumValue = Enum.Parse(type, value.ToString());
                                     p.SetValue(obj, enumValue);
                                 } else
                                 {

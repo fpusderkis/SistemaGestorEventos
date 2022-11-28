@@ -100,8 +100,10 @@
             this.dgvASCQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvASCPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvASCTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnASRemove = new System.Windows.Forms.Button();
             this.lblASAdded = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnConfirmService = new System.Windows.Forms.Button();
+            this.btnASRemove = new System.Windows.Forms.Button();
             this.tabPagos = new System.Windows.Forms.TabPage();
             this.tlpPayments = new System.Windows.Forms.TableLayoutPanel();
             this.lblPayments = new System.Windows.Forms.Label();
@@ -124,6 +126,37 @@
             this.dtpNewPaymentDate = new System.Windows.Forms.DateTimePicker();
             this.btnAddNewPayment = new System.Windows.Forms.Button();
             this.btnDeleteSelectedPayment = new System.Windows.Forms.Button();
+            this.tpCronology = new System.Windows.Forms.TabPage();
+            this.btnDiscartChronology = new System.Windows.Forms.Button();
+            this.btnSaveCronology = new System.Windows.Forms.Button();
+            this.btnDownActivity = new System.Windows.Forms.Button();
+            this.btnUpActivity = new System.Windows.Forms.Button();
+            this.dgvChronology = new System.Windows.Forms.DataGridView();
+            this.Orden = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Actividad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tpGuests = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dgvGuests = new System.Windows.Forms.DataGridView();
+            this.dgvGuestCName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvGuestCLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvGuestCFoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvGuestCQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gbxGuests = new System.Windows.Forms.GroupBox();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnGuestSave = new System.Windows.Forms.Button();
+            this.cmbGuestFoodType = new System.Windows.Forms.ComboBox();
+            this.txtGuestDetails = new System.Windows.Forms.TextBox();
+            this.lblGuestObs = new System.Windows.Forms.Label();
+            this.lblGuestFoodType = new System.Windows.Forms.Label();
+            this.txtGuestQuantity = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtGuestLastName = new System.Windows.Forms.TextBox();
+            this.lblGuestLastname = new System.Windows.Forms.Label();
+            this.txtGuestName = new System.Windows.Forms.TextBox();
+            this.lblGuestName = new System.Windows.Forms.Label();
+            this.txtGuestTaxPayerId = new System.Windows.Forms.TextBox();
+            this.lblCuit = new System.Windows.Forms.Label();
             this.totalAmountsLP = new System.Windows.Forms.TableLayoutPanel();
             this.lblPaidValue = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -159,12 +192,18 @@
             this.panelFilterASName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearchAS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddedServices)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tabPagos.SuspendLayout();
             this.tlpPayments.SuspendLayout();
             this.tlpListOfPayments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPayments)).BeginInit();
             this.tlpNewPayment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNewPaymentAmount)).BeginInit();
+            this.tpCronology.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChronology)).BeginInit();
+            this.tpGuests.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGuests)).BeginInit();
+            this.gbxGuests.SuspendLayout();
             this.totalAmountsLP.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -175,6 +214,8 @@
             this.tabEventDetails.Controls.Add(this.tabLugares);
             this.tabEventDetails.Controls.Add(this.tabAditionalServices);
             this.tabEventDetails.Controls.Add(this.tabPagos);
+            this.tabEventDetails.Controls.Add(this.tpCronology);
+            this.tabEventDetails.Controls.Add(this.tpGuests);
             this.tabEventDetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabEventDetails.Location = new System.Drawing.Point(0, 0);
             this.tabEventDetails.Name = "tabEventDetails";
@@ -796,8 +837,8 @@
             this.tlpAditionalServicesFilters.Controls.Add(this.btnAddAS, 1, 1);
             this.tlpAditionalServicesFilters.Controls.Add(this.dgvSearchAS, 0, 1);
             this.tlpAditionalServicesFilters.Controls.Add(this.dgvAddedServices, 0, 4);
-            this.tlpAditionalServicesFilters.Controls.Add(this.btnASRemove, 1, 4);
             this.tlpAditionalServicesFilters.Controls.Add(this.lblASAdded, 0, 3);
+            this.tlpAditionalServicesFilters.Controls.Add(this.tableLayoutPanel2, 1, 4);
             this.tlpAditionalServicesFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpAditionalServicesFilters.Location = new System.Drawing.Point(3, 3);
             this.tlpAditionalServicesFilters.Name = "tlpAditionalServicesFilters";
@@ -933,12 +974,13 @@
             this.dgvAddedServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAddedServices.Size = new System.Drawing.Size(624, 144);
             this.dgvAddedServices.TabIndex = 4;
+            this.dgvAddedServices.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAddedServices_CellContentClick);
             this.dgvAddedServices.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAddedServices_CellFormatting);
             this.dgvAddedServices.SelectionChanged += new System.EventHandler(this.dgvAddedServices_SelectionChanged);
             // 
             // dgvASCId
             // 
-            this.dgvASCId.DataPropertyName = "Service.Id";
+            this.dgvASCId.DataPropertyName = "Id";
             this.dgvASCId.HeaderText = "Id";
             this.dgvASCId.MinimumWidth = 6;
             this.dgvASCId.Name = "dgvASCId";
@@ -948,7 +990,7 @@
             // dgvASCName
             // 
             this.dgvASCName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgvASCName.DataPropertyName = "Service.Name";
+            this.dgvASCName.DataPropertyName = "ServiceName";
             this.dgvASCName.HeaderText = "Nombre";
             this.dgvASCName.MinimumWidth = 6;
             this.dgvASCName.Name = "dgvASCName";
@@ -965,7 +1007,7 @@
             // 
             // dgvASCPrice
             // 
-            this.dgvASCPrice.DataPropertyName = "Price";
+            this.dgvASCPrice.DataPropertyName = "CalculedPrice";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle2.Format = "C2";
             dataGridViewCellStyle2.NullValue = null;
@@ -985,18 +1027,6 @@
             this.dgvASCTotal.ReadOnly = true;
             this.dgvASCTotal.Width = 125;
             // 
-            // btnASRemove
-            // 
-            this.btnASRemove.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnASRemove.Location = new System.Drawing.Point(633, 303);
-            this.btnASRemove.Name = "btnASRemove";
-            this.btnASRemove.Size = new System.Drawing.Size(150, 29);
-            this.btnASRemove.TabIndex = 5;
-            this.btnASRemove.Tag = "btn.remove";
-            this.btnASRemove.Text = "Eliminar";
-            this.btnASRemove.UseVisualStyleBackColor = true;
-            this.btnASRemove.Click += new System.EventHandler(this.btnASRemove_Click);
-            // 
             // lblASAdded
             // 
             this.lblASAdded.AutoSize = true;
@@ -1006,6 +1036,44 @@
             this.lblASAdded.TabIndex = 6;
             this.lblASAdded.Tag = "as.addedservices";
             this.lblASAdded.Text = "Servicios contratados";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.btnConfirmService, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnASRemove, 0, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(633, 188);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(150, 144);
+            this.tableLayoutPanel2.TabIndex = 7;
+            // 
+            // btnConfirmService
+            // 
+            this.btnConfirmService.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConfirmService.Location = new System.Drawing.Point(3, 3);
+            this.btnConfirmService.Name = "btnConfirmService";
+            this.btnConfirmService.Size = new System.Drawing.Size(144, 29);
+            this.btnConfirmService.TabIndex = 6;
+            this.btnConfirmService.Tag = "btn.manageservice";
+            this.btnConfirmService.Text = "Gestionar";
+            this.btnConfirmService.UseVisualStyleBackColor = true;
+            this.btnConfirmService.Click += new System.EventHandler(this.btnConfirmService_Click);
+            // 
+            // btnASRemove
+            // 
+            this.btnASRemove.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnASRemove.Location = new System.Drawing.Point(3, 112);
+            this.btnASRemove.Name = "btnASRemove";
+            this.btnASRemove.Size = new System.Drawing.Size(144, 29);
+            this.btnASRemove.TabIndex = 5;
+            this.btnASRemove.Tag = "btn.remove";
+            this.btnASRemove.Text = "Eliminar";
+            this.btnASRemove.UseVisualStyleBackColor = true;
+            this.btnASRemove.Click += new System.EventHandler(this.btnASRemove_Click);
             // 
             // tabPagos
             // 
@@ -1273,6 +1341,341 @@
             this.btnDeleteSelectedPayment.UseVisualStyleBackColor = true;
             this.btnDeleteSelectedPayment.Click += new System.EventHandler(this.btnDeleteSelectedPayment_Click);
             // 
+            // tpCronology
+            // 
+            this.tpCronology.Controls.Add(this.btnDiscartChronology);
+            this.tpCronology.Controls.Add(this.btnSaveCronology);
+            this.tpCronology.Controls.Add(this.btnDownActivity);
+            this.tpCronology.Controls.Add(this.btnUpActivity);
+            this.tpCronology.Controls.Add(this.dgvChronology);
+            this.tpCronology.Location = new System.Drawing.Point(4, 29);
+            this.tpCronology.Name = "tpCronology";
+            this.tpCronology.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCronology.Size = new System.Drawing.Size(792, 425);
+            this.tpCronology.TabIndex = 4;
+            this.tpCronology.Tag = "tab.cronology";
+            this.tpCronology.Text = "Cronología";
+            this.tpCronology.UseVisualStyleBackColor = true;
+            // 
+            // btnDiscartChronology
+            // 
+            this.btnDiscartChronology.Location = new System.Drawing.Point(22, 379);
+            this.btnDiscartChronology.Name = "btnDiscartChronology";
+            this.btnDiscartChronology.Size = new System.Drawing.Size(94, 29);
+            this.btnDiscartChronology.TabIndex = 4;
+            this.btnDiscartChronology.Tag = "btn.discart";
+            this.btnDiscartChronology.Text = "Descartar";
+            this.btnDiscartChronology.UseVisualStyleBackColor = true;
+            this.btnDiscartChronology.Click += new System.EventHandler(this.btnDiscartChronology_Click);
+            // 
+            // btnSaveCronology
+            // 
+            this.btnSaveCronology.Location = new System.Drawing.Point(612, 379);
+            this.btnSaveCronology.Name = "btnSaveCronology";
+            this.btnSaveCronology.Size = new System.Drawing.Size(94, 29);
+            this.btnSaveCronology.TabIndex = 3;
+            this.btnSaveCronology.Tag = "btn.save";
+            this.btnSaveCronology.Text = "Guardar cronología";
+            this.btnSaveCronology.UseVisualStyleBackColor = true;
+            this.btnSaveCronology.Click += new System.EventHandler(this.btnSaveCronology_Click);
+            // 
+            // btnDownActivity
+            // 
+            this.btnDownActivity.Location = new System.Drawing.Point(712, 94);
+            this.btnDownActivity.Name = "btnDownActivity";
+            this.btnDownActivity.Size = new System.Drawing.Size(64, 53);
+            this.btnDownActivity.TabIndex = 2;
+            this.btnDownActivity.Text = "↓↓↓";
+            this.btnDownActivity.UseVisualStyleBackColor = true;
+            this.btnDownActivity.Click += new System.EventHandler(this.btnDownActivity_Click);
+            // 
+            // btnUpActivity
+            // 
+            this.btnUpActivity.Location = new System.Drawing.Point(712, 35);
+            this.btnUpActivity.Name = "btnUpActivity";
+            this.btnUpActivity.Size = new System.Drawing.Size(64, 53);
+            this.btnUpActivity.TabIndex = 1;
+            this.btnUpActivity.Text = "↑↑↑";
+            this.btnUpActivity.UseVisualStyleBackColor = true;
+            this.btnUpActivity.Click += new System.EventHandler(this.btnUpActivity_Click);
+            // 
+            // dgvChronology
+            // 
+            this.dgvChronology.AllowUserToDeleteRows = false;
+            this.dgvChronology.AllowUserToOrderColumns = true;
+            this.dgvChronology.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvChronology.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Orden,
+            this.Actividad});
+            this.dgvChronology.Location = new System.Drawing.Point(22, 35);
+            this.dgvChronology.MultiSelect = false;
+            this.dgvChronology.Name = "dgvChronology";
+            this.dgvChronology.RowHeadersWidth = 51;
+            this.dgvChronology.RowTemplate.Height = 29;
+            this.dgvChronology.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvChronology.Size = new System.Drawing.Size(684, 318);
+            this.dgvChronology.TabIndex = 0;
+            this.dgvChronology.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvChronology_RowsAdded);
+            this.dgvChronology.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvChronology_UserAddedRow);
+            // 
+            // Orden
+            // 
+            this.Orden.DataPropertyName = "ActivityOrder";
+            this.Orden.HeaderText = "#";
+            this.Orden.MinimumWidth = 6;
+            this.Orden.Name = "Orden";
+            this.Orden.ReadOnly = true;
+            this.Orden.Width = 40;
+            // 
+            // Actividad
+            // 
+            this.Actividad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Actividad.DataPropertyName = "Description";
+            this.Actividad.HeaderText = "Actividad";
+            this.Actividad.MinimumWidth = 6;
+            this.Actividad.Name = "Actividad";
+            // 
+            // tpGuests
+            // 
+            this.tpGuests.Controls.Add(this.button3);
+            this.tpGuests.Controls.Add(this.button2);
+            this.tpGuests.Controls.Add(this.dgvGuests);
+            this.tpGuests.Controls.Add(this.gbxGuests);
+            this.tpGuests.Location = new System.Drawing.Point(4, 29);
+            this.tpGuests.Name = "tpGuests";
+            this.tpGuests.Padding = new System.Windows.Forms.Padding(3);
+            this.tpGuests.Size = new System.Drawing.Size(792, 425);
+            this.tpGuests.TabIndex = 5;
+            this.tpGuests.Text = "Invitados";
+            this.tpGuests.UseVisualStyleBackColor = true;
+            this.tpGuests.Click += new System.EventHandler(this.tpGuests_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(721, 238);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(57, 40);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "🖉";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(721, 356);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(57, 40);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "🗑";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // dgvGuests
+            // 
+            this.dgvGuests.AllowUserToAddRows = false;
+            this.dgvGuests.AllowUserToDeleteRows = false;
+            this.dgvGuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGuests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvGuestCName,
+            this.dgvGuestCLastName,
+            this.dgvGuestCFoodType,
+            this.dgvGuestCQty});
+            this.dgvGuests.Location = new System.Drawing.Point(21, 208);
+            this.dgvGuests.MultiSelect = false;
+            this.dgvGuests.Name = "dgvGuests";
+            this.dgvGuests.ReadOnly = true;
+            this.dgvGuests.RowHeadersWidth = 51;
+            this.dgvGuests.RowTemplate.Height = 29;
+            this.dgvGuests.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvGuests.Size = new System.Drawing.Size(686, 188);
+            this.dgvGuests.TabIndex = 1;
+            // 
+            // dgvGuestCName
+            // 
+            this.dgvGuestCName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvGuestCName.DataPropertyName = "Name";
+            this.dgvGuestCName.HeaderText = "Nombre";
+            this.dgvGuestCName.MinimumWidth = 6;
+            this.dgvGuestCName.Name = "dgvGuestCName";
+            this.dgvGuestCName.ReadOnly = true;
+            this.dgvGuestCName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // dgvGuestCLastName
+            // 
+            this.dgvGuestCLastName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvGuestCLastName.DataPropertyName = "LastName";
+            this.dgvGuestCLastName.HeaderText = "Apellido";
+            this.dgvGuestCLastName.MinimumWidth = 6;
+            this.dgvGuestCLastName.Name = "dgvGuestCLastName";
+            this.dgvGuestCLastName.ReadOnly = true;
+            // 
+            // dgvGuestCFoodType
+            // 
+            this.dgvGuestCFoodType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvGuestCFoodType.DataPropertyName = "FoodType";
+            this.dgvGuestCFoodType.HeaderText = "Alimentación";
+            this.dgvGuestCFoodType.MinimumWidth = 6;
+            this.dgvGuestCFoodType.Name = "dgvGuestCFoodType";
+            this.dgvGuestCFoodType.ReadOnly = true;
+            // 
+            // dgvGuestCQty
+            // 
+            this.dgvGuestCQty.DataPropertyName = "Quantity";
+            this.dgvGuestCQty.HeaderText = "Cantidad";
+            this.dgvGuestCQty.MinimumWidth = 6;
+            this.dgvGuestCQty.Name = "dgvGuestCQty";
+            this.dgvGuestCQty.ReadOnly = true;
+            this.dgvGuestCQty.Width = 125;
+            // 
+            // gbxGuests
+            // 
+            this.gbxGuests.Controls.Add(this.btnClear);
+            this.gbxGuests.Controls.Add(this.btnGuestSave);
+            this.gbxGuests.Controls.Add(this.cmbGuestFoodType);
+            this.gbxGuests.Controls.Add(this.txtGuestDetails);
+            this.gbxGuests.Controls.Add(this.lblGuestObs);
+            this.gbxGuests.Controls.Add(this.lblGuestFoodType);
+            this.gbxGuests.Controls.Add(this.txtGuestQuantity);
+            this.gbxGuests.Controls.Add(this.label6);
+            this.gbxGuests.Controls.Add(this.txtGuestLastName);
+            this.gbxGuests.Controls.Add(this.lblGuestLastname);
+            this.gbxGuests.Controls.Add(this.txtGuestName);
+            this.gbxGuests.Controls.Add(this.lblGuestName);
+            this.gbxGuests.Controls.Add(this.txtGuestTaxPayerId);
+            this.gbxGuests.Controls.Add(this.lblCuit);
+            this.gbxGuests.Location = new System.Drawing.Point(17, 15);
+            this.gbxGuests.Name = "gbxGuests";
+            this.gbxGuests.Size = new System.Drawing.Size(767, 173);
+            this.gbxGuests.TabIndex = 0;
+            this.gbxGuests.TabStop = false;
+            this.gbxGuests.Tag = "guests";
+            this.gbxGuests.Text = "Invitados";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(704, 108);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(57, 40);
+            this.btnClear.TabIndex = 14;
+            this.btnClear.Text = "🧹";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnGuestSave
+            // 
+            this.btnGuestSave.Location = new System.Drawing.Point(704, 27);
+            this.btnGuestSave.Name = "btnGuestSave";
+            this.btnGuestSave.Size = new System.Drawing.Size(57, 40);
+            this.btnGuestSave.TabIndex = 13;
+            this.btnGuestSave.Text = "💾";
+            this.btnGuestSave.UseVisualStyleBackColor = true;
+            this.btnGuestSave.Click += new System.EventHandler(this.btnGuestSave_Click);
+            // 
+            // cmbGuestFoodType
+            // 
+            this.cmbGuestFoodType.FormattingEnabled = true;
+            this.cmbGuestFoodType.Location = new System.Drawing.Point(364, 27);
+            this.cmbGuestFoodType.Name = "cmbGuestFoodType";
+            this.cmbGuestFoodType.Size = new System.Drawing.Size(326, 28);
+            this.cmbGuestFoodType.TabIndex = 12;
+            this.cmbGuestFoodType.SelectedIndexChanged += new System.EventHandler(this.cmbGuestFoodType_SelectedIndexChanged);
+            // 
+            // txtGuestDetails
+            // 
+            this.txtGuestDetails.Location = new System.Drawing.Point(364, 73);
+            this.txtGuestDetails.Multiline = true;
+            this.txtGuestDetails.Name = "txtGuestDetails";
+            this.txtGuestDetails.Size = new System.Drawing.Size(326, 75);
+            this.txtGuestDetails.TabIndex = 11;
+            // 
+            // lblGuestObs
+            // 
+            this.lblGuestObs.AutoSize = true;
+            this.lblGuestObs.Location = new System.Drawing.Point(261, 76);
+            this.lblGuestObs.Name = "lblGuestObs";
+            this.lblGuestObs.Size = new System.Drawing.Size(105, 20);
+            this.lblGuestObs.TabIndex = 10;
+            this.lblGuestObs.Tag = "observations.Title";
+            this.lblGuestObs.Text = "Observaciones";
+            // 
+            // lblGuestFoodType
+            // 
+            this.lblGuestFoodType.AutoSize = true;
+            this.lblGuestFoodType.Location = new System.Drawing.Point(261, 27);
+            this.lblGuestFoodType.Name = "lblGuestFoodType";
+            this.lblGuestFoodType.Size = new System.Drawing.Size(97, 20);
+            this.lblGuestFoodType.TabIndex = 8;
+            this.lblGuestFoodType.Tag = "foodType.Title";
+            this.lblGuestFoodType.Text = "Alimentación";
+            // 
+            // txtGuestQuantity
+            // 
+            this.txtGuestQuantity.Location = new System.Drawing.Point(92, 121);
+            this.txtGuestQuantity.Name = "txtGuestQuantity";
+            this.txtGuestQuantity.Size = new System.Drawing.Size(145, 27);
+            this.txtGuestQuantity.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(10, 124);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Tag = "guests.title";
+            this.label6.Text = "Invitados";
+            // 
+            // txtGuestLastName
+            // 
+            this.txtGuestLastName.Location = new System.Drawing.Point(92, 88);
+            this.txtGuestLastName.Name = "txtGuestLastName";
+            this.txtGuestLastName.Size = new System.Drawing.Size(145, 27);
+            this.txtGuestLastName.TabIndex = 5;
+            // 
+            // lblGuestLastname
+            // 
+            this.lblGuestLastname.AutoSize = true;
+            this.lblGuestLastname.Location = new System.Drawing.Point(10, 91);
+            this.lblGuestLastname.Name = "lblGuestLastname";
+            this.lblGuestLastname.Size = new System.Drawing.Size(66, 20);
+            this.lblGuestLastname.TabIndex = 4;
+            this.lblGuestLastname.Tag = "lastname.title";
+            this.lblGuestLastname.Text = "Apellido";
+            // 
+            // txtGuestName
+            // 
+            this.txtGuestName.Location = new System.Drawing.Point(92, 56);
+            this.txtGuestName.Name = "txtGuestName";
+            this.txtGuestName.Size = new System.Drawing.Size(145, 27);
+            this.txtGuestName.TabIndex = 3;
+            // 
+            // lblGuestName
+            // 
+            this.lblGuestName.AutoSize = true;
+            this.lblGuestName.Location = new System.Drawing.Point(10, 59);
+            this.lblGuestName.Name = "lblGuestName";
+            this.lblGuestName.Size = new System.Drawing.Size(64, 20);
+            this.lblGuestName.TabIndex = 2;
+            this.lblGuestName.Tag = "name.title";
+            this.lblGuestName.Text = "Nombre";
+            // 
+            // txtGuestTaxPayerId
+            // 
+            this.txtGuestTaxPayerId.Location = new System.Drawing.Point(92, 24);
+            this.txtGuestTaxPayerId.Name = "txtGuestTaxPayerId";
+            this.txtGuestTaxPayerId.Size = new System.Drawing.Size(145, 27);
+            this.txtGuestTaxPayerId.TabIndex = 1;
+            // 
+            // lblCuit
+            // 
+            this.lblCuit.AutoSize = true;
+            this.lblCuit.Location = new System.Drawing.Point(10, 27);
+            this.lblCuit.Name = "lblCuit";
+            this.lblCuit.Size = new System.Drawing.Size(76, 20);
+            this.lblCuit.TabIndex = 0;
+            this.lblCuit.Tag = "guest.taxPayerId.Title";
+            this.lblCuit.Text = "CUIT/CUIL";
+            // 
             // totalAmountsLP
             // 
             this.totalAmountsLP.ColumnCount = 2;
@@ -1417,6 +1820,7 @@
             this.Name = "EventForm";
             this.Tag = "eventform.title";
             this.Text = "Evento";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EventForm_FormClosed);
             this.Load += new System.EventHandler(this.EventForm_Load);
             this.tabEventDetails.ResumeLayout(false);
             this.tabCharacteristics.ResumeLayout(false);
@@ -1452,6 +1856,7 @@
             this.panelFilterASName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearchAS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddedServices)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.tabPagos.ResumeLayout(false);
             this.tlpPayments.ResumeLayout(false);
             this.tlpPayments.PerformLayout();
@@ -1460,6 +1865,12 @@
             this.tlpNewPayment.ResumeLayout(false);
             this.tlpNewPayment.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNewPaymentAmount)).EndInit();
+            this.tpCronology.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChronology)).EndInit();
+            this.tpGuests.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGuests)).EndInit();
+            this.gbxGuests.ResumeLayout(false);
+            this.gbxGuests.PerformLayout();
             this.totalAmountsLP.ResumeLayout(false);
             this.totalAmountsLP.PerformLayout();
             this.ResumeLayout(false);
@@ -1529,7 +1940,6 @@
         private System.Windows.Forms.DataGridView dgvSearchAS;
         private System.Windows.Forms.Button btnAddAS;
         private System.Windows.Forms.DataGridView dgvAddedServices;
-        private System.Windows.Forms.Button btnASRemove;
         private System.Windows.Forms.Label lblASAdded;
         private System.Windows.Forms.TableLayoutPanel tlpPayments;
         private System.Windows.Forms.Label lblPayments;
@@ -1559,11 +1969,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASFilterCPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCQty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCTotal;
         private System.Windows.Forms.DataGridView dgvPayments;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCType;
@@ -1572,5 +1977,44 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPaymentsCAmount;
         private System.Windows.Forms.Button btnDeleteSelectedPayment;
         private System.Windows.Forms.Button btnMakeBudget;
+        private System.Windows.Forms.TabPage tpCronology;
+        private System.Windows.Forms.DataGridView dgvChronology;
+        private System.Windows.Forms.Button btnDiscartChronology;
+        private System.Windows.Forms.Button btnSaveCronology;
+        private System.Windows.Forms.Button btnDownActivity;
+        private System.Windows.Forms.Button btnUpActivity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Orden;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Actividad;
+        private System.Windows.Forms.TabPage tpGuests;
+        private System.Windows.Forms.GroupBox gbxGuests;
+        private System.Windows.Forms.TextBox txtGuestQuantity;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtGuestLastName;
+        private System.Windows.Forms.Label lblGuestLastname;
+        private System.Windows.Forms.TextBox txtGuestName;
+        private System.Windows.Forms.Label lblGuestName;
+        private System.Windows.Forms.TextBox txtGuestTaxPayerId;
+        private System.Windows.Forms.Label lblCuit;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dgvGuests;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvGuestCName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvGuestCLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvGuestCFoodType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvGuestCQty;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnGuestSave;
+        private System.Windows.Forms.ComboBox cmbGuestFoodType;
+        private System.Windows.Forms.TextBox txtGuestDetails;
+        private System.Windows.Forms.Label lblGuestObs;
+        private System.Windows.Forms.Label lblGuestFoodType;
+        private System.Windows.Forms.Button btnASRemove;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button btnConfirmService;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCTotal;
     }
 }
