@@ -1,8 +1,5 @@
 USE [sgedb]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Usuario_Crear]    Script Date: 26/9/2021 17:48:36 ******/
-DROP PROCEDURE [dbo].[sp_Usuario_Crear]
-GO
 /****** Object:  StoredProcedure [dbo].[sp_Traducciones_Upsert]    Script Date: 26/9/2021 17:48:36 ******/
 DROP PROCEDURE [dbo].[sp_Traducciones_Upsert]
 GO
@@ -279,42 +276,6 @@ BEGIN
 	  COMMIT
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_Usuario_Crear]    Script Date: 26/9/2021 17:48:36 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[sp_Usuario_Crear]
-	-- Add the parameters for the stored procedure here
-	@Id uniqueidentifier, 
-	@Username varchar(50),
-	@Password varchar(50),
-	@Idioma varchar(5)
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-	
-
-   INSERT INTO [dbo].[Usuarios]
-           ([Id]
-           ,[username]
-           ,[password]
-           ,[idioma])
-     VALUES
-           (@Id,
-           @Username,
-           @Password,
-           @Idioma);
-
-END
-GO
-
-USE [sgedb]
 GO
 /****** Object:  StoredProcedure [dbo].[sp_Usuario_Upsert]    Script Date: 16/5/2022 15:58:52 ******/
 SET ANSI_NULLS ON

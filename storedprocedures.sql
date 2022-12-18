@@ -29,32 +29,6 @@ BEGIN
 
 END
 GO
-
-/**
-USUARIO
-*/
-CREATE PROCEDURE sp_Usuario_Crear
-	@Id uniqueidentifier, 
-	@Username varchar(50),
-	@Password varchar(50),
-	@Idioma varchar(5)
-AS
-BEGIN
-	SET NOCOUNT ON;	
-
-   INSERT INTO [dbo].[usuarios]
-           ([Id]
-           ,[username]
-           ,[password]
-           ,[idioma])
-     VALUES
-           (@Id,
-           @Username,
-           @Password,
-           @Idioma);
-
-END
-GO
 /**
 TRADUCCIONES
 */

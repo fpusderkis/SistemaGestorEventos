@@ -20,5 +20,10 @@ namespace SistemaGestorEventos.SharedServices.bitacora
         {
             writers.ForEach(w => w.Write(userReferenceId?.ToString(), msg));
         }
+
+        public void Error(string message)
+        {
+            Log(UserReferenceId,message);
+        }
     }
 }

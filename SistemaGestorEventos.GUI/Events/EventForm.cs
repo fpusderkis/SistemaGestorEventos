@@ -1,6 +1,7 @@
 ﻿using SistemaGestorEventos.BE;
 using SistemaGestorEventos.BE.Grants;
 using SistemaGestorEventos.BLL;
+using SistemaGestorEventos.SharedServices;
 using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
@@ -8,7 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SistemaGestorEventos.GUI.Events
@@ -736,6 +739,64 @@ namespace SistemaGestorEventos.GUI.Events
         private void dgvAddedServices_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnPrinterGuestList_Click(object sender, EventArgs e)
+        {
+
+            var sfd = new SaveFileDialog();
+            sfd.Filter = "PDF (*.pdf)|*.pdf";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                var guests = this.eventsBLL.FindGuests((int)this.editable.Id);
+
+
+                StringBuilder sb = new StringBuilder();
+
+
+                sb.Append("<head><style>")
+                   .Append("table, th, td {border: 1px solid black;}")
+                   .Append("th, td {width: 100px;}")
+                   .Append("</style></head>");
+
+                sb.Append("<body> <header>")
+                .Append("<h1 > Listado de invitados</h1 > </header >")
+                .Append("<main>")
+                .Append("<table >")
+                .Append("<thead >")
+                .Append("<tr>")
+                .Append("<td > Nombre </ td >")
+                .Append("<td > Apellido </ td >")
+                .Append("<td > Observaciones </ td >")
+                .Append("</tr ></thead >")
+                
+                .Append("<tbody >");
+                
+                foreach (var guest in guests)
+                {
+                    sb.Append("<tr>");
+                    sb.Append($"<td>{guest.Name}</td>")
+                        .Append($"<td>{guest.LastName}</td>")
+                        .Append($"<td></td>");
+                    sb.Append("</tr>");
+                }
+
+
+
+                sb.Append("</tbody> </table>")
+                    .Append("</main>");
+
+                var bytes = new PdfReport().GenerarPDF(sb.ToString());
+
+                using var writer = new BinaryWriter(File.OpenWrite(sfd.FileName));
+
+                writer.Write(bytes);
+
+            }
+
+            
+
+            
         }
     }
 }
