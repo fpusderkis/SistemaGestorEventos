@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_13A1E4AEDC14498DB8B5E74A3D8A2AC5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1CC8EB67CD2D4041ACD22855F02F881D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -116,6 +122,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_13A1E4AEDC14498DB8B5E74A3D8A2AC5"
+            {
+            "SourcePath" = "8:..\\docs\\SGE - Manual de instalacion.pdf"
+            "TargetName" = "8:SGE - Manual de instalacion.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_3BA605ABAC1A46D484D9C162011C6CCF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1CC8EB67CD2D4041ACD22855F02F881D"
             {
             "SourcePath" = "8:..\\SistemaGestorEventos.GUI\\Resources\\logo73x73.ico"
@@ -152,6 +178,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_3BA605ABAC1A46D484D9C162011C6CCF"
+                    {
+                    "Name" = "8:Ayuda"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_ED71852D5D6145F190B1EBF3D6BE3D49"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_4FB0D832B3F44B86A6A7B19E5376B8AD"
@@ -204,7 +241,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Sistema Gestor de Eventos"
         "ProductCode" = "8:{D82C438B-865B-48E1-B3C1-7F7BFAF6602F}"
-        "PackageCode" = "8:{CD87520B-0547-4F9F-A00E-352458991529}"
+        "PackageCode" = "8:{942BC21F-3D3E-4C8A-9007-40F4F7E305DB}"
         "UpgradeCode" = "8:{79952A62-3540-47D0-9708-2E04CBC05E17}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -783,7 +820,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6628B13BBFB0425FA5C32B5DA7C219AD"
             {
-            "SourcePath" = "8:..\\SistemaGestorEventos.GUI\\obj\\Debug\\netcoreapp3.1\\apphost.exe"
+            "SourcePath" = "8:..\\SistemaGestorEventos.GUI\\obj\\Release\\netcoreapp3.1\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_41464933BD494CE7A3B85BAA6AF00783"
