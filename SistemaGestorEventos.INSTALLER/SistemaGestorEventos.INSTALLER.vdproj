@@ -223,10 +223,21 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_3BA605ABAC1A46D484D9C162011C6CCF"
                     {
                     "Name" = "8:Ayuda"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_ED71852D5D6145F190B1EBF3D6BE3D49"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_5B8FB9128C2E4859A5E69B4F9B930A71"
+                    {
+                    "Name" = "8:Logs"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_1DFE489BC602493CB821677F621D8AD0"
                         "Folders"
                         {
                         }

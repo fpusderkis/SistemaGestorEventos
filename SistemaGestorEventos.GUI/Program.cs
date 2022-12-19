@@ -26,6 +26,18 @@ namespace SistemaGestorEventos.GUI
             Application.SetCompatibleTextRenderingDefault(false);
             BitacoraSingleton.GetInstance.AddWriter(new BitacoraConsoleWriter());
 
+            var logfile = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData) + @"\sgelogs.log";
+            
+
+            if (!System.IO.File.Exists(logfile))
+            {
+                System.IO.FileInfo fileInfo = new System.IO.FileInfo(logfile);
+                fileInfo.Directory.Create();
+            }
+
+            BitacoraSingleton.GetInstance.AddWriter(new BitacoraFileWritter(logfile));
+
+
             ConfigurationBLL configurationBLL = new ConfigurationBLL();
 
             if (configurationBLL.IsConnectionConfigured())

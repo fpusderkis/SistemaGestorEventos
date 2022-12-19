@@ -260,5 +260,11 @@ namespace SistemaGestorEventos.GUI
 
             Help.ShowHelp(this, helpFileName);
         }
+
+        private void cambiarClaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new usuario.FrmChangePassword();
+            form.ShowDialog();
+        }
     }
 }

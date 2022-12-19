@@ -44,9 +44,10 @@ namespace SistemaGestorEventos.GUI
             this.restaurarBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBMCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lugaresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdSaveBackup = new System.Windows.Forms.SaveFileDialog();
             this.ofdOpenBackupDB = new System.Windows.Forms.OpenFileDialog();
-            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarClaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,6 +95,7 @@ namespace SistemaGestorEventos.GUI
             // 
             this.mnuUsuario.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuLogout,
+            this.cambiarClaveToolStripMenuItem,
             this.admnistrarPermisosToolStripMenuItem,
             this.admnistrarUsuariosToolStripMenuItem});
             this.mnuUsuario.Name = "mnuUsuario";
@@ -191,6 +193,13 @@ namespace SistemaGestorEventos.GUI
             this.lugaresToolStripMenuItem.Text = "Lugares";
             this.lugaresToolStripMenuItem.Click += new System.EventHandler(this.lugaresToolStripMenuItem_Click);
             // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(65, 73);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            this.ayudaToolStripMenuItem.Click += new System.EventHandler(this.ayudaToolStripMenuItem_Click);
+            // 
             // sfdSaveBackup
             // 
             this.sfdSaveBackup.DefaultExt = "bak";
@@ -201,12 +210,13 @@ namespace SistemaGestorEventos.GUI
             this.ofdOpenBackupDB.DefaultExt = "bak";
             this.ofdOpenBackupDB.Filter = "SQL backup files (*.bak)|*.bak";
             // 
-            // ayudaToolStripMenuItem
+            // cambiarClaveToolStripMenuItem
             // 
-            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(65, 73);
-            this.ayudaToolStripMenuItem.Text = "Ayuda";
-            this.ayudaToolStripMenuItem.Click += new System.EventHandler(this.ayudaToolStripMenuItem_Click);
+            this.cambiarClaveToolStripMenuItem.Name = "cambiarClaveToolStripMenuItem";
+            this.cambiarClaveToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.cambiarClaveToolStripMenuItem.Tag = "changepassword";
+            this.cambiarClaveToolStripMenuItem.Text = "Cambiar clave";
+            this.cambiarClaveToolStripMenuItem.Click += new System.EventHandler(this.cambiarClaveToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -247,5 +257,6 @@ namespace SistemaGestorEventos.GUI
         private System.Windows.Forms.ToolStripMenuItem lugaresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cambiarClaveToolStripMenuItem;
     }
 }

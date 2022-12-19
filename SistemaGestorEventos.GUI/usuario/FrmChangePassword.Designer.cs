@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbxLogin = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNewPassRepeat = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.gbxLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +62,16 @@
             this.gbxLogin.Tag = "frmlogin.login.title";
             this.gbxLogin.Text = "Cambio de clave";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(27, 251);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(124, 29);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Tag = "btn.cancel";
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -78,9 +88,9 @@
             this.txtNewPassRepeat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNewPassRepeat.MaxLength = 255;
             this.txtNewPassRepeat.Name = "txtNewPassRepeat";
-            this.txtNewPassRepeat.PasswordChar = '☺';
+            this.txtNewPassRepeat.PasswordChar = '*';
             this.txtNewPassRepeat.Size = new System.Drawing.Size(285, 27);
-            this.txtNewPassRepeat.TabIndex = 8;
+            this.txtNewPassRepeat.TabIndex = 4;
             // 
             // label1
             // 
@@ -100,7 +110,7 @@
             this.txtNewPass.Name = "txtNewPass";
             this.txtNewPass.PasswordChar = '*';
             this.txtNewPass.Size = new System.Drawing.Size(285, 27);
-            this.txtNewPass.TabIndex = 6;
+            this.txtNewPass.TabIndex = 3;
             // 
             // lblLogin
             // 
@@ -129,7 +139,7 @@
             this.txtUsername.MaxLength = 255;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(285, 27);
-            this.txtUsername.TabIndex = 2;
+            this.txtUsername.TabIndex = 1;
             // 
             // btnChangePassword
             // 
@@ -149,19 +159,9 @@
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPassword.MaxLength = 255;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '☺';
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(285, 27);
-            this.txtPassword.TabIndex = 3;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(27, 251);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(124, 29);
-            this.btnCancel.TabIndex = 9;
-            this.btnCancel.Tag = "btn.cancel";
-            this.btnCancel.Text = "Cancelar";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.txtPassword.TabIndex = 2;
             // 
             // FrmChangePassword
             // 
