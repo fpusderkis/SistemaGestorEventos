@@ -8,13 +8,15 @@ namespace SistemaGestorEventos.DAL
 {
     public abstract class AbstractDAL
     {
-        private string GetConnectionString()
+        protected string GetConnectionString()
         {
             var cs = new SqlConnectionStringBuilder();
             cs.IntegratedSecurity = true;
             cs.DataSource = "DESKTOP-VRDL6E3\\SQLEXPRESS";
             cs.InitialCatalog = "sgedb";
-            return cs.ConnectionString;
+            
+            return DatabaseDatasource.Instance.ConnectionString;
+
         }
 
         protected SqlConnection GetSqlConnection()

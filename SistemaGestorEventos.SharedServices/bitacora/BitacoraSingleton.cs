@@ -14,5 +14,15 @@ namespace SistemaGestorEventos.SharedServices.bitacora
         {
             GetInstance.Log(msg);
         }
+
+        public static void Error(string message)
+        {
+            GetInstance.Error(message);
+        }
+
+        public static void Trace(string message)
+        {
+            GetInstance.Trace(message);
+        }
     }
 }

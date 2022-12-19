@@ -5,11 +5,14 @@ using SistemaGestorEventos.BLL;
 using SistemaGestorEventos.GUI.Idioma;
 using SistemaGestorEventos.GUI.Lugares;
 using SistemaGestorEventos.GUI.Permisos;
+using SistemaGestorEventos.SharedServices;
 using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SistemaGestorEventos.GUI
@@ -239,16 +242,23 @@ namespace SistemaGestorEventos.GUI
 
         private void reporteEventosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var pdf = new PdfSharp.Pdf.PdfDocument();
 
-            var page = pdf.AddPage();
+        }
 
-            var xgraphics = XGraphics.FromPdfPage(page);
-            XFont TitleFont= new XFont("Verdana", 20, XFontStyle.Bold);
+        private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var helpFileName = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "Ayuda") + @"\Manual de usuario.chm";
 
-            xgraphics.DrawString("Reporte de ventas del mes" + "Noviembre", TitleFont, XBrushes.Black,
-                new XRect(0, 0, page.Width, page.Height), XStringFormats.Center);
+
+            if (!File.Exists(helpFileName))
+            {
+                FileInfo fileInfo = new FileInfo(helpFileName);
+                fileInfo.Directory.Create();
                 
+                File.WriteAllBytes(helpFileName, Properties.Resources.Sistema_Gestor_de_Eventos);
+            }
+
+            Help.ShowHelp(this, helpFileName);
         }
     }
 }

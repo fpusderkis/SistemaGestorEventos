@@ -22,6 +22,9 @@ Capa de negocio, se encarga de realizar validaciones del negocio ademas de imple
 
 Capa de acceso a datos, todos los DAL implementarán la interfaz CRUD.
 
+Tambien esta incluido el archivo para levantar la base de datos como recurso del proyecto  DAL.
+Buscar 'createSchema.txt' (se usa en el instalador).
+
 ### SistemaGestorEventos.BE
 
 Contiene las estructuras de negocio.
@@ -34,19 +37,6 @@ Ejemplos:
 * Sesion
 * Multiidioma
 
-
-### sugerencias ultima correccion
-relacion de uso
-
-Diagrama de clases de DAL
-
-Familia - componente : agregar cardinalidad
-
-TipoPermiso -> relacion de use
-
-Tag = usar la key de traduccion ahi
-
-include
 
 
 ### Dataset utiles

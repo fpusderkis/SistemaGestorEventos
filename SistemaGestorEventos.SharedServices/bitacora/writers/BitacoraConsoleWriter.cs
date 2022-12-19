@@ -6,9 +6,9 @@ namespace SistemaGestorEventos.SharedServices.bitacora.writers
 {
     public class BitacoraConsoleWriter : IBitacoraWriter
     {
-        public void Write(string userReferenceId, string message)
+        public void Write(string userReferenceId, string message, string criticity)
         {
-            Console.WriteLine($"[datetime:{DateTime.Now}][userReferenceId:{ userReferenceId }] {message}");
+            Console.WriteLine($"[citicity:{criticity}][datetime:{DateTime.Now}][userReferenceId:{ userReferenceId }] {message}");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SistemaGestorEventos.SharedServices.bitacora
         /// </summary>
         /// <param name="userReferenceId">user reference id</param>
         /// <param name="message">message</param>
-        public void Write(string userReferenceId, string message);
+        public void Write(string userReferenceId, string message, string criticity);
 
     }
 }

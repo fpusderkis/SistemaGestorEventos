@@ -42,11 +42,18 @@ namespace SistemaGestorEventos.GUI.Bitacora
 
 
             WinformUtils.TraducirControl(this);
-        }
+        } 
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            var lista = BitacoraBLL.GetInstance.SearchLogs(txtUsername.Text, dtpFrom.Value, dtpTo.Value);
+
+            string criticity = cmbCriticity.SelectedItem != null ? cmbCriticity.SelectedItem.ToString() : "";
+
+            var lista = BitacoraBLL.GetInstance.SearchLogs(
+                txtUsername.Text,
+                dtpFrom.Value,
+                dtpTo.Value,
+                criticity);
 
             dataGridView1.DataSource = lista;
 

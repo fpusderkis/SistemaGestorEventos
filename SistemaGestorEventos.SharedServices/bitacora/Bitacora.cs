@@ -18,7 +18,30 @@ namespace SistemaGestorEventos.SharedServices.bitacora
 
         public void Log(object userReferenceId, string msg)
         {
-            writers.ForEach(w => w.Write(userReferenceId?.ToString(), msg));
+            Log(userReferenceId, msg, "INFO");
+        }
+
+        private void Log(object userReferenceId, string msg, string criticity)
+        {
+            writers.ForEach(w => {
+                    try
+                    {
+                        w.Write(userReferenceId?.ToString(), msg, criticity);
+                    } catch (Exception ex)
+                    {
+                        //nothing to do here
+                    }
+                });
+        }
+
+        public void Error(string message)
+        {
+            Log(UserReferenceId,message, "ERROR");
+        }
+
+        public void Trace(string message)
+        {
+            Log(UserReferenceId, message, "TRACE");
         }
     }
 }

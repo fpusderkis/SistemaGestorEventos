@@ -46,7 +46,7 @@ namespace SistemaGestorEventos.GUI
             this.lugaresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdSaveBackup = new System.Windows.Forms.SaveFileDialog();
             this.ofdOpenBackupDB = new System.Windows.Forms.OpenFileDialog();
-            this.reporteEventosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,8 @@ namespace SistemaGestorEventos.GUI
             this.mnuUsuario,
             this.mnuIdioma,
             this.bitacoraToolStripMenuItem,
-            this.administradorToolStripMenuItem});
+            this.administradorToolStripMenuItem,
+            this.ayudaToolStripMenuItem});
             this.mnuPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mnuPrincipal.Name = "mnuPrincipal";
             this.mnuPrincipal.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -157,8 +158,7 @@ namespace SistemaGestorEventos.GUI
             this.generarBackupToolStripMenuItem,
             this.restaurarBackupToolStripMenuItem,
             this.aBMCToolStripMenuItem,
-            this.lugaresToolStripMenuItem,
-            this.reporteEventosToolStripMenuItem});
+            this.lugaresToolStripMenuItem});
             this.administradorToolStripMenuItem.Name = "administradorToolStripMenuItem";
             this.administradorToolStripMenuItem.Size = new System.Drawing.Size(118, 73);
             this.administradorToolStripMenuItem.Text = "Administrador";
@@ -166,28 +166,28 @@ namespace SistemaGestorEventos.GUI
             // generarBackupToolStripMenuItem
             // 
             this.generarBackupToolStripMenuItem.Name = "generarBackupToolStripMenuItem";
-            this.generarBackupToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.generarBackupToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.generarBackupToolStripMenuItem.Text = "Generar backup";
             this.generarBackupToolStripMenuItem.Click += new System.EventHandler(this.generarBackupToolStripMenuItem_Click);
             // 
             // restaurarBackupToolStripMenuItem
             // 
             this.restaurarBackupToolStripMenuItem.Name = "restaurarBackupToolStripMenuItem";
-            this.restaurarBackupToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.restaurarBackupToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.restaurarBackupToolStripMenuItem.Text = "Restaurar backup";
             this.restaurarBackupToolStripMenuItem.Click += new System.EventHandler(this.restaurarBackupToolStripMenuItem_Click);
             // 
             // aBMCToolStripMenuItem
             // 
             this.aBMCToolStripMenuItem.Name = "aBMCToolStripMenuItem";
-            this.aBMCToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aBMCToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.aBMCToolStripMenuItem.Text = "Servicios";
             this.aBMCToolStripMenuItem.Click += new System.EventHandler(this.aBMCToolStripMenuItem_Click);
             // 
             // lugaresToolStripMenuItem
             // 
             this.lugaresToolStripMenuItem.Name = "lugaresToolStripMenuItem";
-            this.lugaresToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.lugaresToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.lugaresToolStripMenuItem.Text = "Lugares";
             this.lugaresToolStripMenuItem.Click += new System.EventHandler(this.lugaresToolStripMenuItem_Click);
             // 
@@ -201,12 +201,12 @@ namespace SistemaGestorEventos.GUI
             this.ofdOpenBackupDB.DefaultExt = "bak";
             this.ofdOpenBackupDB.Filter = "SQL backup files (*.bak)|*.bak";
             // 
-            // reporteEventosToolStripMenuItem
+            // ayudaToolStripMenuItem
             // 
-            this.reporteEventosToolStripMenuItem.Name = "reporteEventosToolStripMenuItem";
-            this.reporteEventosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.reporteEventosToolStripMenuItem.Text = "Reporte eventos";
-            this.reporteEventosToolStripMenuItem.Click += new System.EventHandler(this.reporteEventosToolStripMenuItem_Click);
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(65, 73);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            this.ayudaToolStripMenuItem.Click += new System.EventHandler(this.ayudaToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -246,6 +246,6 @@ namespace SistemaGestorEventos.GUI
         private System.Windows.Forms.ToolStripMenuItem aBMCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lugaresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reporteEventosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
     }
 }

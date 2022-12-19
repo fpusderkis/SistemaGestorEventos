@@ -1,0 +1,2294 @@
+/****** Object:  Table [dbo].[Activities]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Activities](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[EventId] [int] NOT NULL,
+	[ActivityOrder] [int] NOT NULL,
+	[Description] [varchar](300) NULL,
+	[Enabled] [bit] NOT NULL,
+	[CreatedAt] [datetime] NULL,
+	[UpdatedAt] [datetime] NULL,
+ CONSTRAINT [PK_Activities] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AditionalServices]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AditionalServices](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ServiceId] [int] NOT NULL,
+	[EventId] [int] NOT NULL,
+	[Quantity] [decimal](18, 2) NOT NULL,
+	[Description] [varchar](500) NULL,
+	[Price] [decimal](18, 2) NOT NULL,
+	[CreatedAt] [datetime] NOT NULL,
+	[UpdatedAt] [datetime] NOT NULL,
+	[Cost] [decimal](18, 2) NULL,
+	[Status] [varchar](100) NULL,
+ CONSTRAINT [PK_EventServices] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Bitacoras]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Bitacoras](
+	[userId] [uniqueidentifier] NULL,
+	[message] [varchar](1000) NULL,
+	[criticity] [varchar](100) NULL,
+	[creationDate] [datetime] NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Contacts]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Contacts](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[EventId] [int] NOT NULL,
+	[ContactType] [varchar](50) NOT NULL,
+	[RelatedId] [int] NULL,
+	[UserId] [uniqueidentifier] NOT NULL,
+	[Description] [varchar](500) NOT NULL,
+	[CreatedAt] [datetime] NOT NULL,
+	[UpdatedAt] [datetime] NOT NULL,
+	[UpdatedBy] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_Contacts] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Customers]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Customers](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+	[LastName] [varchar](100) NOT NULL,
+	[Mail] [varchar](500) NOT NULL,
+	[Phone] [varchar](500) NOT NULL,
+	[Address] [varchar](500) NOT NULL,
+	[ZipCode] [varchar](10) NOT NULL,
+	[TaxPayerId] [varchar](50) NULL,
+ CONSTRAINT [PK_Custommers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[EventPolicies]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EventPolicies](
+	[PolicyId] [int] NOT NULL,
+	[EventId] [int] NOT NULL,
+ CONSTRAINT [event_policy] UNIQUE NONCLUSTERED 
+(
+	[EventId] ASC,
+	[PolicyId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[EventRooms]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EventRooms](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](255) NOT NULL,
+	[Address] [varchar](255) NOT NULL,
+	[Capacity] [int] NOT NULL,
+	[BucketSize] [numeric](18, 2) NOT NULL,
+	[Price] [numeric](18, 2) NOT NULL,
+	[Active] [bit] NULL,
+	[DVH] [numeric](18, 0) NULL,
+	[UpdatedBy] [uniqueidentifier] NULL,
+	[UpdatedAt] [datetime] NULL,
+	[CreatedBy] [uniqueidentifier] NULL,
+	[CreatedAt] [datetime] NULL,
+ CONSTRAINT [PK_EventRooms] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[EventRooms_Audit]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EventRooms_Audit](
+	[AudId] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [int] NOT NULL,
+	[Name] [varchar](255) NOT NULL,
+	[Address] [varchar](255) NOT NULL,
+	[Capacity] [int] NOT NULL,
+	[BucketSize] [numeric](18, 2) NOT NULL,
+	[Price] [numeric](18, 2) NOT NULL,
+	[Active] [bit] NULL,
+	[DVH] [numeric](18, 0) NULL,
+	[UpdatedBy] [uniqueidentifier] NULL,
+	[UpdatedAt] [datetime] NULL,
+	[CreatedBy] [uniqueidentifier] NULL,
+	[CreatedAt] [datetime] NULL,
+ CONSTRAINT [PK_EventRooms_Audit] PRIMARY KEY CLUSTERED 
+(
+	[AudId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Events]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Events](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [varchar](100) NOT NULL,
+	[Description] [varchar](1000) NULL,
+	[MinBudget] [numeric](18, 2) NULL,
+	[MaxBudget] [numeric](18, 2) NULL,
+	[GuessQuantity] [int] NULL,
+	[EventType] [varchar](50) NULL,
+	[EventRoomId] [int] NULL,
+	[EventRoomDetails] [varchar](300) NULL,
+	[EventRoomPrice] [numeric](18, 2) NULL,
+	[CustomerId] [int] NULL,
+	[CreatedAt] [datetime] NOT NULL,
+	[LastUpdatedAt] [datetime] NULL,
+	[LastUpdatedBy] [uniqueidentifier] NULL,
+	[CreatedBy] [uniqueidentifier] NOT NULL,
+	[SpecialRequest] [varchar](1000) NULL,
+	[Status] [varchar](50) NULL,
+	[DateFrom] [datetime] NULL,
+	[DateTo] [datetime] NULL,
+	[AssignedId] [uniqueidentifier] NULL,
+ CONSTRAINT [PK_Events] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Guests]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Guests](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[EventId] [int] NOT NULL,
+	[Name] [varchar](150) NOT NULL,
+	[LastName] [varchar](150) NOT NULL,
+	[TaxPayerId] [varchar](50) NULL,
+	[FoodType] [varchar](50) NULL,
+	[Quantity] [int] NOT NULL,
+	[Details] [varchar](300) NULL,
+	[CreatedAt] [datetime] NULL,
+	[UpdatedAt] [datetime] NULL,
+	[Enabled] [bit] NULL,
+ CONSTRAINT [PK_Guests] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Idiomas]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Idiomas](
+	[Id] [varchar](5) NOT NULL,
+	[Descripcion] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Idiomas] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[INTEGRIDAD_VERTICAL]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[INTEGRIDAD_VERTICAL](
+	[table_name] [varchar](255) NOT NULL,
+	[dvv] [int] NOT NULL,
+	[lastCalculatedDate] [datetime] NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Integrity]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Integrity](
+	[table_name] [varchar](255) NOT NULL,
+	[digit] [int] NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Logs]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Logs](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[userId] [uniqueidentifier] NULL,
+	[message] [varchar](1000) NULL,
+	[criticity] [varchar](50) NULL,
+	[creationDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Payments]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Payments](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[EventId] [int] NOT NULL,
+	[Type] [varchar](20) NOT NULL,
+	[Amount] [decimal](18, 2) NOT NULL,
+	[PaymentDate] [datetime] NOT NULL,
+	[ConciliationKey] [varchar](50) NULL,
+	[Status] [bit] NOT NULL,
+	[CreatedAt] [datetime] NOT NULL,
+	[CreatedBy] [uniqueidentifier] NOT NULL,
+	[ModifiedAt] [datetime] NULL,
+	[ModifiedBy] [uniqueidentifier] NULL,
+ CONSTRAINT [PK_Payments] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[permiso]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[permiso](
+	[nombre] [varchar](100) NULL,
+	[id] [uniqueidentifier] NOT NULL,
+	[permiso] [varchar](50) NULL,
+ CONSTRAINT [PK_permiso_1] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[permiso_permiso]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[permiso_permiso](
+	[id_permiso_padre] [uniqueidentifier] NULL,
+	[id_permiso_hijo] [uniqueidentifier] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Policies]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Policies](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ProductId] [int] NOT NULL,
+	[ProductType] [varchar](20) NOT NULL,
+	[Days] [int] NOT NULL,
+	[Penalty] [int] NOT NULL,
+	[Status] [bit] NOT NULL,
+	[CreatedAt] [datetime] NOT NULL,
+	[UpdatedAt] [datetime] NULL,
+ CONSTRAINT [PK_Policies] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Schedules]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Schedules](
+	[Id] [int] NOT NULL,
+	[EventId] [int] NOT NULL,
+	[SecuenceNumber] [int] NOT NULL,
+	[Duration] [int] NULL,
+	[Title] [varchar](150) NOT NULL,
+	[Desciption] [varchar](500) NULL,
+	[Status] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Schedules] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Services]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Services](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](255) NOT NULL,
+	[ProviderPrice] [numeric](18, 2) NOT NULL,
+	[Fee] [numeric](18, 2) NOT NULL,
+	[Status] [bit] NOT NULL,
+	[CreatedAt] [datetime] NOT NULL,
+	[UpdatedAt] [datetime] NULL,
+ CONSTRAINT [PK_Services] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Traducciones]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Traducciones](
+	[clave] [varchar](255) NOT NULL,
+	[idioma] [varchar](5) NOT NULL,
+	[valor] [varchar](500) NULL,
+ CONSTRAINT [PK_Traducciones] PRIMARY KEY CLUSTERED 
+(
+	[clave] ASC,
+	[idioma] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Usuarios](
+	[Id] [uniqueidentifier] NOT NULL,
+	[username] [varchar](50) NOT NULL,
+	[password] [varchar](50) NOT NULL,
+	[Language] [varchar](5) NOT NULL,
+	[FailCount] [int] NULL,
+	[LastLogin] [datetime] NULL,
+	[checkdigit] [int] NULL,
+	[expired] [bit] NULL,
+	[Name] [varchar](255) NULL,
+	[Lastname] [varchar](255) NULL,
+ CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[usuarios_permisos]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[usuarios_permisos](
+	[id_usuario] [uniqueidentifier] NOT NULL,
+	[id_permiso] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_usuarios_permisos] PRIMARY KEY CLUSTERED 
+(
+	[id_usuario] ASC,
+	[id_permiso] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Activities] ADD  DEFAULT ((1)) FOR [Enabled]
+GO
+ALTER TABLE [dbo].[Activities]  WITH CHECK ADD  CONSTRAINT [FK_Activities_Events] FOREIGN KEY([EventId])
+REFERENCES [dbo].[Events] ([Id])
+GO
+ALTER TABLE [dbo].[Activities] CHECK CONSTRAINT [FK_Activities_Events]
+GO
+ALTER TABLE [dbo].[AditionalServices]  WITH CHECK ADD  CONSTRAINT [FK_AditionalServices_Events] FOREIGN KEY([EventId])
+REFERENCES [dbo].[Events] ([Id])
+GO
+ALTER TABLE [dbo].[AditionalServices] CHECK CONSTRAINT [FK_AditionalServices_Events]
+GO
+ALTER TABLE [dbo].[AditionalServices]  WITH CHECK ADD  CONSTRAINT [FK_AditionalServices_Service] FOREIGN KEY([ServiceId])
+REFERENCES [dbo].[Services] ([Id])
+GO
+ALTER TABLE [dbo].[AditionalServices] CHECK CONSTRAINT [FK_AditionalServices_Service]
+GO
+ALTER TABLE [dbo].[Contacts]  WITH CHECK ADD  CONSTRAINT [FK_Contacts_AditionalServices] FOREIGN KEY([RelatedId])
+REFERENCES [dbo].[AditionalServices] ([Id])
+GO
+ALTER TABLE [dbo].[Contacts] CHECK CONSTRAINT [FK_Contacts_AditionalServices]
+GO
+ALTER TABLE [dbo].[Contacts]  WITH CHECK ADD  CONSTRAINT [FK_Contacts_Events] FOREIGN KEY([EventId])
+REFERENCES [dbo].[Events] ([Id])
+GO
+ALTER TABLE [dbo].[Contacts] CHECK CONSTRAINT [FK_Contacts_Events]
+GO
+ALTER TABLE [dbo].[EventPolicies]  WITH CHECK ADD  CONSTRAINT [FK_EventPolicies_EventPolicies] FOREIGN KEY([EventId], [PolicyId])
+REFERENCES [dbo].[EventPolicies] ([EventId], [PolicyId])
+GO
+ALTER TABLE [dbo].[EventPolicies] CHECK CONSTRAINT [FK_EventPolicies_EventPolicies]
+GO
+ALTER TABLE [dbo].[EventPolicies]  WITH CHECK ADD  CONSTRAINT [FK_EventPolicies_EventPolicies1] FOREIGN KEY([EventId], [PolicyId])
+REFERENCES [dbo].[EventPolicies] ([EventId], [PolicyId])
+GO
+ALTER TABLE [dbo].[EventPolicies] CHECK CONSTRAINT [FK_EventPolicies_EventPolicies1]
+GO
+ALTER TABLE [dbo].[EventPolicies]  WITH CHECK ADD  CONSTRAINT [FK_EventPolicies_Events] FOREIGN KEY([EventId])
+REFERENCES [dbo].[Events] ([Id])
+GO
+ALTER TABLE [dbo].[EventPolicies] CHECK CONSTRAINT [FK_EventPolicies_Events]
+GO
+ALTER TABLE [dbo].[EventRooms_Audit]  WITH CHECK ADD  CONSTRAINT [FK_EventRooms_Audit_EventRooms] FOREIGN KEY([Id])
+REFERENCES [dbo].[EventRooms] ([Id])
+GO
+ALTER TABLE [dbo].[EventRooms_Audit] CHECK CONSTRAINT [FK_EventRooms_Audit_EventRooms]
+GO
+ALTER TABLE [dbo].[Events]  WITH CHECK ADD  CONSTRAINT [FK_Events_Customers] FOREIGN KEY([CustomerId])
+REFERENCES [dbo].[Customers] ([Id])
+GO
+ALTER TABLE [dbo].[Events] CHECK CONSTRAINT [FK_Events_Customers]
+GO
+ALTER TABLE [dbo].[Events]  WITH CHECK ADD  CONSTRAINT [FK_Events_EventRooms] FOREIGN KEY([EventRoomId])
+REFERENCES [dbo].[EventRooms] ([Id])
+GO
+ALTER TABLE [dbo].[Events] CHECK CONSTRAINT [FK_Events_EventRooms]
+GO
+ALTER TABLE [dbo].[Events]  WITH CHECK ADD  CONSTRAINT [FK_Events_Events] FOREIGN KEY([Id])
+REFERENCES [dbo].[Events] ([Id])
+GO
+ALTER TABLE [dbo].[Events] CHECK CONSTRAINT [FK_Events_Events]
+GO
+ALTER TABLE [dbo].[Events]  WITH CHECK ADD  CONSTRAINT [FK_Events_Usuarios] FOREIGN KEY([CreatedBy])
+REFERENCES [dbo].[Usuarios] ([Id])
+GO
+ALTER TABLE [dbo].[Events] CHECK CONSTRAINT [FK_Events_Usuarios]
+GO
+ALTER TABLE [dbo].[Events]  WITH CHECK ADD  CONSTRAINT [FK_Events_Usuarios_update] FOREIGN KEY([LastUpdatedBy])
+REFERENCES [dbo].[Usuarios] ([Id])
+GO
+ALTER TABLE [dbo].[Events] CHECK CONSTRAINT [FK_Events_Usuarios_update]
+GO
+ALTER TABLE [dbo].[Events]  WITH CHECK ADD  CONSTRAINT [FK_Events_Usuarios1] FOREIGN KEY([AssignedId])
+REFERENCES [dbo].[Usuarios] ([Id])
+GO
+ALTER TABLE [dbo].[Events] CHECK CONSTRAINT [FK_Events_Usuarios1]
+GO
+ALTER TABLE [dbo].[Guests]  WITH CHECK ADD  CONSTRAINT [FK_Guests_Events] FOREIGN KEY([EventId])
+REFERENCES [dbo].[Events] ([Id])
+GO
+ALTER TABLE [dbo].[Guests] CHECK CONSTRAINT [FK_Guests_Events]
+GO
+ALTER TABLE [dbo].[Idiomas]  WITH NOCHECK ADD  CONSTRAINT [FK_Idiomas_Idiomas] FOREIGN KEY([Id])
+REFERENCES [dbo].[Idiomas] ([Id])
+GO
+ALTER TABLE [dbo].[Idiomas] CHECK CONSTRAINT [FK_Idiomas_Idiomas]
+GO
+ALTER TABLE [dbo].[Logs]  WITH CHECK ADD  CONSTRAINT [FK_Logs_Usuarios] FOREIGN KEY([userId])
+REFERENCES [dbo].[Usuarios] ([Id])
+GO
+ALTER TABLE [dbo].[Logs] CHECK CONSTRAINT [FK_Logs_Usuarios]
+GO
+ALTER TABLE [dbo].[Payments]  WITH CHECK ADD  CONSTRAINT [FK_Payments_Events] FOREIGN KEY([EventId])
+REFERENCES [dbo].[Events] ([Id])
+GO
+ALTER TABLE [dbo].[Payments] CHECK CONSTRAINT [FK_Payments_Events]
+GO
+ALTER TABLE [dbo].[Payments]  WITH CHECK ADD  CONSTRAINT [FK_Payments_Usuarios] FOREIGN KEY([CreatedBy])
+REFERENCES [dbo].[Usuarios] ([Id])
+GO
+ALTER TABLE [dbo].[Payments] CHECK CONSTRAINT [FK_Payments_Usuarios]
+GO
+ALTER TABLE [dbo].[Payments]  WITH CHECK ADD  CONSTRAINT [FK_Payments_Usuarios_update] FOREIGN KEY([ModifiedBy])
+REFERENCES [dbo].[Usuarios] ([Id])
+GO
+ALTER TABLE [dbo].[Payments] CHECK CONSTRAINT [FK_Payments_Usuarios_update]
+GO
+ALTER TABLE [dbo].[permiso_permiso]  WITH CHECK ADD  CONSTRAINT [FK_permiso_permiso_permiso] FOREIGN KEY([id_permiso_padre])
+REFERENCES [dbo].[permiso] ([id])
+GO
+ALTER TABLE [dbo].[permiso_permiso] CHECK CONSTRAINT [FK_permiso_permiso_permiso]
+GO
+ALTER TABLE [dbo].[permiso_permiso]  WITH CHECK ADD  CONSTRAINT [FK_permiso_permiso_permiso1] FOREIGN KEY([id_permiso_hijo])
+REFERENCES [dbo].[permiso] ([id])
+GO
+ALTER TABLE [dbo].[permiso_permiso] CHECK CONSTRAINT [FK_permiso_permiso_permiso1]
+GO
+ALTER TABLE [dbo].[Policies]  WITH NOCHECK ADD  CONSTRAINT [FK_Policies_EventRooms] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[EventRooms] ([Id])
+NOT FOR REPLICATION 
+GO
+ALTER TABLE [dbo].[Policies] NOCHECK CONSTRAINT [FK_Policies_EventRooms]
+GO
+ALTER TABLE [dbo].[Policies]  WITH NOCHECK ADD  CONSTRAINT [FK_Policies_Service] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Services] ([Id])
+NOT FOR REPLICATION 
+GO
+ALTER TABLE [dbo].[Policies] NOCHECK CONSTRAINT [FK_Policies_Service]
+GO
+ALTER TABLE [dbo].[Schedules]  WITH CHECK ADD  CONSTRAINT [FK_Schedules_Events] FOREIGN KEY([EventId])
+REFERENCES [dbo].[Events] ([Id])
+GO
+ALTER TABLE [dbo].[Schedules] CHECK CONSTRAINT [FK_Schedules_Events]
+GO
+ALTER TABLE [dbo].[Traducciones]  WITH CHECK ADD  CONSTRAINT [FK_Traducciones_Idiomas] FOREIGN KEY([idioma])
+REFERENCES [dbo].[Idiomas] ([Id])
+GO
+ALTER TABLE [dbo].[Traducciones] CHECK CONSTRAINT [FK_Traducciones_Idiomas]
+GO
+ALTER TABLE [dbo].[Traducciones]  WITH CHECK ADD  CONSTRAINT [FK_Traducciones_Traducciones] FOREIGN KEY([clave], [idioma])
+REFERENCES [dbo].[Traducciones] ([clave], [idioma])
+GO
+ALTER TABLE [dbo].[Traducciones] CHECK CONSTRAINT [FK_Traducciones_Traducciones]
+GO
+ALTER TABLE [dbo].[Usuarios]  WITH NOCHECK ADD  CONSTRAINT [FK_Usuarios_Idiomas] FOREIGN KEY([Language])
+REFERENCES [dbo].[Idiomas] ([Id])
+GO
+ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [FK_Usuarios_Idiomas]
+GO
+ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD  CONSTRAINT [FK_Usuarios_Usuarios] FOREIGN KEY([Id])
+REFERENCES [dbo].[Usuarios] ([Id])
+GO
+ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [FK_Usuarios_Usuarios]
+GO
+ALTER TABLE [dbo].[usuarios_permisos]  WITH CHECK ADD  CONSTRAINT [FK_usuarios_permisos_permiso] FOREIGN KEY([id_permiso])
+REFERENCES [dbo].[permiso] ([id])
+GO
+ALTER TABLE [dbo].[usuarios_permisos] CHECK CONSTRAINT [FK_usuarios_permisos_permiso]
+GO
+ALTER TABLE [dbo].[usuarios_permisos]  WITH CHECK ADD  CONSTRAINT [FK_usuarios_permisos_usuarios] FOREIGN KEY([id_usuario])
+REFERENCES [dbo].[Usuarios] ([Id])
+GO
+ALTER TABLE [dbo].[usuarios_permisos] CHECK CONSTRAINT [FK_usuarios_permisos_usuarios]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Activity_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[sp_Activity_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int OUTPUT, 
+	@EventId int,
+	@Description VARCHAR(300),
+	@ActivityOrder int,
+	@Enabled BIT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF @Id is not null 
+		BEGIN
+			UPDATE [dbo].[Activities]
+			   SET 
+				  [ActivityOrder] = @ActivityOrder
+				  ,[Description] = @Description
+				  ,[Enabled] = @Enabled
+				  ,[UpdatedAt] = CURRENT_TIMESTAMP
+			 WHERE [Id] = @Id
+		END
+		ELSE 
+		BEGIN
+
+			INSERT INTO [dbo].[Activities]
+           (
+           [EventId]
+           ,[ActivityOrder]
+           ,[Description]
+           ,[Enabled]
+           ,[CreatedAt]
+           )
+     VALUES
+           (
+           @EventId
+           ,@ActivityOrder
+           ,@Description
+           ,@Enabled
+           ,CURRENT_TIMESTAMP
+           )
+
+		    SELECT @Id = SCOPE_IDENTITY();
+		END
+ 
+			
+	  COMMIT
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[sp_AditionalService_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_AditionalService_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int OUTPUT, 
+	@ServiceId int,
+	@EventId int,
+	@Quantity numeric(18,2),
+	@Price numeric(18,2),
+	@Status varchar(100),
+	@Description varchar(500)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF @Id is not null 
+		BEGIN
+			UPDATE [dbo].[AditionalServices]
+			   SET [ServiceId] = @ServiceId
+				  ,[EventId] = @EventId
+				  ,[Quantity] = @Quantity
+				  ,[Description] = @Description
+				  ,[Price] = @Price
+				  ,[Status] = @Status
+				  ,[UpdatedAt] = CURRENT_TIMESTAMP
+			 WHERE Id = @Id;
+
+			 
+		END
+		ELSE 
+		BEGIN
+			
+			INSERT INTO [dbo].[AditionalServices]
+			   ([ServiceId]
+			   ,[EventId]
+			   ,[Quantity]
+			   ,[Description]
+			   ,[Price]
+			   ,[CreatedAt]
+			   ,[UpdatedAt]
+			   ,[Status]
+			   )
+			VALUES
+			   (
+			   @ServiceId
+			   ,@EventId
+			   ,@Quantity
+			   ,@Description
+			   ,@Price
+			   ,CURRENT_TIMESTAMP
+			   ,CURRENT_TIMESTAMP
+			   ,@Status
+			   );
+
+		    SELECT @Id = SCOPE_IDENTITY();
+		END
+ 
+			
+	  COMMIT
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Customer_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_Customer_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int, 
+	@Name varchar(100),
+	@LastName varchar(100),
+	@Mail varchar(500),
+	@Phone varchar(500),
+	@Address varchar(500),
+	@ZipCode varchar(10),
+	@TaxPayerId varchar(50),
+	@GeneratedId int OUTPUT
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF EXISTS ( SELECT * FROM dbo.[Customers] WITH (UPDLOCK) WHERE Id = @Id)
+		BEGIN
+			UPDATE [dbo].[Customers]
+			   SET [Name] = @Name
+				  ,[LastName] = @LastName
+				  ,[Mail] = @Mail
+				  ,[Phone] = @Phone
+				  ,[Address] = @Address
+				  ,[ZipCode] = @ZipCode
+				  ,[TaxPayerId] = @TaxPayerId
+			 WHERE Id = @Id;
+			SET @GeneratedId = @Id;
+		COMMIT
+		END
+		ELSE 
+		BEGIN
+		  	INSERT INTO [dbo].[Customers]
+			   ([Name]
+			   ,[LastName]
+			   ,[Mail]
+			   ,[Phone]
+			   ,[Address]
+			   ,[ZipCode]
+			   ,[TaxPayerId])
+			 VALUES
+				   (@Name
+				   ,@LastName
+				   ,@Mail
+				   ,@Phone
+				   ,@Address
+				   ,@ZipCode
+				   ,@TaxPayerId);
+			COMMIT
+			SET @GeneratedId = @@IDENTITY
+			END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Event_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_Event_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int OUTPUT, 
+	@Title varchar(100),
+	@Description varchar(1000),
+	@MinBudget numeric(18,2),
+	@MaxBudget numeric(18,2),
+	@Guess int,
+	@EventType varchar(50),
+	@EventRoomId int,
+	@EventRoomDetails varchar(300),
+	@EventRoomPrice numeric(18,2),
+	@CustomerId int,
+    @UserId uniqueidentifier,
+    @SpecialRequest varchar(1000),
+    @Status varchar(50),
+    @DateFrom datetime,
+    @DateTo datetime,
+	@AssignedId uniqueidentifier
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF @Id is not null 
+		BEGIN
+			UPDATE [dbo].[Events]
+			   SET [Title] = @Title
+				  ,[Description] = @Description
+				  ,[MinBudget] = @MinBudget
+				  ,[MaxBudget] = @MaxBudget
+				  ,[GuessQuantity] = @Guess
+				  ,[EventType] = @EventType
+				  ,[EventRoomId] = @EventRoomId
+				  ,[EventRoomDetails] = @EventRoomDetails
+				  ,[EventRoomPrice] = @EventRoomPrice
+				  ,[CustomerId] = @CustomerId
+				  ,[LastUpdatedAt] = CURRENT_TIMESTAMP 
+				  ,[LastUpdatedBy] = @UserId
+				  ,[SpecialRequest] = @SpecialRequest
+				  ,[Status] = @Status
+				  ,[DateFrom] = @DateFrom
+				  ,[DateTo] = @DateTo
+				  , [AssignedId] = @AssignedId
+			 WHERE Id = @Id;
+			 
+		END
+		ELSE 
+		BEGIN
+			INSERT INTO [dbo].[Events]
+				   ([Title]
+				   ,[Description]
+				   ,[MinBudget]
+				   ,[MaxBudget]
+				   ,[GuessQuantity]
+				   ,[EventType]
+				   ,[EventRoomId]
+				   ,[EventRoomDetails]
+				   ,[EventRoomPrice]
+				   ,[CustomerId]
+				   ,[CreatedAt]
+				   ,[LastUpdatedAt]
+				   ,[LastUpdatedBy]
+				   ,[CreatedBy]
+				   ,[SpecialRequest]
+				   ,[Status]
+				   ,[DateFrom]
+				   ,[DateTo]
+				   ,[AssignedId])
+			 VALUES
+				   (@Title
+				   ,@Description
+				   ,@MinBudget
+				   ,@MaxBudget
+				   ,@Guess
+				   ,@EventType
+				   ,@EventRoomId
+				   ,@EventRoomDetails
+				   ,@EventRoomPrice
+				   ,@CustomerId
+				   ,SYSDATETIME()
+				   ,NULL -- [LastUpdatedAt]
+				   ,NULL -- [LastUpdatedBy]
+				   ,@UserId
+				   ,@SpecialRequest
+				   ,@Status
+				   ,@DateFrom
+				   ,@DateTo
+				   ,@AssignedId);
+
+		    SELECT @Id = SCOPE_IDENTITY();
+			END
+ 
+			
+	  COMMIT
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_EventRoom_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[sp_EventRoom_Upsert] 
+	-- Add the parameters for the stored procedure here
+	@Id int OUTPUT, 
+	@Name varchar(255),
+	@Address varchar(255),
+	@Capacity int,
+	@BucketSize int,
+	@Price numeric(18,2),
+	@Active bit,
+	@DVH int,
+	@UserId uniqueidentifier
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	BEGIN TRAN
+	IF @Id is not null 
+		BEGIN
+		-- audit last state previously
+		INSERT INTO [dbo].[EventRooms_Audit]
+		SELECT * from EventRooms where Id = @Id; 
+
+		UPDATE [dbo].[EventRooms]
+		SET [Name] = @Name,
+		[Address] = @Address,
+		[Capacity] = @Capacity,
+		[BucketSize] = @BucketSize,
+		[Price] = @Price,
+		[Active] = @Active,
+		[DVH] = @DVH,
+		[UpdatedBy] = @UserId,
+		[UpdatedAt] = CURRENT_TIMESTAMP
+		
+		WHERE Id = @Id;
+
+ END
+ ELSE
+ BEGIN
+	
+		INSERT INTO [dbo].[EventRooms]
+			   ([Name]
+			   ,[Address]
+			   ,[Capacity]
+			   ,[BucketSize]
+			   ,[Price]
+			   ,[Active]
+			   ,[DVH]
+			   ,[CreatedBy]
+			   ,[CreatedAt])
+		 VALUES
+			   (@Name
+			   ,@Address
+			   ,@Capacity
+			   ,@BucketSize
+			   ,@Price
+			   ,@Active
+			   ,@DVH
+			   ,@UserId
+			   ,CURRENT_TIMESTAMP);
+		SELECT @Id = SCOPE_IDENTITY();
+END
+COMMIT;
+
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_GenerateDVV_EventRooms]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[sp_GenerateDVV_EventRooms]
+	-- Add the parameters for the stored procedure here
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	begin tran
+		if exists (select * from INTEGRIDAD_VERTICAL with (updlock,serializable) where table_name = 'EventRooms')
+		begin
+		   update INTEGRIDAD_VERTICAL
+		   set dvv = (SELECT sum(dvh) % 30000 FROM EventRooms),
+		   lastCalculatedDate = CURRENT_TIMESTAMP
+		   where table_name = 'EventRooms';
+		end
+		else
+		begin
+		   insert into INTEGRIDAD_VERTICAL (table_name, dvv, lastCalculatedDate)
+		   values ('EventRooms', (SELECT sum(dvh) % 30000 FROM EventRooms), CURRENT_TIMESTAMP);
+		end
+	commit tran
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_GuardarBitacora]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_GuardarBitacora] 
+	-- Add the parameters for the stored procedure here
+	@userId uniqueidentifier, 
+	@message varchar(1000),
+	@criticity varchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+	INSERT INTO [dbo].[Logs]
+           ([userId]
+           ,[message],
+		   [criticity],
+		   [creationDate])
+     VALUES
+           (@userId
+           ,@message,
+		   @criticity,
+		   GETDATE())
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Guest_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[sp_Guest_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int OUTPUT, 
+	@EventId int,
+	@Name VARCHAR(150),
+	@LastName VARCHAR(150),
+	@TaxPayerId VARCHAR(300),
+	@FoodType VARCHAR(50),
+	@Quantity int,
+	@Details VARCHAR(300),
+	@Enabled BIT
+                    
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF @Id is not null 
+		BEGIN			
+			UPDATE [dbo].[Guests]
+			   SET 
+      
+				  [Name] = @Name
+				  ,[LastName] = @LastName
+				  ,[TaxPayerId] = @TaxPayerId
+				  ,[FoodType] = @FoodType
+				  ,[Quantity] = @Quantity
+				  ,[Details] = @Details
+				  ,[UpdatedAt] = CURRENT_TIMESTAMP
+				  , [Enabled] = @Enabled
+			 WHERE Id = @Id;
+			
+		END
+		ELSE 
+		BEGIN
+
+		
+
+			INSERT INTO [dbo].[Guests]
+					   (
+					   [EventId]
+					   ,[Name]
+					   ,[LastName]
+					   ,[TaxPayerId]
+					   ,[FoodType]
+					   ,[Quantity]
+					   ,[Details]
+					   ,[CreatedAt]
+					   , [Enabled])
+				 VALUES
+					   (
+					   @EventId
+					   ,@Name
+					   ,@LastName
+					   ,@TaxPayerId
+					   ,@FoodType
+					   ,@Quantity
+					   ,@Details
+					   ,CURRENT_TIMESTAMP
+					   , @Enabled
+					   )
+
+		
+		    SELECT @Id = SCOPE_IDENTITY();
+		END
+ 
+			
+	  COMMIT
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Idioma_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_Idioma_Upsert]
+	-- Add the parameters for the stored procedure here
+	@idioma varchar(5), 
+	@descripcion varchar(255)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF EXISTS ( SELECT * FROM dbo.Idiomas WITH (UPDLOCK) WHERE id = @idioma)
+ 
+		  UPDATE dbo.Idiomas
+			 SET Id = @idioma, Descripcion = @descripcion
+		   WHERE id = @idioma;
+ 
+		ELSE 
+ 
+		  INSERT dbo.Idiomas( Id, Descripcion)
+		  VALUES ( @idioma,@descripcion);
+ 
+	  COMMIT
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Payment_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_Payment_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int OUTPUT, 
+	@EventId int,
+	@Type varchar(20),
+	@Amount numeric(18,2),
+	@PaymentDate datetime,
+	@ConciliationKey varchar(50),
+	@Status bit,
+	@UserId uniqueidentifier
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF @Id is not null 
+		BEGIN
+			UPDATE [dbo].[Payments]
+			   SET [EventId] = @EventId
+				  ,[Type] = @Type
+				  ,[Amount] = @Amount
+				  ,[PaymentDate] = @PaymentDate
+				  ,[ConciliationKey] = @ConciliationKey
+				  ,[Status] = @Status
+				  ,[ModifiedAt] = CURRENT_TIMESTAMP
+				  ,[ModifiedBy] = @UserId
+			 WHERE Id = @Id
+		END
+		ELSE 
+		BEGIN
+
+			INSERT INTO [dbo].[Payments]
+					   ([EventId]
+					   ,[Type]
+					   ,[Amount]
+					   ,[PaymentDate]
+					   ,[ConciliationKey]
+					   ,[Status]
+					   ,[CreatedAt]
+					   ,[CreatedBy]
+					   )
+				 VALUES
+					   (@EventId
+					   ,@Type
+					   ,@Amount
+					   ,@PaymentDate
+					   ,@ConciliationKey
+					   ,@Status
+					   ,CURRENT_TIMESTAMP
+					   ,@UserId
+					   )
+
+		    SELECT @Id = SCOPE_IDENTITY();
+		END
+ 
+			
+	  COMMIT
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Services_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE PROCEDURE [dbo].[sp_Services_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id int OUTPUT, 
+	@Name VARCHAR(255),
+	@ProviderPrice numeric(18,2),
+	@Fee numeric(18,2),
+	
+	@Status BIT
+                    
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF @Id is not null 
+		BEGIN			
+			UPDATE [dbo].[Services]
+			   SET [Name] = @Name
+				  ,[ProviderPrice] = @ProviderPrice
+				  ,[Fee] = @Fee
+				  ,[Status] = @Status
+				  ,[UpdatedAt] = CURRENT_TIMESTAMP
+			 WHERE Id = @Id;
+		END
+		ELSE 
+		BEGIN
+
+
+			INSERT INTO [dbo].[Services]
+					   ([Name]
+					   ,[ProviderPrice]
+					   ,[Fee]
+					   ,[Status]
+					   ,[CreatedAt]
+					   )
+				 VALUES
+					   (@Name
+					   ,@ProviderPrice
+					   ,@Fee
+					   ,@Status
+					   ,CURRENT_TIMESTAMP
+					   )
+
+
+
+		
+		    SELECT @Id = SCOPE_IDENTITY();
+		END
+ 
+			
+	  COMMIT
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Traducciones_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[sp_Traducciones_Upsert]
+	-- Add the parameters for the stored procedure here
+	@idioma varchar(5), 
+	@clave varchar(255),
+	@valor varchar(500)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF EXISTS ( SELECT * FROM dbo.Traducciones WITH (UPDLOCK) WHERE idioma = @idioma AND clave = @clave)
+ 
+		  UPDATE dbo.Traducciones
+			 SET valor = @valor
+		   WHERE idioma = @idioma AND clave = @clave;
+ 
+		ELSE 
+ 
+		  INSERT dbo.Traducciones ( idioma, clave, valor )
+		  VALUES ( @idioma, @clave,@valor );
+ 
+	  COMMIT
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_Usuario_Upsert]    Script Date: 17/12/2022 20:35:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_Usuario_Upsert]
+	-- Add the parameters for the stored procedure here
+	@Id uniqueidentifier, 
+	@Username varchar(50),
+	@Password varchar(250),
+	@Idioma varchar(5),
+	@FailCount int,
+	@LastLogin datetime,
+	@expired tinyint,
+	@checkdigit int,
+	@lastname varchar(250),
+	@name varchar(250)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	  BEGIN TRAN
+ 
+		IF EXISTS ( SELECT * FROM dbo.[Usuarios] WITH (UPDLOCK) WHERE id = @Id)
+		UPDATE [dbo].[Usuarios]
+		   SET
+			  [username] = @username
+			  ,[password] = @password
+			  ,[Language] = @idioma
+			  ,[FailCount] = @failcount
+			  ,[LastLogin] = @lastlogin
+			  ,[expired] = @expired
+			  ,[checkdigit] = @checkdigit
+			  ,[Lastname] = @lastname
+			  ,[Name] = @name
+		 WHERE Id = @Id;
+	
+		ELSE 
+ 
+		  	INSERT INTO [dbo].[Usuarios]
+				   ([Id]
+				   ,[username]
+				   ,[password]
+				   ,[Language]
+				   ,[FailCount]
+				   ,[LastLogin]
+				   ,[expired]
+				   ,[checkdigit]
+				   ,[Lastname]
+				   ,[Name])
+			 VALUES
+				   (@id
+				   ,@username
+				   ,@password
+				   ,@idioma
+				   ,@FailCount
+				   ,@LastLogin
+				   ,@expired
+				   ,@checkdigit
+				   ,@lastname
+				   ,@name)
+ 
+ 
+	  COMMIT
+END
+GO
+
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'Administrador', N'031165cc-98f4-460a-95db-18ea25e3bd9b', NULL)
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'GestionServicio', N'439dc8c5-4fce-4f70-b31c-48f0ba8c3673', N'GestionarServicio')
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'Test', N'638fb038-4b3c-4eb3-881a-6abfe958b4a1', NULL)
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'Vendedor', N'2ccc193f-59ef-40dc-87b3-6e1f50f92619', NULL)
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'Organizador', N'94686786-66f5-4975-9767-7d1d9a3d1cf6', NULL)
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'Participante', N'730fae8e-aa38-48e9-a563-8436c3d8c6e8', NULL)
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'GestionLugar', N'b5cab92c-55fb-4ba9-9953-8739ce5eaeb6', N'GestionarLugar')
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'Administrador', N'dc37e126-1f43-49cc-ad7c-bade3cc0fa7e', N'AdministradorSistema')
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'Lugar', N'778dcb13-cee3-4941-95d0-bc8819227757', NULL)
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'OrganizadorEvento', N'8c74908a-eeb9-4e9d-aefe-c4682c346aee', N'Organizador')
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'VerReserva', N'01a8303f-5ca2-430b-8685-d043d6f84f3c', N'GestionarLugar')
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'Servicio', N'c68adcd8-c7fa-480d-93c5-d157b026df99', NULL)
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'', N'41731814-ce22-4fc4-93ad-ec7b5013a469', N'GestionarLugar')
+GO
+INSERT [dbo].[permiso] ([nombre], [id], [permiso]) VALUES (N'PatenteNueva', N'44f7f033-701a-41ab-b20e-f5c2265cd9d5', N'GestionarLugar')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'031165cc-98f4-460a-95db-18ea25e3bd9b', N'778dcb13-cee3-4941-95d0-bc8819227757')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'031165cc-98f4-460a-95db-18ea25e3bd9b', N'b5cab92c-55fb-4ba9-9953-8739ce5eaeb6')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'94686786-66f5-4975-9767-7d1d9a3d1cf6', N'730fae8e-aa38-48e9-a563-8436c3d8c6e8')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'031165cc-98f4-460a-95db-18ea25e3bd9b', N'94686786-66f5-4975-9767-7d1d9a3d1cf6')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'730fae8e-aa38-48e9-a563-8436c3d8c6e8', N'01a8303f-5ca2-430b-8685-d043d6f84f3c')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'778dcb13-cee3-4941-95d0-bc8819227757', N'b5cab92c-55fb-4ba9-9953-8739ce5eaeb6')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'778dcb13-cee3-4941-95d0-bc8819227757', N'01a8303f-5ca2-430b-8685-d043d6f84f3c')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'031165cc-98f4-460a-95db-18ea25e3bd9b', N'dc37e126-1f43-49cc-ad7c-bade3cc0fa7e')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'638fb038-4b3c-4eb3-881a-6abfe958b4a1', N'b5cab92c-55fb-4ba9-9953-8739ce5eaeb6')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'2ccc193f-59ef-40dc-87b3-6e1f50f92619', N'439dc8c5-4fce-4f70-b31c-48f0ba8c3673')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'638fb038-4b3c-4eb3-881a-6abfe958b4a1', N'778dcb13-cee3-4941-95d0-bc8819227757')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'031165cc-98f4-460a-95db-18ea25e3bd9b', N'439dc8c5-4fce-4f70-b31c-48f0ba8c3673')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'031165cc-98f4-460a-95db-18ea25e3bd9b', N'8c74908a-eeb9-4e9d-aefe-c4682c346aee')
+GO
+INSERT [dbo].[permiso_permiso] ([id_permiso_padre], [id_permiso_hijo]) VALUES (N'638fb038-4b3c-4eb3-881a-6abfe958b4a1', N'031165cc-98f4-460a-95db-18ea25e3bd9b')
+GO
+
+INSERT [dbo].[Idiomas] ([Id], [Descripcion]) VALUES (N'en-US', N'Ingles USA')
+GO
+INSERT [dbo].[Idiomas] ([Id], [Descripcion]) VALUES (N'es-AR', N'Español Argentina')
+GO
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'address.title', N'en-US', N'Address')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'address.title', N'es-AR', N'Dirección')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'aditionalService.error.costexeded', N'es-AR', N'Se supero el monto abonado por el cliente.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'aditionalservice.error.providerprice.minimum', N'es-AR', N'El precio sugerido excede el precio minimo permitido.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'aditionalservice.name.Title', N'en-US', N'Aditional Service')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'aditionalservice.name.Title', N'es-AR', N'Nombre')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'admin.users.title', N'en-US', N'Users admin')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'admin.users.title', N'es-AR', N'Administrar Permisos de Usuarios')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'admin.users.usersetup', N'en-US', N'Users settings')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'admin.users.usersetup', N'es-AR', N'Configurar Usuario')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'as.addedservices', N'en-US', N'Aditional service added')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'as.addedservices', N'es-AR', N'Servicios contratados')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'backup.restore.ok', N'es-AR', N'Backup generado con éxito.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'block', N'en-US', N'Bloqued')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'block', N'es-AR', N'Bloquear')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.add', N'en-US', N'Add')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.add', N'es-AR', N'Agregar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.approveevent', N'en-US', N'Event approved')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.approveevent', N'es-AR', N'Aprobar y Organizar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.cancel', N'en-US', N'Cancel')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.cancel', N'es-AR', N'Cancel')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.changepassword', N'en-US', N'Change password')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.changepassword', N'es-AR', N'Cambiar clave')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.close', N'en-US', N'Close')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.close', N'es-AR', N'Salir')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.config', N'en-US', N'Config')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.config', N'es-AR', N'Configurar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.config.save', N'en-US', N'Save')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.config.save', N'es-AR', N'Guardar configuracion')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.config.selected', N'en-US', N'Config selected')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.config.selected', N'es-AR', N'Configurar seleccionado')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.create', N'en-US', N'Create')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.create', N'es-AR', N'Crear')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.discart', N'es-AR', N'Descartar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.dismiss', N'en-US', N'Dismiss')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.dismiss', N'es-AR', N'Descartar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.dvv', N'es-AR', N'DVV')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.edit', N'en-US', N'Edit')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.edit', N'es-AR', N'Editar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.exit', N'en-US', N'Exit')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.exit', N'es-AR', N'Salir')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.Find', N'es-AR', N'Buscar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.history', N'es-AR', N'Historial')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.login', N'en-US', N'Login')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.login', N'es-AR', N'Login')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.makebudget', N'en-US', N'Budget')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.makebudget', N'es-AR', N'Presupuestar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.manage', N'en-US', N'Manage')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.manage', N'es-AR', N'Gestionar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.manageservice', N'es-AR', N'Gestionar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.new', N'en-US', N'New')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.new', N'es-AR', N'Alta')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.presupuestar', N'en-US', N'Budget')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.presupuestar', N'es-AR', N'Generar Presupuesto')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.remove', N'en-US', N'Remove')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.remove', N'es-AR', N'Quitar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.reset', N'es-AR', N'Borrar filtros')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.save', N'en-US', N'Save')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.save', N'es-AR', N'Guardar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.search', N'en-US', N'Search')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.search', N'es-AR', N'Buscar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.select', N'en-US', N'Select')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.select', N'es-AR', N'Seleccionar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.singin', N'en-US', N'Sing in')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'btn.singin', N'es-AR', N'Registrar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'button.cancel', N'es-AR', N'Cancelar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'button.save', N'es-AR', N'Guardar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'cancel', N'en-US', N'Cancel')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'cancel', N'es-AR', N'Cancelar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'contactinfo', N'en-US', N'Contact Info')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'contactinfo', N'es-AR', N'Información de contacto')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'customer.register', N'en-US', N'Register')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'customer.register', N'es-AR', N'Cliente')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'customer.savedsuccess', N'en-US', N'Successfully saved')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'customer.savedsuccess', N'es-AR', N'Cliente guardado correctamente')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'customers', N'en-US', N'Customers')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'customers', N'es-AR', N'Clientes')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'date.between', N'en-US', N'-')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'date.between', N'es-AR', N'Fecha (Desde-Hasta)')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'description.title', N'en-US', N'Description')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'description.title', N'es-AR', N'Descripcion')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'detail.title', N'en-US', N'Details')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'detail.title', N'es-AR', N'Detalle')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'dgvpayments.column.amount', N'en-US', N'Amount')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'dgvpayments.column.amount', N'es-AR', N'Monto')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'dgvpayments.column.conciliationKey', N'en-US', N'Conciliation Key')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'dgvpayments.column.conciliationKey', N'es-AR', N'Clave de conciliación')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'dgvpayments.column.id', N'en-US', N'Id')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'dgvpayments.column.id', N'es-AR', N'Id')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'dgvpayments.column.paymentdate', N'en-US', N'Date')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'dgvpayments.column.paymentdate', N'es-AR', N'Fecha')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'dgvpayments.column.paymenttype', N'en-US', N'Type')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'dgvpayments.column.paymenttype', N'es-AR', N'Tipo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'direccion', N'en-US', N'Address')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'direccion', N'es-AR', N'Direccion')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'edit.family', N'en-US', N'Family')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'edit.family', N'es-AR', N'Editar familia')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'email', N'en-US', N'E-Mail')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'email', N'es-AR', N'E-Mail')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'error.eventroom.address.required', N'es-AR', N'La dirección es requerida')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'error.eventroom.bucketsize.required', N'es-AR', N'Debe ingresar un intervalo de tiempo mayor que 0.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'error.eventroom.capacity.required', N'es-AR', N'Debe ingresar una capacidad de invitados mayor que 0.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'error.eventroom.name.required', N'es-AR', N'El nombre es requerido')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'error.eventroom.price.required', N'es-AR', N'El precio es requerido y debe ser mayor a 0.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'errors.customer.address.required', N'es-AR', N'Ingrese el domicilio del cliente')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'errors.customer.errortitle', N'es-AR', N'No fue posible guardar el cliente')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'errors.customer.mail.required', N'es-AR', N'Ingrese el Mail del cliente')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'errors.customer.phone.required', N'es-AR', N'Ingrese el Teléfono del cliente')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'errors.customer.taxPayerId.exists', N'en-US', N'Tax Payer id already extists')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'errors.customer.taxPayerId.exists', N'es-AR', N'Ya existe un cliente registrado con ese mismo CUIT/CUILT')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'errors.customer.taxpayerid.required', N'es-AR', N'Ingrese el CUIT/CUIL del cliente')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'errors.invaliduserorpassword', N'en-US', N'Invalid username or password')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'errors.invaliduserorpassword', N'es-AR', N'Usuario/clave invalidos')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event', N'en-US', N'Event')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event', N'es-AR', N'Evento')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.activities.savedok', N'es-AR', N'Se guardo la cronología para el evento 1')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.aditionalservice.delete.confirm', N'en-US', N'Are you sure to delete this aditional service?')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.aditionalservice.delete.confirm', N'es-AR', N'Desea eliminar el servicio seleccionado?')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.aditionalservice.delete.confirm.title', N'en-US', N'Delete Aditional Service')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.aditionalservice.delete.confirm.title', N'es-AR', N'Eliminar pago')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.as.manage.confirm.errortitle', N'es-AR', N'No se pudo confirmar el servicio')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.as.manage.confirm.ok', N'es-AR', N'Servicio confirmado')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.as.manage.provider.cancel', N'es-AR', N'Servicio Cancelado')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.assignme', N'es-AR', N'Asignar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.budget.confirmed.body', N'en-US', N'Budget confirmed.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.budget.confirmed.body', N'es-AR', N'Felicitaciones, el evento quedo confirmado y comenzaremos el proceso de reserva con los distintos proveedores para garantizar disponibilidad.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.budget.confirmed.title', N'en-US', N'Budget')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.budget.confirmed.title', N'es-AR', N'Presupuesto CONFIRMADO ')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.budget.created.body', N'en-US', N'Budget created')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.budget.created.body', N'es-AR', N'Deberá abonar la seña minima para confirmar.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.budget.created.title', N'en-US', N'Budget')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.budget.created.title', N'es-AR', N'Presupuesto creado ')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.create', N'en-US', N'Create')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.create', N'es-AR', N'Crear evento')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.date', N'en-US', N'Date')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.date', N'es-AR', N'Fecha')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.description', N'en-US', N'Description')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.description', N'es-AR', N'Direccion')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.duration', N'en-US', N'Duration')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.duration', N'es-AR', N'Duracion')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.budget.max.requerided', N'en-US', N'Maximum budget required')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.budget.max.requerided', N'es-AR', N'Indique un presupuesto máximo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.datefrom.requerided', N'en-US', N'Date from requerided')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.datefrom.requerided', N'es-AR', N'Ingrese una fecha desde mayor a la fecha actual')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.dateto.exeded', N'en-US', N'Date to can''t before of Date From')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.dateto.exeded', N'es-AR', N'La fecha ''hasta'' no puede ser menor que la fecha ''desde''')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.eventroom.required', N'en-US', N'Event room selected is needed')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.eventroom.required', N'es-AR', N'Debe seleccionar un lugar de realización')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.eventtype.required', N'en-US', N'Event type requerided')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.eventtype.required', N'es-AR', N'Inidique la categoría del evento')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.title.requerided', N'en-US', N'Event title is requerided')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.error.title.requerided', N'es-AR', N'Ingrese un titulo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.errortitle', N'en-US', N'Please, fix the following errors')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.errortitle', N'es-AR', N'Deberá corregir los siguientes puntos')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.guest.error.lastname.requerided', N'es-AR', N'Ingrese un apellido')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.guest.error.maxexceded', N'es-AR', N'Se excedio la cantidad máxima de participantes contratados')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.guest.error.name.requerided', N'es-AR', N'Ingrese un nombre')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.guests.delete.confirm', N'es-AR', N'Desea eliminar al invitado: ')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.guests.delete.confirm.title', N'es-AR', N'Eliminar invitado')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.guests.deletedok', N'es-AR', N'Se elimino al participante.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.guests.save.error', N'es-AR', N'Deberá corregir los siguientes puntos')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.guests.savedok', N'es-AR', N'Participante guardado ok')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.participants', N'en-US', N'Participants')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.participants', N'es-AR', N'Participantes')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payment.delete.confirm', N'en-US', N'Are you sure?')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payment.delete.confirm', N'es-AR', N'Desea eliminar el pago seleccionado?')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payment.delete.confirm.title', N'en-US', N'Delete payment')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payment.delete.confirm.title', N'es-AR', N'Eliminar pago')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payment.error.minpaidneeded', N'es-AR', N'Todavía no se saldo la seña minima para confirmar el evento. Pendientes: ')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payment.error.totalamountexceded', N'en-US', N'Total amount exceded')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payment.error.totalamountexceded', N'es-AR', N'El pago que intenta registrar excede el monto total del evento')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payments.add.errortitle', N'en-US', N'Error')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payments.add.errortitle', N'es-AR', N'No se pudo registrar el pago')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payments.add.ok.body', N'en-US', N'Payment recorded')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.payments.add.ok.body', N'es-AR', N'Pago registrado correctamente.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.place', N'en-US', N'Event room')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.place', N'es-AR', N'Lugar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.savedok', N'en-US', N'Saved ok')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.savedok', N'es-AR', N'Evento guardado con éxito')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.servicios', N'en-US', N'Services')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.servicios', N'es-AR', N'Servicios adicionales')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.title', N'en-US', N'Title')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.title', N'es-AR', N'Titulo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.tyle.title', N'en-US', N'Tyle')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.tyle.title', N'es-AR', N'Tipo de evento')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'event.unassign', N'es-AR', N'Desasignar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventform.title', N'en-US', N'Event')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventform.title', N'es-AR', N'Evento')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventoroom.abmc.saved', N'es-AR', N'Se guardó el evento #')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventroom.abmc.errortitle', N'es-AR', N'Deberá corregir los siguientes puntos')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventroom.details.title', N'en-US', N'Details')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventroom.details.title', N'es-AR', N'Detalle')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventroom.errors.dvv.dvhfails', N'es-AR', N'Integridad fallida para el lugar: ')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventroom.title', N'en-US', N'Event room')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventroom.title', N'es-AR', N'Salon')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventrooms.dvv.generatedok', N'es-AR', N'DVV generado con éxito')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventrooms.error.generatedvv.title', N'es-AR', N'No se pudo regenerar el DVV')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'events.title', N'en-US', N'Events')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'events.title', N'es-AR', N'Eventos')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventstatus.BUDGET', N'en-US', N'Budget')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventstatus.BUDGET', N'es-AR', N'BUDGET')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventstatus.CONFIRMED', N'en-US', N'Confirmed')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventstatus.CONFIRMED', N'es-AR', N'CONFIRMED')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventstatus.INITIALIZED', N'en-US', N'Initialized')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventstatus.INITIALIZED', N'es-AR', N'INITIALIZED')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventstatus.PRESUPUESTED', N'en-US', N'')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventstatus.PRESUPUESTED', N'es-AR', N'PRESUPUESTED')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventstatus.select', N'es-AR', N'Seleccione...')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventtitle.tittle', N'en-US', N'Title')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventtitle.tittle', N'es-AR', N'Titulo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventtype.Casamiento', N'en-US', N'Weding')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventtype.Casamiento', N'es-AR', N'Casamiento')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventtype.Casual', N'en-US', N'Casual')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventtype.Casual', N'es-AR', N'Casual')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventtype.Corporativo', N'en-US', N'Corporative')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventtype.Corporativo', N'es-AR', N'Corporativo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventtype.Otros', N'en-US', N'Others')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'eventtype.Otros', N'es-AR', N'Otros')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'families', N'en-US', N'Families')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'families', N'es-AR', N'Familias')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'family', N'en-US', N'Family')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'family', N'es-AR', N'Familia')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'filter.aditionalservice.column.id', N'en-US', N'Id')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'filter.aditionalservice.column.id', N'es-AR', N'Id')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'filter.aditionalservice.column.name', N'en-US', N'Name')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'filter.aditionalservice.column.name', N'es-AR', N'Nombre')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'filter.aditionalservice.column.price', N'en-US', N'Price')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'filter.aditionalservice.column.price', N'es-AR', N'Precio')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'filters.title', N'es-AR', N'Filitros')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'foodType.Title', N'es-AR', N'Alimentación')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'FrmCrearEditarIdioma.Error.SeleccionaIdioma', N'en-US', N'Pick a language')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'FrmCrearEditarIdioma.Error.SeleccionaIdioma', N'es-AR', N'Escriba un identificador de idioma, se recomienda el formato de la RFC3066 (es-AR)')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'frmlogin.login.title', N'en-US', N'Log In')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'frmlogin.login.title', N'es-AR', N'Iniciar sesión')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'grants', N'en-US', N'Grants')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'grants', N'es-AR', N'Patentes')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'grants.correctsave', N'en-US', N'Saved')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'grants.correctsave', N'es-AR', N'Los permisos se guardaron correctamente para el usuario pepe.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'guess.title', N'en-US', N'Guess')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'guess.title', N'es-AR', N'Invitados')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'guest.taxPayerId.Title', N'es-AR', N'CUIT/CUIL')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'guests', N'es-AR', N'Invitados')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'guests.title', N'es-AR', N'Invitados')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'home.custommers.mail', N'en-US', N'Mail')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'home.custommers.mail', N'es-AR', N'Mail')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'home.custommers.name', N'en-US', N'Name')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'home.custommers.name', N'es-AR', N'Nombre')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'home.custommers.taxPayerId', N'en-US', N'Tax Payer id')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'home.custommers.taxPayerId', N'es-AR', N'CUIL/CUIT')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'home.error.selectcustomer', N'en-US', N'Select')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'home.error.selectcustomer', N'es-AR', N'Seleccione un cliente')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'home.events.asigned.ok', N'es-AR', N'Usuario asignado con éxtio')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'home.events.unnasigned.ok', N'es-AR', N'Usuario desasignado con éxtio')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'label.active', N'es-AR', N'Activo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'label.address', N'es-AR', N'Dirección')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'label.assigned', N'es-AR', N'Asignado')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'label.bucketsize', N'es-AR', N'Intervalos (hs)')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'label.capacity', N'es-AR', N'Capacidad')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'label.id', N'es-AR', N'Id')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'label.name', N'es-AR', N'Nombre')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'label.price', N'es-AR', N'Precio')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'lang.manage', N'en-US', N'Manage')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'lang.manage', N'es-AR', N'Gestionar idioma')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'language', N'en-US', N'Language')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'language', N'es-AR', N'Idioma')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'lastname', N'en-US', N'Lastname')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'lastname', N'es-AR', N'Apellido')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'lastname.title', N'es-AR', N'Apellido')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'login.invaliddigit', N'en-US', N'Invalid digit')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'login.invaliddigit', N'es-AR', N'Registro de inicio de sesión corrupto, contacte al administrador')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'login.invaliduserpass', N'en-US', N'Invalid username or password')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'login.invaliduserpass', N'es-AR', N'Usuario y/o clave invalida')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'login.lockeduser', N'en-US', N'User locked')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'login.lockeduser', N'es-AR', N'Usuario bloqueado')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'login.password.expired', N'en-US', N'Password expired')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'login.password.expired', N'es-AR', N'Expiro su password, ingrese uno nuevo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'lugar.buscar', N'en-US', N'Search')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'lugar.buscar', N'es-AR', N'Buscar Lugar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'lugares.history.export.ok', N'es-AR', N'Exportado ok')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mail.title', N'en-US', N'Mail')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mail.title', N'es-AR', N'Mail')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'main.title', N'en-US', N'Main')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'main.title', N'es-AR', N'Se Hace!')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'minus', N'en-US', N'-')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'minus', N'es-AR', N'Presupuesto')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.admin', N'en-US', N'Admin')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.admin', N'es-AR', N'Administrador')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.admin.grants', N'en-US', N'Manage grants')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.admin.grants', N'es-AR', N'Admnistrar Permisos')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.admin.lang', N'en-US', N'Language')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.admin.lang', N'es-AR', N'Gestor idiomas')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.admin.users', N'en-US', N'Manage users')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.admin.users', N'es-AR', N'Admnistrar Usuarios')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.home', N'en-US', N'Home')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.home', N'es-AR', N'Home')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.lang', N'en-US', N'Language')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.lang', N'es-AR', N'Idioma')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.lang.change', N'en-US', N'Change languaje')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.lang.change', N'es-AR', N'Cambiar Idioma')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.login', N'en-US', N'Login')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.login', N'es-AR', N'Iniciar Sesión')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.logout', N'en-US', N'Logout')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.logout', N'es-AR', N'Cerrar sesión')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.newevent', N'en-US', N'New Event')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.newevent', N'es-AR', N'Crear evento')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.register', N'en-US', N'Register')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.register', N'es-AR', N'Registrarse')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.singin', N'en-US', N'Sign In')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.singin', N'es-AR', N'Registrar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.usuario', N'en-US', N'User')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'mnu.usuario', N'es-AR', N'Usuario')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'name', N'en-US', N'name')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'name', N'es-AR', N'Nombre')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'name.title', N'en-US', N'Name')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'name.title', N'es-AR', N'Nombre')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'newevent.Tittle', N'en-US', N'New Event')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'newevent.Tittle', N'es-AR', N'Nuevo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'nombre', N'en-US', N'Name')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'nombre', N'es-AR', N'Nombre')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'observations.Title', N'es-AR', N'Observaciones')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'open.title', N'en-US', N'Open')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'open.title', N'es-AR', N'Abrir')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paid.title', N'en-US', N'Paid')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paid.title', N'es-AR', N'Abonado')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'password', N'en-US', N'Password')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'password', N'es-AR', N'Clave')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'password.change.ok', N'en-US', N'Password changed')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'password.change.ok', N'es-AR', N'Clave cambiada correctamente')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'password.newpassword', N'en-US', N'New password')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'password.newpassword', N'es-AR', N'Clave nueva')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'password.newpassword.repeat', N'en-US', N'repeat')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'password.newpassword.repeat', N'es-AR', N'Repetir clave nueva')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'payment.date', N'en-US', N'Payment Date')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'payment.date', N'es-AR', N'Fecha del Pago')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'payment.save.conciliationkey.requerided', N'es-AR', N'Ingrese un criterio de conciliación')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'payments.registered', N'en-US', N'Payment registered')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'payments.registered', N'es-AR', N'Pagos Realizados')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'payments.title', N'en-US', N'Payments')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'payments.title', N'es-AR', N'Pagos')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.Casamiento', N'en-US', N'Weding')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.Casamiento', N'es-AR', N'Casamiento')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.CASH', N'en-US', N'Cash')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.CASH', N'es-AR', N'CASH')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.Casual', N'en-US', N'Casual')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.Casual', N'es-AR', N'Casual')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.Corporativo', N'en-US', N'Corporative')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.Corporativo', N'es-AR', N'Corporativo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.CREDIT_CARD', N'en-US', N'Credit Card')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.CREDIT_CARD', N'es-AR', N'CREDIT_CARD')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.CRYPTO', N'en-US', N'Crypto')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.CRYPTO', N'es-AR', N'CRYPTO')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.DEBIT_CARD', N'en-US', N'Debit card')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.DEBIT_CARD', N'es-AR', N'DEBIT_CARD')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.Otros', N'en-US', N'Others')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'paymentType.Otros', N'es-AR', N'Otros')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'pendingtopay.title', N'en-US', N'Pending')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'pendingtopay.title', N'es-AR', N'Pago Min.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'phone', N'en-US', N'Phone')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'phone', N'es-AR', N'Teléfono')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'places.filter.title', N'es-AR', N'Filtrar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'places.label.filter.id', N'es-AR', N'Id')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'places.label.filter.name', N'es-AR', N'Nombre')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'places.tables.bucketSieze', N'es-AR', N'Tiempo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'places.tables.capacity', N'es-AR', N'Cant.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'places.tables.id', N'es-AR', N'Id')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'places.tables.name', N'es-AR', N'Nombre')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'precio', N'en-US', N'Price')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'precio', N'es-AR', N'Precio')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'quantity.title', N'en-US', N'Quantity')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'quantity.title', N'es-AR', N'Cantidad')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'register.success', N'en-US', N'Successfully registered')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'register.success', N'es-AR', N'Usuario dado de alta correctamente.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'servicio.btn.agregar', N'en-US', N'Add')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'servicio.btn.agregar', N'es-AR', N'Quitar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'specialrequest.title', N'en-US', N'Special request')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'specialrequest.title', N'es-AR', N'Pedidos especiales')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'status.title', N'en-US', N'Status')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'status.title', N'es-AR', N'Estado')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'tab.aditionalServices', N'en-US', N'Aditional Services')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'tab.aditionalServices', N'es-AR', N'Servicios adicionales')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'tab.characteristics', N'en-US', N'Characteristics')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'tab.characteristics', N'es-AR', N'Caracteristicas')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'tab.cronology', N'es-AR', N'Cronología')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'tab.eventrooms', N'en-US', N'Eventrooms')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'tab.eventrooms', N'es-AR', N'Lugares')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'taxPayerId.title', N'en-US', N'Tax Payer Id')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'taxPayerId.title', N'es-AR', N'CUIT/CUIL')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'taxpayertype.tittle', N'en-US', N'Tax Payer Type')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'taxpayertype.tittle', N'es-AR', N'CUIT/CUIL')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.admin.grants', N'en-US', N'Manage grants')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.admin.grants', N'es-AR', N'Administrar permisos')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.doit', N'en-US', N'Do It!')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.doit', N'es-AR', N'Se hace!')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.lang.manage', N'en-US', N'Manage language')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.lang.manage', N'es-AR', N'Gestion de idiomas')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.login', N'en-US', N'Login')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.login', N'es-AR', N'Login')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.main', N'en-US', N'Do it!')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.main', N'es-AR', N'Se Hace!')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.signin', N'en-US', N'Sign in')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.signin', N'es-AR', N'Registrar')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.Title', N'en-US', N'Sign In')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'title.Title', N'es-AR', N'Titulo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'total.title', N'en-US', N'Total')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'total.title', N'es-AR', N'Total')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'type.title', N'en-US', N'Type')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'type.title', N'es-AR', N'Tipo')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'UnhandledGenericErrorMessage', N'en-US', N'Ops! An unexpected error occurs')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'UnhandledGenericErrorMessage', N'es-AR', N'Ups! Ocurrio un error.')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'user', N'en-US', N'User')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'user', N'es-AR', N'Usuario')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'username', N'en-US', N'Username')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'username', N'es-AR', N'Nombre de Usuario')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'username.title', N'es-AR', N'Usuario')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'webpage', N'en-US', N'Webpage')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'webpage', N'es-AR', N'Web')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'zipcode.title', N'en-US', N'ZipCode')
+GO
+INSERT [dbo].[Traducciones] ([clave], [idioma], [valor]) VALUES (N'zipcode.title', N'es-AR', N'Código Postal')
+GO
+
+
+
+INSERT [dbo].[Usuarios] ([Id], [username], [password], [Language], [FailCount], [LastLogin], [checkdigit], [expired], [Name], [Lastname]) VALUES (N'41c4a58e-a9df-4e4b-b781-b6940766ac09', N'admin', N'?"]T?rl?V????/??', N'es-AR', 0, NULL, 3562, 1, N'Admin', N'Admin')
+GO
+
+INSERT [dbo].[usuarios_permisos] ([id_usuario], [id_permiso]) VALUES (N'41c4a58e-a9df-4e4b-b781-b6940766ac09', N'031165cc-98f4-460a-95db-18ea25e3bd9b')
+GO

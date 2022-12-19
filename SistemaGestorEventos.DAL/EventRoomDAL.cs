@@ -137,7 +137,7 @@ namespace SistemaGestorEventos.DAL
             {
                 var db = new Database(connection);
 
-                decimal scalar = db.ExecuteScalar<decimal>("select sum(dvh)%30000 - ISNULL((select dvv from  INTEGRIDAD_VERTICAL where table_name = 'EventRooms' ),0) from EventRooms");
+                decimal scalar = db.ExecuteScalar<decimal>("select ISNULL(sum(dvh)%30000 - ISNULL((select dvv from  INTEGRIDAD_VERTICAL where table_name = 'EventRooms' ),0),0) from EventRooms");
                 return scalar == 0;
             }
         }

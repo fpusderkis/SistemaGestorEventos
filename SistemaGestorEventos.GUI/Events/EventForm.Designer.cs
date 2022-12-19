@@ -135,6 +135,7 @@
             this.Orden = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Actividad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpGuests = new System.Windows.Forms.TabPage();
+            this.btnPrinterGuestList = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dgvGuests = new System.Windows.Forms.DataGridView();
@@ -1437,6 +1438,7 @@
             // 
             // tpGuests
             // 
+            this.tpGuests.Controls.Add(this.btnPrinterGuestList);
             this.tpGuests.Controls.Add(this.button3);
             this.tpGuests.Controls.Add(this.button2);
             this.tpGuests.Controls.Add(this.dgvGuests);
@@ -1449,6 +1451,16 @@
             this.tpGuests.Text = "Invitados";
             this.tpGuests.UseVisualStyleBackColor = true;
             this.tpGuests.Click += new System.EventHandler(this.tpGuests_Click);
+            // 
+            // btnPrinterGuestList
+            // 
+            this.btnPrinterGuestList.Location = new System.Drawing.Point(721, 310);
+            this.btnPrinterGuestList.Name = "btnPrinterGuestList";
+            this.btnPrinterGuestList.Size = new System.Drawing.Size(57, 40);
+            this.btnPrinterGuestList.TabIndex = 17;
+            this.btnPrinterGuestList.Text = "🖶";
+            this.btnPrinterGuestList.UseVisualStyleBackColor = true;
+            this.btnPrinterGuestList.Click += new System.EventHandler(this.btnPrinterGuestList_Click);
             // 
             // button3
             // 
@@ -2016,5 +2028,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvASCTotal;
+        private System.Windows.Forms.Button btnPrinterGuestList;
     }
 }
