@@ -70,7 +70,23 @@ namespace SistemaGestorEventos.DAL.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a /****** Object:  Table [dbo].[Activities]    Script Date: 17/12/2022 20:35:21 ******/
+        ///SET ANSI_NULLS ON
+        ///GO
+        ///SET QUOTED_IDENTIFIER ON
+        ///GO
+        ///CREATE TABLE [dbo].[Activities](
+        ///	[Id] [int] IDENTITY(1,1) NOT NULL,
+        ///	[EventId] [int] NOT NULL,
+        ///	[ActivityOrder] [int] NOT NULL,
+        ///	[Description] [varchar](300) NULL,
+        ///	[Enabled] [bit] NOT NULL,
+        ///	[CreatedAt] [datetime] NULL,
+        ///	[UpdatedAt] [datetime] NULL,
+        /// CONSTRAINT [PK_Activities] PRIMARY KEY CLUSTERED 
+        ///(
+        ///	[Id] ASC
+        ///)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string createSchema {
             get {

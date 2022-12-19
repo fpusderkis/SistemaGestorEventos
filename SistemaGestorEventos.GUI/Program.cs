@@ -53,7 +53,7 @@ namespace SistemaGestorEventos.GUI
                 System.Threading.ThreadExceptionEventHandler((object sender, ThreadExceptionEventArgs e) => {
                     Console.WriteLine("ERROR NO CONTROLADO: " + e.Exception.Message);
                     Console.WriteLine(e.Exception.StackTrace);
-                    BitacoraSingleton.GetInstance.Log($"ERROR NO CONTROLADO: {e.Exception.Message}");
+                    BitacoraSingleton.GetInstance.Error($"ERROR NO CONTROLADO: {e.Exception.Message}");
                     MessageBox.Show(MultiLang.TranslateOrDefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
 
                 });
@@ -66,7 +66,7 @@ namespace SistemaGestorEventos.GUI
                 AppDomain.CurrentDomain.UnhandledException += (object sender, UnhandledExceptionEventArgs e) => {
                     Console.WriteLine("ERROR NO CONTROLADO: " + ((Exception)e.ExceptionObject).Message);
                     Console.WriteLine(((Exception)e.ExceptionObject).StackTrace);
-                    BitacoraSingleton.GetInstance.Log($"ERROR NO CONTROLADO: {((Exception)e.ExceptionObject).Message}");
+                    BitacoraSingleton.GetInstance.Error($"ERROR NO CONTROLADO: {((Exception)e.ExceptionObject).Message}");
                     MessageBox.Show(MultiLang.TranslateOrDefault("UnhandledGenericErrorMessage", "Ups! Ocurrio un error."));
                 };
 
@@ -76,6 +76,10 @@ namespace SistemaGestorEventos.GUI
             {
                 Application.Run(new FirstTimeForm());
             }
+
+            BitacoraSingleton.Error("Ejemplo de log de error");
+            BitacoraSingleton.Trace("Ejemplo de trace");
+            BitacoraSingleton.Log("Ejemplo log comun");
         }
     }
 }

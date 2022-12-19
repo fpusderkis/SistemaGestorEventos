@@ -79,5 +79,15 @@ namespace SistemaGestorEventos.GUI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        public static byte[] Sistema_Gestor_de_Eventos {
+            get {
+                object obj = ResourceManager.GetObject("Sistema_Gestor_de_Eventos", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

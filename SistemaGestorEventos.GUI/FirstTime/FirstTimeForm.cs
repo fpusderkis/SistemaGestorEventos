@@ -2,12 +2,7 @@
 using SistemaGestorEventos.SharedServices.bitacora;
 using SistemaGestorEventos.SharedServices.i18n;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Text;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SistemaGestorEventos.GUI.FirstTime
@@ -59,9 +54,18 @@ namespace SistemaGestorEventos.GUI.FirstTime
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String ruta = Application.StartupPath.ToString();
-            BitacoraSingleton.Log(ruta + "\\Ayuda\\SGE - Manual de instalacion.pdf");
-            Process.Start(ruta + "\\Ayuda\\SGE - Manual de instalacion.pdf");
+            var helpFileName = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "Ayuda") + @"\Manual de usuario.chm";
+
+
+            if (!File.Exists(helpFileName))
+            {
+                FileInfo fileInfo = new FileInfo(helpFileName);
+                fileInfo.Directory.Create();
+
+                File.WriteAllBytes(helpFileName, Properties.Resources.Sistema_Gestor_de_Eventos);
+            }
+
+            Help.ShowHelp(this, helpFileName);
         }
     }
 }

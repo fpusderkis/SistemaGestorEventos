@@ -11,6 +11,7 @@ using SistemaGestorEventos.SharedServices.i18n;
 using SistemaGestorEventos.SharedServices.Session;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -242,6 +243,22 @@ namespace SistemaGestorEventos.GUI
         private void reporteEventosToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var helpFileName = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "Ayuda") + @"\Manual de usuario.chm";
+
+
+            if (!File.Exists(helpFileName))
+            {
+                FileInfo fileInfo = new FileInfo(helpFileName);
+                fileInfo.Directory.Create();
+                
+                File.WriteAllBytes(helpFileName, Properties.Resources.Sistema_Gestor_de_Eventos);
+            }
+
+            Help.ShowHelp(this, helpFileName);
         }
     }
 }

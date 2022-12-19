@@ -14,7 +14,7 @@ namespace SistemaGestorEventos.BLL
 
         public static BitacoraBLL GetInstance { get => instance; }
 
-        public void Write(string userReferenceId, string message)
+        public void Write(string userReferenceId, string message, string criticity)
         {
             Guid? guid = null;
             if (userReferenceId != null)
@@ -22,12 +22,13 @@ namespace SistemaGestorEventos.BLL
                 guid = Guid.Parse(userReferenceId);
             }
 
-            BitacoraDAL.GetInstance.Write(guid, message);
+            BitacoraDAL.GetInstance.Write(guid, message,criticity);
         }
 
-        public IList<Log> SearchLogs(string username, DateTime from, DateTime to)
+        public IList<Log> SearchLogs(string username, DateTime from, DateTime to, string criticity)
         {
-            return BitacoraDAL.GetInstance.SearchLogs(username, from, to);
+            
+            return BitacoraDAL.GetInstance.SearchLogs(username, from, to, criticity);
         }
     }
 }

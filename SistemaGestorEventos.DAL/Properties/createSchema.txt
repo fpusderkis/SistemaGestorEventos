@@ -47,6 +47,7 @@ GO
 CREATE TABLE [dbo].[Bitacoras](
 	[userId] [uniqueidentifier] NULL,
 	[message] [varchar](1000) NULL,
+	[criticity] [varchar](100) NULL,
 	[creationDate] [datetime] NOT NULL
 ) ON [PRIMARY]
 GO
@@ -254,6 +255,7 @@ CREATE TABLE [dbo].[Logs](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[userId] [uniqueidentifier] NULL,
 	[message] [varchar](1000) NULL,
+	[criticity] [varchar](50) NULL,
 	[creationDate] [datetime] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -1006,7 +1008,8 @@ GO
 CREATE PROCEDURE [dbo].[sp_GuardarBitacora] 
 	-- Add the parameters for the stored procedure here
 	@userId uniqueidentifier, 
-	@message varchar(500)
+	@message varchar(1000),
+	@criticity varchar(50)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -1018,10 +1021,12 @@ BEGIN
 	INSERT INTO [dbo].[Logs]
            ([userId]
            ,[message],
+		   [criticity],
 		   [creationDate])
      VALUES
            (@userId
            ,@message,
+		   @criticity,
 		   GETDATE())
 
 END

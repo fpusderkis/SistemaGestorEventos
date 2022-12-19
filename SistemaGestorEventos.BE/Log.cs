@@ -11,5 +11,7 @@ namespace SistemaGestorEventos.BE
         public string Message { get; set; }
 
         public DateTime CreationDate { get; set; }
+
+        public string Criticity { get; set; }
     }
 }
